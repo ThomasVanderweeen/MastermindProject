@@ -7,13 +7,16 @@ package domein;
 
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class Speler {
+    /*beide kunnen private*/
     
     private String naam;
     private String wachtwoord;
 
+
+    
     public String getNaam() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -7,7 +7,7 @@ package domein;
 
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class DomeinController {
     

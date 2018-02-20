@@ -9,7 +9,7 @@ import persistentie.SpelerMapper;
 
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class SpelerRepository {
     

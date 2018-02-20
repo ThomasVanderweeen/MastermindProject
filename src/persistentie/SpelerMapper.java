@@ -14,12 +14,13 @@ import persistentie.Connectie;
 
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class SpelerMapper {
     
     private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.speler(naam, wachtwoord)" + "VALUES(?, ?)";
     
+    /*Verantwoordelijke voor het toevoegen van een speler aan de database*/
     public void voegToe(Speler speler){
         try(Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
             PreparedStatement query = conn.prepareStatement(INSERT_SPELER))
@@ -30,4 +31,5 @@ public class SpelerMapper {
             throw new RuntimeException(e);
         }
     }
+    
 }

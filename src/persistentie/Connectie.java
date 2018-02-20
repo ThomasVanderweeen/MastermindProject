@@ -7,9 +7,9 @@ package persistentie;
 
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class Connectie {
-    
+    /*Zorgt voor de algemene connectie met de database*/
     public static final String JDBC_URL = "jdbc:mysql://ID222177_g77.db.webhosting.be?user=ID222177_g77&password=OzAwj8ew";
 }
