@@ -13,4 +13,12 @@ public class Speler {
     
     private String naam;
     private String wachtwoord;
+
+    public String getNaam() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getWachtwoord() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

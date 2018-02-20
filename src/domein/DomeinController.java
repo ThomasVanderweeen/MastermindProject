@@ -22,7 +22,7 @@ public class DomeinController {
         
     }
     
-    public void registreer(String naam, String wachtwoord){
+    public void registreer(String naam, String wachtwoord, String wachtwoordBevestiging){
         Speler speler = null;
     }   
 }

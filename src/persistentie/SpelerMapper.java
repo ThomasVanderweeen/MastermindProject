@@ -5,11 +5,29 @@
  */
 package persistentie;
 
+import domein.Speler;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import persistentie.Connectie;
+
 /**
  *
  * @author ThomasV
  */
 public class SpelerMapper {
     
+    private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.speler(naam, wachtwoord)" + "VALUES(?, ?)";
     
+    public void voegToe(Speler speler){
+        try(Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
+            PreparedStatement query = conn.prepareStatement(INSERT_SPELER))
+        {
+            query.setString(1, speler.getNaam());
+            query.setString(2, speler.getWachtwoord());
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
