@@ -9,6 +9,7 @@ import domein.Speler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import persistentie.Connectie;
 
@@ -32,4 +33,26 @@ public class SpelerMapper {
         }
     }
     
+    /*Haalt informatie over een speler uit de database*/
+    public Speler geefSpeler(String gebruikersnaam){
+        Speler speler = null;
+        
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+                PreparedStatement query = connectie.prepareStatement("SELECT * FROM ID222177_g77 WHERE naam = ?")){
+        
+            query.setString(1,gebruikersnaam);
+            try(ResultSet rs = query.executeQuery()){
+                if(rs.next()){
+                    String wachtwoord = rs.getString("wachtwoord");
+                    
+                    speler = new Speler(gebruikersnaam, wachtwoord);
+                }
+            }
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        
+        return speler;
+    }
 }

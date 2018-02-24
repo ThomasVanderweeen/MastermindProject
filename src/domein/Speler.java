@@ -15,6 +15,10 @@ public class Speler {
     private String naam;
     private String wachtwoord;
 
+    public Speler(String gebruikersnaam, String wachtwoord) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     
     public String getNaam() {
