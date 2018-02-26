@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cui;
 
+package cui;
+import domein.DomeinController;
 /**
  *
  * @author ThomasV
  */
 public class StartUp {
-    
+    private final DomeinController dc;
+     /* Hier gaat de applicatie komen veronderstel ik*/
+    public StartUp(){
+        dc = new DomeinController();
+       
+    }
 }

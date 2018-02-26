@@ -16,16 +16,47 @@ public class Speler {
     private String wachtwoord;
 
     public Speler(String gebruikersnaam, String wachtwoord) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.naam = gebruikersnaam;
+        setWachtwoord(wachtwoord);
     }
 
-
+    public Speler(String gebruikersnaam, String wachtwoord,String wachtwoordBevestiging) {
+        this(gebruikersnaam,wachtwoord);
+        controleerWachtwoord(wachtwoord,wachtwoordBevestiging);
+    }
+    
+    /*wachtwoord bevat minstens 12 karakters eerste drie of laatste drie geen cijfer --> parse to int error --> exception
+    */
+    
+    /* OKE?!?! hoe exceptions afhandelen???!?*/
+    private void setWachtwoord(String wachtwoord){
+        int lengte = wachtwoord.length();
+        if(lengte<12)
+            throw new IllegalArgumentException("wachtwoord moet minstens zes karakters en drie cijfers  van voor en van achter bevatten");
+        try{
+            /*ik zie niets beter in? om dit te doen??*/
+            Integer.parseInt(wachtwoord.substring(0, 2));
+            Integer.parseInt(wachtwoord.substring(lengte-4,lengte-1));
+            
+        }catch(Exception e){
+            throw new IllegalArgumentException("fout in cijfers wachtwoord");
+        }
+        
+        this.wachtwoord = wachtwoord;
+    }
     
     public String getNaam() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.naam;
     }
 
     public String getWachtwoord() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.wachtwoord;
+    }
+    
+
+    /*zie bovenstaande commentaar*/
+    private void controleerWachtwoord(String wachtwoord,String wachtwoordBevestiging){
+        if(wachtwoord!=wachtwoordBevestiging)
+            throw new IllegalArgumentException("Wachtwoord en wachtwoordBevestiging komen niet overeen");
     }
 }

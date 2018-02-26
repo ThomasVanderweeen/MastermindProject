@@ -18,11 +18,34 @@ public class DomeinController {
         this.spelerRepository = new SpelerRepository();
     }
     
-    public void meldAan(String naam, String wachtwoord){
-        
+    /*
+    Er kan nog een exceptie optreden deze functie aanroepen voor speler bestaat.
+    */
+    public String geefSpelerNaam(){
+        return this.speler.getNaam();
     }
     
+    /*
+        opgebast geef leeg object door indien speler niet bestaat geen exception moet nog gefix worden
+    */
+    public Speler meldAan(String naam, String wachtwoord){
+        
+        boolean bestaat = spelerRepository.spelerBestaat(naam);
+        if(bestaat){
+           this.speler = spelerRepository.controleerAanmelden(naam, wachtwoord);
+        }
+        
+        return this.speler;
+    }
+    
+    /*
+    Ook nog geen exception geworpen indien speler wel al bestaat nog implementeren HOE?!
+    */
     public void registreer(String naam, String wachtwoord, String wachtwoordBevestiging){
-        Speler speler = null;
+         
+        boolean bestaat = spelerRepository.spelerBestaat(naam);
+        if(!bestaat){
+            this.speler = new Speler(naam,wachtwoord,wachtwoordBevestiging);
+        } 
     }   
 }

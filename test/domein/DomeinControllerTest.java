@@ -1,6 +1,6 @@
 package domein;
 
-import Test.*;
+import domein.*;
 
 public class DomeinControllerTest {
 

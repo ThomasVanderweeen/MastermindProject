@@ -23,7 +23,8 @@ public class SpelerMapper {
     
     /*Verantwoordelijke voor het toevoegen van een speler aan de database*/
     public void voegToe(Speler speler){
-        try(Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
+        try(
+            Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
             PreparedStatement query = conn.prepareStatement(INSERT_SPELER))
         {
             query.setString(1, speler.getNaam());
@@ -38,7 +39,7 @@ public class SpelerMapper {
         Speler speler = null;
         
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("SELECT * FROM ID222177_g77 WHERE naam = ?")){
+                PreparedStatement query = connectie.prepareStatement("SELECT * FROM ID222177_g77.speler WHERE naam = ?")){
         
             query.setString(1,gebruikersnaam);
             try(ResultSet rs = query.executeQuery()){
@@ -54,5 +55,33 @@ public class SpelerMapper {
         }
         
         return speler;
+    }
+    
+    /*Werkt na veel geprutst moet nog eens overgegaan worden*/
+       public boolean spelerBestaat(String gebruikersnaam){
+        boolean bestaat = false;
+        
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+                PreparedStatement query = connectie.prepareStatement("SELECT count(naam) FROM ID222177_g77.speler WHERE naam = ?;");){
+           
+            query.setString(1,gebruikersnaam);
+            try(ResultSet rs = query.executeQuery()){
+                if(rs.next()){
+                    String aantal = rs.getString("count(naam)");
+                    if(aantal.equals("1")){
+                        bestaat=true;
+                    } else
+                    {
+                        throw new IllegalArgumentException("geen gebruiker gevonden :c");
+                    }
+                    
+                }
+            }
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        
+        return bestaat;
     }
 }
