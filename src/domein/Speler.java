@@ -34,7 +34,7 @@ public class Speler {
         if(lengte<12)
             throw new IllegalArgumentException("wachtwoord moet minstens zes karakters en drie cijfers  van voor en van achter bevatten");
         try{
-            /*ik zie niets beter in? om dit te doen??*/
+            /*ik zie niets beter in? om dit te doen??  */
             Integer.parseInt(wachtwoord.substring(0, 2));
             Integer.parseInt(wachtwoord.substring(lengte-4,lengte-1));
             
