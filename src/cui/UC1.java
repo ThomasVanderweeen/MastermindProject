@@ -11,16 +11,19 @@ import java.util.Scanner;
  *
  * @author ThomasV
  */
-public class StartUp {
+public class UC1 {
     private final DomeinController dc;
     private final Scanner sc = new Scanner(System.in);
      /* Hier gaat de applicatie komen veronderstel ik*/
-    public StartUp(){
+    public UC1(){
         dc = new DomeinController();
+    }
+    
+    public void UC1Start(){
         int keuze = 0;
         
         do{
-            System.out.printf("%s%n%s%n%s%n","Welkom tot de mastermind applicatie!","1)Meld aan,2)Registreer");
+            System.out.printf("%s%n%s%n%s%n","Welkom tot de mastermind applicatie!","1)Meld aan" ,"2)Registreer");
             keuze = geefKeuzeIn("Geef u keuze in: ");
         }while(keuze<1||keuze>2);
        
@@ -34,7 +37,6 @@ public class StartUp {
                 System.out.println("Welkom "+dc.geefSpelerNaam());
                 break;
         }
-
     }
     
     private int geefKeuzeIn(String boodschap){
