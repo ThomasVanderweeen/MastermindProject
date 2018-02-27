@@ -19,7 +19,7 @@ public class UC1 {
         dc = new DomeinController();
     }
     
-    public void UC1Start(){
+    public void Start(){
         int keuze = 0;
         
         do{

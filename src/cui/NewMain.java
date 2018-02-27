@@ -16,7 +16,7 @@ public class NewMain {
     public static void main(String[] args) {
         
         UC1 uc1 = new UC1();
-        uc1.UC1Start();
+        uc1.Start();
     }
 }
 
