@@ -67,8 +67,17 @@ public class UC1 {
         
    
             do{
+                try{
                 System.out.printf("%s%n%s%n%s%n",r.getString("welkom"),r.getString("meldAan") ,r.getString("registreer"));
-                keuze = geefKeuzeIn(r.getString("keuzeInvoer"));
+//                keuze = geefKeuzeIn(r.getString("keuzeInvoer"));
+                System.out.println(r.getString("keuzeInvoer"));
+                keuze = sc.nextInt();
+                if(keuze > 1 || keuze < 2)
+                    throw new IllegalArgumentException();
+                }
+                catch(IllegalArgumentException e){
+                    System.err.println(r.getString("fouteKeuze"));
+                }
             }while(keuze<1||keuze>2);
        
         
