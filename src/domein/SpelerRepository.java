@@ -24,12 +24,17 @@ public class SpelerRepository {
         return this.mapper.spelerBestaat(naam);
     }
     
-    public Speler controleerAanmelden(String naam, String Wachtwoord){
+    public Speler  controleerAanmelden(String naam, String Wachtwoord){
         Speler sp = this.mapper.geefSpeler(naam);
-        if(sp.getWachtwoord().equals(Wachtwoord))
+        if(sp.getWachtwoord().equals(Wachtwoord)){
             return sp;
+        }
         else
             throw new IllegalArgumentException("Wachtwoord komt niet overeen. :c");
+    }
+    
+    public void voegSpelerToe(Speler sp){
+        mapper.voegToe(sp);
     }
     
     

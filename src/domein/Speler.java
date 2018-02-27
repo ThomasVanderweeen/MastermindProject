@@ -13,7 +13,7 @@ public class Speler {
     /*beide kunnen private*/
     
     private String naam;
-    private String wachtwoord;
+    private String wachtwoord=null;
 
     public Speler(String gebruikersnaam, String wachtwoord) {
         this.naam = gebruikersnaam;
@@ -35,8 +35,8 @@ public class Speler {
             throw new IllegalArgumentException("wachtwoord moet minstens zes karakters en drie cijfers  van voor en van achter bevatten");
         try{
             /*ik zie niets beter in? om dit te doen??  */
-            Integer.parseInt(wachtwoord.substring(0, 2));
-            Integer.parseInt(wachtwoord.substring(lengte-4,lengte-1));
+            Integer.parseInt(wachtwoord.substring(0, 3));
+            Integer.parseInt(wachtwoord.substring(lengte-3,lengte));
             
         }catch(Exception e){
             throw new IllegalArgumentException("fout in cijfers wachtwoord");
@@ -55,8 +55,10 @@ public class Speler {
     
 
     /*zie bovenstaande commentaar*/
+    
     private void controleerWachtwoord(String wachtwoord,String wachtwoordBevestiging){
-        if(wachtwoord!=wachtwoordBevestiging)
+        if(!(wachtwoord.equals(wachtwoordBevestiging)))
             throw new IllegalArgumentException("Wachtwoord en wachtwoordBevestiging komen niet overeen");
+        
     }
 }

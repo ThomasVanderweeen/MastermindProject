@@ -29,6 +29,7 @@ public class SpelerMapper {
         {
             query.setString(1, speler.getNaam());
             query.setString(2, speler.getWachtwoord());
+            query.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
@@ -70,11 +71,7 @@ public class SpelerMapper {
                     String aantal = rs.getString("count(naam)");
                     if(aantal.equals("1")){
                         bestaat=true;
-                    } else
-                    {
-                        throw new IllegalArgumentException("geen gebruiker gevonden :c");
                     }
-                    
                 }
             }
         }
