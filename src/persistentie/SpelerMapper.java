@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import persistentie.Connectie;
+import exceptions.ServerOnbereikbaarException;
 
 /**
  *
@@ -36,23 +37,28 @@ public class SpelerMapper {
     }
     
     /*Haalt informatie over een speler uit de database*/
-    public Speler geefSpeler(String gebruikersnaam){
+    public Speler geefSpeler(String gebruikersnaam,String wachtwoord){
         Speler speler = null;
         
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("SELECT * FROM ID222177_g77.speler WHERE naam = ?")){
+                PreparedStatement query = connectie.prepareStatement("SELECT * FROM ID222177_g77.speler WHERE naam = ? AND wachtwoord = ?")){
         
             query.setString(1,gebruikersnaam);
+            query.setString(2, wachtwoord);
             try(ResultSet rs = query.executeQuery()){
                 if(rs.next()){
-                    String wachtwoord = rs.getString("wachtwoord");
-                    
                     speler = new Speler(gebruikersnaam, wachtwoord);
+                }
+                else{
+                    speler = null;
                 }
             }
         }
         catch(SQLException e){
-            throw new RuntimeException(e);
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
         }
         
         return speler;
@@ -76,7 +82,10 @@ public class SpelerMapper {
             }
         }
         catch(SQLException e){
-            throw new RuntimeException(e);
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
         }
         
         return bestaat;

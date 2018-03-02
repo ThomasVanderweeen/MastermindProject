@@ -8,6 +8,8 @@ package cui;
 import domein.DomeinController;
 import java.util.Scanner;
 import java.util.ResourceBundle;
+import exceptions.ServerOnbereikbaarException;
+import exceptions.AanmeldException;
 /**
  *
  * @author ThomasV
@@ -30,8 +32,8 @@ public class UC1 {
         boolean taalGeselecteerd = false;
         do {
             try {
-                System.out.print("Welke taal wilt u?, Quelle langue vous préférez?, Which language do you prefer? (1:Nederlands, 2:English, 3:Français)");
-                int invoerTaal = sc.nextInt();
+                System.out.print("Welke taal wilt u?, Quelle langue vous préférez?, Which language \ndo you prefer?");
+                int invoerTaal = geefKeuzeIn("(1:Nederlands, 2:English, 3:Français): ");
 
                 if (invoerTaal < 1 || invoerTaal > 3) {
                     throw new IllegalArgumentException();
@@ -68,27 +70,45 @@ public class UC1 {
    
             do{
                 try{
-                System.out.printf("%s%n%s%n%s%n",r.getString("welkom"),r.getString("meldAan") ,r.getString("registreer"));
+                System.out.printf("%s%n%s%n%s%n%s%n",r.getString("welkom"),r.getString("meldAan") ,r.getString("registreer"),r.getString("sluitAf"));
 //                keuze = geefKeuzeIn(r.getString("keuzeInvoer"));
-                System.out.println(r.getString("keuzeInvoer"));
+                System.out.print(r.getString("keuzeInvoer"));
                 keuze = sc.nextInt();
-                if(keuze > 1 || keuze < 2)
+                if(keuze < 1 || keuze > 3)
                     throw new IllegalArgumentException();
                 }
                 catch(IllegalArgumentException e){
-                    System.err.println(r.getString("fouteKeuze"));
+                    System.err.println(r.getString("foute Keuze probeer opnieuw"));
                 }
-            }while(keuze<1||keuze>2);
+            }while(keuze<1||keuze>3);
        
         
             switch(keuze){
                 case 1:
-                    meldAan();
-                    System.out.println(r.getString("meldAanWelkom")+ " " + dc.geefSpelerNaam());
+                    try{
+                        meldAan();
+                        System.out.println(r.getString("meldAanWelkom")+ " " + dc.geefSpelerNaam());
+                    }
+                    catch(ServerOnbereikbaarException e){
+                        System.out.println("Sorry de server is onbereikbaar bent u wel online?");
+                        toonMenu();
+                    }catch(AanmeldException e){
+                        System.out.println("Controleer de gegevens en probeer opnieuw.");
+                    }
                     break;
                 case 2:
+                    try{
                     registreer();
                     System.out.println(r.getString("registreerWelkom")+ " " +dc.geefSpelerNaam());
+                    }
+                    catch(ServerOnbereikbaarException e){
+                        System.out.println("Sorry de server is onbereikbaar bent u wel online?");
+                        toonMenu();
+                    }
+
+                    break;
+                case 3:
+                    System.out.println("Bedankt voor het spel uit te proberen! Fijne dag verder!");
                     break;
             }
     }

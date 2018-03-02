@@ -6,6 +6,7 @@
 package domein;
 
 import persistentie.SpelerMapper;
+import  exceptions.AanmeldException;
 
 /**
  *
@@ -24,13 +25,12 @@ public class SpelerRepository {
         return this.mapper.spelerBestaat(naam);
     }
     
-    public Speler  controleerAanmelden(String naam, String Wachtwoord){
-        Speler sp = this.mapper.geefSpeler(naam);
-        if(sp.getWachtwoord().equals(Wachtwoord)){
-            return sp;
-        }
+    public Speler  controleerAanmelden(String naam, String wachtwoord){
+        Speler sp = this.mapper.geefSpeler(naam,wachtwoord);
+        if(sp==null)
+            throw new AanmeldException();
         else
-            throw new IllegalArgumentException("Wachtwoord komt niet overeen. :c");
+            return sp;
     }
     
     public void voegSpelerToe(Speler sp){

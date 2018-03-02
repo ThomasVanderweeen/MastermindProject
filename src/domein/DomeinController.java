@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package domein;
-
+import exceptions.AanmeldException;
 /**
  *
  * @author Groep 77
@@ -31,10 +31,11 @@ public class DomeinController {
     public Speler meldAan(String naam, String wachtwoord){
         
         boolean bestaat = spelerRepository.spelerBestaat(naam);
+        System.out.println(bestaat);
         if(bestaat){
            this.speler = spelerRepository.controleerAanmelden(naam, wachtwoord);
         }else{
-            throw new IllegalArgumentException("geen speler gevonden :(");
+            throw new AanmeldException();
         }
         
         return this.speler;
