@@ -27,3 +27,5 @@ hs_err_pid*
 /nbproject/
 /vpproject/
 /build/
+/mastermind/build/
+/mastermind/nbproject/private/

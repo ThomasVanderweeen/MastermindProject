@@ -27,22 +27,22 @@ public class Speler {
     
     /*wachtwoord bevat minstens 12 karakters eerste drie of laatste drie geen cijfer --> parse to int error --> exception
     */
-    
+    public void setNaam(String naam){    
+        this.naam = naam;
+
+    }
+
     /* OKE?!?! hoe exceptions afhandelen???!?*/
-    private void setWachtwoord(String wachtwoord){
-        int lengte = wachtwoord.length();
-        if(lengte<12)
-            throw new IllegalArgumentException("wachtwoord moet minstens zes karakters en drie cijfers  van voor en van achter bevatten");
+    void setWachtwoord(String wachtwoord) {
         try{
-            /*ik zie niets beter in? om dit te doen??  */
-            Integer.parseInt(wachtwoord.substring(0, 3));
-            Integer.parseInt(wachtwoord.substring(lengte-3,lengte));
-            
-        }catch(Exception e){
-            throw new IllegalArgumentException("fout in cijfers wachtwoord");
+            if(!wachtwoord.matches("\\d{3}[a-zA-z]{6}\\d{3}"))
+                throw new IllegalArgumentException();
+            else
+                this.wachtwoord = wachtwoord;
         }
-        
-        this.wachtwoord = wachtwoord;
+        catch(IllegalArgumentException e){
+            System.err.println("Wachtwoord fout");
+        }
     }
     
     public String getNaam() {

@@ -5,6 +5,7 @@
  */
 package domein;
 import exceptions.AanmeldException;
+import exceptions.SpelerBestaatAlException;
 /**
  *
  * @author Groep 77
@@ -46,11 +47,19 @@ public class DomeinController {
     */
     public void registreer(String naam, String wachtwoord, String wachtwoordBevestiging){
         boolean bestaat = spelerRepository.spelerBestaat(naam);
-        if(!bestaat){
-            this.speler = new Speler(naam,wachtwoord,wachtwoordBevestiging);
-            this.spelerRepository.voegSpelerToe(speler);
-        } else{
-            throw new IllegalArgumentException("Speler al bekend in systeem.");
+        try{
+            if(!bestaat){
+                this.speler = new Speler(naam,wachtwoord,wachtwoordBevestiging);
+                this.spelerRepository.voegSpelerToe(speler);
+            }   
+            else{
+                throw new SpelerBestaatAlException();
+            }
+        }
+        catch(SpelerBestaatAlException e){
+            System.err.println("Speler al bekend in systeem.");
         }
     }   
+    
+    
 }
