@@ -4,19 +4,25 @@
  * and open the template in the editor.
  */
 package domein;
+
 import exceptions.AanmeldException;
 import exceptions.SpelerBestaatAlException;
+import java.util.List;
+import java.util.ArrayList;
 /**
  *
  * @author Groep 77
  */
 public class DomeinController {
     
-    private final SpelerRepository spelerRepository;
+    private static SpelerRepository spelerRepository;
     private Speler speler;
+    private Spel spel;
+    private static SpelRepository spelRepository;
 
     public DomeinController() {
-        this.spelerRepository = new SpelerRepository();
+        spelerRepository = new SpelerRepository();
+        spelRepository = new SpelRepository();
     }
     
     /*
@@ -50,7 +56,7 @@ public class DomeinController {
         try{
             if(!bestaat){
                 this.speler = new Speler(naam,wachtwoord,wachtwoordBevestiging);
-                this.spelerRepository.voegSpelerToe(speler);
+                spelerRepository.voegSpelerToe(speler);
             }   
             else{
                 throw new SpelerBestaatAlException();
@@ -61,5 +67,32 @@ public class DomeinController {
         }
     }   
     
+    public void registreerSpel(int moeilijkheidsGraad){
+        this.spel = new Spel(moeilijkheidsGraad,this.speler);
+        spelRepository.voegSpelToe(this.spel);
+    }
+    
+    public List<Integer> startNieuwSpel(){
+        List<Integer> gewonnenLijst = new ArrayList<>();
+        
+        gewonnenLijst.add(this.speler.getAantalGewonnenMakkelijk());
+        gewonnenLijst.add(this.speler.getAantalGewonnenGemiddeld());
+        gewonnenLijst.add(this.speler.getAantalGewonnenMoeilijk());
+        
+        return gewonnenLijst;
+    }
+    
+    public String[][][] geefSpelbord(){
+       String[][][] spelbordlijst= new String[2][][];
+       
+       Spelbord spelbord = this.spel.getSpelBord();
+       String[] code = (String[])(spelbord.getCode().toArray());
+       String[][] pogingen = (String[][])(spelbord.getPogingen().toArray());
+       
+      spelbordlijst[0][0]= code;
+      spelbordlijst[1]= pogingen;
+      
+      return spelbordlijst;
+    }
     
 }

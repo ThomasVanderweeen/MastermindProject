@@ -14,6 +14,9 @@ public class Speler {
     
     private String naam;
     private String wachtwoord=null;
+    private int aantalGewonnenMakkelijk=0;
+    private int aantalGewonnenGemiddeld=0;
+    private int aantalGewonnenMoeilijk=0;
 
     public Speler(String gebruikersnaam, String wachtwoord) {
         this.naam = gebruikersnaam;
@@ -53,7 +56,17 @@ public class Speler {
         return this.wachtwoord;
     }
     
-
+    public int getAantalGewonnenMakkelijk(){
+        return this.aantalGewonnenMakkelijk;
+    }
+    
+    public int getAantalGewonnenGemiddeld(){
+        return this.aantalGewonnenGemiddeld;
+    }
+    
+    public int getAantalGewonnenMoeilijk(){
+        return this.aantalGewonnenMoeilijk;
+    }
     /*zie bovenstaande commentaar*/
     
     private void controleerWachtwoord(String wachtwoord,String wachtwoordBevestiging){
