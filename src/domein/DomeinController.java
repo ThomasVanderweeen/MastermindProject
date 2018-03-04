@@ -38,7 +38,6 @@ public class DomeinController {
     public Speler meldAan(String naam, String wachtwoord){
         
         boolean bestaat = spelerRepository.spelerBestaat(naam);
-        System.out.println(bestaat);
         if(bestaat){
            this.speler = spelerRepository.controleerAanmelden(naam, wachtwoord);
         }else{

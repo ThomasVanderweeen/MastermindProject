@@ -10,6 +10,7 @@ import java.util.Scanner;
 import java.util.ResourceBundle;
 import exceptions.ServerOnbereikbaarException;
 import exceptions.AanmeldException;
+import java.util.InputMismatchException;
 /**
  *
  * @author ThomasV
@@ -59,9 +60,14 @@ public class UC1 {
                 System.out.println();
 
             } catch (IllegalArgumentException e) {
-                System.err.printf("Fout nummer, wrong number, numéro incorrect%n");
+                System.err.println("Fout nummer, wrong number, numéro incorrect");
+            }catch (InputMismatchException i){
+                System.out.printf("Je moet een geheel getal in geven,You have to enter a whole number,\n"
+                        + "votre choix doit être un nombre entier\n");
+                sc.next();
             }
         } while (!taalGeselecteerd);
+
     }
     
     private void toonMenu(){
@@ -78,8 +84,11 @@ public class UC1 {
                     throw new IllegalArgumentException();
                 }
                 catch(IllegalArgumentException e){
-                    System.err.println(r.getString("foute Keuze probeer opnieuw"));
-                }
+                    System.err.println(r.getString("fouteKeuze"));
+                }catch (InputMismatchException i){
+                    System.err.println(r.getString("foutGeheelGetal"));
+                    sc.next();
+           }
             }while(keuze<1||keuze>3);
        
         
@@ -88,27 +97,32 @@ public class UC1 {
                     try{
                         meldAan();
                         System.out.println(r.getString("meldAanWelkom")+ " " + dc.geefSpelerNaam());
+                        toonMogelijkheden();
                     }
                     catch(ServerOnbereikbaarException e){
-                        System.out.println("Sorry de server is onbereikbaar bent u wel online?");
+                        System.err.println(r.getString("serverFout"));
                         toonMenu();
                     }catch(AanmeldException e){
-                        System.out.println("Controleer de gegevens en probeer opnieuw.");
+                        System.err.println(r.getString("probeerOpnieuw"));
+                        /*Nodig voor correct weergeven van tekst*/
+                        System.out.print("");
+                        toonMenu();
                     }
                     break;
                 case 2:
                     try{
                     registreer();
                     System.out.println(r.getString("registreerWelkom")+ " " +dc.geefSpelerNaam());
+                    toonMogelijkheden();
                     }
                     catch(ServerOnbereikbaarException e){
-                        System.out.println("Sorry de server is onbereikbaar bent u wel online?");
+                        System.err.println(r.getString("serverFout"));
                         toonMenu();
                     }
 
                     break;
                 case 3:
-                    System.out.println("Bedankt voor het spel uit te proberen! Fijne dag verder!");
+                    System.out.println(r.getString("afsluiten"));
                     break;
             }
     }
@@ -140,5 +154,40 @@ public class UC1 {
         String wachtwoordBevestiging = this.sc.next();
         
         dc.registreer(naam, wachtwoord,wachtwoordBevestiging);
+   }
+    
+   private void toonMogelijkheden(){
+       int keuze=0;
+       
+       System.out.printf("%s%n%s%n%s%n%s%n%s%n",r.getString("startEenSpel"),
+               r.getString("laadSpel"),r.getString("daagIemandUit"),
+               r.getString("wieDaagtJouUit"),r.getString("toonKlassement"));
+       
+       do{
+           try{ 
+            System.out.print(r.getString("keuzeInvoer"));
+            keuze = this.sc.nextInt();
+            
+            if(keuze<1 || keuze>5)
+                throw new IllegalArgumentException();
+           }catch(IllegalArgumentException e){
+               System.err.println(r.getString("fouteKeuze"));
+           }catch (InputMismatchException i){
+               System.err.println(r.getString("foutGeheelGetal"));
+               sc.next();
+           }
+       }while(keuze<1 || keuze>5);
+       
+       switch(keuze){
+           case 1:
+               UC2 uc2 = new UC2(r);
+               uc2.start();
+               break;
+           default:
+               System.err.println(r.getString("nogNietGeimplementeerd"));
+               toonMogelijkheden();
+               break;
+       }
+       
    }
 }
