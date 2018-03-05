@@ -13,6 +13,7 @@ public class Spelbord {
     private List<List<String>> pogingen;
     
     public Spelbord(int moeilijkheidsGraad){
+        this.pogingen = new ArrayList<>();
         stelMoeilijkheidsGraadIn(moeilijkheidsGraad);
         setCode();
         maakSpelbord();
@@ -41,11 +42,17 @@ public class Spelbord {
         
         for(int i=0;i<aantalRijen;i++){
             List<String> rij = new ArrayList<>();
+            
+            for(int j=0;i<code.size();i++){
+                rij.add("0");
+           }
+            
             this.pogingen.add(rij);
         }
     }
     
     public List<String> getCode(){
+        System.out.println("code:"+code);
         return this.code;
     }
     

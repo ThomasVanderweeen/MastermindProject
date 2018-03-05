@@ -98,7 +98,7 @@ public class UC1 {
                         meldAan();
                         System.out.println(r.getString("meldAanWelkom")+ " " + dc.geefSpelerNaam());
                         toonMogelijkheden();
-                    }
+                    }/*exception word veel hergebruikt misschien aparte klasse? of verplaatsen naar geefKeuze in?*/
                     catch(ServerOnbereikbaarException e){
                         System.err.println(r.getString("serverFout"));
                         toonMenu();
@@ -159,12 +159,11 @@ public class UC1 {
    private void toonMogelijkheden(){
        int keuze=0;
        
-       System.out.printf("%s%n%s%n%s%n%s%n%s%n",r.getString("startEenSpel"),
-               r.getString("laadSpel"),r.getString("daagIemandUit"),
-               r.getString("wieDaagtJouUit"),r.getString("toonKlassement"));
-       
        do{
            try{ 
+            System.out.printf("%s%n%s%n%s%n%s%n%s%n",r.getString("startEenSpel"),
+               r.getString("laadSpel"),r.getString("daagIemandUit"),
+               r.getString("wieDaagtJouUit"),r.getString("toonKlassement"));
             System.out.print(r.getString("keuzeInvoer"));
             keuze = this.sc.nextInt();
             
@@ -180,7 +179,7 @@ public class UC1 {
        
        switch(keuze){
            case 1:
-               UC2 uc2 = new UC2(r);
+               UC2 uc2 = new UC2(r,dc);
                uc2.start();
                break;
            default:

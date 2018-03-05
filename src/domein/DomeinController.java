@@ -35,7 +35,7 @@ public class DomeinController {
     /*
         opgebast geef leeg object door indien speler niet bestaat geen exception moet nog gefix worden
     */
-    public Speler meldAan(String naam, String wachtwoord){
+    public void meldAan(String naam, String wachtwoord){
         
         boolean bestaat = spelerRepository.spelerBestaat(naam);
         if(bestaat){
@@ -44,7 +44,7 @@ public class DomeinController {
             throw new AanmeldException();
         }
         
-        return this.speler;
+        
     }
     
     /*
@@ -85,12 +85,24 @@ public class DomeinController {
        String[][][] spelbordlijst= new String[2][][];
        
        Spelbord spelbord = this.spel.getSpelBord();
-       String[] code = (String[])(spelbord.getCode().toArray());
-       String[][] pogingen = (String[][])(spelbord.getPogingen().toArray());
        
-      spelbordlijst[0][0]= code;
-      spelbordlijst[1]= pogingen;
+       List<String> code = spelbord.getCode();
+       String[] codear = new String[code.size()];
+  
+       for(int i=0;i<code.size();i++){
+           codear[i]=code.get(i);
+       }
       
+       List<List<String>>pogingen = spelbord.getPogingen();
+       String[][] pogingar = new String[pogingen.size()][pogingen.get(0).size()];
+       for(int i=0;i<pogingar.length;i++){
+           for(int j=0;j<pogingar[0].length;j++){
+               pogingar[i][j] = pogingen.get(i).get(j);
+           }
+       }
+       
+       
+      spelbordlijst[0][0]=codear;
       return spelbordlijst;
     }
     

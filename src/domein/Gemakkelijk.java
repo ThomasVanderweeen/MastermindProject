@@ -12,6 +12,7 @@ public class Gemakkelijk extends MoeilijkheidsGraad {
         super(4,4);
     }
     
+    /*lijst methode met kleuren verwijderen zou minder tijd kosten*/
     @Override
     public List<String> genereerCode(){
         List<String> code = new ArrayList<>();
