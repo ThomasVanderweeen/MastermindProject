@@ -21,11 +21,11 @@ public class SpelerRepository {
     }
     
     /*Vrij robuust?!?!*/
-    public boolean spelerBestaat(String naam){
+    public boolean bestaatSpeler(String naam){
         return this.mapper.spelerBestaat(naam);
     }
     
-    public Speler  controleerAanmelden(String naam, String wachtwoord){
+    public Speler  geefSpeler(String naam, String wachtwoord){
         Speler sp = this.mapper.geefSpeler(naam,wachtwoord);
         if(sp==null)
             throw new AanmeldException();

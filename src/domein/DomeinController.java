@@ -37,9 +37,9 @@ public class DomeinController {
     */
     public void meldAan(String naam, String wachtwoord){
         
-        boolean bestaat = spelerRepository.spelerBestaat(naam);
+        boolean bestaat = spelerRepository.bestaatSpeler(naam);
         if(bestaat){
-           this.speler = spelerRepository.controleerAanmelden(naam, wachtwoord);
+           this.speler = spelerRepository.geefSpeler(naam, wachtwoord);
         }else{
             throw new AanmeldException();
         }
@@ -51,7 +51,7 @@ public class DomeinController {
     Ook nog geen exception geworpen indien speler wel al bestaat nog implementeren HOE?!
     */
     public void registreer(String naam, String wachtwoord, String wachtwoordBevestiging){
-        boolean bestaat = spelerRepository.spelerBestaat(naam);
+        boolean bestaat = spelerRepository.bestaatSpeler(naam);
         try{
             if(!bestaat){
                 this.speler = new Speler(naam,wachtwoord,wachtwoordBevestiging);
