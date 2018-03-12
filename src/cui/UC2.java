@@ -70,7 +70,7 @@ public class UC2 {
             System.err.println(r.getString("nietGenoegGewonnen"));
             kiesMoeilijkheidsGraad();
         }
-        
-        
     }
+    
+    
 }

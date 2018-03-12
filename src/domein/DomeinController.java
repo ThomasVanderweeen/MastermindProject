@@ -93,17 +93,16 @@ public class DomeinController {
            codear[i]=code.get(i);
        }
       
-       List<List<String>>pogingen = spelbord.getPogingen();
-       String[][] pogingar = new String[pogingen.size()][pogingen.get(0).size()];
-       for(int i=0;i<pogingar.length;i++){
-           for(int j=0;j<pogingar[0].length;j++){
-               pogingar[i][j] = pogingen.get(i).get(j);
-           }
-       }
+//       List<List<String>>pogingen = spelbord.getPogingen();
+//       String[][] pogingar = new String[pogingen.size()][pogingen.get(0).size()];
+//       for(int i=0;i<pogingar.length;i++){
+//           for(int j=0;j<pogingar[0].length;j++){
+//               pogingar[i][j] = pogingen.get(i).get(j);
+//           }
+//       }
        
        
-      spelbordlijst[0][0]=codear;
+//      spelbordlijst[0][0]=codear;
       return spelbordlijst;
-    }
-    
+    }   
 }
