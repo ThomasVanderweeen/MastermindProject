@@ -104,5 +104,18 @@ public class DomeinController {
        
 //      spelbordlijst[0][0]=codear;
       return spelbordlijst;
-    }   
+    }
+    
+    
+    private boolean bepaalEindeSpel(Spel spel){
+        boolean einde;
+        if (spel.getSpelBord().getAantalPogingen() >= 12)
+            einde = true;
+        else
+            einde = false;
+        
+        return einde;
+    }
+    
+    
 }

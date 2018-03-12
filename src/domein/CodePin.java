@@ -11,20 +11,12 @@ package domein;
  */
 public class CodePin {
     private String kleur;
-    private int positie; 
 
-    public CodePin(String kleur, int positie) {
+    public CodePin(String kleur) {
         this.kleur = kleur;
-        this.positie = positie;
     }
 
     public String getKleur() {
         return kleur;
-    }
-
-    public int getPositie() {
-        return positie;
-    }
-    
-    
+    }    
 }

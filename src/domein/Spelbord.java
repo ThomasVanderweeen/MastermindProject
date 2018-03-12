@@ -11,6 +11,7 @@ public class Spelbord {
     private MoeilijkheidsGraad moeilijkheidsGraad;
     private List<String> code;
     private List<List<String>> pogingen;
+    private int aantalPogingen;
     
     public Spelbord(int moeilijkheidsGraad){
         this.pogingen = new ArrayList<>();
@@ -63,6 +64,11 @@ public class Spelbord {
     public MoeilijkheidsGraad getMoeilijkheidsGraad() {
         return moeilijkheidsGraad;
     }
+
+    public int getAantalPogingen() {
+        return aantalPogingen;
+    }
+    
     
 //    public ArrayList<EvaluatiePin> evalueerPoging(CodePin[] poging, CodePin[] code, MoeilijkheidsGraad moeilijkheidsGraad){
 //        
