@@ -115,12 +115,11 @@ public class Spelbord {
 //    }
     
     public ArrayList<String> evalueerPoging(String[] poging, String[] code, MoeilijkheidsGraad moeilijkheidsGraad){
-        
-        ArrayList<String> evaluatie = new ArrayList();
+        ArrayList<String> evaluatie = new ArrayList(code.length);
         moeilijkheidsGraad = this.getMoeilijkheidsGraad();
         if(moeilijkheidsGraad instanceof Gemakkelijk){
             for(int i = 0; i < code.length ; i++){
-                if(poging[i] == code[i]){
+                if(poging[i].equals(code[i])){
                     evaluatie.add("Zwart");
                 }
                 else{
@@ -132,12 +131,13 @@ public class Spelbord {
                         evaluatie.add("Rood");
                         }
                     }
-                } 
-                    
+                }       
             }
         }
+                
         else if(moeilijkheidsGraad instanceof Gemiddeld || moeilijkheidsGraad instanceof Moeilijk){
-            for (int i = 0; i < code.length; i++){
+ 
+                for (int i = 0; i < code.length; i++){
                 if(poging[i].equals(code[i])){
                     if(evaluatie.isEmpty())
                         evaluatie.add("Zwart");

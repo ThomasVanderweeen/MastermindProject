@@ -10,5 +10,26 @@ package domein;
  * @author ThomasV
  */
 public class Rij {
+    CodePin poging;
+    EvaluatiePin evaluatie;
     
+    public Rij(int aantalPosities){
+        
+    }
+    
+    public void doePoging(String[] poging){
+        
+    }
+
+    public EvaluatiePin getEvaluatie() {
+        return evaluatie;
+    }
+    
+    public boolean heeftEvaluatie(){
+        return evaluatie != null;
+    }
+    
+    public void stelEvaluatieIn(String[] evaluatie){
+        
+    }
 }

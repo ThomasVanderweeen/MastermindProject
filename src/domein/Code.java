@@ -10,5 +10,18 @@ package domein;
  * @author ThomasV
  */
 public class Code {
+    CodePin[] code;
+    MoeilijkheidsGraad moeilijkheidsGraad;
     
+    public Code(MoeilijkheidsGraad moeilijkheidsGraad){
+        this.moeilijkheidsGraad = moeilijkheidsGraad;
+    }
+
+    public CodePin[] getCode() {
+        return code;
+    }
+
+    public MoeilijkheidsGraad getMoeilijkheidsGraad() {
+        return moeilijkheidsGraad;
+    }
 }
