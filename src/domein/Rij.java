@@ -5,19 +5,21 @@
  */
 package domein;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author ThomasV
  */
 public class Rij {
-    List<CodePin> poging;
-    List<EvaluatiePin> evaluatie;
+    private List<CodePin> poging;
+    private List<EvaluatiePin> evaluatie;
     
     public Rij(int aantalPosities){
-        for(int i=0;i<aantalPosities;i++){
-            poging.add(null);
-        }
+        poging = new ArrayList<>();
+            for(int i=0;i<=aantalPosities-1;i++){
+                poging.add(null);
+            }
     }
     
     public void doePoging(String[] poging){
@@ -30,7 +32,7 @@ public class Rij {
     
     
     public List<CodePin> getPoging(){
-        return poging;
+        return this.poging;
     }
     
     public boolean heeftEvaluatie(){

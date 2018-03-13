@@ -6,6 +6,7 @@ import domein.DomeinController;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import exceptions.NietGenoegGewonnenException;
+import java.util.Locale;
 /**
  *
  * @author Michiel S.
@@ -66,12 +67,33 @@ public class UC2 {
 
         try{
             dc.registreerSpel(keuze);
+            geefSpelbordWeer();
         }catch(NietGenoegGewonnenException e){
             System.err.println(r.getString("nietGenoegGewonnen"));
             kiesMoeilijkheidsGraad();
         }
     }
     
-    
+    private void geefSpelbordWeer(){
+        String[][] spelbord = this.dc.geefSpelBord();
+        String[] code = this.dc.geefCode();
+        String res = String.format("%S%n%S","spelbord:","code:");
+       
+        for(String codepin:code){
+            res+= String.format("%10s",codepin);
+        }
+        
+        res += String.format("%n%S%n","spelbord:");
+        
+        for (String[] rij:spelbord){
+            res+="[";
+            for(String pin:rij){
+                res+=String.format("%10s",pin);
+            }
+            res+=String.format("%s%n","]");
+        }
+        
+        System.out.println(res);
+    }
     
 }

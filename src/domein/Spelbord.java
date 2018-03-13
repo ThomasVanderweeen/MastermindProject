@@ -14,12 +14,16 @@ public class Spelbord {
     public Spelbord(int moeilijkheidsGraad){
         this.code = new Code(moeilijkheidsGraad);
         int lengte = this.code.getCode().size();
-        vulRijenOp(lengte);
+        vulRijenOp(this.code.getCode().size());
+    }
+    
+    public List<CodePin> getCode(){
+       return this.code.getCode();
     }
 
     private void vulRijenOp(int lengte){
-        for(Rij r:this.rijen){
-            r = new Rij(lengte);
+        for(int i=0;i<rijen.length;i++){
+            this.rijen[i] = new Rij(lengte);
         }
     }
     
