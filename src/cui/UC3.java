@@ -43,7 +43,5 @@ public class UC3 {
             poging[i] = new CodePin(kleur);
         }
         return poging;
-    }
-    
-    
+    }   
 }
