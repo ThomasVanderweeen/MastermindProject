@@ -7,7 +7,6 @@ import exceptions.NietGenoegGewonnenException;
 public class Spel {
     private final Speler speler;
     private final Spelbord spelbord;
-    private static final String[] KLEUREN = {"groen","geel","paars","blauw","oranje","bruin","roze","cyaan",""};
     
     public Spel(int moeilijkheidsGraad,Speler speler){
         this.speler = speler;
@@ -15,9 +14,7 @@ public class Spel {
         this.spelbord = new Spelbord(moeilijkheidsGraad);
     }
     
-    public static String[] getKleuren(){
-            return KLEUREN;
-    }
+
     
     private void controleerMoeilijkheidsGraad(int moeilijkheidsGraad){
        if(moeilijkheidsGraad==2){
