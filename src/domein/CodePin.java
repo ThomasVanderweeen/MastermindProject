@@ -26,7 +26,7 @@ public class CodePin extends Pin{
     
     @Override
     public String getKleur() {
-        return kleur;
+        return super.getKleur();
     }
     
     
