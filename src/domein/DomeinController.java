@@ -80,12 +80,12 @@ public class DomeinController {
         
         return gewonnenLijst;
     }
-    
+    /*
     public String [][] geefSpelBord(){
         this.spel.getSpelBord();
         
     }
-    
+    */
     
     private boolean bepaalEindeSpel(Spel spel){
         boolean einde;
