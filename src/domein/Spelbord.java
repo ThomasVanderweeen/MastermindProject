@@ -16,7 +16,6 @@ public class Spelbord {
     
     public Spelbord(int moeilijkheidsGraad){
         this.pogingen = new ArrayList<>();
-        stelMoeilijkheidsGraadIn(moeilijkheidsGraad);
         setCode();
         maakSpelbord();
     }
@@ -25,19 +24,7 @@ public class Spelbord {
         this.code = this.moeilijkheidsGraad.genereerCode();
     }
     
-    private void stelMoeilijkheidsGraadIn(int moeilijkheidsGraad){
-        switch(moeilijkheidsGraad){
-            case 1:
-                this.moeilijkheidsGraad = new Gemakkelijk();
-                break;
-            case 2:
-                this.moeilijkheidsGraad = new Gemiddeld();
-                break;
-            case 3:
-                this.moeilijkheidsGraad = new Moeilijk();
-                break;
-        }
-    }
+
     
     private void maakSpelbord(){
         int aantalRijen = 12;

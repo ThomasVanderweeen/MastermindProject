@@ -81,29 +81,9 @@ public class DomeinController {
         return gewonnenLijst;
     }
     
-    public String[][][] geefSpelbord(){
-       String[][][] spelbordlijst= new String[2][][];
-       
-       Spelbord spelbord = this.spel.getSpelBord();
-       
-       List<String> code = spelbord.getCode();
-       String[] codear = new String[code.size()];
-  
-       for(int i=0;i<code.size();i++){
-           codear[i]=code.get(i);
-       }
-      
-//       List<List<String>>pogingen = spelbord.getPogingen();
-//       String[][] pogingar = new String[pogingen.size()][pogingen.get(0).size()];
-//       for(int i=0;i<pogingar.length;i++){
-//           for(int j=0;j<pogingar[0].length;j++){
-//               pogingar[i][j] = pogingen.get(i).get(j);
-//           }
-//       }
-       
-       
-//      spelbordlijst[0][0]=codear;
-      return spelbordlijst;
+    public String [][] geefSpelBord(){
+        this.spel.getSpelBord();
+        
     }
     
     

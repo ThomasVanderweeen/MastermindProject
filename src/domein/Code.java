@@ -12,9 +12,24 @@ package domein;
 public class Code {
     CodePin[] code;
     MoeilijkheidsGraad moeilijkheidsGraad;
+
     
-    public Code(MoeilijkheidsGraad moeilijkheidsGraad){
-        this.moeilijkheidsGraad = moeilijkheidsGraad;
+    private void setMoeiljkheidsGraad(int moeilijkheidsgraad){
+        switch(moeilijkheidsgraad){
+            case 1:
+                this.moeilijkheidsGraad = new Gemakkelijk();
+                break;
+            case 2:
+                this.moeilijkheidsGraad = new Gemiddeld();
+                break;
+            case 3:
+                this.moeilijkheidsGraad = new Moeilijk();
+                break;
+        }
+    }
+    
+    public Code(int moeilijkheidsGraad){
+        setMoeiljkheidsGraad(moeilijkheidsGraad);
     }
 
     public CodePin[] getCode() {
