@@ -80,12 +80,38 @@ public class DomeinController {
         
         return gewonnenLijst;
     }
-    /*
+
     public String [][] geefSpelBord(){
-        this.spel.getSpelBord();
+        String[][] spelbord = new String[12][];
+        int rijnr = 0,lengte,inner=0;
         
+        Spelbord sp = this.spel.getSpelBord();
+        Rij[] rijen = sp.getRijen();
+        
+        
+        for(Rij r:rijen){
+            lengte = r.getPoging().size()+r.getEvaluatie().size();
+            spelbord[rijnr] = new String[lengte];
+            
+            for(CodePin cp : r.getPoging()){
+                spelbord[rijnr][inner] = cp.getKleur();
+                inner++;
+            }
+            
+            if(r.heeftEvaluatie()){
+                for(EvaluatiePin ep: r.getEvaluatie()){
+                    spelbord[rijnr][inner] = ep.getKleur();
+                     inner++;
+                }
+            }
+            
+            inner = 0;
+            rijnr++;
+        }
+     
+        return spelbord;
     }
-    */
+
     
     private boolean bepaalEindeSpel(Spel spel){
         boolean einde;

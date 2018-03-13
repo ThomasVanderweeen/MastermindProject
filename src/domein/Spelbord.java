@@ -23,6 +23,9 @@ public class Spelbord {
         }
     }
     
+    public Rij[] getRijen(){
+        return this.rijen;
+    }
 
 
     

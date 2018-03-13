@@ -20,6 +20,10 @@ public class CodePin extends Pin{
         super(kleur);
     }
     
+    public CodePin(int kleur){
+        this(GELDIGE_KLEUREN[kleur]);
+    }
+    
     @Override
     public String getKleur() {
         return kleur;

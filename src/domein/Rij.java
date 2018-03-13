@@ -12,18 +12,25 @@ import java.util.List;
  */
 public class Rij {
     List<CodePin> poging;
-    EvaluatiePin evaluatie;
+    List<EvaluatiePin> evaluatie;
     
     public Rij(int aantalPosities){
-        
+        for(int i=0;i<aantalPosities;i++){
+            poging.add(null);
+        }
     }
     
     public void doePoging(String[] poging){
         
     }
 
-    public EvaluatiePin getEvaluatie() {
+    public List<EvaluatiePin> getEvaluatie() {
         return evaluatie;
+    }
+    
+    
+    public List<CodePin> getPoging(){
+        return poging;
     }
     
     public boolean heeftEvaluatie(){
@@ -33,4 +40,5 @@ public class Rij {
     public void stelEvaluatieIn(String[] evaluatie){
         
     }
+    
 }
