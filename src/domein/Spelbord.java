@@ -8,55 +8,23 @@ import java.util.InputMismatchException;
  * @author Michiel S.
  */
 public class Spelbord {
-    
-    private MoeilijkheidsGraad moeilijkheidsGraad;
-    private List<String> code;
-    private List<List<String>> pogingen;
-    private int aantalPogingen;
+    private final Code code;
+    private Rij[] rijen = new Rij[12];
     
     public Spelbord(int moeilijkheidsGraad){
-        this.pogingen = new ArrayList<>();
-        setCode();
-        maakSpelbord();
+        this.code = new Code(moeilijkheidsGraad);
+        int lengte = this.code.getCode().size();
+        vulRijenOp(lengte);
     }
 
-    private void setCode(){
-        this.code = this.moeilijkheidsGraad.genereerCode();
-    }
-    
-
-    
-    private void maakSpelbord(){
-        int aantalRijen = 12;
-        
-        for(int i=0;i<aantalRijen;i++){
-            List<String> rij = new ArrayList<>();
-            
-            for(int j=0;i<code.size();i++){
-                rij.add("0");
-           }
-            
-            this.pogingen.add(rij);
+    private void vulRijenOp(int lengte){
+        for(Rij r:this.rijen){
+            r = new Rij(lengte);
         }
     }
     
-    public List<String> getCode(){
-        System.out.println("code:"+code);
-        return this.code;
-    }
-    
-    public List<List<String>> getPogingen(){
-        return this.pogingen;
-    }
 
-    public MoeilijkheidsGraad getMoeilijkheidsGraad() {
-        return moeilijkheidsGraad;
-    }
 
-    public int getAantalPogingen() {
-        return aantalPogingen;
-    }
-    
     
 //    public ArrayList<EvaluatiePin> evalueerPoging(CodePin[] poging, CodePin[] code, MoeilijkheidsGraad moeilijkheidsGraad){
 //        
@@ -110,7 +78,7 @@ public class Spelbord {
     
     public ArrayList<String> evalueerPoging(String[] poging, String[] code, MoeilijkheidsGraad moeilijkheidsGraad){
         ArrayList<String> evaluatie = new ArrayList(code.length);
-        moeilijkheidsGraad = this.getMoeilijkheidsGraad();
+        moeilijkheidsGraad = this.code.getMoeilijkheidsGraad();
         if(moeilijkheidsGraad instanceof Gemakkelijk){
             for(int i = 0; i < code.length ; i++){
                 if(poging[i].equals(code[i])){

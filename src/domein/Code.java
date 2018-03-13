@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package domein;
-
+import java.util.List;
 /**
  *
  * @author ThomasV
  */
 public class Code {
-    CodePin[] code;
-    MoeilijkheidsGraad moeilijkheidsGraad;
+    private final List<CodePin> code;
+    private MoeilijkheidsGraad moeilijkheidsGraad;
+    
 
     
     private void setMoeiljkheidsGraad(int moeilijkheidsgraad){
@@ -30,13 +31,15 @@ public class Code {
     
     public Code(int moeilijkheidsGraad){
         setMoeiljkheidsGraad(moeilijkheidsGraad);
+        this.code = this.moeilijkheidsGraad.genereerCode();
     }
 
-    public CodePin[] getCode() {
+    public List<CodePin> getCode() {
         return code;
     }
 
     public MoeilijkheidsGraad getMoeilijkheidsGraad() {
         return moeilijkheidsGraad;
     }
+    
 }

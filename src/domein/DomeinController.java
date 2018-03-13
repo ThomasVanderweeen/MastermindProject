@@ -89,7 +89,7 @@ public class DomeinController {
     
     private boolean bepaalEindeSpel(Spel spel){
         boolean einde;
-        if (spel.getSpelBord().getAantalPogingen() >= 12)
+        if (spel.getAantalPogingen() >= 12)
             einde = true;
         else
             einde = false;

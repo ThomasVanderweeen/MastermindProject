@@ -12,10 +12,10 @@ public class Moeilijk extends MoeilijkheidsGraad{
     }
     
     @Override
-    public List<String> genereerCode(){
+    public List<CodePin> genereerCode(){
         
         String[] kleuren = MoeilijkheidsGraad.getKleuren();
-        List<String> code = new ArrayList<>();
+        List<CodePin> code = new ArrayList<>();
         int rand,leeg=0;
        
         do{
@@ -26,9 +26,9 @@ public class Moeilijk extends MoeilijkheidsGraad{
                 rand = (int)(Math.random()*(kleuren.length-1));
             
             if(rand==kleuren.length){
-                code.add("leeg");
+                code.add(null);
             }else{
-                code.add(kleuren[rand]);
+                code.add(new CodePin(kleuren[rand]));
             }
             
             

@@ -30,4 +30,8 @@ public class CodePin extends Pin{
         if(!Arrays.asList(GELDIGE_KLEUREN).contains(pin.getKleur()))
             throw new InputMismatchException();    
     }
+    
+    public static String[] getGeldigeKleuren(){
+        return GELDIGE_KLEUREN;
+    }
 }

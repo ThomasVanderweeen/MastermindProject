@@ -2,6 +2,7 @@ package domein;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 /**
  *
  * @author Michiel S.
@@ -14,17 +15,20 @@ public class Gemakkelijk extends MoeilijkheidsGraad {
     
     /*lijst methode met kleuren verwijderen zou minder tijd kosten*/
     @Override
-    public List<String> genereerCode(){
-        List<String> code = new ArrayList<>();
+    public List<CodePin> genereerCode(){
+        List<CodePin> code = new ArrayList<>();
         String[] kleuren =  MoeilijkheidsGraad.getKleuren();
+        List<String> kleurtjes = Arrays.asList(kleuren);
+        String kleur;
         int rand;
         
         do{
-            rand = (int)(Math.random()*(kleuren.length-1));
-            if(code.indexOf(kleuren[rand])==-1)
-                code.add(kleuren[rand]);
-        }while(code.size()<super.getAantalPosities());
-        
+            rand = (int)(Math.random()*(kleurtjes.size()-1));
+            kleur = kleurtjes.get(rand);
+            code.add(new CodePin(kleur));
+            kleurtjes.remove(kleur);
+        }while(code.size()<super.getAantalPinnen());
+    
         return code;
     }
 }

@@ -14,14 +14,14 @@ public class Gemiddeld extends MoeilijkheidsGraad {
     
     
     @Override
-    public List<String> genereerCode(){
-        List<String> code = new ArrayList<>();
+    public List<CodePin> genereerCode(){
+        List<CodePin> code = new ArrayList<>();
         String[] kleuren =  MoeilijkheidsGraad.getKleuren();
         int rand;
         
         do{
             rand = (int)(Math.random()*(kleuren.length-1));
-            code.add(kleuren[rand]);
+            code.add(new CodePin(kleuren[rand]));
         }while(code.size()<super.getAantalPosities());
         
         return code;

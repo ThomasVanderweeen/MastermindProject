@@ -5,8 +5,6 @@ import java.util.List;
  * @author Michiel S.
  */
 public abstract class MoeilijkheidsGraad {
-    private final static String[] KLEUREN = {"rood","groen","geel","blauw",
-        "roze","paars","bruin","oranje"};
     private final int aantalPosities,aantalPinnen;
     
     public MoeilijkheidsGraad(int aantalPosities, int aantalPinnen){
@@ -14,10 +12,10 @@ public abstract class MoeilijkheidsGraad {
         this.aantalPosities = aantalPosities;
     }
     
-    public abstract List<String> genereerCode(); 
+    public abstract List<CodePin> genereerCode(); 
     
     protected static String[] getKleuren(){
-        return KLEUREN;
+        return CodePin.getGeldigeKleuren();
     }
     
     protected int getAantalPosities(){

@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package domein;
+import java.util.List;
 
 /**
  *
  * @author ThomasV
  */
 public class Rij {
-    CodePin poging;
+    List<CodePin> poging;
     EvaluatiePin evaluatie;
     
     public Rij(int aantalPosities){
