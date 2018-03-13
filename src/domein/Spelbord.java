@@ -162,4 +162,14 @@ public class Spelbord {
        
         return geldig;
     }
+    
+    private CodePin[] zetKleurOm(int[] poging){
+        CodePin[] omzet = new CodePin[poging.length];
+        int teller =0;
+        for(int i: poging){
+            omzet[teller] = new CodePin(i);
+            teller++;
+        }
+        return omzet;
+    }
 }

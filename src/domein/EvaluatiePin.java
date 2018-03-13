@@ -18,6 +18,7 @@ public class EvaluatiePin extends Pin{
 
     public EvaluatiePin(String kleur) {
         super(kleur);
+        geldigeKleur(kleur);
     }
 
     
@@ -27,8 +28,8 @@ public class EvaluatiePin extends Pin{
     }
     
     @Override
-    public void geldigePin(Pin pin) {
-        if(!Arrays.asList(GELDIGE_KLEUREN).contains(pin.getKleur()))
+    public void geldigeKleur(String kleur) {
+        if(!Arrays.asList(GELDIGE_KLEUREN).contains(kleur))
             throw new InputMismatchException();
     }
 }

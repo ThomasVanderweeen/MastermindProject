@@ -13,7 +13,8 @@ import java.util.InputMismatchException;
  * @author ThomasV
  */
 public class CodePin extends Pin{
-    private static final String[] GELDIGE_KLEUREN = new String[] {"groen","geel","paars","blauw","oranje","bruin","roze","cyaan"};
+    private String kleur;
+    private static final String[] GELDIGE_KLEUREN = new String[] {"groen","geel","paars","blauw","oranjge","bruin","roze","cyaan"};
 
     public CodePin(String kleur) {
         super(kleur);
@@ -25,12 +26,13 @@ public class CodePin extends Pin{
     
     @Override
     public String getKleur() {
-        return super.getKleur();
+        return kleur;
     }
     
+    
     @Override
-    public void geldigePin(Pin pin) {
-        if(!Arrays.asList(GELDIGE_KLEUREN).contains(pin.getKleur()))
+    public void geldigeKleur(String Pin) {
+        if(!Arrays.asList(GELDIGE_KLEUREN).contains(Pin))
             throw new InputMismatchException();    
     }
     
