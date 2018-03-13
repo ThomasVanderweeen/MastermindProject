@@ -2,6 +2,7 @@ package domein;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 /**
  *
  * @author Michiel S.
@@ -179,5 +180,24 @@ public class Spelbord {
             } 
         }
     return evaluatie;
+    }
+    
+    private boolean geldigePoging(CodePin[] poging, MoeilijkheidsGraad moeilijkheidsGraad){
+        boolean geldig = false;
+        
+        if(moeilijkheidsGraad instanceof Gemakkelijk || moeilijkheidsGraad instanceof Gemiddeld){
+            if(poging.length <= 4)
+                geldig = true;
+            else
+                throw new InputMismatchException();
+        }
+        else{
+          if(poging.length <= 5)
+              geldig = true;
+          else
+              throw new InputMismatchException();
+        }
+       
+        return geldig;
     }
 }

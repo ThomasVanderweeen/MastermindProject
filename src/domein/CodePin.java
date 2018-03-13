@@ -5,18 +5,30 @@
  */
 package domein;
 
+import java.util.Arrays;
+import java.util.InputMismatchException;
+
 /**
  *
  * @author ThomasV
  */
-public class CodePin {
+public class CodePin extends Pin{
     private String kleur;
+    private final String[] geldigeKleuren;
 
     public CodePin(String kleur) {
-        this.kleur = kleur;
+        super(kleur);
+        this.geldigeKleuren = new String[] {"groen","geel","paars","blauw","oranjge","bruin","roze","cyaan"};
     }
-
+    
+    @Override
     public String getKleur() {
         return kleur;
-    }    
+    }
+    
+    @Override
+    public void geldigePin(Pin pin) {
+        if(!Arrays.asList(geldigeKleuren).contains(pin.getKleur()))
+            throw new InputMismatchException();    
+    }
 }
