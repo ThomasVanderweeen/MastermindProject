@@ -14,7 +14,7 @@ import java.util.InputMismatchException;
  */
 public class CodePin extends Pin{
     private String kleur;
-    private static final String[] GELDIGE_KLEUREN = new String[] {"groen","geel","paars","blauw","oranjge","bruin","roze","cyaan"};
+    private static final String[] GELDIGE_KLEUREN = new String[] {"groen","geel","paars","blauw","oranje","bruin","roze","cyaan"};
 
     public CodePin(String kleur) {
         super(kleur);

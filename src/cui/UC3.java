@@ -33,15 +33,16 @@ public class UC3 {
         
     }
     
-    private CodePin[] doePoging(){
-        CodePin[] poging = new CodePin[4];
-        String kleur;
+    private int[] doePoging(){
+        int[] poging = new int[4];
+        int kleur;
         System.out.println();
         for(int i = 0; i < 4; i++){
             System.out.printf("Geef de kleur van de %de code pin: ", i+1);
-            kleur = sc.next();
-            poging[i] = new CodePin(kleur);
+            kleur = sc.nextInt();
+            poging[i] = kleur;
         }
-        return poging;
+
+       return poging;
     }   
 }
