@@ -159,28 +159,13 @@ public class Spelbord {
         return geldig;
     }
     
-    private String[] zetKleurOm(int[] poging){
-        String[] pogingString = new String[poging.length];
-        for(int i = 0; i < poging.length; i++){
-            switch(i){
-                case 1: pogingString[i] = "groen";
-                        break;
-                case 2: pogingString[i] = "geel";
-                        break;
-                case 3: pogingString[i] = "paars";
-                        break;
-                case 4: pogingString[i] = "blauw";
-                        break;
-                case 5: pogingString[i] = "oranje";
-                        break;
-                case 6: pogingString[i] = "bruin";
-                        break;
-                case 7: pogingString[i] = "roze";
-                        break;
-                case 8: pogingString[i] = "cyaan";
-                        break;
-            }
+    private CodePin[] zetKleurOm(int[] poging){
+        CodePin[] omzet = new CodePin[poging.length];
+        int teller =0;
+        for(int i: poging){
+            omzet[teller] = new CodePin(i);
+            teller++;
         }
-        return pogingString;
+        return omzet;
     }
 }

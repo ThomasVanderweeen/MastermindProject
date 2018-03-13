@@ -18,6 +18,11 @@ public class CodePin extends Pin{
 
     public CodePin(String kleur) {
         super(kleur);
+        geldigeKleur(kleur);
+    }
+    
+    public CodePin(int kleur){
+        super(GELDIGE_KLEUREN[kleur]);
     }
     
     public CodePin(int kleur){
@@ -30,8 +35,8 @@ public class CodePin extends Pin{
     }
     
     @Override
-    public void geldigePin(Pin pin) {
-        if(!Arrays.asList(GELDIGE_KLEUREN).contains(pin.getKleur()))
+    public void geldigeKleur(String kleur) {
+        if(!Arrays.asList(GELDIGE_KLEUREN).contains(kleur))
             throw new InputMismatchException();    
     }
     

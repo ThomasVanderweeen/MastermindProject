@@ -22,5 +22,5 @@ public abstract class Pin {
         return kleur;
     }
     
-    public abstract void geldigePin(Pin pin);
+    public abstract void geldigeKleur(String kleur);
 }
