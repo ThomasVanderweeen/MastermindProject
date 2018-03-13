@@ -88,13 +88,17 @@ public class DomeinController {
         Spelbord sp = this.spel.getSpelBord();
         Rij[] rijen = sp.getRijen();
         
-        
         for(Rij r:rijen){
-            lengte = r.getPoging().size()+r.getEvaluatie().size();
+            lengte = r.getPoging().size();
+            if(r.heeftEvaluatie())
+                lengte += r.getEvaluatie().size();
             spelbord[rijnr] = new String[lengte];
             
             for(CodePin cp : r.getPoging()){
-                spelbord[rijnr][inner] = cp.getKleur();
+                if(cp ==null)
+                    spelbord[rijnr][inner] = "leeg";
+                else
+                    spelbord[rijnr][inner] = cp.getKleur();
                 inner++;
             }
             
@@ -110,6 +114,22 @@ public class DomeinController {
         }
      
         return spelbord;
+    }
+    
+    public String[] geefCode(){
+        
+        Spelbord sp = this.spel.getSpelBord();
+        List<CodePin> code =  sp.getCode();
+        
+        String[] res = new String[code.size()];
+        int teller = 0;
+        
+        for(CodePin cp: code){
+            res[teller] = cp.getKleur();
+            teller++;
+        }
+        
+        return res;
     }
 
     

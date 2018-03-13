@@ -25,9 +25,6 @@ public class CodePin extends Pin{
         super(GELDIGE_KLEUREN[kleur]);
     }
     
-    public CodePin(int kleur){
-        this(GELDIGE_KLEUREN[kleur]);
-    }
     
     @Override
     public String getKleur() {

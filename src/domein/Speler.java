@@ -38,7 +38,7 @@ public class Speler {
     /* OKE?!?! hoe exceptions afhandelen???!?*/
     void setWachtwoord(String wachtwoord) {
         try{
-            if(!wachtwoord.matches("\\d{1}[a-zA-z]{6}\\d{1}"))
+            if(!wachtwoord.matches("\\d{3}[a-zA-z]{6}\\d{3}"))
                 throw new IllegalArgumentException();
             else
                 this.wachtwoord = wachtwoord;
