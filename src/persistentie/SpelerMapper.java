@@ -19,8 +19,9 @@ import exceptions.ServerOnbereikbaarException;
  * @author Groep 77
  */
 public class SpelerMapper {
-    
-    private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.speler(naam, wachtwoord)" + "VALUES(?, ?)";
+    /*Eventueel een standaard instellen in de database voor de laatste drie die bij initialisatie 0 is*/
+    private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.speler(naam, wachtwoord,aantalGewonnenMakkelijk,aantalGewonnenGemiddeld,aantalGewonnenMoeilijk)" 
+            + "VALUES(?, ?,0,0,0)";
     
     /*Verantwoordelijke voor het toevoegen van een speler aan de database*/
     public void voegToe(Speler speler){

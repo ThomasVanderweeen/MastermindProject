@@ -6,7 +6,6 @@ import domein.DomeinController;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import exceptions.NietGenoegGewonnenException;
-import java.util.Locale;
 /**
  *
  * @author Michiel S.
@@ -78,20 +77,37 @@ public class UC2 {
     private void geefSpelbordWeer(){
         String[][] spelbord = this.dc.geefSpelBord();
         String[] code = this.dc.geefCode();
-        String res = String.format("%S%n%S","spelbord:","code:");
+        String res = String.format("%S",
+                r.getString("code"));
        
         for(String codepin:code){
             res+= String.format("%10s",r.getString(codepin));
         }
         
-        res += String.format("%n%S%n","spelbord:");
         
+        res += String.format("%n%S%n",r.getString("spelbord"));
         for (String[] rij:spelbord){
-            res+="[";
-            for(String pin:rij){
-                res+=String.format("%10s",r.getString(pin));
+            res+=String.format("%S%s",r.getString("rij"),"[");
+            if(rij.length<6){
+                
+                for(String pin:rij){
+                    res+=String.format("%10s",r.getString(pin));
+                }
+
+            }else{
+                int lengte = rij.length;
+                
+                for(int i=0;i<(lengte/2);i++){
+                    res+=String.format("%10s",r.getString(rij[i]));
+                }
+                
+                res+=String.format("%s%n%S%s","]",r.getString("evaluatie"),"[");
+                for(int i=lengte/2;i<lengte;i++){
+                    res+=String.format("%10s", r.getString(rij[i]));
+                }
+                
             }
-            res+=String.format("%s%n","]");
+           res+=String.format("%s%n","]");
         }
         
         System.out.println(res);

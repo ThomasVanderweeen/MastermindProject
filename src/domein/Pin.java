@@ -10,12 +10,10 @@ package domein;
  * @author ThomasV
  */
 public abstract class Pin {
-    private String kleur;
-    private final String[] geldigeKleuren;
+    private final String kleur;
 
     public Pin(String kleur) {
         this.kleur = kleur;
-        this.geldigeKleuren = new String[0];
     }
 
     public String getKleur() {

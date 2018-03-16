@@ -76,7 +76,7 @@ public class UC1 {
    
             do{
                 try{
-                System.out.printf("%s%n%s%n%s%n%s%n",r.getString("welkom"),r.getString("meldAan") ,r.getString("registreer"),r.getString("sluitAf"));
+                System.out.printf("%s%n%s%n%s%n%s%n",r.getString("welkom"),r.getString("meldAan") ,r.getString("registreer"),"3)"+r.getString("sluitAf"));
 //                keuze = geefKeuzeIn(r.getString("keuzeInvoer"));
                 System.out.print(r.getString("keuzeInvoer"));
                 keuze = sc.nextInt();

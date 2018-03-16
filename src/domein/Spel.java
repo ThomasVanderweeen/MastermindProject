@@ -41,7 +41,7 @@ public class Spel {
         return this.spelbord;
     }
     
-    private boolean bepaalEindeSpel(){
+    public boolean bepaalEindeSpel(){
         if ((getAantalPogingen() >= 12)||this.spelbord.getCodeGeraden())
             return true;
         
@@ -51,5 +51,6 @@ public class Spel {
     public void doePoging(int[] poging){
         int rij = getAantalPogingen();
         this.spelbord.voegPogingToe(poging, rij);
+        this.aantalPogingen ++;
     }
 }

@@ -142,5 +142,7 @@ public class DomeinController {
         this.spel.doePoging(poging);
     }
     
-    
+    public boolean isEindeSpel(){
+        return this.spel.bepaalEindeSpel();
+    }
 }

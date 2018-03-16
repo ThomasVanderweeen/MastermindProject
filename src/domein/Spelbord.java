@@ -120,9 +120,8 @@ public class Spelbord {
            }
        }
        
-       if(zwart == evaluatie.length-1){
+       if(zwart == evaluatie.length){
            codeGeraden = true;
-           System.out.println("Gefeliciteerd je hebt de code geraden!");
        }
         
         this.rijen[rij].stelEvaluatieIn(evaluatie);
