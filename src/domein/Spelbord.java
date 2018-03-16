@@ -2,17 +2,19 @@ package domein;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
+import exceptions.OngeldigePogingException;
 /**
  *
  * @author Michiel S.
  */
 public class Spelbord {
     private final Code code;
-    private Rij[] rijen = new Rij[12];
+    private final Rij[] rijen;
+    private boolean codeGeraden = false;
     
     public Spelbord(int moeilijkheidsGraad){
         this.code = new Code(moeilijkheidsGraad);
+        this.rijen = new Rij[12];
         int lengte = this.code.getCode().size();
         vulRijenOp(this.code.getCode().size());
     }
@@ -31,136 +33,24 @@ public class Spelbord {
         return this.rijen;
     }
 
-
-    
-//    public ArrayList<EvaluatiePin> evalueerPoging(CodePin[] poging, CodePin[] code, MoeilijkheidsGraad moeilijkheidsGraad){
-//        
-//        ArrayList<EvaluatiePin> evaluatie = new ArrayList();
-//        moeilijkheidsGraad = this.getMoeilijkheidsGraad();
-//        if(moeilijkheidsGraad instanceof Gemakkelijk){
-//            for(int i = 0; i < code.length ; i++){
-//                if(poging[i] == code[i]){
-//                    evaluatie.add(new EvaluatiePin("Zwart"));
-//                }
-//                else{
-//                    for (int j = 0; i < code.length; i++){
-//                        if(poging[i].getKleur().equals(code[j].getKleur())){
-//                        evaluatie.add(new EvaluatiePin("Wit"));
-//                        }
-//                        else{
-//                        evaluatie.add(new EvaluatiePin("Rood"));
-//                        }
-//                    }
-//                } 
-//                    
-//            }
-//        }
-//        else if(moeilijkheidsGraad instanceof Gemiddeld || moeilijkheidsGraad instanceof Moeilijk){
-//            for (int i = 0; i < code.length; i++){
-//                if(poging[i].equals(code[i])){
-//                    if(evaluatie.isEmpty())
-//                        evaluatie.add(new EvaluatiePin("Zwart"));
-//                    else if(evaluatie.contains("Zwart")){
-//                        int index = evaluatie.lastIndexOf("Zwart");
-//                        evaluatie.add(index, new EvaluatiePin("Zwart"));
-//                    }
-//                }
-//                 else{
-//                    for (int j = 0; i < code.length; i++){
-//                        if(poging[i].getKleur().equals(code[j].getKleur())){
-//                            evaluatie.add(new EvaluatiePin("Wit"));
-//                        }
-//                        else{
-//                        evaluatie.add(new EvaluatiePin("Rood"));
-//                        }
-//                    }
-//                } 
-//            }
-//        }
-//            
-//            
-//        
-//        return evaluatie;
-//    }
-    
-    public ArrayList<String> evalueerPoging(String[] poging, String[] code, MoeilijkheidsGraad moeilijkheidsGraad){
-        ArrayList<String> evaluatie = new ArrayList(code.length);
-        moeilijkheidsGraad = this.code.getMoeilijkheidsGraad();
-        if(moeilijkheidsGraad instanceof Gemakkelijk){
-            for(int i = 0; i < code.length ; i++){
-                if(poging[i].equals(code[i])){
-                    evaluatie.add("Zwart");
-                }
-                else{
-                    for (int j = 0; i < code.length; i++){
-                        if(poging[i].equals(code[j])){
-                        evaluatie.add("Wit");
-                        }
-                        else{
-                        evaluatie.add("Rood");
-                        }
-                    }
-                }       
-            }
-        }
-                
-        else if(moeilijkheidsGraad instanceof Gemiddeld || moeilijkheidsGraad instanceof Moeilijk){
- 
-                for (int i = 0; i < code.length; i++){
-                if(poging[i].equals(code[i])){
-                    if(evaluatie.isEmpty())
-                        evaluatie.add("Zwart");
-                    else if(evaluatie.contains("Zwart")){
-                        int index = evaluatie.lastIndexOf("Zwart");
-                        evaluatie.add(index + 1, "Zwart");
-                    }
-                }
-                else{
-                    for (int j = 0; i < code.length; i++){
-                        if(poging[i].equals(code[j])){
-                            if(evaluatie.isEmpty())
-                                evaluatie.add("Wit");
-                            else if(evaluatie.contains("Zwart")){
-                                int index = evaluatie.lastIndexOf("Zwart");
-                                evaluatie.add(index + 1, "Zwart");
-                            }
-                        }
-                        else{
-                            if(evaluatie.isEmpty())
-                                evaluatie.add("Rood");
-                            else if (evaluatie.contains("Zwart")){
-                                int index = evaluatie.lastIndexOf("Zwart");
-                                evaluatie.add(index + 1, "Wit");
-                            }
-                            else{
-                                int index = evaluatie.lastIndexOf("Wit");
-                                evaluatie.add(index + 1, "Rood");
-                            }
-                        }
-                    }
-                }
-            } 
-        }
-    return evaluatie;
+    public String[] geefGeldigeKleuren(){
+      return this.code.geefGeldigeKleuren();
     }
     
-    private boolean geldigePoging(CodePin[] poging, MoeilijkheidsGraad moeilijkheidsGraad){
-        boolean geldig = false;
-        
-        if(moeilijkheidsGraad instanceof Gemakkelijk || moeilijkheidsGraad instanceof Gemiddeld){
-            if(poging.length <= 4)
-                geldig = true;
-            else
-                throw new InputMismatchException();
-        }
-        else{
-          if(poging.length <= 5)
-              geldig = true;
-          else
-              throw new InputMismatchException();
-        }
-       
-        return geldig;
+    public boolean getCodeGeraden(){
+        return this.codeGeraden;
+    }
+    
+    public void voegPogingToe(int[] poging , int rij){
+        geldigePoging(poging);
+        this.rijen[rij].doePoging(poging);
+        evalueerPoging(rij);
+    }
+    
+    private void geldigePoging(int[] poging){
+        if(poging.length!= this.code.geefAantalPosities())
+            throw new OngeldigePogingException("Het aantal posities van de "
+                    + "poging is ontoereikend.");
     }
     
     private CodePin[] zetKleurOm(int[] poging){
@@ -172,4 +62,71 @@ public class Spelbord {
         }
         return omzet;
     }
+    
+    
+    public void evalueerPoging(int rij){
+        /*krijg de kleuren terug van de poging*/
+        List<CodePin> pogingPinnen = this.rijen[rij].getPoging();
+        String[] kleurenPoging = new String[pogingPinnen.size()];
+    
+        for(int i=0;i<pogingPinnen.size();i++){
+            kleurenPoging[i] = pogingPinnen.get(i).getKleur();
+        }
+
+        /*krijg de kleuren van de code terug en steek ze in een array*/
+        List<CodePin> codePinnen = this.code.getCode();
+        List<String> codeKleuren = new ArrayList<>();
+        
+        for(CodePin cp: codePinnen){
+            codeKleuren.add(cp.getKleur());
+        }
+        
+        int[] evaluatie = new int[codeKleuren.size()];
+        /*geef moeilijkheidsgraad evaluatie is anders per moeilijkheidsgraad*/
+        MoeilijkheidsGraad graad = this.code.getMoeilijkheidsGraad();
+        
+        /*gemakelijke evaluatie*/
+            int i =0,zwart=0,rood,wit=0;
+            
+            for(String kleur:kleurenPoging){
+                if(kleur.equals(codeKleuren.get(i))){
+                    evaluatie[i] = 0;
+                    zwart++;
+                }
+                else{
+                    if(codeKleuren.indexOf(kleur)!=-1){
+                        evaluatie[i] = 1;
+                        wit++;
+                    }
+                    else
+                        evaluatie[i] = 2;
+                }
+                i++;
+            }
+            
+            rood = evaluatie.length -zwart - wit;
+            
+        
+       /*sorteert de gemakelijke evaluatie*/
+       if(graad instanceof Gemiddeld||graad instanceof Moeilijk){
+           for(int j=0;j<zwart;j++){
+               evaluatie[j] = 0;
+           }
+           for(int x=zwart;x<evaluatie.length-rood;x++){
+               evaluatie[x] = 1;
+           }
+           for(int y=evaluatie.length-rood;y<evaluatie.length;y++){
+               evaluatie[y]=2;
+           }
+       }
+       
+       if(zwart == evaluatie.length-1){
+           codeGeraden = true;
+           System.out.println("Gefeliciteerd je hebt de code geraden!");
+       }
+        
+        this.rijen[rij].stelEvaluatieIn(evaluatie);
+    }
+    
+
 }

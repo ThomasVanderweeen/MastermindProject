@@ -133,14 +133,13 @@ public class DomeinController {
     }
 
     
-    private boolean bepaalEindeSpel(Spel spel){
-        boolean einde;
-        if (spel.getAantalPogingen() >= 12)
-            einde = true;
-        else
-            einde = false;
-        
-        return einde;
+    
+    public String[] geefKleuren(){
+        return this.spel.geefGeldigeKleuren();
+    }
+    
+    public void doePoging(int[] poging){
+        this.spel.doePoging(poging);
     }
     
     

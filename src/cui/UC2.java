@@ -26,7 +26,8 @@ public class UC2 {
     public void start(){
         toonAantalGewonnen();
         kiesMoeilijkheidsGraad();
-        /*dc.geefSpelbord();*/
+        UC3 uc3 = new UC3(this.dc,this.r);
+        uc3.start();
     }
     
     private void toonAantalGewonnen(){
@@ -80,7 +81,7 @@ public class UC2 {
         String res = String.format("%S%n%S","spelbord:","code:");
        
         for(String codepin:code){
-            res+= String.format("%10s",codepin);
+            res+= String.format("%10s",r.getString(codepin));
         }
         
         res += String.format("%n%S%n","spelbord:");
@@ -88,12 +89,13 @@ public class UC2 {
         for (String[] rij:spelbord){
             res+="[";
             for(String pin:rij){
-                res+=String.format("%10s",pin);
+                res+=String.format("%10s",r.getString(pin));
             }
             res+=String.format("%s%n","]");
         }
         
         System.out.println(res);
     }
+    
     
 }

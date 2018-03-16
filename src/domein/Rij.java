@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author ThomasV
  */
 public class Rij {
-    private List<CodePin> poging;
+    private final List<CodePin> poging;
     private List<EvaluatiePin> evaluatie;
     
     public Rij(int aantalPosities){
@@ -22,8 +22,12 @@ public class Rij {
             }
     }
     
-    public void doePoging(String[] poging){
+    public void doePoging(int[] poging){
+        this.poging.clear(); 
         
+        for(int i:poging){
+            this.poging.add(new CodePin(i));
+        }
     }
 
     public List<EvaluatiePin> getEvaluatie() {
@@ -39,8 +43,11 @@ public class Rij {
         return evaluatie != null;
     }
     
-    public void stelEvaluatieIn(String[] evaluatie){
-        
+    public void stelEvaluatieIn(int[] evaluatie){
+        this.evaluatie = new ArrayList<>();
+        for(int kleur : evaluatie){
+            this.evaluatie.add(new EvaluatiePin(kleur));
+        }
     }
     
 }

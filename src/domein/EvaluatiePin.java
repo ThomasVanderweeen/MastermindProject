@@ -21,10 +21,13 @@ public class EvaluatiePin extends Pin{
         geldigeKleur(kleur);
     }
 
+    public EvaluatiePin(int kleur){
+        super(GELDIGE_KLEUREN[kleur]);
+    }
     
     @Override
     public String getKleur() {
-        return kleur;
+        return super.getKleur();
     }
     
     @Override

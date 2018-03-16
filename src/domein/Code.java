@@ -42,4 +42,12 @@ public class Code {
         return moeilijkheidsGraad;
     }
     
+    public String[] geefGeldigeKleuren(){
+        return this.moeilijkheidsGraad.geefGeldigeKleuren();
+    }
+    
+    public int geefAantalPosities(){
+        return this.moeilijkheidsGraad.getAantalPosities();
+    }
+    
 }
