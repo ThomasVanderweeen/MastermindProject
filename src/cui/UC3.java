@@ -34,6 +34,21 @@ public class UC3 {
             geefKleurenWeer();
             speelBeurt();
         }
+        if(this.dc.isGewonnen()){
+            gewonnen();
+        }
+    }
+    
+    private void gewonnen(){
+        String res = String.format("%s%n%s",r.getString("gewonnen"),
+                r.getString("code"));
+        String[] code = this.dc.geefCode();
+        
+        for(String pin:code){
+            res+=String.format("%10s", pin);
+        }
+        
+        System.out.println(res);
     }
 
     private void speelBeurt(){
@@ -112,7 +127,9 @@ public class UC3 {
             speelBeurt();
         }
         
-        geefSpelbordWeer();
+        if(!(this.dc.isEindeSpel())){
+            geefSpelbordWeer();
+        }
     }   
     
     private int controleerPin(String i){

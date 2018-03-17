@@ -127,5 +127,16 @@ public class Spelbord {
         this.rijen[rij].stelEvaluatieIn(evaluatie);
     }
     
-
+    public int geefMoeilijkheidsGraad(){
+        MoeilijkheidsGraad mg = this.code.getMoeilijkheidsGraad();
+        
+        if(mg instanceof Gemakkelijk)
+            return 1;
+        else{
+            if(mg instanceof Gemiddeld)
+                return 2;
+            else
+                return 3;
+        }
+    }
 }

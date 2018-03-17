@@ -41,8 +41,12 @@ public class Spel {
         return this.spelbord;
     }
     
+    public boolean Gewonnen(){
+        return this.spelbord.getCodeGeraden();
+    }
+    
     public boolean bepaalEindeSpel(){
-        if ((getAantalPogingen() >= 12)||this.spelbord.getCodeGeraden())
+        if ((getAantalPogingen() >= 12)||Gewonnen())
             return true;
         
         return false;
@@ -52,5 +56,9 @@ public class Spel {
         int rij = getAantalPogingen();
         this.spelbord.voegPogingToe(poging, rij);
         this.aantalPogingen ++;
+    }
+    
+    public int geefMoeilijkheidsGraad(){
+        return this.spelbord.geefMoeilijkheidsGraad();
     }
 }

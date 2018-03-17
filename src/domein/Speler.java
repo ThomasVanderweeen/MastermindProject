@@ -19,12 +19,20 @@ public class Speler {
     private int aantalGewonnenMoeilijk=0;
 
     public Speler(String gebruikersnaam, String wachtwoord) {
+        this(gebruikersnaam,wachtwoord,0,0,0);
+        
+    }
+    
+    public Speler(String gebruikersnaam,String wachtwoord,int aantalGewonnenMakkelijk,int aantalGewonnenGemiddeld,int aantalGewonnenMoeilijk){
         this.naam = gebruikersnaam;
         setWachtwoord(wachtwoord);
+        this.aantalGewonnenMakkelijk = aantalGewonnenMakkelijk;
+        this.aantalGewonnenGemiddeld = aantalGewonnenGemiddeld;
+        this.aantalGewonnenMoeilijk = aantalGewonnenMoeilijk;
     }
 
     public Speler(String gebruikersnaam, String wachtwoord,String wachtwoordBevestiging) {
-        this(gebruikersnaam,wachtwoord);
+        this(gebruikersnaam,wachtwoord,0,0,0);
         controleerWachtwoord(wachtwoord,wachtwoordBevestiging);
     }
     
@@ -36,7 +44,7 @@ public class Speler {
     }
 
     /* OKE?!?! hoe exceptions afhandelen???!?*/
-    void setWachtwoord(String wachtwoord) {
+    private void setWachtwoord(String wachtwoord) {
         try{
             if(!wachtwoord.matches("\\d{3}[a-zA-z]{6}\\d{3}"))
                 throw new IllegalArgumentException();
@@ -73,5 +81,16 @@ public class Speler {
         if(!(wachtwoord.equals(wachtwoordBevestiging)))
             throw new IllegalArgumentException("Wachtwoord en wachtwoordBevestiging komen niet overeen");
         
+    }
+    
+    public void verhoogJuisteMoeilijkheidsGraad(int moeilijkheidsGraad){
+        if(moeilijkheidsGraad==1)
+            this.aantalGewonnenMakkelijk++;
+        else{
+            if(moeilijkheidsGraad==2)
+                this.aantalGewonnenGemiddeld++;
+            else
+                this.aantalGewonnenMoeilijk++;
+        }
     }
 }

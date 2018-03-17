@@ -140,9 +140,18 @@ public class DomeinController {
     
     public void doePoging(int[] poging){
         this.spel.doePoging(poging);
+        if(isGewonnen()){
+            int moeilijkheidsGraad = this.spel.geefMoeilijkheidsGraad();
+            this.speler.verhoogJuisteMoeilijkheidsGraad(moeilijkheidsGraad);
+            spelerRepository.updateScore(this.speler, moeilijkheidsGraad);
+        }
     }
     
     public boolean isEindeSpel(){
         return this.spel.bepaalEindeSpel();
+    }
+    
+    public boolean isGewonnen(){
+        return this.spel.Gewonnen();
     }
 }
