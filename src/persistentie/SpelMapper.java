@@ -2,7 +2,7 @@ package persistentie;
 
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class SpelMapper {
 

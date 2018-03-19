@@ -7,7 +7,7 @@ package domein;
 import java.util.List;
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class Code {
     private final List<CodePin> code;

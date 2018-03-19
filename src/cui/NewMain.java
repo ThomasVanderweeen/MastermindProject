@@ -2,7 +2,7 @@ package cui;
 
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class NewMain {
         

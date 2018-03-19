@@ -2,7 +2,7 @@ package domein;
 import java.util.List;
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public abstract class MoeilijkheidsGraad {
     private final int aantalPosities,aantalPinnen;

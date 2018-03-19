@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class Moeilijk extends MoeilijkheidsGraad{
     public Moeilijk(){

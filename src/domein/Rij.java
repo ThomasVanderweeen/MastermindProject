@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class Rij {
     private final List<CodePin> poging;

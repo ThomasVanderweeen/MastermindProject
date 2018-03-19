@@ -152,6 +152,17 @@ public class DomeinController {
     }
     
     public boolean isGewonnen(){
-        return this.spel.Gewonnen();
+        return this.spel.isGewonnen();
     }
+    
+    /*
+    nog niet geimplementeerd
+    public void slaOp(String naam){
+    
+    }
+    
+    public String[][] geefEindSituatie(){
+    
+    }
+    */
 }

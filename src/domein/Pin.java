@@ -7,7 +7,7 @@ package domein;
 
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public abstract class Pin {
     private final String kleur;
@@ -20,5 +20,5 @@ public abstract class Pin {
         return kleur;
     }
     
-    public abstract void geldigeKleur(String kleur);
+    protected abstract void bepaalGeldigeKleur(String kleur);
 }

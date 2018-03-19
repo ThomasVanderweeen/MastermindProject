@@ -42,6 +42,10 @@ public class Speler {
         this.naam = naam;
 
     }
+    
+    public String getWachtwoord(){
+        return this.wachtwoord;
+    }
 
     /* OKE?!?! hoe exceptions afhandelen???!?*/
     private void setWachtwoord(String wachtwoord) {
@@ -60,9 +64,7 @@ public class Speler {
         return this.naam;
     }
 
-    public String getWachtwoord() {
-        return this.wachtwoord;
-    }
+
     
     public int getAantalGewonnenMakkelijk(){
         return this.aantalGewonnenMakkelijk;

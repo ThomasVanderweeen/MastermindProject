@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class Gemakkelijk extends MoeilijkheidsGraad {
    

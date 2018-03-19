@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class Gemiddeld extends MoeilijkheidsGraad {
     public Gemiddeld(){

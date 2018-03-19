@@ -2,7 +2,7 @@ package exceptions;
 
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class ServerOnbereikbaarException extends RuntimeException{
     public ServerOnbereikbaarException(){

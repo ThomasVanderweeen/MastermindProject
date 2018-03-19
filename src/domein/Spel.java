@@ -41,12 +41,12 @@ public class Spel {
         return this.spelbord;
     }
     
-    public boolean Gewonnen(){
+    public boolean isGewonnen(){
         return this.spelbord.getCodeGeraden();
     }
     
     public boolean bepaalEindeSpel(){
-        if ((getAantalPogingen() >= 12)||Gewonnen())
+        if ((getAantalPogingen() >= 12)||isGewonnen())
             return true;
         
         return false;
@@ -61,4 +61,14 @@ public class Spel {
     public int geefMoeilijkheidsGraad(){
         return this.spelbord.geefMoeilijkheidsGraad();
     }
+    
+    /*nog niet geimplementeerd
+    public CodePin[] geefCode(){
+    
+    }
+    
+    public int[] geefAantalSterrenEnAantalTotVolgende(){
+    
+    }
+    */
 }

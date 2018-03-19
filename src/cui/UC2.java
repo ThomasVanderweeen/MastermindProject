@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 import exceptions.NietGenoegGewonnenException;
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class UC2 {
     /*veel dubbel  eventueel static dc en scanner?*/

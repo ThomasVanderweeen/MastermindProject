@@ -13,7 +13,7 @@ import exceptions.AanmeldException;
 import java.util.InputMismatchException;
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class UC1 {
     private final DomeinController dc;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import exceptions.OngeldigePogingException;
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class Spelbord {
     private final Code code;
@@ -51,16 +51,6 @@ public class Spelbord {
         if(poging.length!= this.code.geefAantalPosities())
             throw new OngeldigePogingException("Het aantal posities van de "
                     + "poging is ontoereikend.");
-    }
-    
-    private CodePin[] zetKleurOm(int[] poging){
-        CodePin[] omzet = new CodePin[poging.length];
-        int teller =0;
-        for(int i: poging){
-            omzet[teller] = new CodePin(i);
-            teller++;
-        }
-        return omzet;
     }
     
     
