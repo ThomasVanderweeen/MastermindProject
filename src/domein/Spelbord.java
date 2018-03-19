@@ -14,8 +14,8 @@ public class Spelbord {
     
     public Spelbord(int moeilijkheidsGraad){
         this.code = new Code(moeilijkheidsGraad);
-        this.rijen = new Rij[12];
         int lengte = this.code.getCode().size();
+        this.rijen = new Rij[12];
         vulRijenOp(this.code.getCode().size());
     }
     
