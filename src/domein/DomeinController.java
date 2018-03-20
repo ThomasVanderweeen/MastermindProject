@@ -160,15 +160,18 @@ public class DomeinController {
     }
     */
     public String[][] geefEindSituatie(){
-        String[] eindSituatie = new String[4];
-        String[] sterrenEnTotVolgende = new String[2];
+        String[][] eindSituatie = new String[3][4];
+        
         int teller = 0;
         if(this.spel.isGewonnen() == true){
            for(int i: this.spel.geefAantalSterrenEnAantalTotVolgende()){
-               sterrenEnTotVolgende[teller] = Integer.toString(i);
+               eindSituatie[0][teller] = Integer.toString(i);
                teller++;
            }
+           eindSituatie[1][0] = Integer.toString(this.spel.getAantalPogingen());
+           eindSituatie[2] = geefCode();
         }
+        return eindSituatie;
     }
     
 }
