@@ -93,4 +93,40 @@ public class Speler {
                 this.aantalGewonnenMoeilijk++;
         }
     }
+     public int[] geefAantalSterrenEnAantalTotVolgende(int moeilijkheidsGraad){
+        int[] sterren = new int[2];
+        int gewonnen=0;
+        
+        switch(moeilijkheidsGraad){
+            case 1: gewonnen = getAantalGewonnenMakkelijk(); break;
+            case 2: gewonnen = getAantalGewonnenGemiddeld(); break;
+            case 3: gewonnen = getAantalGewonnenMoeilijk(); break;
+        }
+        
+        if(gewonnen < 10){
+            sterren[0] = 0;            //Het aantal sterren
+            sterren[1] = 10-gewonnen;  //Te winnen spellen tot volgende ster 
+        }    
+        else if(gewonnen < 20){
+            sterren[0] = 1;
+            sterren[1] = 20-gewonnen;
+        }
+        else if(gewonnen < 50){
+            sterren[0] = 2;
+            sterren[1] = 50-gewonnen;
+        }    
+        else if(gewonnen < 100){
+            sterren[0] = 3;
+            sterren[1] = 100-gewonnen;
+        }    
+        else if(gewonnen < 250){
+            sterren[0] = 4;
+            sterren[1] = 250-gewonnen;
+        }    
+        else if(gewonnen >= 250){
+            sterren[0] = 5;
+            sterren[1] = 0;
+        }    
+        return sterren;
+    }
 }
