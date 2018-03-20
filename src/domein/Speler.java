@@ -127,6 +127,6 @@ public class Speler {
             sterren[0] = 5;
             sterren[1] = 0;
         }    
-        return sterren;
+        return sterren; 
     }
 }
