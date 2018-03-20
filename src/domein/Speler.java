@@ -13,6 +13,7 @@ public class Speler {
     private int aantalGewonnenMakkelijk=0;
     private int aantalGewonnenGemiddeld=0;
     private int aantalGewonnenMoeilijk=0;
+    private int removeMe_JustforTesting;
 
     public Speler(String gebruikersnaam, String wachtwoord) {
         this(gebruikersnaam,wachtwoord,0,0,0);
@@ -46,7 +47,7 @@ public class Speler {
     /* OKE?!?! hoe exceptions afhandelen???!?*/
     private void setWachtwoord(String wachtwoord) {
 
-            if(!wachtwoord.matches("\\d{1,}[a-zA-z]{6,}\\d{1,}"))
+            if(!wachtwoord.matches("\\d{1}[a-zA-z]{6,}\\d{1}"))
                 throw new IllegalArgumentException();
             else
                 this.wachtwoord = wachtwoord;

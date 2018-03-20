@@ -14,7 +14,7 @@ import java.util.InputMismatchException;
  */
 public class EvaluatiePin extends Pin{
     private String kleur;
-    private static final String[] GELDIGE_KLEUREN = new String[] {"zwart","wit","rood"};
+    private static final String[] GELDIGE_KLEUREN = new String[] {"zwart","wit","leeg"};
 
     public EvaluatiePin(String kleur) {
         super(kleur);
