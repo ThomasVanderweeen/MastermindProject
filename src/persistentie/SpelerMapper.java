@@ -20,7 +20,7 @@ import exceptions.ServerOnbereikbaarException;
  */
 public class SpelerMapper {
     /*Eventueel een standaard instellen in de database voor de laatste drie die bij initialisatie 0 is*/
-    private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.speler(naam, wachtwoord)" + "VALUES(?, ?)";
+    private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.Speler(naam, wachtwoord)" + "VALUES(?, ?)";
     
     /*Verantwoordelijke voor het toevoegen van een speler aan de database*/
     public void voegToe(Speler speler){
@@ -41,7 +41,7 @@ public class SpelerMapper {
         Speler speler = null;
         
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("SELECT * FROM ID222177_g77.speler WHERE naam = ? AND wachtwoord = ?")){
+                PreparedStatement query = connectie.prepareStatement("SELECT * FROM ID222177_g77.Speler WHERE naam = ? AND wachtwoord = ?")){
         
             query.setString(1,gebruikersnaam);
             query.setString(2, wachtwoord);
@@ -72,7 +72,7 @@ public class SpelerMapper {
         boolean bestaat = false;
         
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("SELECT count(naam) FROM ID222177_g77.speler WHERE naam = ?;");){
+                PreparedStatement query = connectie.prepareStatement("SELECT count(naam) FROM ID222177_g77.Speler WHERE naam = ?;");){
            
             query.setString(1,gebruikersnaam);
             try(ResultSet rs = query.executeQuery()){
@@ -115,7 +115,7 @@ public class SpelerMapper {
                }
            }
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("update  ID222177_g77.speler "
+                PreparedStatement query = connectie.prepareStatement("update  ID222177_g77.Speler "
                         + "set "+rowname+"=+"+score+" where naam=?;");){
             
 
