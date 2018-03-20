@@ -17,6 +17,7 @@ public class Speler {
     private int aantalGewonnenMakkelijk=0;
     private int aantalGewonnenGemiddeld=0;
     private int aantalGewonnenMoeilijk=0;
+    private int removeMe_JustforTesting;
 
     public Speler(String gebruikersnaam, String wachtwoord) {
         this(gebruikersnaam,wachtwoord,0,0,0);
