@@ -10,6 +10,7 @@ import java.util.Scanner;
 import java.util.ResourceBundle;
 import exceptions.ServerOnbereikbaarException;
 import exceptions.AanmeldException;
+import exceptions.SpelerBestaatAlException;
 import java.util.InputMismatchException;
 /**
  *
@@ -117,6 +118,12 @@ public class UC1 {
                     }
                     catch(ServerOnbereikbaarException e){
                         System.err.println(r.getString("serverFout"));
+                        toonMenu();
+                    }catch(IllegalArgumentException iae){
+                        System.err.println(r.getString("wachtwoordFout"));
+                        toonMenu();
+                    }catch(SpelerBestaatAlException spae){
+                        System.err.println(r.getString("alBekend"));
                         toonMenu();
                     }
 

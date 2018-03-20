@@ -52,7 +52,7 @@ public class DomeinController {
     */
     public void registreer(String naam, String wachtwoord, String wachtwoordBevestiging){
         boolean bestaat = spelerRepository.bestaatSpeler(naam);
-        try{
+
             if(!bestaat){
                 this.speler = new Speler(naam,wachtwoord,wachtwoordBevestiging);
                 spelerRepository.voegSpelerToe(speler);
@@ -60,10 +60,8 @@ public class DomeinController {
             else{
                 throw new SpelerBestaatAlException();
             }
-        }
-        catch(SpelerBestaatAlException e){
-            System.err.println("Speler al bekend in systeem.");
-        }
+        
+
     }   
     
     public void registreerSpel(int moeilijkheidsGraad){
@@ -135,7 +133,7 @@ public class DomeinController {
     
     
     public String[] geefKleuren(){
-        return this.spel.geefGeldigeKleuren();
+        return CodePin.getGeldigeKleuren();
     }
     
     public void doePoging(int[] poging){
