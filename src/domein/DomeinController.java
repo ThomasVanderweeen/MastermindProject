@@ -52,7 +52,7 @@ public class DomeinController {
     */
     public void registreer(String naam, String wachtwoord, String wachtwoordBevestiging){
         boolean bestaat = spelerRepository.bestaatSpeler(naam);
-        try{
+
             if(!bestaat){
                 this.speler = new Speler(naam,wachtwoord,wachtwoordBevestiging);
                 spelerRepository.voegSpelerToe(speler);
@@ -60,10 +60,8 @@ public class DomeinController {
             else{
                 throw new SpelerBestaatAlException();
             }
-        }
-        catch(SpelerBestaatAlException e){
-            System.err.println("Speler al bekend in systeem.");
-        }
+        
+
     }   
     
     public void registreerSpel(int moeilijkheidsGraad){
@@ -88,13 +86,17 @@ public class DomeinController {
         Spelbord sp = this.spel.getSpelBord();
         Rij[] rijen = sp.getRijen();
         
-        
         for(Rij r:rijen){
-            lengte = r.getPoging().size()+r.getEvaluatie().size();
+            lengte = r.getPoging().size();
+            if(r.heeftEvaluatie())
+                lengte += r.getEvaluatie().size();
             spelbord[rijnr] = new String[lengte];
             
             for(CodePin cp : r.getPoging()){
-                spelbord[rijnr][inner] = cp.getKleur();
+                if(cp ==null)
+                    spelbord[rijnr][inner] = "leeg";
+                else
+                    spelbord[rijnr][inner] = cp.getKleur();
                 inner++;
             }
             
@@ -111,17 +113,54 @@ public class DomeinController {
      
         return spelbord;
     }
+    
+    public String[] geefCode(){
+        
+        Spelbord sp = this.spel.getSpelBord();
+        List<CodePin> code =  sp.getCode();
+        
+        String[] res = new String[code.size()];
+        int teller = 0;
+        
+        for(CodePin cp: code){
+            res[teller] = cp.getKleur();
+            teller++;
+        }
+        
+        return res;
+    }
 
     
-    private boolean bepaalEindeSpel(Spel spel){
-        boolean einde;
-        if (spel.getAantalPogingen() >= 12)
-            einde = true;
-        else
-            einde = false;
-        
-        return einde;
+    
+    public String[] geefKleuren(){
+        return CodePin.getGeldigeKleuren();
     }
     
+    public void doePoging(int[] poging){
+        this.spel.doePoging(poging);
+        if(isGewonnen()){
+            int moeilijkheidsGraad = this.spel.geefMoeilijkheidsGraad();
+            this.speler.verhoogJuisteMoeilijkheidsGraad(moeilijkheidsGraad);
+            spelerRepository.updateScore(this.speler, moeilijkheidsGraad);
+        }
+    }
     
+    public boolean isEindeSpel(){
+        return this.spel.bepaalEindeSpel();
+    }
+    
+    public boolean isGewonnen(){
+        return this.spel.isGewonnen();
+    }
+    
+    /*
+    nog niet geimplementeerd
+    public void slaOp(String naam){
+    
+    }
+    
+    public String[][] geefEindSituatie(){
+    
+    }
+    */
 }

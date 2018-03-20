@@ -7,7 +7,7 @@ package domein;
 import java.util.List;
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class Code {
     private final List<CodePin> code;
@@ -40,6 +40,14 @@ public class Code {
 
     public MoeilijkheidsGraad getMoeilijkheidsGraad() {
         return moeilijkheidsGraad;
+    }
+    
+    public String[] geefGeldigeKleuren(){
+        return this.moeilijkheidsGraad.geefGeldigeKleuren();
+    }
+    
+    public int geefAantalPosities(){
+        return this.moeilijkheidsGraad.getAantalPosities();
     }
     
 }

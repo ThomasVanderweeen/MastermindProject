@@ -2,7 +2,7 @@ package domein;
 import java.util.List;
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public abstract class MoeilijkheidsGraad {
     private final int aantalPosities,aantalPinnen;
@@ -24,5 +24,9 @@ public abstract class MoeilijkheidsGraad {
     
     protected int getAantalPinnen(){
         return this.aantalPinnen;
+    }
+    
+    public String[] geefGeldigeKleuren(){
+        return CodePin.getGeldigeKleuren();
     }
 }

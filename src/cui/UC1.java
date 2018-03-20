@@ -10,10 +10,11 @@ import java.util.Scanner;
 import java.util.ResourceBundle;
 import exceptions.ServerOnbereikbaarException;
 import exceptions.AanmeldException;
+import exceptions.SpelerBestaatAlException;
 import java.util.InputMismatchException;
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class UC1 {
     private final DomeinController dc;
@@ -76,7 +77,7 @@ public class UC1 {
    
             do{
                 try{
-                System.out.printf("%s%n%s%n%s%n%s%n",r.getString("welkom"),r.getString("meldAan") ,r.getString("registreer"),r.getString("sluitAf"));
+                System.out.printf("%s%n%s%n%s%n%s%n",r.getString("welkom"),r.getString("meldAan") ,r.getString("registreer"),"3)"+r.getString("sluitAf"));
 //                keuze = geefKeuzeIn(r.getString("keuzeInvoer"));
                 System.out.print(r.getString("keuzeInvoer"));
                 keuze = sc.nextInt();
@@ -117,6 +118,12 @@ public class UC1 {
                     }
                     catch(ServerOnbereikbaarException e){
                         System.err.println(r.getString("serverFout"));
+                        toonMenu();
+                    }catch(IllegalArgumentException iae){
+                        System.err.println(r.getString("wachtwoordFout"));
+                        toonMenu();
+                    }catch(SpelerBestaatAlException spae){
+                        System.err.println(r.getString("alBekend"));
                         toonMenu();
                     }
 

@@ -7,7 +7,7 @@ package exceptions;
 
 /**
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class SpelerBestaatAlException extends RuntimeException{
     

@@ -19,7 +19,7 @@ import exceptions.ServerOnbereikbaarException;
  * @author Groep 77
  */
 public class SpelerMapper {
-    
+    /*Eventueel een standaard instellen in de database voor de laatste drie die bij initialisatie 0 is*/
     private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.speler(naam, wachtwoord)" + "VALUES(?, ?)";
     
     /*Verantwoordelijke voor het toevoegen van een speler aan de database*/
@@ -47,7 +47,10 @@ public class SpelerMapper {
             query.setString(2, wachtwoord);
             try(ResultSet rs = query.executeQuery()){
                 if(rs.next()){
-                    speler = new Speler(gebruikersnaam, wachtwoord);
+                    speler = new Speler(gebruikersnaam, wachtwoord,
+                            rs.getInt("aantalGewonnenMakkelijk"),
+                            rs.getInt("aantalGewonnenGemiddeld"),
+                            rs.getInt("aantalGewonnenMoeilijk"));
                 }
                 else{
                     speler = null;
@@ -90,4 +93,42 @@ public class SpelerMapper {
         
         return bestaat;
     }
+       
+       /*
+*/
+       public void updateScore(Speler sp, int moeilijkheidsGraad){
+           String rowname;
+           int score;
+           
+           if(moeilijkheidsGraad==1){
+                rowname = "aantalGewonnenMakkelijk";
+                score = sp.getAantalGewonnenMakkelijk();
+            }
+           else{
+               if(moeilijkheidsGraad==2){
+                   rowname = "aantalGewonnenGemiddeld";
+                   score= sp.getAantalGewonnenGemiddeld();
+               }
+               else{
+                   rowname = "aantalGewonnenMoeilijk";
+                   score = sp.getAantalGewonnenMoeilijk();
+               }
+           }
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+                PreparedStatement query = connectie.prepareStatement("update  ID222177_g77.speler "
+                        + "set "+rowname+"=+"+score+" where naam=?;");){
+            
+
+
+            query.setString(1,sp.getNaam());
+            query.executeUpdate();
+            
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+        
+       }
 }

@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 import exceptions.NietGenoegGewonnenException;
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class UC2 {
     /*veel dubbel  eventueel static dc en scanner?*/
@@ -25,7 +25,8 @@ public class UC2 {
     public void start(){
         toonAantalGewonnen();
         kiesMoeilijkheidsGraad();
-        /*dc.geefSpelbord();*/
+        UC3 uc3 = new UC3(this.dc,this.r);
+        uc3.start();
     }
     
     private void toonAantalGewonnen(){
@@ -66,12 +67,51 @@ public class UC2 {
 
         try{
             dc.registreerSpel(keuze);
+            geefSpelbordWeer();
         }catch(NietGenoegGewonnenException e){
             System.err.println(r.getString("nietGenoegGewonnen"));
             kiesMoeilijkheidsGraad();
         }
     }
     
+    private void geefSpelbordWeer(){
+        String[][] spelbord = this.dc.geefSpelBord();
+        String[] code = this.dc.geefCode();
+        String res = String.format("%S",
+                r.getString("code"));
+       
+        for(String codepin:code){
+            res+= String.format("%10s",r.getString(codepin));
+        }
+        
+        
+        res += String.format("%n%S%n",r.getString("spelbord"));
+        for (String[] rij:spelbord){
+            res+=String.format("%S%s",r.getString("rij"),"[");
+            if(rij.length<6){
+                
+                for(String pin:rij){
+                    res+=String.format("%10s",r.getString(pin));
+                }
+
+            }else{
+                int lengte = rij.length;
+                
+                for(int i=0;i<(lengte/2);i++){
+                    res+=String.format("%10s",r.getString(rij[i]));
+                }
+                
+                res+=String.format("%s%n%S%s","]",r.getString("evaluatie"),"[");
+                for(int i=lengte/2;i<lengte;i++){
+                    res+=String.format("%10s", r.getString(rij[i]));
+                }
+                
+            }
+           res+=String.format("%s%n","]");
+        }
+        
+        System.out.println(res);
+    }
     
     
 }

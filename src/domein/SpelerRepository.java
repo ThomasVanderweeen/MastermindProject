@@ -37,5 +37,8 @@ public class SpelerRepository {
         mapper.voegToe(sp);
     }
     
+    public void updateScore(Speler sp, int moeilijkheidsGraad){
+        mapper.updateScore(sp, moeilijkheidsGraad);
+    }
     
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class Gemakkelijk extends MoeilijkheidsGraad {
    
@@ -18,9 +18,15 @@ public class Gemakkelijk extends MoeilijkheidsGraad {
     public List<CodePin> genereerCode(){
         List<CodePin> code = new ArrayList<>();
         String[] kleuren =  MoeilijkheidsGraad.getKleuren();
-        List<String> kleurtjes = Arrays.asList(kleuren);
         String kleur;
         int rand;
+
+        /*AsList methode retoutneerd vaste grote lijst vandaar kan de remove niet gebruikt worden
+        Vandaar de addAll methode.
+        */
+        List<String> kleurtjes = new ArrayList<>();
+        kleurtjes.addAll(Arrays.asList(kleuren));
+
         
         do{
             rand = (int)(Math.random()*(kleurtjes.size()-1));
