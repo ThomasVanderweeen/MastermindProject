@@ -42,13 +42,21 @@ public class UC3 {
     private void gewonnen(){
         String res = String.format("%s%n%s",r.getString("gewonnen"),
                 r.getString("code"));
-        String[] code = this.dc.geefCode();
         
-        for(String pin:code){
-            res+=String.format("%10s", pin);
+        String[][] eindsituatie = this.dc.geefEindSituatie();
+        
+        /*Code kleuren worden weergegeven*/
+        for(String kleur:eindsituatie[2]){
+            res+=String.format("%10s",kleur);
         }
         
+        res+= String.format("%n%s%s%n%s%n%s",r.getString("aantalPogingen")
+                ,eindsituatie[1][0],"Je hebt nu "+eindsituatie[0][0]+
+                        "aantal sterren in de gekozen moeiljkheidsgraad",
+                "Je hebt nog "+eindsituatie[0][1]+" aantal sterren nodig tot de volgende ster");
+        
         System.out.println(res);
+        
     }
 
     private void speelBeurt(){

@@ -48,9 +48,9 @@ public class SpelerMapper {
             try(ResultSet rs = query.executeQuery()){
                 if(rs.next()){
                     speler = new Speler(gebruikersnaam, wachtwoord,
-                            rs.getInt("aantalGewonnenMakkelijk"),
-                            rs.getInt("aantalGewonnenGemiddeld"),
-                            rs.getInt("aantalGewonnenMoeilijk"));
+                            rs.getInt("gewonnenMakkelijk"),
+                            rs.getInt("gewonnenGemiddeld"),
+                            rs.getInt("gewonnenMoeilijk"));
                 }
                 else{
                     speler = null;
@@ -101,16 +101,16 @@ public class SpelerMapper {
            int score;
            
            if(moeilijkheidsGraad==1){
-                rowname = "aantalGewonnenMakkelijk";
+                rowname = "gewonnenMakkelijk";
                 score = sp.getAantalGewonnenMakkelijk();
             }
            else{
                if(moeilijkheidsGraad==2){
-                   rowname = "aantalGewonnenGemiddeld";
+                   rowname = "gewonnenGemiddeld";
                    score= sp.getAantalGewonnenGemiddeld();
                }
                else{
-                   rowname = "aantalGewonnenMoeilijk";
+                   rowname = "gewonnenMoeilijk";
                    score = sp.getAantalGewonnenMoeilijk();
                }
            }
