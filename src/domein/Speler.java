@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package domein;
 
 /**
@@ -93,14 +89,16 @@ public class Speler {
                 this.aantalGewonnenMoeilijk++;
         }
     }
-     public int[] geefAantalSterrenEnAantalTotVolgende(int moeilijkheidsGraad){
+    public int[] geefAantalSterrenEnAantalTotVolgende(int moeilijkheidsGraad){
         int[] sterren = new int[2];
         int gewonnen=0;
-        
         switch(moeilijkheidsGraad){
-            case 1: gewonnen = getAantalGewonnenMakkelijk(); break;
-            case 2: gewonnen = getAantalGewonnenGemiddeld(); break;
-            case 3: gewonnen = getAantalGewonnenMoeilijk(); break;
+            case 1: gewonnen = this.getAantalGewonnenMakkelijk(); 
+            break;
+            case 2: gewonnen = this.getAantalGewonnenGemiddeld();
+            break;
+            case 3: gewonnen = this.getAantalGewonnenMoeilijk(); 
+            break;
         }
         
         if(gewonnen < 10){
@@ -127,6 +125,6 @@ public class Speler {
             sterren[0] = 5;
             sterren[1] = 0;
         }    
-        return sterren; 
+        return sterren;
     }
 }

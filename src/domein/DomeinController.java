@@ -158,9 +158,17 @@ public class DomeinController {
     public void slaOp(String naam){
     
     }
-    
-    public String[][] geefEindSituatie(){
-    
-    }
     */
+    public String[][] geefEindSituatie(){
+        String[] eindSituatie = new String[4];
+        String[] sterrenEnTotVolgende = new String[2];
+        int teller = 0;
+        if(this.spel.isGewonnen() == true){
+           for(int i: this.spel.geefAantalSterrenEnAantalTotVolgende()){
+               sterrenEnTotVolgende[teller] = Integer.toString(i);
+               teller++;
+           }
+        }
+    }
+    
 }

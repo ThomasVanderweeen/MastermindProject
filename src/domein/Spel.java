@@ -8,6 +8,7 @@ public class Spel {
     private final Speler speler;
     private final Spelbord spelbord;
     private int aantalPogingen;
+    private String naam;
     
     
     public Spel(int moeilijkheidsGraad,Speler speler){
@@ -67,8 +68,21 @@ public class Spel {
     
     }
     
-    public int[] geefAantalSterrenEnAantalTotVolgende(){
     
-    }
     */
+    public int[] geefAantalSterrenEnAantalTotVolgende(){
+        
+        int moeilijkheidsGraad = this.spelbord.geefMoeilijkheidsGraad();
+        return this.speler.geefAantalSterrenEnAantalTotVolgende(moeilijkheidsGraad);
+        
+         
+    }
+    
+    public String getNaam(){
+        return this.naam;
+    }
+    
+    public void stelNaamIn(String naam){
+        this.naam = naam;
+    }
 }
