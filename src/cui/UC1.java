@@ -25,6 +25,11 @@ public class UC1 {
         this.dc = new DomeinController();
     }
     
+    public UC1(DomeinController dc, ResourceBundle r){
+        this.dc = dc;
+        this.r = r;
+    }
+    
     public void Start(){
         taalSelectie();
         toonMenu();
@@ -163,18 +168,19 @@ public class UC1 {
         dc.registreer(naam, wachtwoord,wachtwoordBevestiging);
    }
     
-   private void toonMogelijkheden(){
+   public void toonMogelijkheden(){
        int keuze=0;
        
        do{
            try{ 
-            System.out.printf("%s%n%s%n%s%n%s%n%s%n",r.getString("startEenSpel"),
+            System.out.printf("%s%n%s%n%s%n%s%n%s%n%s%n",r.getString("startEenSpel"),
                r.getString("laadSpel"),r.getString("daagIemandUit"),
-               r.getString("wieDaagtJouUit"),r.getString("toonKlassement"));
+               r.getString("wieDaagtJouUit"),r.getString("toonKlassement"),
+               "0)"+r.getString("sluitAf"));
             System.out.print(r.getString("keuzeInvoer"));
             keuze = this.sc.nextInt();
             
-            if(keuze<1 || keuze>5)
+            if(keuze<0 || keuze>5)
                 throw new IllegalArgumentException();
            }catch(IllegalArgumentException e){
                System.err.println(r.getString("fouteKeuze"));
@@ -182,9 +188,13 @@ public class UC1 {
                System.err.println(r.getString("foutGeheelGetal"));
                sc.next();
            }
-       }while(keuze<1 || keuze>5);
+       }while(keuze<0 || keuze>5);
        
        switch(keuze){
+           case 0:
+               System.out.println(r.getString("afsluiten"));
+               System.exit(0);
+               break;
            case 1:
                UC2 uc2 = new UC2(r,dc);
                uc2.start();

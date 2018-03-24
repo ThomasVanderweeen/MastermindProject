@@ -12,6 +12,7 @@ import java.util.InputMismatchException;
 import exceptions.OngeldigePogingException;
 import java.util.List;
 import java.util.ArrayList;
+import exceptions.SpelNaamNietUniekException;
 
 /**
  *
@@ -22,11 +23,13 @@ public class UC3 {
     private ResourceBundle r;
     private final DomeinController dc;
     private final Scanner sc;
+    private final UC1 uc1;
     
     public UC3(DomeinController dc, ResourceBundle r){
         this.r = r;
         this.dc = dc;
         this.sc = new Scanner(System.in);
+        this.uc1 = new UC1(dc,r);
     }
     
     public void start(){
@@ -47,16 +50,17 @@ public class UC3 {
         
         /*Code kleuren worden weergegeven*/
         for(String kleur:eindsituatie[2]){
-            res+=String.format("%10s",kleur);
+            res+=String.format("%10s",r.getString(kleur));
         }
         
         res+= String.format("%n%s%s%n%s%n%s",r.getString("aantalPogingen")
-                ,eindsituatie[1][0],"Je hebt nu "+eindsituatie[0][0]+
-                        "aantal sterren in de gekozen moeiljkheidsgraad",
-                "Je hebt nog "+eindsituatie[0][1]+" aantal sterren nodig tot de volgende ster");
+                ,eindsituatie[1][0],
+                String.format(r.getString("aantalSterren"), eindsituatie[0][0]),
+                String.format(r.getString("aantalTotVolgende"),eindsituatie[0][1]));
         
         System.out.println(res);
         
+        this.uc1.toonMogelijkheden();
     }
 
     private void speelBeurt(){
@@ -75,14 +79,11 @@ public class UC3 {
         
         switch(keuze){
             case 1:
-                System.err.println(r.getString("nogNietGeimplementeerd"));
-                speelBeurt();
+                slaSpelOp();
                 break;
             case 2:
                 doePoging();
                 break;
-            default:
-                speelBeurt();
         }
     }
     
@@ -99,7 +100,7 @@ public class UC3 {
         }catch(InputMismatchException ime){
             
             System.err.println(r.getString("foutGeheelGetal"));
-            this.sc.next();
+            this.sc.nextLine();
             throw ime;
         }
         
@@ -109,7 +110,7 @@ public class UC3 {
     private void doePoging(){
         int i=0;
         
-        System.out.println("Geef je poging in (getallen gescheiden door -)");
+        System.out.println(r.getString("doePoging"));
         String pog = this.sc.next();
         List<Integer> cijferPoging = new ArrayList<>();
 
@@ -139,6 +140,24 @@ public class UC3 {
             geefSpelbordWeer();
         }
     }   
+    
+    private void slaSpelOp(){
+        System.out.print(r.getString("naamOpslaan"));
+        String naam = this.sc.next();
+        try{
+        
+            this.dc.slaOp(naam);
+            System.out.println(String.format(r.getString("opgeslaan"),naam));
+            this.uc1.toonMogelijkheden();
+        
+        }catch(SpelNaamNietUniekException e){
+            System.err.println(r.getString("spelNaamError"));
+            /*opmaak*/
+            speelBeurt();
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+    }
     
     private int controleerPin(String i){
         try{

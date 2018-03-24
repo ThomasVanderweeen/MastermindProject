@@ -66,7 +66,7 @@ public class DomeinController {
     
     public void registreerSpel(int moeilijkheidsGraad){
         this.spel = new Spel(moeilijkheidsGraad,this.speler);
-        spelRepository.voegSpelToe(this.spel);
+        
     }
     
     public List<Integer> startNieuwSpel(){
@@ -153,12 +153,19 @@ public class DomeinController {
         return this.spel.isGewonnen();
     }
     
-    /*
-    nog niet geimplementeerd
+
     public void slaOp(String naam){
-    
+        try{
+            if(!(spelRepository.controleerNaam(naam))){
+                this.spel.stelNaamIn(naam);
+                spelRepository.voegSpelToe(this.spel);
+            }
+        }catch(Exception e){
+            throw(e);
+        }
+            
     }
-    */
+    
     public String[][] geefEindSituatie(){
         String[][] eindSituatie = new String[3][4];
         

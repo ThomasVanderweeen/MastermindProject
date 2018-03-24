@@ -63,13 +63,11 @@ public class Spel {
         return this.spelbord.geefMoeilijkheidsGraad();
     }
     
-    /*nog niet geimplementeerd
-    public CodePin[] geefCode(){
-    
+    public Speler getSpeler(){
+        return this.speler;
     }
     
-    
-    */
+
     public int[] geefAantalSterrenEnAantalTotVolgende(){
         
         int moeilijkheidsGraad = this.spelbord.geefMoeilijkheidsGraad();
