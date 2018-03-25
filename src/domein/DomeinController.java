@@ -181,7 +181,7 @@ public class DomeinController {
         return eindSituatie;
     }
     
-    public String[][] GeefOpgeslagenSpellen(){
+    public String[][] geefOpgeslagenSpellen(){
         return spelRepository.toonSpellen(this.speler.getNaam());
     }
     
