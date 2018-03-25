@@ -17,6 +17,10 @@ public class Spel {
         this.spelbord = new Spelbord(moeilijkheidsGraad);
     }
     
+    public Spel(Spelbord spelbord,Speler speler){
+        this.speler = speler;
+        this.spelbord = spelbord;
+    }
     
     public String[] geefGeldigeKleuren(){
         return this.spelbord.geefGeldigeKleuren();

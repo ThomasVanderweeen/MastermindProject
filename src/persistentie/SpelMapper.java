@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 
 import domein.Spel;
 import domein.Speler;
@@ -14,7 +16,13 @@ import domein.Rij;
 import domein.CodePin;
 import domein.Spelbord;
 import domein.Pin;
-import java.util.List;
+import domein.Gemakkelijk;
+import domein.Gemiddeld;
+import domein.Moeilijk;
+import domein.MoeilijkheidsGraad;
+import domein.Code;
+import java.util.Arrays;
+
 /**
  *
  * @author Groep 77
@@ -159,7 +167,7 @@ public class SpelMapper {
         }  
     }
 
-    public String getCountSpellen(String spelernaam){
+    private String getCountSpellen(String spelernaam){
         String aantal="";
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
         PreparedStatement query = connectie.prepareStatement("SELECT count(naam) FROM ID222177_g77.Spel WHERE spelerNaam = ?;");){
@@ -217,4 +225,128 @@ public class SpelMapper {
         
         return resultaat;
     }
+    
+    public Spel maakSpel(String spelnaam,Speler speler){
+        int mg = getMoeilijkheidsGraad(spelnaam),pogingindx;
+        List<CodePin> code = new ArrayList<>();
+        MoeilijkheidsGraad moeilijkheidsGraad=null;
+        List<String> kleuren = Arrays.asList(CodePin.getGeldigeKleuren());
+        int[] poging;
+        
+        Code codeobj;
+        Spelbord spelbord;
+        Spel spel=null;
+        
+        
+        for(int rijnr=0;rijnr<geefCountRijen(spelnaam);rijnr++){
+            /*code*/
+            if(rijnr==0){
+                
+                switch(mg){
+                    case 1:
+                        moeilijkheidsGraad = new Gemakkelijk();
+                        break;
+                    case 2:
+                        moeilijkheidsGraad = new Gemiddeld();
+                        break;
+                    case 3:
+                        moeilijkheidsGraad = new Moeilijk();
+                        break;
+                }
+                
+                for(String kleur: getRijKleuren(spelnaam,rijnr)){
+                    code.add(new CodePin(kleur));
+                }
+                
+                codeobj = new Code(code,moeilijkheidsGraad);
+                spelbord = new Spelbord(codeobj);
+                spel = new Spel(spelbord,speler);
+            }
+            
+            
+            else{
+                poging = new int[code.size()];
+                pogingindx=0;
+                
+                for(String kleur: getRijKleuren(spelnaam,rijnr)){
+                    poging[pogingindx] = kleuren.indexOf(kleur);
+                    pogingindx++;
+                }
+                
+                spel.doePoging(poging);
+            }
+            
+        }
+        
+        return spel;
+    }
+    
+    private List<String> getRijKleuren(String spelnaam,int rij){
+        List<String> kleur = new ArrayList<>();
+        
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+        PreparedStatement query = connectie.prepareStatement("SELECT kleur FROM ID222177_g77.Rij_Pin WHERE spelNaam = ? AND nummer = "+rij+";");){
+        
+            query.setString(1, spelnaam);
+            
+            try(ResultSet rs = query.executeQuery()){
+                while(rs.next()){
+                    kleur.add(rs.getString("kleur"));
+                }
+            }
+        
+       }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }  
+        
+        return kleur;
+    }
+    
+    private int getMoeilijkheidsGraad(String spelnaam){
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+        PreparedStatement query = connectie.prepareStatement("SELECT moeilijkheidsGraad FROM ID222177_g77.Spel WHERE naam = ?;");){
+            
+            query.setString(1, spelnaam);
+            
+            try(ResultSet rs = query.executeQuery()){
+                if(rs.next()){
+                    return Integer.parseInt(rs.getString("moeilijkheidsGraad"));
+                }
+            }
+            
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }  
+        
+        return 0;
+    }
+    
+    private int geefCountRijen(String spelnaam){
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+        PreparedStatement query = connectie.prepareStatement("SELECT count(nummer) FROM ID222177_g77.Rij WHERE spelNaam = ?;");){
+            
+            query.setString(1, spelnaam);
+            
+            try(ResultSet rs = query.executeQuery()){
+                if(rs.next()){
+                    return Integer.parseInt(rs.getString("count(nummer)"));
+                }
+            }
+            
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }  
+        
+        return 0;
+    }
+
 }

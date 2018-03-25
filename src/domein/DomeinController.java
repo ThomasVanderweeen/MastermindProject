@@ -185,4 +185,9 @@ public class DomeinController {
         return spelRepository.toonSpellen(this.speler.getNaam());
     }
     
+    public void selecteerSpel(String naam){
+        this.spel = spelRepository.laadSpel(naam, speler);
+    } 
+    
+    
 }

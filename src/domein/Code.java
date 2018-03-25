@@ -33,6 +33,11 @@ public class Code {
         setMoeiljkheidsGraad(moeilijkheidsGraad);
         this.code = this.moeilijkheidsGraad.genereerCode();
     }
+    
+    public Code(List<CodePin> code,MoeilijkheidsGraad mg){
+        this.code = code;
+        this.moeilijkheidsGraad = mg;
+    }
 
     public List<CodePin> getCode() {
         return code;
