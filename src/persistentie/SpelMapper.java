@@ -226,6 +226,55 @@ public class SpelMapper {
         return resultaat;
     }
     
+    public void verwijderSpel(String spelnaam){
+        verwijderPinnen(spelnaam);
+        verwijderRijen(spelnaam);
+        verwijderSpelTabel(spelnaam);
+    }
+    
+    
+    private void verwijderPinnen(String spelnaam){
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+        PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Pin_Rij WHERE spelNaam = ?");){
+            
+            query.setString(1, spelnaam);
+            query.executeUpdate();
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }  
+    }
+    
+    private void verwijderRijen(String spelnaam){
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+        PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Rij WHERE spelNaam = ?");){
+            
+            query.setString(1, spelnaam);
+            query.executeUpdate();
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }  
+    }
+    
+        private void verwijderSpelTabel(String spelnaam){
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+        PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Spel WHERE spelNaam = ?");){
+            
+            query.setString(1, spelnaam);
+            query.executeUpdate();
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }  
+    }
+    
     public Spel maakSpel(String spelnaam,Speler speler){
         int mg = getMoeilijkheidsGraad(spelnaam),pogingindx;
         List<CodePin> code = new ArrayList<>();
@@ -285,7 +334,7 @@ public class SpelMapper {
         List<String> kleur = new ArrayList<>();
         
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("SELECT kleur FROM ID222177_g77.Rij_Pin WHERE spelNaam = ? AND nummer = "+rij+";");){
+        PreparedStatement query = connectie.prepareStatement("SELECT kleur FROM ID222177_g77.Pin_Rij WHERE spelNaam = ? AND nummer = "+rij+";");){
         
             query.setString(1, spelnaam);
             

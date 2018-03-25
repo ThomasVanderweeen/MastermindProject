@@ -187,6 +187,7 @@ public class DomeinController {
     
     public void selecteerSpel(String naam){
         this.spel = spelRepository.laadSpel(naam, speler);
+        spelRepository.verwijderSpel(naam);
     } 
     
     

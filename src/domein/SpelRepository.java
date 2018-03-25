@@ -43,4 +43,8 @@ public class SpelRepository {
     public Spel laadSpel(String spelnaam,Speler speler){
         return this.spm.maakSpel(spelnaam, speler);
     }
+    
+    public void verwijderSpel(String spelnaam){
+        this.spm.verwijderSpel(spelnaam);
+    }
 }
