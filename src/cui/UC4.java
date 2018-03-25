@@ -34,11 +34,11 @@ public class UC4
         for (String[] rij : spellen) {
             res +=String.format("%n%10s", rij[0]);
             switch(rij[1]){
-                case 1: res+=String.format("%10s",r.getString("makkelijk"));
+                case "1": res+=String.format("%10s",r.getString("makkelijk"));
                     break;
-                case 2: res+=String.format("%10s",r.getString("gemiddeld"));
+                case "2": res+=String.format("%10s",r.getString("gemiddeld"));
                     break;
-                case 3: res+=String.format("%10s",r.getString("moeilijk"));
+                case "3": res+=String.format("%10s",r.getString("moeilijk"));
                     break;
             }
             
