@@ -72,8 +72,7 @@ public class Spel {
         
         int moeilijkheidsGraad = this.spelbord.geefMoeilijkheidsGraad();
         return this.speler.geefAantalSterrenEnAantalTotVolgende(moeilijkheidsGraad);
-        
-         
+
     }
     
     public String getNaam(){

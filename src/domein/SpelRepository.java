@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import persistentie.SpelMapper;
 import exceptions.SpelNaamNietUniekException;
+import exceptions.SpelerHeeftGeenOpgeslagenSpellenException;
 /**
  *
  * @author Groep 77
@@ -32,4 +33,11 @@ public class SpelRepository {
             return false;
     }
 
+    public String[][] toonSpellen(String spelernaam){
+        if(this.spm.heeftOpgeslagenSpellen(spelernaam))
+            return this.spm.toonSpellen(spelernaam);
+         else
+            throw new SpelerHeeftGeenOpgeslagenSpellenException();
+    }
+    
 }

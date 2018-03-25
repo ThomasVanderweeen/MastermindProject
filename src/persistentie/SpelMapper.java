@@ -51,10 +51,12 @@ public class SpelMapper {
     }
        
     public void voegSpelToe(Spel spel){
- 
+             /*moeilijkheidsgraad*/
+            Spelbord spelbord = spel.getSpelBord();
+            int mg = spelbord.geefMoeilijkheidsGraad();
         
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,?);");){
+                PreparedStatement query = connectie.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,?,"+mg+");");){
            
             String spelNaam = spel.getNaam();
             int rijNr = 1;
@@ -63,9 +65,7 @@ public class SpelMapper {
             Speler speler = spel.getSpeler();
             query.setString(2,speler.getNaam());
             query.executeUpdate();
-            
-            Spelbord spelbord = spel.getSpelBord();
-            
+         
             try{
                 /*rij 0 is code*/
                 voegCodeToe(spelNaam,spelbord.getCode());
@@ -159,4 +159,62 @@ public class SpelMapper {
         }  
     }
 
+    public String getCountSpellen(String spelernaam){
+        String aantal="";
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+        PreparedStatement query = connectie.prepareStatement("SELECT count(naam) FROM ID222177_g77.Spel WHERE spelerNaam = ?;");){
+            
+            query.setString(1, spelernaam);
+            
+            try(ResultSet rs = query.executeQuery()){
+                if(rs.next()){
+                    aantal = rs.getString("count(naam)");
+                }
+            }
+            
+            return aantal;
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }  
+    }
+    
+    public boolean heeftOpgeslagenSpellen(String spelernaam){
+        boolean opgeslaan = false;
+        
+           if(!(getCountSpellen(spelernaam).equals("0")))
+                opgeslaan=true;
+                    
+        return opgeslaan;
+    }
+    
+    public String[][] toonSpellen(String spelernaam){
+        String[][] resultaat =
+                new String[Integer.parseInt(getCountSpellen(spelernaam))][2];
+                
+        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
+        PreparedStatement query = connectie.prepareStatement("SELECT naam,moeilijkheidsgraad FROM ID222177_g77.Spel WHERE spelerNaam = ?;");){
+            
+            query.setString(1, spelernaam);
+            
+            try(ResultSet rs = query.executeQuery()){
+                int rij = 0;
+                while(rs.next()){
+                    resultaat[rij][0] = rs.getString("naam");
+                    resultaat[rij][1] = Integer.toString(rs.getInt("moeilijkheidsgraad"));
+                    rij++;
+                }
+            }
+       
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }  
+        
+        return resultaat;
+    }
 }

@@ -12,6 +12,14 @@ public class Spelbord {
     private final Rij[] rijen;
     private boolean codeGeraden = false;
     
+    public Spelbord(Code code){
+        this.code = code;
+        int lengte = this.code.getCode().size();
+        this.rijen = new Rij[12];
+        vulRijenOp(this.code.getCode().size());
+    }
+    
+    
     public Spelbord(int moeilijkheidsGraad){
         this.code = new Code(moeilijkheidsGraad);
         int lengte = this.code.getCode().size();
