@@ -40,4 +40,7 @@ public class SpelRepository {
             throw new SpelerHeeftGeenOpgeslagenSpellenException();
     }
     
+    public Spel laadSpel(String spelnaam,Speler speler){
+        return this.spm.maakSpel(spelnaam, speler);
+    }
 }
