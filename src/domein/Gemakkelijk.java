@@ -9,11 +9,18 @@ import java.util.Arrays;
  */
 public class Gemakkelijk extends MoeilijkheidsGraad {
    
+    /**
+     * Constructor voor een gemakkelijk object.
+     */
     public Gemakkelijk(){
         super(4,4);
     }
     
     /*lijst methode met kleuren verwijderen zou minder tijd kosten*/
+    /**
+     * genereerCode geneert een code waarvan de kleuren willekeurig gekozen worden.
+     * @return List<CodePin>
+     */
     @Override
     public List<CodePin> genereerCode(){
         List<CodePin> code = new ArrayList<>();

@@ -8,11 +8,17 @@ import java.util.List;
  * @author Groep 77
  */
 public class Gemiddeld extends MoeilijkheidsGraad {
+    /**
+     * Constructor voor een gemiddeld object.
+     */
     public Gemiddeld(){
         super(4,4);
     }
     
-    
+    /**
+     * genereerCode geneert een code waarvan de kleuren willekeurig gekozen worden.
+     * @return List<CodePin>
+     */
     @Override
     public List<CodePin> genereerCode(){
         List<CodePin> code = new ArrayList<>();

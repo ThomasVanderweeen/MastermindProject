@@ -7,10 +7,17 @@ import java.util.ArrayList;
  * @author Groep 77
  */
 public class Moeilijk extends MoeilijkheidsGraad{
+    /**
+     * constructor voor een moeilijk object.
+     */
     public Moeilijk(){
         super(5,3);
     }
     
+    /**
+     * genereerCode geneert een code waarvan de kleuren willekeurig gekozen worden.
+     * @return List<CodePin>
+     */
     @Override
     public List<CodePin> genereerCode(){
         

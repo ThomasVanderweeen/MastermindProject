@@ -93,6 +93,11 @@ public class DomeinController {
         
     }
     
+    /**
+     * startNieuwSpel haalt het aantal gewonnen spellen per moeilijkheidsgraad op van een bepaalde speler.
+     * 
+     * @return List<Integer>
+     */
     public List<Integer> startNieuwSpel(){
         List<Integer> gewonnenLijst = new ArrayList<>();
         
@@ -103,6 +108,11 @@ public class DomeinController {
         return gewonnenLijst;
     }
 
+    /**
+     * geefSpelbord geeft het spelbord weer.
+     * 
+     * @return String[][]
+     */
     public String [][] geefSpelBord(){
         String[][] spelbord = new String[12][];
         int rijnr = 0,lengte,inner=0;
@@ -138,6 +148,11 @@ public class DomeinController {
         return spelbord;
     }
     
+    /**
+     * geefCode zet de code om naar een String voor output naar de ui.
+     * 
+     * @return String[]
+     */
     public String[] geefCode(){
         
         Spelbord sp = this.spel.getSpelBord();
@@ -155,11 +170,20 @@ public class DomeinController {
     }
 
     
-    
+    /**
+     * geefKleuren haalt een array met alle geldige kleuren voor de codepins op.
+     * 
+     * @return String[]
+     */
     public String[] geefKleuren(){
         return CodePin.getGeldigeKleuren();
     }
     
+    /**
+     * doePoging 
+     * 
+     * @param poging 
+     */
     public void doePoging(int[] poging){
         this.spel.doePoging(poging);
         if(isGewonnen()){
