@@ -20,6 +20,9 @@ public class DomeinController {
     private Spel spel;
     private static SpelRepository spelRepository;
 
+    /**
+     * Constructor voor een DomeinController object. Binnen de constructor wordt een speler- en spelrepository object aangemaakt.
+     */
     public DomeinController() {
         spelerRepository = new SpelerRepository();
         spelRepository = new SpelRepository();
@@ -28,6 +31,11 @@ public class DomeinController {
     /*
     Er kan nog een exceptie optreden deze functie aanroepen voor speler bestaat.
     */
+     /**
+     * geefSpelerNaam geeft de naam van een speler terug.
+     * 
+     * @return String
+     */
     public String geefSpelerNaam(){
         return this.speler.getNaam();
     }
@@ -35,6 +43,12 @@ public class DomeinController {
     /*
         opgebast geef leeg object door indien speler niet bestaat geen exception moet nog gefix worden
     */
+     /**
+     * meldAan meldt een bestaande speler aan bij de mastermind applicatie. 
+     * 
+     * @param naam naam van de speler die wordt aangemeld.
+     * @param wachtwoord wachtwoord van de speler die wordt aangemeld.
+     */
     public void meldAan(String naam, String wachtwoord){
         
         boolean bestaat = spelerRepository.bestaatSpeler(naam);
@@ -50,6 +64,13 @@ public class DomeinController {
     /*
     Ook nog geen exception geworpen indien speler wel al bestaat nog implementeren HOE?!
     */
+    /**
+     * registreer Registreert een nieuwe speler en slaat deze op in de databank, indien de spelernaam nog niet in gebruik is. 
+     * 
+     * @param naam naam van de speler.
+     * @param wachtwoord wachtwoord van de speler. 
+     * @param wachtwoordBevestiging bevestiging van het wachtwoord, moet hetzelfde zijn als het wachtwoord.
+     */
     public void registreer(String naam, String wachtwoord, String wachtwoordBevestiging){
         boolean bestaat = spelerRepository.bestaatSpeler(naam);
 
@@ -60,10 +81,13 @@ public class DomeinController {
             else{
                 throw new SpelerBestaatAlException();
             }
-        
-
     }   
     
+     /**
+     * registreerSpel maakt een spel Object aan met een bepaalde moeilijkheidsgraad en een speler object.
+     * 
+     * @param moeilijkheidsGraad de moeilijkheidsgraad van het spel dat wordt aangemaakt.
+     */
     public void registreerSpel(int moeilijkheidsGraad){
         this.spel = new Spel(moeilijkheidsGraad,this.speler);
         
