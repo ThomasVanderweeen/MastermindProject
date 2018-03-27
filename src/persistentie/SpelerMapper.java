@@ -23,6 +23,11 @@ public class SpelerMapper {
     private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.Speler(naam, wachtwoord)" + "VALUES(?, ?)";
     
     /*Verantwoordelijke voor het toevoegen van een speler aan de database*/
+     /**
+     * voegToe voegt een speler toe aan de databank.
+     * 
+     * @param speler speler die toegevoegd wordt.
+     */
     public void voegToe(Speler speler){
         try(
             Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
@@ -37,6 +42,13 @@ public class SpelerMapper {
     }
     
     /*Haalt informatie over een speler uit de database*/
+    /**
+     * geefSpeler haalt informatie over een speler uit de databank.
+     * 
+     * @param gebruikersnaam naam van de speler die uit de databank gehaald wordt.
+     * @param wachtwoord wachtwoord van de speler die uit de databank gehaald wordt.
+     * @return Speler
+     */
     public Speler geefSpeler(String gebruikersnaam,String wachtwoord){
         Speler speler = null;
         
@@ -68,6 +80,12 @@ public class SpelerMapper {
     }
     
     /*Werkt na veel geprutst moet nog eens overgegaan worden*/
+     /**
+     * spelerBestaat gaat na of de gerbuikersnaam van een speler uniek is.
+     * 
+     * @param gebruikersnaam gebruikersnaam die gecontrolleerd wordt. 
+     * @return boolean
+     */
        public boolean spelerBestaat(String gebruikersnaam){
         boolean bestaat = false;
         
@@ -94,9 +112,13 @@ public class SpelerMapper {
         return bestaat;
     }
        
-       /*
-*/
-       public void updateScore(Speler sp, int moeilijkheidsGraad){
+         /**
+     * updateScore wijzigt de score van een bepaalde speler. 
+     * 
+     * @param sp speler waarvan de score gewijzigd wordt.
+     * @param moeilijkheidsGraad moeilijkheidsGraad waarbij een punt moet worden opgeteld. (makkelijk, moeilijk of normaal) 
+     */
+    public void updateScore(Speler sp, int moeilijkheidsGraad){
            String rowname;
            int score;
            

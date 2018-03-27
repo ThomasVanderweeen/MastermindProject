@@ -32,6 +32,12 @@ public class SpelMapper {
     private final String INSERT_RIJ = "INSERT INTO ID222177_g77.Rij VALUES ("+rijIndx+",?,?);";
 
     /*Werkt na veel geprutst moet nog eens overgegaan worden*/
+     /**
+     * spelBestaat gaat na of een spelnaam uniek is.
+     * 
+     * @param spelNaam spelnaam die moet vergeleken worden met spelnamen in de databank.
+     * @return boolean
+     */
        public boolean spelBestaat(String spelNaam){
         boolean bestaat = false;
         
@@ -57,7 +63,12 @@ public class SpelMapper {
         
         return bestaat;
     }
-       
+    
+     /**
+     * voegSpelToe voegt een spel toe aan de databank.
+     * 
+     * @param spel het toe te voegen spel.
+     */
     public void voegSpelToe(Spel spel){
              /*moeilijkheidsgraad*/
             Spelbord spelbord = spel.getSpelBord();
@@ -102,6 +113,12 @@ public class SpelMapper {
         
     }
     
+    /**
+     * voegCodeToe voegt een lijst van pinnen toe aan de databank.
+     * 
+     * @param spelNaam de naam van het spel waaraan de pinnen toebehoren.
+     * @param pinnen de toe te voegen pinnen.
+     */
     private void voegCodeToe(String spelNaam,List<CodePin> pinnen){
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
         PreparedStatement query = connectie.prepareStatement(INSERT_RIJ);){
@@ -125,6 +142,13 @@ public class SpelMapper {
         }
     }
     
+    /**
+     * voegRijToe voegt een rij toe aan de databank.
+     * 
+     * @param indx de index van de rij op het spelbord. (1-12)
+     * @param naam naam van het spel waaraan de rijen toebehoren.
+     * @param rij toe te voegen rij.
+     */
     private void voegRijToe(int indx,String naam,Rij rij){     
         this.rijIndx = indx;
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
@@ -149,6 +173,14 @@ public class SpelMapper {
         }  
     }
     
+    /**
+     * voegPinToe voegt een pin toe aan de databank.
+     * 
+     * @param RijIndx index van de rij op het spelbord. (1-12)
+     * @param naam naam van het spel waaraan de pinnen toebehoren.
+     * @param pin toe te voegen pin.
+     * @param plaats plaats in de rij. 1-4 bij makkelijk/normaal, 1-5 bij moeilijk.
+     */
     private void voegPinToe(int RijIndx,String naam,Pin pin,int plaats){     
          this.rijIndx = RijIndx;
          this.positie = plaats;
@@ -166,7 +198,13 @@ public class SpelMapper {
                 throw new RuntimeException(e.getMessage());
         }  
     }
-
+    
+    /**
+     * getCountSpellen haalt het aantal spellen voor een bepaalde speler uit de databank. 
+     * 
+     * @param spelernaam de speler waarvan de spelcount moet opgehaald worden.
+     * @return String
+     */
     private String getCountSpellen(String spelernaam){
         String aantal="";
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
@@ -189,6 +227,12 @@ public class SpelMapper {
         }  
     }
     
+    /**
+     * heeftOpgelsagenSpellen gebruikt de getCountSpellen om na te gaan of een speler opgelsagen spellen heeft in de databank.
+     * 
+     * @param spelernaam de speler waarvan wordt nagegaan of deze spellen heeft in de databank.
+     * @return boolean
+     */
     public boolean heeftOpgeslagenSpellen(String spelernaam){
         boolean opgeslaan = false;
         
@@ -198,6 +242,12 @@ public class SpelMapper {
         return opgeslaan;
     }
     
+     /**
+     * toonSpellen toont een lijst van alle spellen die in de databank gelinkt zijn aan een bepaalde speler.
+     * 
+     * @param spelernaam de speler wiens spellen getoond worden. 
+     * @return String[][]
+     */
     public String[][] toonSpellen(String spelernaam){
         String[][] resultaat =
                 new String[Integer.parseInt(getCountSpellen(spelernaam))][2];
@@ -226,13 +276,23 @@ public class SpelMapper {
         return resultaat;
     }
     
+     /**
+     * verwijderSpel verwijdert een spel aan de hand van 3 hulpmethodes: verwijderPinnen, verwijderRijen, en verwijderSpelTabel.
+     * 
+     * @param spelnaam het spel dat verwijderd wordt.
+     */
+
     public void verwijderSpel(String spelnaam){
         verwijderPinnen(spelnaam);
         verwijderRijen(spelnaam);
         verwijderSpelTabel(spelnaam);
     }
     
-    
+     /**
+     * verwijderPinnen verwijdert pinnen die aan een bepaald spel toebehoren.
+     * 
+     * @param spelnaam spel waarvan de pinnen verwijderd worden.
+     */
     private void verwijderPinnen(String spelnaam){
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
         PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Pin_Rij WHERE spelNaam = ?");){
@@ -247,6 +307,11 @@ public class SpelMapper {
         }  
     }
     
+     /**
+     * verwijderRijen verwijdert rijen die aan een bepaald spel toebehoren.
+     * 
+     * @param spelnaam spel waarvan de rijen verwijderd worden.
+     */
     private void verwijderRijen(String spelnaam){
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
         PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Rij WHERE spelNaam = ?");){
@@ -261,6 +326,11 @@ public class SpelMapper {
         }  
     }
     
+     /**
+     * verwijderSpelTabel verwijdert de tabel 'Spel' uit de databank.
+     * 
+     * @param spelnaam de spelnaam waarvan de tabel 'Spel' verwijderd wordt.
+     */
         private void verwijderSpelTabel(String spelnaam){
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
         PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Spel WHERE spelNaam = ?");){
@@ -275,6 +345,13 @@ public class SpelMapper {
         }  
     }
     
+    /**
+     * maakSpel maakt een spel dat kan doorgegeven worden aan SpelRepository. maakSpel gebruikt hiervoor getRijKleuren, getMoeilijkheidsgraad, en geefCountRijen als hulpmethodes. 
+     * 
+     * @param spelnaam naam van het spel dat wordt gemaakt.
+     * @param speler Speler die het spel speelt.
+     * @return Spel
+     */
     public Spel maakSpel(String spelnaam,Speler speler){
         int mg = getMoeilijkheidsGraad(spelnaam),pogingindx;
         List<CodePin> code = new ArrayList<>();
@@ -330,6 +407,13 @@ public class SpelMapper {
         return spel;
     }
     
+    /**
+     * getRijKleuren haalt de kleuren van de pinnen van een bepaalde rij uit de databank.
+     * 
+     * @param spelnaam spel waarvan de kleuren worden opgehaald.
+     * @param rij rij waarvan de kleuren worden opgehaald.
+     * @return List<String>
+     */
     private List<String> getRijKleuren(String spelnaam,int rij){
         List<String> kleur = new ArrayList<>();
         
@@ -354,6 +438,12 @@ public class SpelMapper {
         return kleur;
     }
     
+     /**
+     * getMoeilijkheidsGraad haalt de moeilijkheidsgraad van een bepaald spel uit de databank. 
+     * 
+     * @param spelnaam naam van het spel waarvan de moeilijkheidsgraad wordt opgehaald.
+     * @return integer
+     */
     private int getMoeilijkheidsGraad(String spelnaam){
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
         PreparedStatement query = connectie.prepareStatement("SELECT moeilijkheidsGraad FROM ID222177_g77.Spel WHERE naam = ?;");){
@@ -376,6 +466,12 @@ public class SpelMapper {
         return 0;
     }
     
+     /**
+     * geefCountRijen haalt het aantal rijen van een bepaald spel uit de databank.
+     * 
+     * @param spelnaam naam van het Spel waarvan het aantal rijen wordt opgehaald.
+     * @return integer
+     */
     private int geefCountRijen(String spelnaam){
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
         PreparedStatement query = connectie.prepareStatement("SELECT count(nummer) FROM ID222177_g77.Rij WHERE spelNaam = ?;");){
