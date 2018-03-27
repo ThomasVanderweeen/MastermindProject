@@ -5,6 +5,7 @@ import domein.DomeinController;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import exceptions.SpelerHeeftGeenOpgeslagenSpellenException;
 
 /**
  *
@@ -44,26 +45,30 @@ public class UC4
     /*start methode: -laadSpellen geef ze weer, geef naam in, laadSpelIn, als 
     er een spel ingeladen in + uc3 start methode aan roepen*/
     public void start(){
+        try{
         laadSpellen();
         int keuze = geefNaamIn();
         laadSpelIn(keuze);
+        }catch(SpelerHeeftGeenOpgeslagenSpellenException she){
+            throw she;
+        }
     }
     private void laadSpellen() {
         this.spellen = this.dc.geefOpgeslagenSpellen();
         int index = 0;
-        String res = String.format("%15s %15s", r.getString("spelNaam"), r.getString("moeilijkheidsGraad"));
+        String res = String.format("%25s %20s", r.getString("spelNaam"), r.getString("moeilijkheidsGraad"));
         for (String[] rij : spellen) {
             index++;
-            res += String.format("%n%d) %15s", index, rij[0]);
+            res += String.format("%n%d) %20s", index, rij[0]);
             switch (rij[1]) {
                 case "1":
-                    res += String.format("%15s", r.getString("makkelijk"));
+                    res += String.format("%20s", r.getString("makkelijk"));
                     break;
                 case "2":
-                    res += String.format("%15s", r.getString("gemiddeld"));
+                    res += String.format("%20s", r.getString("gemiddeld"));
                     break;
                 case "3":
-                    res += String.format("%15s", r.getString("moeilijk"));
+                    res += String.format("%20s", r.getString("moeilijk"));
                     break;
             }
 

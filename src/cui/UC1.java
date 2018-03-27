@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import exceptions.ServerOnbereikbaarException;
 import exceptions.AanmeldException;
 import exceptions.SpelerBestaatAlException;
+import exceptions.SpelerHeeftGeenOpgeslagenSpellenException;
 import java.util.InputMismatchException;
 /**
  *
@@ -201,7 +202,12 @@ public class UC1 {
                break;
            case 2: 
                UC4 uc4 = new UC4(dc,r);
+               try{
                uc4.start();
+               }catch(SpelerHeeftGeenOpgeslagenSpellenException she){
+                   System.err.println(r.getString("geenOpslag"));
+                   toonMogelijkheden();
+               }
                break;
            default:
                System.err.println(r.getString("nogNietGeimplementeerd"));
