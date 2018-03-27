@@ -35,9 +35,8 @@ public class UC4
             keuze = scan.nextInt();
             
         } catch (InputMismatchException i) {
-            System.out.printf("Je moet een geheel getal in geven,You have to enter a whole number,\n"
-                    + "votre choix doit être un nombre entier\n");
-            scan.next();
+            System.err.print(r.getString("foutGeheelGetal"));
+            scan.nextLine();
         }
         return keuze;
     }
@@ -45,12 +44,19 @@ public class UC4
     /*start methode: -laadSpellen geef ze weer, geef naam in, laadSpelIn, als 
     er een spel ingeladen in + uc3 start methode aan roepen*/
     public void start(){
+        int keuze; 
         try{
-        laadSpellen();
-        int keuze = geefNaamIn();
-        laadSpelIn(keuze);
+                laadSpellen();
+                keuze = geefNaamIn();
+                if(keuze>this.spellen.length){
+                    throw new IllegalArgumentException("");
+                }
+                laadSpelIn(keuze);
         }catch(SpelerHeeftGeenOpgeslagenSpellenException she){
             throw she;
+        }catch(IllegalArgumentException iae){
+            System.err.println(r.getString("probeerOpnieuw"));
+            start();
         }
     }
     private void laadSpellen() {
@@ -79,6 +85,7 @@ public class UC4
     public void laadSpelIn(int keuze){
         String naam = spellen[keuze-1][0];
         this.dc.selecteerSpel(naam);
+        this.uc3.geefSpelbordWeer();
         this.uc3.start();
     }
 }

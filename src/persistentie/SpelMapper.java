@@ -284,8 +284,7 @@ public class SpelMapper {
 
     public void verwijderSpel(String spelnaam){
         verwijderPinnen(spelnaam);
-        verwijderRijen(spelnaam);
-        verwijderSpelTabel(spelnaam);
+
     }
     
      /**
@@ -299,12 +298,14 @@ public class SpelMapper {
             
             query.setString(1, spelnaam);
             query.executeUpdate();
+           verwijderRijen(spelnaam);
+        
         }catch(SQLException e){
             if(e.hashCode()==933699219)
                 throw new ServerOnbereikbaarException();
             else
                 throw new RuntimeException(e.getMessage());
-        }  
+        }
     }
     
      /**
@@ -318,6 +319,7 @@ public class SpelMapper {
             
             query.setString(1, spelnaam);
             query.executeUpdate();
+            verwijderSpelTabel(spelnaam);
         }catch(SQLException e){
             if(e.hashCode()==933699219)
                 throw new ServerOnbereikbaarException();
@@ -333,7 +335,7 @@ public class SpelMapper {
      */
         private void verwijderSpelTabel(String spelnaam){
         try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Spel WHERE spelNaam = ?");){
+        PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Spel WHERE naam = ?");){
             
             query.setString(1, spelnaam);
             query.executeUpdate();

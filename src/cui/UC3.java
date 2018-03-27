@@ -185,7 +185,7 @@ public class UC3 {
     }
     
     
-    private void geefSpelbordWeer(){
+    public void geefSpelbordWeer(){
         String[][] spelbord = this.dc.geefSpelBord();
         String[] code = this.dc.geefCode();
         String res = String.format("%S",
