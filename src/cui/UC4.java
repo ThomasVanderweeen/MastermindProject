@@ -19,14 +19,20 @@ public class UC4
     private ResourceBundle r;
     private final DomeinController dc;
     private final Scanner sc;
-    private final UC1 uc1;
+    private final UC3 uc3;
 
     public UC4(DomeinController dc, ResourceBundle r) {
         this.r = r;
         this.dc = dc;
         this.sc = new Scanner(System.in);
-        this.uc1 = new UC1(dc, r);
+        this.uc3 = new UC3(dc,r);
     }
+    
+    /*private int geefNaamIn(){
+    }*/
+    
+    /*start methode: -laadSpellen geef ze weer, geef naam in, laadSpelIn, als 
+    er een spel ingeladen in + uc3 start methode aan roepen*/
 
     private void laadSpellen() {
         String[][] spellen = this.dc.geefOpgeslagenSpellen();
@@ -46,4 +52,5 @@ public class UC4
         System.out.printf(res);
     }
     
+    /*laadSpel In*/
 }

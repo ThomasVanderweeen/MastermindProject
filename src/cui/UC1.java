@@ -199,6 +199,10 @@ public class UC1 {
                UC2 uc2 = new UC2(r,dc);
                uc2.start();
                break;
+           case 2: 
+               UC4 uc4 = new UC4(dc,r);
+               uc4.start();
+               break;
            default:
                System.err.println(r.getString("nogNietGeimplementeerd"));
                toonMogelijkheden();
