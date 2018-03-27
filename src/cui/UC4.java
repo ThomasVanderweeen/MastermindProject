@@ -17,6 +17,7 @@ public class UC4
     private final DomeinController dc;
     private final Scanner sc;
     private final UC3 uc3;
+    private String[][] spellen;
 
     public UC4(DomeinController dc, ResourceBundle r) {
         this.r = r;
@@ -48,7 +49,7 @@ public class UC4
         laadSpelIn(keuze);
     }
     private void laadSpellen() {
-        String[][] spellen = this.dc.geefOpgeslagenSpellen();
+        this.spellen = this.dc.geefOpgeslagenSpellen();
         int index = 0;
         String res = String.format("%15s %15s", r.getString("spelNaam"), r.getString("moeilijkheidsGraad"));
         for (String[] rij : spellen) {
@@ -70,8 +71,9 @@ public class UC4
         System.out.printf(res);
     }
 
-    public void laadSpelIn(keuze){
-        String[][] spellen = this.dc.geefOpgeslagenSpellen();
-        
+    public void laadSpelIn(int keuze){
+        String naam = spellen[keuze-1][0];
+        this.dc.selecteerSpel(naam);
+        this.uc3.start();
     }
 }
