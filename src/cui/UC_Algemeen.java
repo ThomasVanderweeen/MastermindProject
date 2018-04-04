@@ -1,6 +1,8 @@
 package cui;
 import domein.DomeinController;
+import java.util.InputMismatchException;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 /**
  *
  * @author Michiel S.
@@ -8,13 +10,15 @@ import java.util.ResourceBundle;
 public class UC_Algemeen {
     private final DomeinController dc;
     private final ResourceBundle r;
+    private final Scanner sc;
     
     public UC_Algemeen(DomeinController dc, ResourceBundle r){
         this.dc =dc;
         this.r = r;
+        this.sc = new Scanner(System.in);
     }
         
-    public void geefSpelbordWeer(){
+    protected void geefSpelbordWeer(){
         String[][] spelbord = this.dc.geefSpelBord();
         String[] code = this.dc.geefCode();
         String res = String.format("%S",
@@ -51,5 +55,26 @@ public class UC_Algemeen {
         }
         
         System.out.println(res);
+    }
+    
+        
+    protected int geefKeuze(int min,int max){
+        int i = 0;
+        
+        try{
+            
+            i = this.sc.nextInt();
+            if(i>max||i<min){
+                System.err.println(r.getString("fouteKeuze"));
+                
+            }
+        }catch(InputMismatchException ime){
+            
+            System.err.println(r.getString("foutGeheelGetal"));
+            this.sc.nextLine();
+            throw ime;
+        }
+        
+        return i;
     }
 }

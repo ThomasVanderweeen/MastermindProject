@@ -84,20 +84,14 @@ public class UC1 {
         
    
             do{
-                try{
                 System.out.printf("%s%n%s%n%s%n%s%n",r.getString("welkom"),r.getString("meldAan") ,r.getString("registreer"),"3)"+r.getString("sluitAf"));
 //                keuze = geefKeuzeIn(r.getString("keuzeInvoer"));
                 System.out.print(r.getString("keuzeInvoer"));
-                keuze = sc.nextInt();
-                if(keuze < 1 || keuze > 3)
-                    throw new IllegalArgumentException();
+                try{
+                keuze = ua.geefKeuze(1, 3);
+                }catch(IllegalArgumentException iae){
+                    System.err.println(iae.getMessage());
                 }
-                catch(IllegalArgumentException e){
-                    System.err.println(r.getString("fouteKeuze"));
-                }catch (InputMismatchException i){
-                    System.err.println(r.getString("foutGeheelGetal"));
-                    sc.next();
-           }
             }while(keuze<1||keuze>3);
        
         
@@ -175,22 +169,12 @@ public class UC1 {
        int keuze=0;
        
        do{
-           try{ 
             System.out.printf("%s%n%s%n%s%n%s%n%s%n%s%n",r.getString("startEenSpel"),
                r.getString("laadSpel"),r.getString("daagIemandUit"),
                r.getString("wieDaagtJouUit"),r.getString("toonKlassement"),
                "0)"+r.getString("sluitAf"));
             System.out.print(r.getString("keuzeInvoer"));
-            keuze = this.sc.nextInt();
-            
-            if(keuze<0 || keuze>5)
-                throw new IllegalArgumentException();
-           }catch(IllegalArgumentException e){
-               System.err.println(r.getString("fouteKeuze"));
-           }catch (InputMismatchException i){
-               System.err.println(r.getString("foutGeheelGetal"));
-               sc.next();
-           }
+            keuze = ua.geefKeuze(0, 4);
        }while(keuze<0 || keuze>5);
        
        switch(keuze){

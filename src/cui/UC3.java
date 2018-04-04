@@ -71,7 +71,7 @@ public class UC3 {
                 ,r.getString("keuzeInvoer"));
         
         try{
-            keuze = geefKeuze(1,2);
+            keuze = UC1.ua.geefKeuze(1,2);
             
         }catch(Exception e){
             speelBeurt();
@@ -86,26 +86,7 @@ public class UC3 {
                 break;
         }
     }
-    
-    private int geefKeuze(int min,int max){
-        int i = 0;
-        
-        try{
-            
-            i = this.sc.nextInt();
-            if(i>max||i<min){
-                System.err.println(r.getString("fouteKeuze"));
-                throw new IllegalArgumentException("");
-            }
-        }catch(InputMismatchException ime){
-            
-            System.err.println(r.getString("foutGeheelGetal"));
-            this.sc.nextLine();
-            throw ime;
-        }
-        
-        return i;
-    }
+
     
     private void doePoging(){
         int i=0;
