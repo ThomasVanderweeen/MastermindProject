@@ -19,7 +19,7 @@ public class FXMLDocumentController_1 implements Initializable
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
-        LogInScherm.start();
+
     }
     
     @Override
