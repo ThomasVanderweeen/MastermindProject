@@ -41,9 +41,7 @@ public class Spelbord {
         return this.rijen;
     }
 
-    public String[] geefGeldigeKleuren(){
-      return this.code.geefGeldigeKleuren();
-    }
+
     
     public boolean getCodeGeraden(){
         return this.codeGeraden;

@@ -16,7 +16,7 @@ public class Moeilijk extends MoeilijkheidsGraad{
     
     /**
      * genereerCode geneert een code waarvan de kleuren willekeurig gekozen worden.
-     * @return List<CodePin>
+     * @return List CodePin
      */
     @Override
     public List<CodePin> genereerCode(){

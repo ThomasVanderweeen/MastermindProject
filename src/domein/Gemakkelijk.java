@@ -19,7 +19,7 @@ public class Gemakkelijk extends MoeilijkheidsGraad {
     /*lijst methode met kleuren verwijderen zou minder tijd kosten*/
     /**
      * genereerCode geneert een code waarvan de kleuren willekeurig gekozen worden.
-     * @return List<CodePin>
+     * @return List CodePin
      */
     @Override
     public List<CodePin> genereerCode(){

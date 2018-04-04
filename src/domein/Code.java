@@ -47,8 +47,9 @@ public class Code {
     }
     
      /**
-     * Constructor voor een code object waarbij de code als List<CodePin> wordt meegegeven.
-     *
+     * Constructor voor een code object waarbij de code als List CodePin wordt meegegeven.
+     * Gebruikt bij het laden van een spel waarbij eerste de codepinnen worden gegenereerd
+     * en vervolgens de rest van het spel.
      * @param code de code
      * @param mg moeilijkheidsgraad van de code.
      */
@@ -58,39 +59,31 @@ public class Code {
     }
 
     /**
-     * getCode geeft de code van een code object.
-     *
-     * @return List<CodePin>
+     * getCode geeft een lijst van codePin's weer
+     * Methode retourneerd een lijst van codepin's is later belangerijk voor
+     * kleur opvraag, vergelijking,...
+     * @return List CodePin
      */
     public List<CodePin> getCode() {
         return code;
     }
 
      /**
-     * getMoeilijkheidsGraad geeft de moeilijkheidsgraad van een code object.
+     *Geeft de moeilijkheids Graad van het code object weer
      *
-     * @return MoeilijkheidsGraad
+     * @return MoeilijkheidsGraad (Object)
      */
     public MoeilijkheidsGraad getMoeilijkheidsGraad() {
         return moeilijkheidsGraad;
     }
     
-    /**
-     * geefGeldigeKleuren roept de geefGeldigeKleuren methode van klasse
-     * moeilijkheidsgraad op om een array met alle geldige kleuren terug te
-     * krijgen.
-     *
-     * @return String[]
-     */
-    public String[] geefGeldigeKleuren(){
-        return this.moeilijkheidsGraad.geefGeldigeKleuren();
-    }
+
     
     /**
-     * geefAantalPositiest roept de geefAantalPosities methode van klasse
-     * moeilijkheidsgraad op om het aantal posities in een rij terug te krijgen.
-     *
-     * @return integer
+     * Geeft het aantal posities van de code
+     * maakte gebruik van de moeilijkheidsGraad om het aantal posities in de code
+     * weer te geven.
+     * @return het aantal posities (Int)
      */
     public int geefAantalPosities(){
         return this.moeilijkheidsGraad.getAantalPosities();

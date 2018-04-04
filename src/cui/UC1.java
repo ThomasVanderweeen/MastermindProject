@@ -21,6 +21,7 @@ public class UC1 {
     private final DomeinController dc;
     private final Scanner sc = new Scanner(System.in);
     private ResourceBundle r;
+    protected static UC_Algemeen ua;
      /* Hier gaat de applicatie komen veronderstel ik*/
     public UC1(){
         this.dc = new DomeinController();
@@ -65,6 +66,7 @@ public class UC1 {
                 taalGeselecteerd = true;
                 System.out.print(r.getString("taalKeuze"));
                 System.out.println();
+                ua = new UC_Algemeen(this.dc,r);
 
             } catch (IllegalArgumentException e) {
                 System.err.println("Fout nummer, wrong number, numéro incorrect");

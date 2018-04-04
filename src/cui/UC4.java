@@ -85,7 +85,7 @@ public class UC4
     public void laadSpelIn(int keuze){
         String naam = spellen[keuze-1][0];
         this.dc.selecteerSpel(naam);
-        this.uc3.geefSpelbordWeer();
+        UC1.ua.geefSpelbordWeer();
         this.uc3.start();
     }
 }

@@ -13,15 +13,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import persistentie.Connectie;
 import exceptions.ServerOnbereikbaarException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Groep 77
  */
 public class SpelerMapper {
-    /*Eventueel een standaard instellen in de database voor de laatste drie die bij initialisatie 0 is*/
     private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.Speler(naam, wachtwoord)" + "VALUES(?, ?)";
+    protected static Connection conn;
     
+    public SpelerMapper(){
+        try{
+           conn = DriverManager.getConnection(Connectie.JDBC_URL);
+        }catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
     /*Verantwoordelijke voor het toevoegen van een speler aan de database*/
      /**
      * voegToe voegt een speler toe aan de databank.
@@ -29,10 +39,8 @@ public class SpelerMapper {
      * @param speler speler die toegevoegd wordt.
      */
     public void voegToe(Speler speler){
-        try(
-            Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
-            PreparedStatement query = conn.prepareStatement(INSERT_SPELER))
-        {
+        try{
+            PreparedStatement query = conn.prepareStatement(INSERT_SPELER);
             query.setString(1, speler.getNaam());
             query.setString(2, speler.getWachtwoord());
             query.executeUpdate();
@@ -41,7 +49,6 @@ public class SpelerMapper {
         }
     }
     
-    /*Haalt informatie over een speler uit de database*/
     /**
      * geefSpeler haalt informatie over een speler uit de databank.
      * 
@@ -52,9 +59,8 @@ public class SpelerMapper {
     public Speler geefSpeler(String gebruikersnaam,String wachtwoord){
         Speler speler = null;
         
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("SELECT * FROM ID222177_g77.Speler WHERE naam = ? AND wachtwoord = ?")){
-        
+        try{
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g77.Speler WHERE naam = ? AND wachtwoord = ?");
             query.setString(1,gebruikersnaam);
             query.setString(2, wachtwoord);
             try(ResultSet rs = query.executeQuery()){
@@ -89,9 +95,8 @@ public class SpelerMapper {
        public boolean spelerBestaat(String gebruikersnaam){
         boolean bestaat = false;
         
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("SELECT count(naam) FROM ID222177_g77.Speler WHERE naam = ?;");){
-           
+        try{
+            PreparedStatement query = conn.prepareStatement("SELECT count(naam) FROM ID222177_g77.Speler WHERE naam = ?;");
             query.setString(1,gebruikersnaam);
             try(ResultSet rs = query.executeQuery()){
                 if(rs.next()){
@@ -136,12 +141,9 @@ public class SpelerMapper {
                    score = sp.getAantalGewonnenMoeilijk();
                }
            }
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("update  ID222177_g77.Speler "
-                        + "set "+rowname+"=+"+score+" where naam=?;");){
-            
-
-
+        try{
+                PreparedStatement query = conn.prepareStatement("update  ID222177_g77.Speler "
+                        + "set "+rowname+"=+"+score+" where naam=?;");
             query.setString(1,sp.getNaam());
             query.executeUpdate();
             

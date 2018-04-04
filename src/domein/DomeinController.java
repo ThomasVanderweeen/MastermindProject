@@ -96,7 +96,7 @@ public class DomeinController {
     /**
      * startNieuwSpel haalt het aantal gewonnen spellen per moeilijkheidsgraad op van een bepaalde speler.
      * 
-     * @return List<Integer>
+     * @return List Integer
      */
     public List<Integer> startNieuwSpel(){
         List<Integer> gewonnenLijst = new ArrayList<>();

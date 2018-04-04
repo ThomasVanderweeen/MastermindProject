@@ -30,6 +30,7 @@ import java.util.Arrays;
 public class SpelMapper {
     private int rijIndx,positie;
     private final String INSERT_RIJ = "INSERT INTO ID222177_g77.Rij VALUES ("+rijIndx+",?,?);";
+    
 
     /*Werkt na veel geprutst moet nog eens overgegaan worden*/
      /**
@@ -41,9 +42,10 @@ public class SpelMapper {
        public boolean spelBestaat(String spelNaam){
         boolean bestaat = false;
         
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("SELECT count(naam) FROM ID222177_g77.Spel WHERE naam = ?;");){
-           
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement
+        ("SELECT count(naam) FROM ID222177_g77.Spel WHERE naam = ?;");
+            
             query.setString(1,spelNaam);
             try(ResultSet rs = query.executeQuery()){
                 if(rs.next()){
@@ -74,9 +76,9 @@ public class SpelMapper {
             Spelbord spelbord = spel.getSpelBord();
             int mg = spelbord.geefMoeilijkheidsGraad();
         
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-                PreparedStatement query = connectie.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,?,"+mg+");");){
-           
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,?,"+mg+");");
+            
             String spelNaam = spel.getNaam();
             int rijNr = 1;
             
@@ -120,8 +122,8 @@ public class SpelMapper {
      * @param pinnen de toe te voegen pinnen.
      */
     private void voegCodeToe(String spelNaam,List<CodePin> pinnen){
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement(INSERT_RIJ);){
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement(INSERT_RIJ);
             this.positie = 0;
             this.rijIndx = 0;
             query.setString(1, "1");
@@ -151,8 +153,8 @@ public class SpelMapper {
      */
     private void voegRijToe(int indx,String naam,Rij rij){     
         this.rijIndx = indx;
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("INSERT INTO ID222177_g77.Rij VALUES ("+this.rijIndx+",?,?);");){
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Rij VALUES ("+this.rijIndx+",?,?);");
             this.positie = 0;
             
             query.setString(1, "0");
@@ -184,9 +186,8 @@ public class SpelMapper {
     private void voegPinToe(int RijIndx,String naam,Pin pin,int plaats){     
          this.rijIndx = RijIndx;
          this.positie = plaats;
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("INSERT INTO ID222177_g77.Pin_Rij VALUES ("+positie+","+rijIndx+",?,?);");){
-           
+        try{
+           PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Pin_Rij VALUES ("+positie+","+rijIndx+",?,?);");
             query.setString(1, naam);
             query.setString(2, pin.getKleur());
             
@@ -207,8 +208,8 @@ public class SpelMapper {
      */
     private String getCountSpellen(String spelernaam){
         String aantal="";
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("SELECT count(naam) FROM ID222177_g77.Spel WHERE spelerNaam = ?;");){
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("SELECT count(naam) FROM ID222177_g77.Spel WHERE spelerNaam = ?;");
             
             query.setString(1, spelernaam);
             
@@ -252,8 +253,9 @@ public class SpelMapper {
         String[][] resultaat =
                 new String[Integer.parseInt(getCountSpellen(spelernaam))][2];
                 
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("SELECT naam,moeilijkheidsgraad FROM ID222177_g77.Spel WHERE spelerNaam = ?;");){
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement
+        ("SELECT naam,moeilijkheidsgraad FROM ID222177_g77.Spel WHERE spelerNaam = ?;");
             
             query.setString(1, spelernaam);
             
@@ -293,8 +295,8 @@ public class SpelMapper {
      * @param spelnaam spel waarvan de pinnen verwijderd worden.
      */
     private void verwijderPinnen(String spelnaam){
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Pin_Rij WHERE spelNaam = ?");){
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("DELETE FROM ID222177_g77.Pin_Rij WHERE spelNaam = ?");
             
             query.setString(1, spelnaam);
             query.executeUpdate();
@@ -314,9 +316,9 @@ public class SpelMapper {
      * @param spelnaam spel waarvan de rijen verwijderd worden.
      */
     private void verwijderRijen(String spelnaam){
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Rij WHERE spelNaam = ?");){
-            
+        try{
+         PreparedStatement query = SpelerMapper.conn.prepareStatement("DELETE FROM ID222177_g77.Rij WHERE spelNaam = ?");
+         
             query.setString(1, spelnaam);
             query.executeUpdate();
             verwijderSpelTabel(spelnaam);
@@ -334,9 +336,8 @@ public class SpelMapper {
      * @param spelnaam de spelnaam waarvan de tabel 'Spel' verwijderd wordt.
      */
         private void verwijderSpelTabel(String spelnaam){
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("DELETE FROM ID222177_g77.Spel WHERE naam = ?");){
-            
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("DELETE FROM ID222177_g77.Spel WHERE naam = ?");
             query.setString(1, spelnaam);
             query.executeUpdate();
         }catch(SQLException e){
@@ -419,9 +420,9 @@ public class SpelMapper {
     private List<String> getRijKleuren(String spelnaam,int rij){
         List<String> kleur = new ArrayList<>();
         
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("SELECT kleur FROM ID222177_g77.Pin_Rij WHERE spelNaam = ? AND nummer = "+rij+";");){
-        
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement
+        ("SELECT kleur FROM ID222177_g77.Pin_Rij WHERE spelNaam = ? AND nummer = "+rij+";");
             query.setString(1, spelnaam);
             
             try(ResultSet rs = query.executeQuery()){
@@ -447,9 +448,8 @@ public class SpelMapper {
      * @return integer
      */
     private int getMoeilijkheidsGraad(String spelnaam){
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("SELECT moeilijkheidsGraad FROM ID222177_g77.Spel WHERE naam = ?;");){
-            
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("SELECT moeilijkheidsGraad FROM ID222177_g77.Spel WHERE naam = ?;");
             query.setString(1, spelnaam);
             
             try(ResultSet rs = query.executeQuery()){
@@ -475,9 +475,8 @@ public class SpelMapper {
      * @return integer
      */
     private int geefCountRijen(String spelnaam){
-        try(Connection connectie = DriverManager.getConnection(Connectie.JDBC_URL);
-        PreparedStatement query = connectie.prepareStatement("SELECT count(nummer) FROM ID222177_g77.Rij WHERE spelNaam = ?;");){
-            
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("SELECT count(nummer) FROM ID222177_g77.Rij WHERE spelNaam = ?;");
             query.setString(1, spelnaam);
             
             try(ResultSet rs = query.executeQuery()){

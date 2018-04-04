@@ -25,8 +25,5 @@ public abstract class MoeilijkheidsGraad {
     protected int getAantalPinnen(){
         return this.aantalPinnen;
     }
-    
-    public String[] geefGeldigeKleuren(){
-        return CodePin.getGeldigeKleuren();
-    }
+
 }

@@ -22,9 +22,6 @@ public class Spel {
         this.spelbord = spelbord;
     }
     
-    public String[] geefGeldigeKleuren(){
-        return this.spelbord.geefGeldigeKleuren();
-    }
     
     public int getAantalPogingen(){
         return this.aantalPogingen;
