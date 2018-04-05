@@ -71,7 +71,7 @@ public class UC1 {
             } catch (IllegalArgumentException e) {
                 System.err.println("Fout nummer, wrong number, numéro incorrect");
             }catch (InputMismatchException i){
-                System.out.printf("Je moet een geheel getal in geven,You have to enter a whole number,\n"
+                System.out.print("Je moet een geheel getal in geven,You have to enter a whole number,\n"
                         + "votre choix doit être un nombre entier\n");
                 sc.next();
             }
@@ -84,7 +84,7 @@ public class UC1 {
         
    
             do{
-                System.out.printf("%s%n%s%n%s%n%s%n",r.getString("welkom"),r.getString("meldAan") ,r.getString("registreer"),"3)"+r.getString("sluitAf"));
+                System.out.printf("%s%n%s%n%s%n%s%n",r.getString("welkom"),"1)"+r.getString("meldAan") ,"2)"+r.getString("registreer"),"3)"+r.getString("sluitAf"));
 //                keuze = geefKeuzeIn(r.getString("keuzeInvoer"));
                 System.out.print(r.getString("keuzeInvoer"));
                 try{

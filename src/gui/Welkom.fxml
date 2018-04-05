@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WelkomController">
    <center>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
@@ -23,9 +23,9 @@
                </VBox.margin>
             </Label>
             <Label fx:id="terugkerendLabel" text="Terugkerende speler?" />
-            <Button fx:id="logInKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" text="Log In" />
+            <Button fx:id="logInKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#LoginGeklikt" prefWidth="150.0" text="Log In" />
             <Label fx:id="geenAccountLabel" text="Nog geen account?" />
-            <Button fx:id="registreerKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" text="Registreer" />
+            <Button fx:id="registreerKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#registreergeklikt" prefWidth="150.0" text="Registreer" />
          </children>
       </VBox>
    </center>
@@ -36,7 +36,7 @@
                <left>
                   <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fx:id="nederlands" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="nederlands" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#nederlandsGeklikt" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/netherlands.png" />
                            </image>
@@ -44,7 +44,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="frans" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="frans" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#fransGeklikt" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/france.png" />
                            </image>
@@ -52,7 +52,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="engels" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="engels" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#engelsGeklikt" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/united-kingdom.png" />
                            </image>

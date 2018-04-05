@@ -77,7 +77,7 @@ public class SpelMapper {
             int mg = spelbord.geefMoeilijkheidsGraad();
         
         try{
-            PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,?,"+mg+");");
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,"+mg+",?,null);");
             
             String spelNaam = spel.getNaam();
             int rijNr = 1;
@@ -156,12 +156,12 @@ public class SpelMapper {
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Rij VALUES ("+this.rijIndx+",?,?);");
             this.positie = 0;
-            
+
             query.setString(1, "0");
             query.setString(2,naam);
- 
-            query.executeUpdate();
             
+            query.executeUpdate();
+
             for(Pin p: rij.getPoging()){
                 voegPinToe(this.rijIndx,naam,p,this.positie);
                 this.positie++;

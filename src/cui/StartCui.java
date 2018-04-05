@@ -4,7 +4,7 @@ package cui;
  *
  * @author Groep 77
  */
-public class NewMain {
+public class StartCui {
         
  /*main klasse voornamelijk gebruikt om te debuggen*/
  /*Hoe werkt Resources was leuk geweest als iemand die kon impelementeren na afspraak. ;) */
