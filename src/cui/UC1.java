@@ -88,9 +88,9 @@ public class UC1 {
 //                keuze = geefKeuzeIn(r.getString("keuzeInvoer"));
                 System.out.print(r.getString("keuzeInvoer"));
                 try{
-                keuze = ua.geefKeuze(1, 3);
-                }catch(IllegalArgumentException iae){
-                    System.err.println(iae.getMessage());
+                    keuze = ua.geefKeuze(1, 3);
+                }catch(Exception e){
+                    toonMenu();
                 }
             }while(keuze<1||keuze>3);
        
@@ -195,7 +195,11 @@ public class UC1 {
                    toonMogelijkheden();
                }
                break;
-           default:
+           case 3:
+               UC5 uc5 = new UC5(dc,r);
+               uc5.main();
+               break;
+            default:
                System.err.println(r.getString("nogNietGeimplementeerd"));
                toonMogelijkheden();
                break;

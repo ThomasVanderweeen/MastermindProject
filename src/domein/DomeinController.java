@@ -7,6 +7,7 @@ package domein;
 
 import exceptions.AanmeldException;
 import exceptions.SpelerBestaatAlException;
+import exceptions.NiemandBeschikbaarVoorUitdagingException;
 import java.util.List;
 import java.util.ArrayList;
 /**
@@ -14,10 +15,11 @@ import java.util.ArrayList;
  * @author Groep 77
  */
 public class DomeinController {
-    
+    private static UitdagingRepository uitdagingRepository;
     private static SpelerRepository spelerRepository;
     private Speler speler;
     private Spel spel;
+    private Uitdaging uitdaging;
     private static SpelRepository spelRepository;
 
     /**
@@ -26,6 +28,7 @@ public class DomeinController {
     public DomeinController() {
         spelerRepository = new SpelerRepository();
         spelRepository = new SpelRepository();
+        uitdagingRepository = new UitdagingRepository();
     }
     
     /*
@@ -238,5 +241,39 @@ public class DomeinController {
         spelRepository.verwijderSpel(naam);
     } 
     
+    public List<String[]> geefMoeilijkheidsGraden(){
+        List<String[]> res = new ArrayList<>();
+        
+        String[] moeilijkheidsGraad = {"makkelijk",
+            Integer.toString(this.speler.getAantalGewonnenMakkelijk())};
+        res.add(moeilijkheidsGraad);
+        
+        if(this.speler.getAantalGewonnenMakkelijk()>=20){
+           String[] x = {"gemiddeld", Integer.toString(this.speler.getAantalGewonnenGemiddeld())};
+           res.add(x);
+            
+            if(this.speler.getAantalGewonnenGemiddeld()>=20){
+                String[] y = {"moeilijk", Integer.toString(this.speler.getAantalGewonnenMoeilijk())};
+                res.add(y);
+            }
+        }
+        
+        return res;
+    }
+    
+    public List<String[]> selecteerMoeilijkheidsGraadUitdaging(int moeilijkheidsGraad){
+        List<String[]> spelers = spelerRepository.geefBeschikbareSpelers(moeilijkheidsGraad,this.speler.getNaam());
+        if(spelers.size()>0)
+            return spelers;
+        else
+            throw new NiemandBeschikbaarVoorUitdagingException();
+    }
+    
+    private void startUitdaging(String tegenstander, int moeilijkheidsGraad){
+        uitdagingRepository.controleerGeldigeUitdaging(this.speler,tegenstander);
+        this.uitdaging = new Uitdaging(this.speler,tegenstander,moeilijkheidsGraad);
+        uitdagingRepository.voegUitdagingToe(this.uitdaging);
+        this.spel = this.uitdaging.getSpel();
+    }
     
 }

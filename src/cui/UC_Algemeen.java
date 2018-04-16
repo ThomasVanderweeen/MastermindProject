@@ -66,10 +66,9 @@ public class UC_Algemeen {
             i = this.sc.nextInt();
             if(i>max||i<min){
                 System.err.println(r.getString("fouteKeuze"));
-                
+                throw new IllegalArgumentException();
             }
         }catch(InputMismatchException ime){
-            
             System.err.println(r.getString("foutGeheelGetal"));
             this.sc.nextLine();
             throw ime;

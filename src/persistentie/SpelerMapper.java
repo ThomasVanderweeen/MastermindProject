@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import persistentie.Connectie;
 import exceptions.ServerOnbereikbaarException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -155,4 +157,44 @@ public class SpelerMapper {
         }
         
        }
+    
+    public  List<String[]> geefBeschikbareSpelersUitdaging(int moeilijkheidsGraad,String naam){
+        String tableNaam = "gewonnenMakkelijk";
+        List<String[]> spelers  = new ArrayList<>();
+            
+        if(moeilijkheidsGraad==3)
+            tableNaam = "gewonnenGemiddeld";
+        
+        
+        try{
+            PreparedStatement query;
+            
+                if(moeilijkheidsGraad>1)
+                query = conn.prepareStatement(
+                        "SELECT naam,"+tableNaam+" FROM ID222177_g77.Speler WHERE "+tableNaam+">=20 AND naam != '"+naam+"';");
+            else
+                query = conn.prepareStatement(
+                        "SELECT naam,"+tableNaam+" FROM ID222177_g77.Speler WHERE naam != '"+naam+"';");
+            
+            try(ResultSet rs = query.executeQuery()){
+                  
+                while(rs.next()){
+                    String[] speler = new String[2];
+                    speler[0] = rs.getString("naam");
+                    speler[1] = rs.getString(tableNaam);
+                    spelers.add(speler);
+                }
+                
+             }
+
+        
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+        
+        return spelers;
+    }
 }

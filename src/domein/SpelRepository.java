@@ -47,4 +47,6 @@ public class SpelRepository {
     public void verwijderSpel(String spelnaam){
         this.spm.verwijderSpel(spelnaam);
     }
+    
+
 }

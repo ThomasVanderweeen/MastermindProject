@@ -7,6 +7,7 @@ package domein;
 
 import persistentie.SpelerMapper;
 import  exceptions.AanmeldException;
+import java.util.List;
 
 /**
  *
@@ -41,4 +42,7 @@ public class SpelerRepository {
         mapper.updateScore(sp, moeilijkheidsGraad);
     }
     
+    public List<String[]> geefBeschikbareSpelers(int moeilijkheidsGraad,String spelerNaam){
+        return mapper.geefBeschikbareSpelersUitdaging(moeilijkheidsGraad,spelerNaam);
+    }
 }
