@@ -10,6 +10,7 @@ package gui;
  * @author ThomasV
  */
 import domein.DomeinController;
+import exceptions.AanmeldException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -67,7 +68,6 @@ public class RegistreerController{
     private Label foutmelding;
 
     public void registreer(){
-      
         try{
         controller.registreer(
                 registreerNaam.getText().trim(),
@@ -75,7 +75,15 @@ public class RegistreerController{
                 registreerWachtwoordBevestigen.getText().trim()
                 );
         }
-        catch(Exception e){
+        catch(IllegalArgumentException e){
+            if(!registreerWachtwoord.getText().trim().equals(registreerWachtwoordBevestigen.getText().trim())){
+                foutmelding.setText("Ga na of je wachtwoord en bevestiging overeenkomen");
+                return;
+            }
+            else{
+                foutmelding.setText("Je wachtwoord moet beginnen met een cijfer gevolgd door zes letters en eindigen op een cijfer");
+                return;
+            }
             
         }
         registreerNaam.clear();

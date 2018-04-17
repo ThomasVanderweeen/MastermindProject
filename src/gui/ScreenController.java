@@ -15,7 +15,6 @@ import javafx.stage.Stage;
  */
 public class ScreenController extends Application{
     private static Stage primary;
-    private BorderPane welkomscherm;
     
     public static void main(String[] args) {
         launch(args);

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LogInController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LogInController">
    <center>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
@@ -43,9 +43,10 @@
             </HBox>
             <HBox alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="logInKnop" mnemonicParsing="false" text="Log In" />
+                  <Label fx:id="foutmelding" prefHeight="17.0" prefWidth="388.0" />
                </children>
             </HBox>
+            <Button fx:id="logInKnop" mnemonicParsing="false" onAction="#logIn" text="Log In" />
          </children>
       </VBox>
    </center>

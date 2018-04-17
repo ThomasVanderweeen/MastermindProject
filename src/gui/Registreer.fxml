@@ -60,7 +60,7 @@
                   </PasswordField>
                </children>
             </HBox>
-            <Label fx:id="foutmelding" />
+            <Label fx:id="foutmelding" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="17.0" prefWidth="443.0" VBox.vgrow="ALWAYS" />
             <Button fx:id="registreerKnop" mnemonicParsing="false" onAction="#registreer" text="Registreer">
                <VBox.margin>
                   <Insets />
