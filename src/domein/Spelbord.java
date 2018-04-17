@@ -12,6 +12,11 @@ public class Spelbord {
     private final Rij[] rijen;
     private boolean codeGeraden = false;
     
+    /**
+     * constructor voor een Spelbord object.
+     * 
+     * @param code code van het spel.
+     */
     public Spelbord(Code code){
         this.code = code;
         int lengte = this.code.getCode().size();
@@ -19,7 +24,11 @@ public class Spelbord {
         vulRijenOp(this.code.getCode().size());
     }
     
-    
+    /**
+     * constructor voor een Spelbord object.
+     * 
+     * @param moeilijkheidsGraad moeilijkdsgraad van het spel.
+     */
     public Spelbord(int moeilijkheidsGraad){
         this.code = new Code(moeilijkheidsGraad);
         int lengte = this.code.getCode().size();
@@ -27,39 +36,74 @@ public class Spelbord {
         vulRijenOp(this.code.getCode().size());
     }
     
+    /**
+     * getCode geeft de code van een spelbord object.
+     * 
+     * @return List<CodePin>
+     */
     public List<CodePin> getCode(){
        return this.code.getCode();
     }
 
+    /**
+     * vulRijenOp vult een rij op met ints.
+     * 
+     * @param lengte de lengte van de rij.
+     */
     private void vulRijenOp(int lengte){
         for(int i=0;i<rijen.length;i++){
             this.rijen[i] = new Rij(lengte);
         }
     }
     
+    /**
+     * getRijen geeft de rijen van een spelbord. 
+     * 
+     * @return Rij[]
+     */
     public Rij[] getRijen(){
         return this.rijen;
     }
 
-
-    
+    /**
+     * getCodeGeraden geeft true weer als de code geraden is, en anders false.
+     * 
+     * @return boolean
+     */
     public boolean getCodeGeraden(){
         return this.codeGeraden;
     }
     
+    /**
+     * voegPogingToe voegt een poging toe aan een rij.
+     * 
+     * @param poging poging die wordt toegevoegd.
+     * @param rij rij waaraan de poging wordt toegevoegd.
+     */
     public void voegPogingToe(int[] poging , int rij){
         geldigePoging(poging);
         this.rijen[rij].doePoging(poging);
         evalueerPoging(rij);
     }
     
+    /**
+     * geldigePoging controleert of de poging geldig is door de lengte te controleren.
+     * 
+     * @param poging poging die gecontroleerd wordt. 
+     */
     private void geldigePoging(int[] poging){
         if(poging.length!= this.code.geefAantalPosities())
             throw new OngeldigePogingException("Het aantal posities van de "
                     + "poging is ontoereikend.");
     }
     
-    
+    /**
+     * evalueerPoging evalueert de poging op basis van de moeilijkheidsgraad. 
+     * Makkelijk: juiste locatie en kleur = zwart, juiste kleur = wit, niets = leeg
+     * Normaal/Moeilijk: zelfde als makkelijk maar de evaluatiepinnen worden niet meer op de juiste plaats gezet.
+     * 
+     * @param rij rij die wordt geëvalueerd
+     */
     public void evalueerPoging(int rij){
         /*krijg de kleuren terug van de poging*/
         List<CodePin> pogingPinnen = this.rijen[rij].getPoging();
@@ -123,6 +167,11 @@ public class Spelbord {
         this.rijen[rij].stelEvaluatieIn(evaluatie);
     }
     
+    /**
+     * geefMoeilijkheidsGraad geeft de moeilijkheidsgraad van een spelbord object.
+     * 
+     * @return int
+     */
     public int geefMoeilijkheidsGraad(){
         MoeilijkheidsGraad mg = this.code.getMoeilijkheidsGraad();
         

@@ -12,13 +12,28 @@ package domein;
 public abstract class Pin {
     private final String kleur;
 
+    /**
+     * Constructor voor een pin object.
+     * 
+     * @param kleur kleur van de pin.
+     */
     public Pin(String kleur) {
         this.kleur = kleur;
     }
-
+    
+    /**
+     * Geeft de kleur van een pin object als returnwaarde. 
+     * 
+     * @return String
+     */
     public String getKleur() {
         return kleur;
     }
     
+    /**
+     * Abstracte methode die wordt overschreven in de subclasses.
+     * 
+     * @param kleur kleur die gecontrolleerd wordt.
+     */
     protected abstract void bepaalGeldigeKleur(String kleur);
 }

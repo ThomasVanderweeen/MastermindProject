@@ -73,7 +73,6 @@ public class UitdagingMapper {
     }
     
     public boolean heeftLopendeUitdaging(Speler speler){
-        
         try{
             PreparedStatement query = conn.prepareStatement("SELECT count(ID) FROM "
                     + "ID222177_g77.Speler_Uitdaging WHERE geacepteerd = 1 AND aantalPogingen = null AND spelerNaam = ?");

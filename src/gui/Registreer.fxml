@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.RegistreerController">
    <center>
-      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="305.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="registreerLabel" text="Registreer">
                <font>
@@ -48,7 +48,7 @@
             </HBox>
             <HBox alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="wachtwoordBevestigenLabel" alignment="CENTER_RIGHT" prefWidth="140.0" text="Wachtwoord Bevestigen:">
+                  <Label fx:id="wachtwoordBevestigenLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="156.0" text="Wachtwoord Bevestigen:">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -60,7 +60,8 @@
                   </PasswordField>
                </children>
             </HBox>
-            <Button fx:id="registreerKnop" mnemonicParsing="false" text="Registreer">
+            <Label fx:id="foutmelding" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="17.0" prefWidth="443.0" VBox.vgrow="ALWAYS" />
+            <Button fx:id="registreerKnop" mnemonicParsing="false" onAction="#registreer" text="Registreer">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -69,7 +70,7 @@
       </VBox>
    </center>
    <top>
-      <HBox alignment="TOP_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="600.0">
                <left>

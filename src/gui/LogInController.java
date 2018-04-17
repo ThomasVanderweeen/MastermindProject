@@ -6,6 +6,7 @@
 package gui;
 
 import domein.DomeinController;
+import exceptions.AanmeldException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -46,6 +47,8 @@ public class LogInController implements Initializable
     private PasswordField logInWachtwoord;
     @FXML
     private Button logInKnop;
+    @FXML
+    private Label foutmelding;
 
     /**
      * Initializes the controller class.
@@ -60,6 +63,19 @@ public class LogInController implements Initializable
         this.r= r;
         this.dc = dc;
         this.sc = sc;
+    }
+    
+    public void logIn(){
+        try{
+        dc.meldAan(logInNaam.getText().trim(),
+                logInWachtwoord.getText().trim());
+        }
+        catch(AanmeldException e){
+            foutmelding.setText("Combinatie gebruikersnaam en wachtwoord niet bekend in het systeem");
+            return;
+        }
+        logInNaam.clear();
+        logInWachtwoord.clear();
     }
     
     
