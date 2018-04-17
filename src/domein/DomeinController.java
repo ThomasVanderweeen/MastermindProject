@@ -8,6 +8,8 @@ package domein;
 import exceptions.AanmeldException;
 import exceptions.SpelerBestaatAlException;
 import exceptions.NiemandBeschikbaarVoorUitdagingException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.ArrayList;
 /**
@@ -269,11 +271,14 @@ public class DomeinController {
             throw new NiemandBeschikbaarVoorUitdagingException();
     }
     
-    private void startUitdaging(String tegenstander, int moeilijkheidsGraad){
+    public void startUitdaging(String tegenstander, int moeilijkheidsGraad) throws NoSuchAlgorithmException, UnsupportedEncodingException{
         uitdagingRepository.controleerGeldigeUitdaging(this.speler,tegenstander);
+        
         this.uitdaging = new Uitdaging(this.speler,tegenstander,moeilijkheidsGraad);
         uitdagingRepository.voegUitdagingToe(this.uitdaging);
+        
         this.spel = this.uitdaging.getSpel();
+        spelRepository.voegSpelTegenstanderToe(spel, tegenstander);
     }
     
 }

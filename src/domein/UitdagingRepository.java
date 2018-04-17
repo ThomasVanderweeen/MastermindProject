@@ -20,6 +20,13 @@ public class UitdagingRepository {
     public void voegUitdagingToe(Uitdaging uitdaging){
         this.uitdagingen.add(uitdaging);
         this.um.voegUitdagingToe(uitdaging);
+        
+        Spel sp = uitdaging.getSpel();
+        Speler speler = sp.getSpeler();
+        
+        int id = this.um.geefUitdagingID(speler,uitdaging.getTegenstander());
+        uitdaging.stelIDIn(id);
+        
     }
     
     public void controleerGeldigeUitdaging(Speler speler,String tegenstander){

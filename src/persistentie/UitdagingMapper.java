@@ -59,8 +59,8 @@ public class UitdagingMapper {
     
     private void associeerSpelersMetUitdaging(Speler speler,String uitdager,int ID){
       try{
-            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g77.Uitdaging_Speler VALUES "
-                    + "("+ID+",?,1,null), ("+ID+",?,0,null;");
+            PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g77.Speler_Uitdaging VALUES "
+                    + "("+ID+",?,1,null), ("+ID+",?,0,null);");
             query.setString(1, speler.getNaam());
             query.setString(2, uitdager);
             query.executeUpdate();
@@ -101,7 +101,7 @@ public class UitdagingMapper {
     
    public boolean spelerIsAlUitgedaag(Speler speler, String tegenstander){
         try{
-            PreparedStatement query = conn.prepareStatement("select count(ID) from Speler_Uitdaging where spelerNaam = ? or spelerNaam = ? "+""
+            PreparedStatement query = conn.prepareStatement("select count(ID) from ID222177_g77.Speler_Uitdaging where spelerNaam = ? or spelerNaam = ? "+""
                     + "group by ID having count(ID)=2;");
             query.setString(1,speler.getNaam());
             query.setString(2, tegenstander);
@@ -120,5 +120,24 @@ public class UitdagingMapper {
                 throw new RuntimeException(e);
         }
     }
+   
+   public int geefUitdagingID(Speler speler, String tegenstander){
+       try{
+            PreparedStatement query = conn.prepareStatement("Select ID from ID222177_g77.Speler_Uitdaging where spelerNaam = ? or spelerNaam = ?"+
+                "group by ID having count(ID)=2;");
+            query.setString(1,speler.getNaam());
+            query.setString(2, tegenstander);
+            try(ResultSet rs = query.executeQuery()){
+                if(rs.next())
+                    return rs.getInt(("ID"));
+            }
+       }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+       return -1;
+   }
    
 }

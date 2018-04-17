@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import persistentie.SpelMapper;
 import exceptions.SpelNaamNietUniekException;
 import exceptions.SpelerHeeftGeenOpgeslagenSpellenException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 /**
  *
  * @author Groep 77
@@ -48,5 +50,10 @@ public class SpelRepository {
         this.spm.verwijderSpel(spelnaam);
     }
     
+    public void voegSpelTegenstanderToe(Spel spel,String tegenstander) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+        spelletjes.add(spel);
+        this.spm.voegSpelTegenstanderToe(spel,tegenstander);
+        
+    }
 
 }

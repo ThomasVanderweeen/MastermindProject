@@ -7,7 +7,7 @@ import exceptions.NietGenoegGewonnenException;
 public class Spel {
     private final Speler speler;
     private final Spelbord spelbord;
-    private int aantalPogingen;
+    private int aantalPogingen,uitdagingID=0;
     private String naam;
     
     
@@ -26,6 +26,15 @@ public class Spel {
     public int getAantalPogingen(){
         return this.aantalPogingen;
     }
+    
+    public int getUitdagingID(){
+        return this.uitdagingID;
+    }
+    
+    public void stelUitdagingIDIn(int id){
+        this.uitdagingID = id;
+    }
+    
     
     private void controleerMoeilijkheidsGraad(int moeilijkheidsGraad){
        if(moeilijkheidsGraad==2){

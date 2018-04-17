@@ -21,6 +21,9 @@ import domein.Gemiddeld;
 import domein.Moeilijk;
 import domein.MoeilijkheidsGraad;
 import domein.Code;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
@@ -113,6 +116,42 @@ public class SpelMapper {
                 throw new RuntimeException(e.getMessage());
         }
         
+    }
+    
+    public void voegSpelTegenstanderToe(Spel spel,String tegenstander) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+             /*moeilijkheidsgraad*/
+            Spelbord spelbord = spel.getSpelBord();
+            int mg = spelbord.geefMoeilijkheidsGraad();
+        
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,"+mg+",?,"+spel.getUitdagingID()+");");
+            query.setString(2,tegenstander);
+            
+            if(!(spelBestaat(String.valueOf(spel.getUitdagingID())))){
+            
+                query.setString(1,String.valueOf(spel.getUitdagingID()));
+                query.executeUpdate();
+                voegCodeToe(String.valueOf(spel.getUitdagingID()),spelbord.getCode());
+   
+            }else{
+                
+                String input = "uitdaging"+String.valueOf(spel.getUitdagingID());
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                digest.update(input.getBytes("UTF-8"));
+                byte[] hash = digest.digest();
+                
+                query.setString(1,Arrays.toString(hash));
+                query.executeUpdate();
+                voegCodeToe(Arrays.toString(hash),spelbord.getCode());
+            }
+
+        }
+        catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }
     }
     
     /**

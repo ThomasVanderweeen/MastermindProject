@@ -13,12 +13,14 @@ public class UC5 {
     private final ResourceBundle r;
     private final DomeinController dc;
     private final UC1 uc1;
+    private final UC3 uc3;
     private final Scanner sc;
     
     public UC5(DomeinController dc, ResourceBundle r){
         this.r = r;
         this.dc = dc;
         this.uc1 = new UC1(dc,r);
+        this.uc3 = new UC3(dc,r);
         this.sc = new Scanner(System.in);
     }
     
@@ -74,9 +76,13 @@ public class UC5 {
             System.out.print(res);
  
             try{
-               int keuze = UC1.ua.geefKeuze(1, spelers.size());
-                System.out.println(spelers.get(keuze-1)[0]);
+                int keuze = UC1.ua.geefKeuze(1, spelers.size());
+                this.dc.startUitdaging(spelers.get(keuze-1)[0],moeilijkheidsGraad);
+                UC1.ua.geefSpelbordWeer();
+                this.uc3.start();
             }catch(Exception e){
+                e.printStackTrace();
+                System.err.println(e);
                 kiesSpelerOmUitTeDagen(moeilijkheidsGraad);
             }
         }catch(NiemandBeschikbaarVoorUitdagingException nbvue){

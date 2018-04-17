@@ -20,4 +20,8 @@ public class Uitdaging {
     public Spel getSpel(){
         return this.spel;
     }
+    
+    public void stelIDIn(int ID){
+        this.spel.stelUitdagingIDIn(ID);
+    }
 }
