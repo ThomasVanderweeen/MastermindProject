@@ -62,5 +62,15 @@ public class LogInController implements Initializable
         this.sc = sc;
     }
     
+    public void logIn(){
+        try{
+        dc.meldAan(logInNaam.getText().trim(),
+                logInWachtwoord.getText().trim());
+        }
+        catch(Exception e){
+            
+        }
+    }
+    
     
 }

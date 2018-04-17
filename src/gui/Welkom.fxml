@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WelkomController">
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WelkomController">
    <center>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
@@ -23,9 +24,9 @@
                </VBox.margin>
             </Label>
             <Label fx:id="terugkerendLabel" text="Terugkerende speler?" />
-            <Button fx:id="logInKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#LoginGeklikt" prefWidth="150.0" text="Log In" />
+            <Button fx:id="logInKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#LoginGeklikt" onMouseClicked="#LoginGeklikt" prefWidth="150.0" text="Log In" />
             <Label fx:id="geenAccountLabel" text="Nog geen account?" />
-            <Button fx:id="registreerKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#registreergeklikt" prefWidth="150.0" text="Registreer" />
+            <Button fx:id="registreerKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registreergeklikt" onMouseClicked="#registreergeklikt" prefWidth="150.0" text="Registreer" />
          </children>
       </VBox>
    </center>
