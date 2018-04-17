@@ -48,6 +48,11 @@ public class Spel {
     }
     
     
+    /**
+     * controleerMoeilijkheidsGraad controleert 
+     * 
+     * @param moeilijkheidsGraad de moeilijkheidsgraad die gecontroleerd wordt. 
+     */
     private void controleerMoeilijkheidsGraad(int moeilijkheidsGraad){
        if(moeilijkheidsGraad==2){
            if(this.speler.getAantalGewonnenMakkelijk()<20)
