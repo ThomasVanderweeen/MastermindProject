@@ -8,116 +8,130 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.RegistreerController">
-   <center>
-      <VBox alignment="CENTER" prefHeight="305.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="registreerLabel" text="Registreer">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.RegistreerController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/bergen.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <center>
+            <VBox alignment="CENTER" prefHeight="305.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="gebruikersnaamLabel" alignment="CENTER_RIGHT" prefWidth="140.0" text="Gebruikersnaam:">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
+                  <Label fx:id="registreerLabel" alignment="CENTER" opacity="0.8" prefWidth="600.0" style="-fx-background-color: white;" text="Registreer">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
                   </Label>
-                  <TextField fx:id="registreerNaam" maxWidth="1.7976931348623157E308" prefWidth="300.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="wachtwoordLabel" alignment="CENTER_RIGHT" prefWidth="140.0" text="Wachtwoord:">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <PasswordField fx:id="registreerWachtwoord" prefWidth="300.0">
-                     <tooltip>
-                        <Tooltip fx:id="toolTipWw" text="Begin en eindig met een cijfer, daartussen 6 letters." />
-                     </tooltip>
-                  </PasswordField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="wachtwoordBevestigenLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="156.0" text="Wachtwoord Bevestigen:">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <PasswordField fx:id="registreerWachtwoordBevestigen" prefWidth="300.0">
-                     <tooltip>
-                        <Tooltip fx:id="toolTipWwHerhalen" text="Herhaal uw wachtwoord." />
-                     </tooltip>
-                  </PasswordField>
-               </children>
-            </HBox>
-            <Label fx:id="foutmelding" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="17.0" prefWidth="443.0" VBox.vgrow="ALWAYS" />
-            <Button fx:id="registreerKnop" mnemonicParsing="false" onAction="#registreer" text="Registreer">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-   </center>
-   <top>
-      <HBox alignment="TOP_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="600.0">
-               <left>
-                  <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER" opacity="0.8" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;">
                      <children>
-                        <Button fx:id="engels" mnemonicParsing="false" style="-fx-background-color: transparent;">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/united-kingdom.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="frans" mnemonicParsing="false" style="-fx-background-color: transparent;">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/france.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/netherlands.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
+                        <Label fx:id="gebruikersnaamLabel" alignment="CENTER_RIGHT" prefWidth="140.0" text="Gebruikersnaam:">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="registreerNaam" maxWidth="1.7976931348623157E308" prefWidth="300.0" />
                      </children>
                   </HBox>
-               </left>
-               <right>
-                  <ImageView fitHeight="150.0" fitWidth="492.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
-                     <image>
-                        <Image url="@images/logo_mastermind.png" />
-                     </image>
-                  </ImageView>
-               </right>
-               <center>
-                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-         </children>
-      </HBox>
-   </top>
-</BorderPane>
+                  <HBox alignment="CENTER" opacity="0.8" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label fx:id="wachtwoordLabel" alignment="CENTER_RIGHT" prefWidth="140.0" text="Wachtwoord:">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <PasswordField fx:id="registreerWachtwoord" prefWidth="300.0">
+                           <tooltip>
+                              <Tooltip fx:id="toolTipWw" text="Begin en eindig met een cijfer, daartussen 6 letters." />
+                           </tooltip>
+                        </PasswordField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" fillHeight="false" opacity="0.8" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label fx:id="wachtwoordBevestigenLabel" alignment="CENTER_RIGHT" prefWidth="140.0" text="Wachtwoord Bevestigen:">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <PasswordField fx:id="registreerWachtwoordBevestigen" prefWidth="300.0">
+                           <tooltip>
+                              <Tooltip fx:id="toolTipWwHerhalen" text="Herhaal uw wachtwoord." />
+                           </tooltip>
+                        </PasswordField>
+                     </children>
+                  </HBox>
+                  <Label fx:id="foutmelding" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="17.0" prefWidth="443.0" VBox.vgrow="ALWAYS" />
+                  <Button fx:id="registreerKnop" mnemonicParsing="false" onAction="#registreer" opacity="0.8" text="Registreer">
+                     <VBox.margin>
+                        <Insets top="-15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <HBox alignment="TOP_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="600.0">
+                     <left>
+                        <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="engels" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/united-kingdom.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="frans" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/france.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/netherlands.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </left>
+                     <right>
+                        <ImageView fitHeight="150.0" fitWidth="492.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
+                           <image>
+                              <Image url="@images/logoroodblauwrmm.png" />
+                           </image>
+                        </ImageView>
+                     </right>
+                     <center>
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
