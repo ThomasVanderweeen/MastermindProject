@@ -69,8 +69,8 @@ public class LogInController implements Initializable
     
     public void logIn(){
         try{
-        dc.meldAan(logInNaam.getText().trim(),
-                logInWachtwoord.getText().trim());
+        dc.meldAan(logInNaam.getText(),
+                logInWachtwoord.getText());
         }
         catch(AanmeldException e){
             foutmelding.setText("Combinatie gebruikersnaam en wachtwoord niet bekend in het systeem");
