@@ -31,5 +31,9 @@ hs_err_pid*
 /mastermind/nbproject/private/
 /mastermind/
 /nbbuild.xml
+<<<<<<< HEAD
 /OXO/nbproject/private/
 /Hoofdstuk 12 oefening 2/nbproject/private/
+=======
+/dist/
+>>>>>>> c4a3d4a57a371359adb1415a5ba58e4a85804c05

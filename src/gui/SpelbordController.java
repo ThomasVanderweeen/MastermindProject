@@ -18,6 +18,7 @@ public class SpelbordController implements Initializable
     private Button frans;
     @FXML
     private ImageView nederlands;
+
     @FXML
     private Label logInLabel;
     @FXML
