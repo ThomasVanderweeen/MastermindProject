@@ -1,20 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
-/**
- * FXML Controller class
- *
- * @author ThomasV
- */
-public class SpelbordController implements Initializable {
+public class SpelbordController implements Initializable
+{
+
+    @FXML
+    private Button engels;
+    @FXML
+    private Button frans;
+    @FXML
+    private ImageView nederlands;
+    @FXML
+    private Label logInLabel;
+    @FXML
+    private Button startSpel;
+    @FXML
+    private Button laadSpel;
+    @FXML
+    private Button daagUit;
+    @FXML
+    private Button bekijkUitdagingen;
+    @FXML
+    private Button bekijkScorebord;
 
     /**
      * Initializes the controller class.
