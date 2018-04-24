@@ -14,11 +14,14 @@ import exceptions.AanmeldException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.stage.Stage;
 
 public class RegistreerController{
     
@@ -77,11 +80,27 @@ public class RegistreerController{
         }
         catch(IllegalArgumentException e){
             if(!registreerWachtwoord.getText().trim().equals(registreerWachtwoordBevestigen.getText().trim())){
-                foutmelding.setText("Ga na of je wachtwoord en bevestiging overeenkomen");
+//                foutmelding.setText("Ga na of je wachtwoord en bevestiging overeenkomen");
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Wachtwoord en bevestiging niet gelijk");
+                alert.setHeaderText("Kan speler niet toevoegen");
+                alert.setContentText("Ga na of je wachtwoord en bevestiging overeenkomen");
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.setAlwaysOnTop(true);
+                stage.toFront();
+                stage.show();
                 return;
             }
             else{
-                foutmelding.setText("Je wachtwoord moet beginnen met een cijfer gevolgd door zes letters en eindigen op een cijfer");
+//                foutmelding.setText("Je wachtwoord moet beginnen met een cijfer gevolgd door zes letters en eindigen op een cijfer");
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Wachtwoord formatting fout");
+                alert.setHeaderText("Kan speler niet toevoegen");
+                alert.setContentText("Je wachtwoord moet beginnen met een cijfer gevolgd door zes letters en eindigen op een cijfer");
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.setAlwaysOnTop(true);
+                stage.toFront();
+                stage.show();
                 return;
             }
             
