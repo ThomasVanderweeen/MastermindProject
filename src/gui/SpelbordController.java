@@ -18,18 +18,6 @@ public class SpelbordController implements Initializable
     private Button frans;
     @FXML
     private ImageView nederlands;
-    @FXML
-    private Label logInLabel;
-    @FXML
-    private Button startSpel;
-    @FXML
-    private Button laadSpel;
-    @FXML
-    private Button daagUit;
-    @FXML
-    private Button bekijkUitdagingen;
-    @FXML
-    private Button bekijkScorebord;
 
     /**
      * Initializes the controller class.
