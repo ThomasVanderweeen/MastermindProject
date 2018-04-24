@@ -81,10 +81,9 @@ public class SpelRepository {
         this.spm.verwijderSpel(spelnaam);
     }
     
-    public void voegSpelTegenstanderToe(Spel spel,String tegenstander) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+    public void voegSpelTegenstanderToe(Spel spel,String tegenstander){
         spelletjes.add(spel);
         this.spm.voegSpelTegenstanderToe(spel,tegenstander);
-        
     }
 
 }

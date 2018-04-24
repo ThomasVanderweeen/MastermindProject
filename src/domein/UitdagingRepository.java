@@ -30,9 +30,17 @@ public class UitdagingRepository {
     }
     
     public void controleerGeldigeUitdaging(Speler speler,String tegenstander){
-        if(this.um.heeftLopendeUitdaging(speler))
-            throw new HeeftLopendeUitdagingException();
         if(this.um.spelerIsAlUitgedaag(speler, tegenstander))
             throw new SpelerAlUitgedaagdException();
+    }
+    
+    public void controleerGeenLopendeUitdaging(Speler speler){
+        if(this.um.heeftLopendeUitdaging(speler))
+            throw new HeeftLopendeUitdagingException();
+    }
+    
+    public String geefNaamLopendeUitdagingTegenspeler(Speler speler){
+        int ID = um.geefHuidigeUitdagingID(speler);
+        return um.geefNaamTegenstanderID(speler, ID);
     }
 }

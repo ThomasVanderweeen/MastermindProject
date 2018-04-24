@@ -3,6 +3,7 @@ package cui;
 import java.util.ResourceBundle;
 import domein.DomeinController;
 import exceptions.NiemandBeschikbaarVoorUitdagingException;
+import exceptions.HeeftLopendeUitdagingException;
 import java.util.List;
 import java.util.Scanner;
 /**
@@ -25,7 +26,26 @@ public class UC5 {
     }
     
     public void main(){
-        geefBeschikbareMoeilijkheidsGraden();
+        try{
+            geefBeschikbareMoeilijkheidsGraden();
+        }catch(HeeftLopendeUitdagingException hlue){
+            System.out.println(r.getString("lopendeUitdagingException")+
+                    this.dc.geefNaamLopendeUitdagingTegenspeler());
+            System.out.printf("%s%n%s%n%s%n%s",r.getString("keuzes"),
+                    "1)"+r.getString("laadUitdaging"),
+                    "2)"+r.getString("verwijderUitdaging"),r.getString("keuzeInvoer"));
+            
+            try{
+                int keuze = UC1.ua.geefKeuze(1, 2);
+            }catch(Exception e){
+               main();
+            }
+            
+            //switch(keuze){
+                
+            //}
+            
+        }
     }
     
     private void geefBeschikbareMoeilijkheidsGraden(){

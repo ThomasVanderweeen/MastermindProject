@@ -21,9 +21,6 @@ import domein.Gemiddeld;
 import domein.Moeilijk;
 import domein.MoeilijkheidsGraad;
 import domein.Code;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
@@ -69,6 +66,33 @@ public class SpelMapper {
         return bestaat;
     }
     
+    private String geefVorigeNaamUitdagingSpel(Spel spel){
+        //select naam from Spel where naam!="test" and spelerNaam = "test" and UitdagingID = 1;
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement(
+                    "select naam from ID222177_g77.Spel where naam!= ? and spelerNaam = ? and UitdagingID = "+
+                            spel.getUitdagingID()+";");
+            
+            query.setString(1, spel.getNaam());
+            query.setString(2, spel.getSpeler().getNaam());
+            
+            try(ResultSet rs = query.executeQuery()){
+                if(rs.next()){
+                    return rs.getString("naam");
+                }
+            }
+            
+        }
+        catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }
+        
+        return "";
+    }
+       
      /**
      * voegSpelToe voegt een spel toe aan de databank.
      * 
@@ -80,9 +104,22 @@ public class SpelMapper {
             int mg = spelbord.geefMoeilijkheidsGraad();
         
         try{
-            PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,"+mg+",?,null);");
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,"+mg+",?,"+
+                    (spel.getUitdagingID()==0?"null":String.valueOf(spel.getUitdagingID()))+");");
             
             String spelNaam = spel.getNaam();
+            /*indien het deel is van een uitdaging moet de vorige versie verwijderd worden
+            enkel indien dit geen error geeft uiteraard*/
+            if(!(spel.getUitdagingID()==0)&&spelNaam!=null){
+                    String vorigSpel = geefVorigeNaamUitdagingSpel(spel);
+                    verwijderSpel(vorigSpel);
+            }
+            
+            /*indien het een uitdaging is zonder naam ken een naam toe*/
+            if(spelNaam == null)
+                spelNaam = "uitdaging"+spel.getUitdagingID()+spel.getSpeler().getNaam();
+
+            
             int rijNr = 1;
             
             query.setString(1,spelNaam);
@@ -118,7 +155,7 @@ public class SpelMapper {
         
     }
     
-    public void voegSpelTegenstanderToe(Spel spel,String tegenstander) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+    public void voegSpelTegenstanderToe(Spel spel,String tegenstander){
              /*moeilijkheidsgraad*/
             Spelbord spelbord = spel.getSpelBord();
             int mg = spelbord.geefMoeilijkheidsGraad();
@@ -127,23 +164,12 @@ public class SpelMapper {
             PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,"+mg+",?,"+spel.getUitdagingID()+");");
             query.setString(2,tegenstander);
             
-            if(!(spelBestaat(String.valueOf(spel.getUitdagingID())))){
+            String spelNaam = "uitdaging"+spel.getUitdagingID()+tegenstander;
             
-                query.setString(1,String.valueOf(spel.getUitdagingID()));
-                query.executeUpdate();
-                voegCodeToe(String.valueOf(spel.getUitdagingID()),spelbord.getCode());
-   
-            }else{
+            query.setString(1,spelNaam);
+            query.executeUpdate();
                 
-                String input = "uitdaging"+String.valueOf(spel.getUitdagingID());
-                MessageDigest digest = MessageDigest.getInstance("SHA-256");
-                digest.update(input.getBytes("UTF-8"));
-                byte[] hash = digest.digest();
-                
-                query.setString(1,Arrays.toString(hash));
-                query.executeUpdate();
-                voegCodeToe(Arrays.toString(hash),spelbord.getCode());
-            }
+            voegCodeToe(spelNaam,spelbord.getCode());
 
         }
         catch(SQLException e){
@@ -248,7 +274,8 @@ public class SpelMapper {
     private String getCountSpellen(String spelernaam){
         String aantal="";
         try{
-            PreparedStatement query = SpelerMapper.conn.prepareStatement("SELECT count(naam) FROM ID222177_g77.Spel WHERE spelerNaam = ?;");
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("SELECT count(naam) FROM ID222177_g77.Spel WHERE spelerNaam = ?"
+                    + " AND uitdagingID is null;");
             
             query.setString(1, spelernaam);
             
@@ -294,7 +321,7 @@ public class SpelMapper {
                 
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement
-        ("SELECT naam,moeilijkheidsgraad FROM ID222177_g77.Spel WHERE spelerNaam = ?;");
+        ("SELECT naam,moeilijkheidsgraad FROM ID222177_g77.Spel WHERE spelerNaam = ? and uitdagingID is null;");
             
             query.setString(1, spelernaam);
             
@@ -336,10 +363,9 @@ public class SpelMapper {
     private void verwijderPinnen(String spelnaam){
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement("DELETE FROM ID222177_g77.Pin_Rij WHERE spelNaam = ?");
-            
             query.setString(1, spelnaam);
             query.executeUpdate();
-           verwijderRijen(spelnaam);
+            verwijderRijen(spelnaam);
         
         }catch(SQLException e){
             if(e.hashCode()==933699219)
@@ -356,7 +382,7 @@ public class SpelMapper {
      */
     private void verwijderRijen(String spelnaam){
         try{
-         PreparedStatement query = SpelerMapper.conn.prepareStatement("DELETE FROM ID222177_g77.Rij WHERE spelNaam = ?");
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("DELETE FROM ID222177_g77.Rij WHERE spelNaam = ?");
          
             query.setString(1, spelnaam);
             query.executeUpdate();

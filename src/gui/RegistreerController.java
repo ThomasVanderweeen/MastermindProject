@@ -24,12 +24,10 @@ import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 public class RegistreerController{
-    
-    private final DomeinController controller = new DomeinController();
+   
     private ResourceBundle r;
     private final ScreenController sc = new ScreenController();
     private final LogInScherm ls = new LogInScherm();
-    private final DomeinController dc = new DomeinController();
     
     @FXML
     private Label registreerLabel;
@@ -72,7 +70,7 @@ public class RegistreerController{
 
     public void registreer(){
         try{
-        controller.registreer(
+        WelkomController.dc.registreer(
                 registreerNaam.getText().trim(),
                 registreerWachtwoord.getText().trim(),
                 registreerWachtwoordBevestigen.getText().trim()
@@ -109,7 +107,7 @@ public class RegistreerController{
         registreerWachtwoord.clear();
         registreerWachtwoordBevestigen.clear();
         LogInController lc = new LogInController();
-        lc.setControllers(r, dc, sc);
+        lc.setControllers(r, sc);
         Parent pr = RegistreerController.this.ls.changeScreenToLogIn();
         RegistreerController.this.sc.changeScene(pr);
     }

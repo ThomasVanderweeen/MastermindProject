@@ -26,7 +26,6 @@ import javafx.scene.image.ImageView;
 public class LogInController implements Initializable
 {
 
-    private DomeinController dc;
     private ResourceBundle r;
     private ScreenController sc;
     private final MenuScherm ms = new MenuScherm();
@@ -61,15 +60,14 @@ public class LogInController implements Initializable
         // TODO
     }    
     
-    protected void setControllers(ResourceBundle r,DomeinController dc, ScreenController sc){
+    protected void setControllers(ResourceBundle r, ScreenController sc){
         this.r= r;
-        this.dc = dc;
         this.sc = sc;
     }
     
     public void logIn(){
         try{
-        dc.meldAan(logInNaam.getText(),
+        WelkomController.dc.meldAan(logInNaam.getText(),
                 logInWachtwoord.getText());
         }
         catch(AanmeldException e){
