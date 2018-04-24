@@ -28,7 +28,7 @@ public class WelkomController implements Initializable
     private final ScreenController sc = new ScreenController();
     private final LogInScherm ls = new LogInScherm();
     private final RegistreerScherm rs = new RegistreerScherm();
-    private final DomeinController dc = new DomeinController();
+    protected final static DomeinController dc = new DomeinController();
     private ResourceBundle r;
     
     @FXML
@@ -104,8 +104,8 @@ public class WelkomController implements Initializable
     
     public void LoginGeklikt(){
         LogInController lc = new LogInController();
-        lc.setControllers(r, dc, sc);
+        lc.setControllers(r, sc);
         Parent pr = WelkomController.this.ls.changeScreenToLogIn();
-         WelkomController.this.sc.changeScene(pr);
+        WelkomController.this.sc.changeScene(pr);
     }
 }

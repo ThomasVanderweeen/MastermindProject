@@ -11,11 +11,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -25,9 +28,9 @@ import javafx.scene.image.ImageView;
 public class LogInController implements Initializable
 {
 
-    private DomeinController dc;
     private ResourceBundle r;
-    private ScreenController sc;
+    private ScreenController sc = new ScreenController();
+    private final MenuScherm ms = new MenuScherm();
     
     @FXML
     private Button engels;
@@ -59,24 +62,35 @@ public class LogInController implements Initializable
         // TODO
     }    
     
-    protected void setControllers(ResourceBundle r,DomeinController dc, ScreenController sc){
+    protected void setControllers(ResourceBundle r, ScreenController sc){
         this.r= r;
-        this.dc = dc;
         this.sc = sc;
     }
     
     public void logIn(){
         try{
-        dc.meldAan(logInNaam.getText().trim(),
-                logInWachtwoord.getText().trim());
+        WelkomController.dc.meldAan(logInNaam.getText(),
+                logInWachtwoord.getText());
         }
         catch(AanmeldException e){
-            foutmelding.setText("Combinatie gebruikersnaam en wachtwoord niet bekend in het systeem");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Combinatie wachtwoord en speler");
+            alert.setHeaderText("Kan speler niet inloggen");
+            alert.setContentText("combinatie speler en wachtwoord niet gekend in het systeem");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+            stage.toFront();
+            stage.show();
             return;
         }
         logInNaam.clear();
         logInWachtwoord.clear();
+        openMenu();
     }
     
+    public void openMenu(){
+        Parent pr = LogInController.this.ms.maakParent();
+        LogInController.this.sc.changeScene(pr);
+    }
     
 }

@@ -64,20 +64,20 @@ public class UC4
         int index = 0;
         String res = String.format("%25s %20s", r.getString("spelNaam"), r.getString("moeilijkheidsGraad"));
         for (String[] rij : spellen) {
-            index++;
-            res += String.format("%n%d) %20s", index, rij[0]);
-            switch (rij[1]) {
-                case "1":
-                    res += String.format("%20s", r.getString("makkelijk"));
-                    break;
-                case "2":
-                    res += String.format("%20s", r.getString("gemiddeld"));
-                    break;
-                case "3":
-                    res += String.format("%20s", r.getString("moeilijk"));
-                    break;
-            }
-
+                index++;
+                res += String.format("%n%d) %20s", index, rij[0]);
+                switch (rij[1]) {
+                    case "1":
+                        res += String.format("%20s", r.getString("makkelijk"));
+                        break;
+                    case "2":
+                        res += String.format("%20s", r.getString("gemiddeld"));
+                        break;
+                    case "3":
+                        res += String.format("%20s", r.getString("moeilijk"));
+                        break;
+                }
+            
         }
         System.out.printf(res);
     }

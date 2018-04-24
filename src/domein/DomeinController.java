@@ -244,6 +244,7 @@ public class DomeinController {
     } 
     
     public List<String[]> geefMoeilijkheidsGraden(){
+        uitdagingRepository.controleerGeenLopendeUitdaging(this.speler);
         List<String[]> res = new ArrayList<>();
         
         String[] moeilijkheidsGraad = {"makkelijk",
@@ -264,6 +265,7 @@ public class DomeinController {
     }
     
     public List<String[]> selecteerMoeilijkheidsGraadUitdaging(int moeilijkheidsGraad){
+        
         List<String[]> spelers = spelerRepository.geefBeschikbareSpelers(moeilijkheidsGraad,this.speler.getNaam());
         if(spelers.size()>0)
             return spelers;
@@ -271,7 +273,7 @@ public class DomeinController {
             throw new NiemandBeschikbaarVoorUitdagingException();
     }
     
-    public void startUitdaging(String tegenstander, int moeilijkheidsGraad) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+    public void startUitdaging(String tegenstander, int moeilijkheidsGraad){
         uitdagingRepository.controleerGeldigeUitdaging(this.speler,tegenstander);
         
         this.uitdaging = new Uitdaging(this.speler,tegenstander,moeilijkheidsGraad);
@@ -279,6 +281,14 @@ public class DomeinController {
         
         this.spel = this.uitdaging.getSpel();
         spelRepository.voegSpelTegenstanderToe(spel, tegenstander);
+        
+        /*indien de speler de build stopt moet de uitdaging nog steeds geladen kunnen worden*/
+        spelRepository.voegSpelToe(this.spel);
+        
+    }
+    
+    public String geefNaamLopendeUitdagingTegenspeler(){
+        return uitdagingRepository.geefNaamLopendeUitdagingTegenspeler(this.speler);
     }
     
 }

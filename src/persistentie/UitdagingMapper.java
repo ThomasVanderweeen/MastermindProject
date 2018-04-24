@@ -75,7 +75,7 @@ public class UitdagingMapper {
     public boolean heeftLopendeUitdaging(Speler speler){
         try{
             PreparedStatement query = conn.prepareStatement("SELECT count(ID) FROM "
-                    + "ID222177_g77.Speler_Uitdaging WHERE geacepteerd = 1 AND aantalPogingen = null AND spelerNaam = ?");
+                    + "ID222177_g77.Speler_Uitdaging WHERE geacepteerd = 1 AND aantalPogingen is null AND spelerNaam = ?");
             query.setString(1,speler.getNaam());
 
             try(ResultSet rs = query.executeQuery()){
@@ -137,6 +137,42 @@ public class UitdagingMapper {
                 throw new RuntimeException(e);
         }
        return -1;
+   }
+   
+   public int geefHuidigeUitdagingID(Speler speler){
+        try{
+            PreparedStatement query = conn.prepareStatement("select ID from ID222177_g77.Speler_Uitdaging where "
+                    + "spelerNaam = ? and aantalPogingen is null and geacepteerd=1;");
+            
+            query.setString(1, speler.getNaam());
+            try(ResultSet rs = query.executeQuery()){
+                rs.next();
+                return rs.getInt("ID");
+            }
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+   }
+   
+   public String geefNaamTegenstanderID(Speler speler,int ID){
+        try{
+            PreparedStatement query = conn.prepareStatement("select spelerNaam from "
+                    + "ID222177_g77.Speler_Uitdaging where spelerNaam != ?and ID ="+ID+";");
+            
+            query.setString(1, speler.getNaam());
+            try(ResultSet rs = query.executeQuery()){
+                rs.next();
+                return rs.getString("spelerNaam");
+            }
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
    }
    
 }
