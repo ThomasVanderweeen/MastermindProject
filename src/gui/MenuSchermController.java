@@ -20,8 +20,10 @@ import javafx.scene.image.ImageView;
 public class MenuSchermController {
 
     private final ScreenController sc = new ScreenController();
-    private final LogInScherm ls = new LogInScherm();
-    private final RegistreerScherm rs = new RegistreerScherm();
+    private final ScorebordScherm sb = new ScorebordScherm();
+    private final UitdagingenScherm us = new UitdagingenScherm();
+    private final SpelLadenScherm ss = new SpelLadenScherm();
+    private final SpelbordScherm sbs = new SpelbordScherm();
     private final DomeinController dc = new DomeinController();
     private ResourceBundle r;
     
@@ -53,27 +55,27 @@ public class MenuSchermController {
     private Button bekijkScorebord;
 
     public void startGeklikt(){
-        Parent pr = MenuSchermController.this.rs.maakParent();
+        Parent pr = MenuSchermController.this.sbs.maakParent();
         MenuSchermController.this.sc.changeScene(pr);
     }
     
     public void laadGeklikt(){
-        Parent pr = MenuSchermController.this.rs.maakParent();
+        Parent pr = MenuSchermController.this.ss.maakParent();
         MenuSchermController.this.sc.changeScene(pr);
     }
     
     public void daagUitGeklikt(){
-        Parent pr = MenuSchermController.this.rs.maakParent();
+        Parent pr = MenuSchermController.this.us.maakParent();
         MenuSchermController.this.sc.changeScene(pr);
     }
     
     public void bekijkUitdagingenGeklikt(){
-        Parent pr = MenuSchermController.this.rs.maakParent();
+        Parent pr = MenuSchermController.this.us.maakParent();
         MenuSchermController.this.sc.changeScene(pr);
     }
     
     public void bekijkScorebordGeklikt(){
-        Parent pr = MenuSchermController.this.rs.maakParent();
+        Parent pr = MenuSchermController.this.sb.maakParent();
         MenuSchermController.this.sc.changeScene(pr);
     }
 }

@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -28,6 +29,7 @@ public class LogInController implements Initializable
     private DomeinController dc;
     private ResourceBundle r;
     private ScreenController sc;
+    private final MenuScherm ms = new MenuScherm();
     
     @FXML
     private Button engels;
@@ -76,7 +78,12 @@ public class LogInController implements Initializable
         }
         logInNaam.clear();
         logInWachtwoord.clear();
+        openMenu();
     }
     
+    public void openMenu(){
+        Parent pr = LogInController.this.ms.maakParent();
+        LogInController.this.sc.changeScene(pr);
+    }
     
 }
