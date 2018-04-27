@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 import domein.DomeinController;
 import exceptions.NiemandBeschikbaarVoorUitdagingException;
 import exceptions.HeeftLopendeUitdagingException;
+import exceptions.SpelerAlUitgedaagdException;
 import java.util.List;
 import java.util.Scanner;
 /**
@@ -29,6 +30,8 @@ public class UC5 {
         try{
             geefBeschikbareMoeilijkheidsGraden();
         }catch(HeeftLopendeUitdagingException hlue){
+            int keuze=0;
+            
             System.out.println(r.getString("lopendeUitdagingException")+
                     this.dc.geefNaamLopendeUitdagingTegenspeler());
             System.out.printf("%s%n%s%n%s%n%s",r.getString("keuzes"),
@@ -36,14 +39,22 @@ public class UC5 {
                     "2)"+r.getString("verwijderUitdaging"),r.getString("keuzeInvoer"));
             
             try{
-                int keuze = UC1.ua.geefKeuze(1, 2);
+               keuze = UC1.ua.geefKeuze(1, 2);
             }catch(Exception e){
                main();
             }
             
-            //switch(keuze){
-                
-            //}
+            switch(keuze){
+                case 1:
+                    this.dc.laadSpelLopendeUitdaging();
+                    UC1.ua.geefSpelbordWeer();
+                    this.uc3.start();
+                    break;
+                case 2:
+                    this.dc.verwijderUitdaging();
+                    this.uc1.toonMogelijkheden();
+                    break;
+            }
             
         }
     }
@@ -95,18 +106,17 @@ public class UC5 {
             
             System.out.print(res);
  
-            try{
-                int keuze = UC1.ua.geefKeuze(1, spelers.size());
-                this.dc.startUitdaging(spelers.get(keuze-1)[0],moeilijkheidsGraad);
-                UC1.ua.geefSpelbordWeer();
-                this.uc3.start();
-            }catch(Exception e){
-                e.printStackTrace();
-                System.err.println(e);
-                kiesSpelerOmUitTeDagen(moeilijkheidsGraad);
-            }
+
+            int keuze = UC1.ua.geefKeuze(1, spelers.size());
+            this.dc.startUitdaging(spelers.get(keuze-1)[0],moeilijkheidsGraad);
+            UC1.ua.geefSpelbordWeer();
+            this.uc3.start();
+
         }catch(NiemandBeschikbaarVoorUitdagingException nbvue){
             System.err.println(r.getString("geenUitdagersException"));
+            this.uc1.toonMogelijkheden();
+        }catch(SpelerAlUitgedaagdException saue){
+            System.out.println(r.getString("spelerAlUitgedaagd"));
             this.uc1.toonMogelijkheden();
         }
 

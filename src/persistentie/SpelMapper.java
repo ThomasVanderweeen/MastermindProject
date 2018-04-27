@@ -65,6 +65,29 @@ public class SpelMapper {
         
         return bestaat;
     }
+       
+    public String geefSpelnaam(String spelernaam,int ID){
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement(
+                    "select naam from ID222177_g77.Spel where spelerNaam = \""+spelernaam+"\" and UitdagingID = "+
+                            ID+";");
+            
+            try(ResultSet rs = query.executeQuery()){
+                if(rs.next()){
+                    return rs.getString("naam");
+                }
+            }
+            
+        }
+        catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }
+        
+        return "";
+    }
     
     private String geefVorigeNaamUitdagingSpel(Spel spel){
         //select naam from Spel where naam!="test" and spelerNaam = "test" and UitdagingID = 1;
@@ -419,7 +442,7 @@ public class SpelMapper {
      * @param spelnaam naam van het spel dat wordt gemaakt.
      * @param speler Speler die het spel speelt.
      * @return Spel
-     */
+     */ 
     public Spel maakSpel(String spelnaam,Speler speler){
         int mg = getMoeilijkheidsGraad(spelnaam),pogingindx;
         List<CodePin> code = new ArrayList<>();

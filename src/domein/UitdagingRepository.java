@@ -29,6 +29,14 @@ public class UitdagingRepository {
         
     }
     
+    public int geefLopendeUitdagingId(Speler speler){
+        return this.um.geefHuidigeUitdagingID(speler);
+    }
+    
+    public void verwijderUitdaging(int ID){
+        this.um.verwijderUitdaging(ID);
+    }
+    
     public void controleerGeldigeUitdaging(Speler speler,String tegenstander){
         if(this.um.spelerIsAlUitgedaag(speler, tegenstander))
             throw new SpelerAlUitgedaagdException();
@@ -42,5 +50,9 @@ public class UitdagingRepository {
     public String geefNaamLopendeUitdagingTegenspeler(Speler speler){
         int ID = um.geefHuidigeUitdagingID(speler);
         return um.geefNaamTegenstanderID(speler, ID);
+    }
+    
+    public void updateUitdaging(Uitdaging uitdaging){
+        this.um.updateUitdaging(uitdaging);
     }
 }

@@ -13,6 +13,11 @@ public class Uitdaging {
         this.spel = new Spel(moeilijkheidsGraad,uitdager);
     }
     
+    public Uitdaging(String spelernaam,Spel sp){
+        this.tegenstander = spelernaam;
+        this.spel = sp;
+    }
+    
     public String getTegenstander(){
         return this.tegenstander;
     }

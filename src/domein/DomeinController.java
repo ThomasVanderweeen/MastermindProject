@@ -195,6 +195,8 @@ public class DomeinController {
             int moeilijkheidsGraad = this.spel.geefMoeilijkheidsGraad();
             this.speler.verhoogJuisteMoeilijkheidsGraad(moeilijkheidsGraad);
             spelerRepository.updateScore(this.speler, moeilijkheidsGraad);
+            if(this.spel.getUitdagingID()!=-1)
+                uitdagingRepository.updateUitdaging(this.uitdaging);
         }
     }
     
@@ -289,6 +291,24 @@ public class DomeinController {
     
     public String geefNaamLopendeUitdagingTegenspeler(){
         return uitdagingRepository.geefNaamLopendeUitdagingTegenspeler(this.speler);
+    }
+    
+    public void laadSpelLopendeUitdaging(){
+        int ID = uitdagingRepository.geefLopendeUitdagingId(this.speler);
+        
+        Spel sp = spelRepository.laadSpelUitdaging(speler, ID);
+        String tegenstander = geefNaamLopendeUitdagingTegenspeler();
+        
+        this.uitdaging = new Uitdaging(tegenstander,sp);
+        this.uitdaging.stelIDIn(ID);
+
+        this.spel = this.uitdaging.getSpel();
+    }
+    
+    public void verwijderUitdaging(){
+        int ID = uitdagingRepository.geefLopendeUitdagingId(speler);
+        uitdagingRepository.verwijderUitdaging(ID);
+        spelRepository.verwijderSpellenUitdaging(uitdaging, ID);
     }
     
 }

@@ -25,11 +25,11 @@ public class UitdagingMapper {
     
     private int geefUitdagingNummer(){
         try{
-            PreparedStatement query = conn.prepareStatement("SELECT max(id) FROM ID222177_g77.Uitdaging;");
+            PreparedStatement query = conn.prepareStatement("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'ID222177_g77' AND   TABLE_NAME   = 'Uitdaging';");
 
             try(ResultSet rs = query.executeQuery()){
                 if(rs.next()){
-                    return (rs.getInt("max(id)")+1);
+                    return rs.getInt("AUTO_INCREMENT");
                 }
             }
         }
@@ -175,4 +175,60 @@ public class UitdagingMapper {
         }
    }
    
+   public void verwijderUitdaging(int ID){
+       verwijderSpelerUitdagingAssociatie(ID);
+       verwijderUitdagingID(ID);
+   }
+   
+   
+   private void verwijderSpelerUitdagingAssociatie(int ID){
+         try{
+            PreparedStatement query = conn.prepareStatement("delete from "
+                    + "ID222177_g77.Speler_Uitdaging where ID ="+ID+";");
+            
+            query.executeUpdate();
+            
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+         
+   }
+   
+   private void verwijderUitdagingID(int ID){
+         try{
+            PreparedStatement query = conn.prepareStatement("delete from "
+                    + "ID222177_g77.Uitdaging where ID ="+ID+";");
+            
+            query.executeUpdate();
+            
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+      }
+   
+   public void updateUitdaging(Uitdaging uitdaging){
+       try{
+            PreparedStatement query = conn.prepareStatement("UPDATE ID222177_g77.Speler_Uitdaging SET aantalPogingen = ? "
+                    + "WHERE ID = ? AND spelerNaam = ?;");
+            
+            query.setInt(1, uitdaging.getSpel().getAantalPogingen());
+            query.setInt(2, uitdaging.getSpel().getUitdagingID());
+            query.setString(3, uitdaging.getSpel().getSpeler().getNaam());
+            
+            query.executeUpdate();
+            
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+
+   }
 }

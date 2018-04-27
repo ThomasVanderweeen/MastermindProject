@@ -7,7 +7,7 @@ import exceptions.NietGenoegGewonnenException;
 public class Spel {
     private final Speler speler;
     private final Spelbord spelbord;
-    private int aantalPogingen,uitdagingID=0;
+    private int aantalPogingen,uitdagingID=-1;
     private String naam;
     
     
