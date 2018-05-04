@@ -14,10 +14,15 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import javafx.collections.FXCollections;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class SpelbordController implements Initializable
 {
@@ -46,7 +51,7 @@ public class SpelbordController implements Initializable
     @FXML
     private GridPane evaluatie;
     
-    private String[] kleuren = WelkomController.dc.geefKleuren();
+    private final String[] kleuren = WelkomController.dc.geefKleuren();
     
     /**
      * Initializes the controller class.
@@ -83,12 +88,14 @@ public class SpelbordController implements Initializable
         
         WelkomController.dc.doePoging(poging);
         setSpelbord();
+        
+        if(WelkomController.dc.isGewonnen())
+            gewonnen();
     }
     
     private void setSpelbord(){
         String[][] spelbord= WelkomController.dc.geefSpelBord();
         int rijindxEva=11,rijindxSpelbord=11,kolom=0;
-        clearSpelbord();
         
         for(String[] rij:spelbord){
             for(String kleur:rij){
@@ -100,9 +107,8 @@ public class SpelbordController implements Initializable
                     if(kolom>=4)
                         this.evaluatie.add(Kleur, kolom%4, rijindxEva);
                     else
+                        if(kleur!="leeg")
                         this.spelbord.add(Kleur, kolom, rijindxSpelbord);
-                }else{
-                  this.spelbord.add(Kleur, kolom, rijindxSpelbord);
                 }
                 
                 kolom++;
@@ -115,17 +121,25 @@ public class SpelbordController implements Initializable
         }
     }
     
-    private void clearSpelbord(){
-        this.spelbord.getChildren().clear();
-        int indx=0;
+    
+    private void gewonnen(){
+        Alert gewonnen = new Alert(AlertType.INFORMATION);
+        gewonnen.setTitle("Gefeliciteerd!");
+        gewonnen.setContentText("Gefeliciteerd je bent gewonnen! De code was: "
+                +String.join(" ", WelkomController.dc.geefCode()));
+        gewonnen.setHeaderText("Gewonnen!");
         
-        for(ComboBox cb: this.getKeuzeBoxen()){
-            this.spelbord.add(cb, indx,12);
-            indx++;
-        }
-        
-        this.spelbord.setGridLinesVisible(true);
+         Stage stg = (Stage) gewonnen.getDialogPane().getScene().getWindow();
+         stg.setAlwaysOnTop(true);
+         stg.toFront();
+
+         gewonnen.showAndWait();
+         toonMenu();
     }
     
-    
+    private void toonMenu(){
+        MenuScherm ms = new MenuScherm();
+        Parent pr = ms.maakParent();
+        WelkomController.sc.changeScene(pr);
+    }
 }

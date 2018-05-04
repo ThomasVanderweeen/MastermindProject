@@ -104,7 +104,7 @@ public class WelkomController implements Initializable
     
     public void LoginGeklikt(){
         LogInController lc = new LogInController();
-        lc.setControllers(r, sc);
+        lc.setControllers(r);
         Parent pr = WelkomController.this.ls.changeScreenToLogIn();
         WelkomController.this.sc.changeScene(pr);
     }

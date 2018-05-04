@@ -29,8 +29,6 @@ public class LogInController implements Initializable
 {
 
     private ResourceBundle r;
-    private ScreenController sc = new ScreenController();
-    private final MenuScherm ms = new MenuScherm();
     
     @FXML
     private Button engels;
@@ -62,9 +60,8 @@ public class LogInController implements Initializable
         // TODO
     }    
     
-    protected void setControllers(ResourceBundle r, ScreenController sc){
+    protected void setControllers(ResourceBundle r){
         this.r= r;
-        this.sc = sc;
     }
     
     public void logIn(){
@@ -89,7 +86,8 @@ public class LogInController implements Initializable
     }
     
     public void openMenu(){
-        Parent pr = LogInController.this.ms.maakParent();
+        MenuScherm ms = new MenuScherm();
+        Parent pr = ms.maakParent();
         WelkomController.sc.changeScene(pr);
     }
     

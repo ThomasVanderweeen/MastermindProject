@@ -10,16 +10,22 @@ package gui;
  * @author ThomasV
  */
 import domein.DomeinController;
+import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
-public class MenuSchermController {
+public class MenuSchermController implements Initializable{
 
-    private final ScreenController sc = new ScreenController();
     private final ScorebordScherm sb = new ScorebordScherm();
     private final UitdagingenScherm us = new UitdagingenScherm();
     private final SpelLadenScherm ss = new SpelLadenScherm();
@@ -54,33 +60,71 @@ public class MenuSchermController {
     @FXML
     private Button bekijkScorebord;
     
+    @FXML
+    private Label naam;
+    
     protected void setDomeinController(DomeinController dc){
         this.dc = dc;
     } 
 
     public void startGeklikt(){
+        System.out.println(vraagMoeilijkheidsGraad());
         Parent pr = MenuSchermController.this.sbs.maakParent();
-        MenuSchermController.this.sc.changeScene(pr);
+        WelkomController.sc.changeScene(pr);
     }
     
     public void laadGeklikt(){
         Parent pr = MenuSchermController.this.ss.maakParent();
-        MenuSchermController.this.sc.changeScene(pr);
+        WelkomController.sc.changeScene(pr);
     }
     
     public void daagUitGeklikt(){
         Parent pr = MenuSchermController.this.us.maakParent();
-        MenuSchermController.this.sc.changeScene(pr);
+        WelkomController.sc.changeScene(pr);
     }
     
     public void bekijkUitdagingenGeklikt(){
         Parent pr = MenuSchermController.this.us.maakParent();
-        MenuSchermController.this.sc.changeScene(pr);
+        WelkomController.sc.changeScene(pr);
     }
     
     public void bekijkScorebordGeklikt(){
         Parent pr = MenuSchermController.this.sb.maakParent();
-        MenuSchermController.this.sc.changeScene(pr);
+        WelkomController.sc.changeScene(pr);
+    }
+    
+    private int vraagMoeilijkheidsGraad(){
+        Alert mg = new Alert(AlertType.CONFIRMATION);
+        
+        ButtonType gemakkelijk = new ButtonType("Gemakkelijk");
+        ButtonType gemiddeld = new ButtonType("Gemiddeld");
+        ButtonType moeilijk = new ButtonType("Moeilijk");
+        ButtonType cancel = new ButtonType("Anuleer");
+        
+        mg.getButtonTypes().setAll(gemakkelijk,gemiddeld,moeilijk,cancel);
+        
+        Stage sg = (Stage)mg.getDialogPane().getScene().getWindow();
+        sg.setAlwaysOnTop(true);
+        
+        Optional<ButtonType> res = mg.showAndWait();
+        
+        switch(res.get().getText()){
+            case "Gemakkelijk":
+                return 1;
+            case "Gemiddeld":
+                return 2;
+            case "Moeilijk":
+                return 3;
+            case "Anuleer":
+                return 0;
+        }
+        
+        return 0;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        naam.setText("Welkom terug "+WelkomController.dc.geefSpelerNaam());
     }
 }
 

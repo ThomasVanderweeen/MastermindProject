@@ -16,14 +16,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class UitdagingenScherm extends AnchorPane {
     
-    public UitdagingenScherm(){
-        try
-        {
-            FXMLLoader.load(getClass().getResource("Uitdagingen.fxml"));
-        } catch (IOException ex){
-  
-        }
-    }
+
     
     public Parent maakParent(){
         Parent pr = null;

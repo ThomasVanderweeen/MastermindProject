@@ -11,15 +11,6 @@ import javafx.scene.layout.BorderPane;
 
 public class MenuScherm extends BorderPane{
     
-    public MenuScherm(){
-        try
-        {
-            FXMLLoader.load(getClass().getResource("Menu.fxml"));
-        } catch (IOException ex){
-  
-        }
-    }
-    
     public Parent maakParent(){
         Parent pr = null;
         

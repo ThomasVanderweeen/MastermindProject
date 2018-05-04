@@ -16,15 +16,6 @@ import javafx.scene.layout.AnchorPane;
  */
 public class ScorebordScherm extends AnchorPane{
     
-    public ScorebordScherm(){
-        try
-        {
-            FXMLLoader.load(getClass().getResource("Scorebord.fxml"));
-        } catch (IOException ex){
-  
-        }
-    }
-    
     public Parent maakParent(){
         Parent pr = null;
         

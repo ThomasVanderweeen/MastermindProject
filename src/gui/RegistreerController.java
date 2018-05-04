@@ -107,7 +107,7 @@ public class RegistreerController{
         registreerWachtwoord.clear();
         registreerWachtwoordBevestigen.clear();
         LogInController lc = new LogInController();
-        lc.setControllers(r, sc);
+        lc.setControllers(r);
         Parent pr = RegistreerController.this.ls.changeScreenToLogIn();
         RegistreerController.this.sc.changeScene(pr);
     }

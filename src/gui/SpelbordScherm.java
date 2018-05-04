@@ -18,15 +18,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class SpelbordScherm extends AnchorPane{
     
-    public SpelbordScherm(){
-        try
-        {
-            FXMLLoader.load(getClass().getResource("Spelbord.fxml"));
-        } catch (IOException ex){
-  
-        }
-    }
-    
+
     public Parent maakParent(){
         Parent pr = null;
         
