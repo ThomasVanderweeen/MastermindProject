@@ -1,17 +1,29 @@
 
 package gui;
 
+import domein.DomeinController;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
+import javafx.collections.FXCollections;
+import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
 public class SpelbordController implements Initializable
 {
-
+    DomeinController dc;
+    ResourceBundle r;
+    
     @FXML
     private Button engels;
     @FXML
@@ -20,24 +32,100 @@ public class SpelbordController implements Initializable
     private ImageView nederlands;
 
     @FXML
-    private Label logInLabel;
+    private ComboBox keuze0;
     @FXML
-    private Button startSpel;
+    private ComboBox keuze1;
     @FXML
-    private Button laadSpel;
+    private ComboBox keuze2;
     @FXML
-    private Button daagUit;
+    private ComboBox keuze3;
+    
+    
     @FXML
-    private Button bekijkUitdagingen;
+    private GridPane spelbord;
     @FXML
-    private Button bekijkScorebord;
-
+    private GridPane evaluatie;
+    
+    private String[] kleuren = WelkomController.dc.geefKleuren();
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        buildGui();
     }    
+    
+    private ComboBox[] getKeuzeBoxen(){
+        ComboBox[] cb = {keuze0,keuze1,keuze2,keuze3};
+        return cb;
+    }
+    
+    private void buildGui(){
+        WelkomController.dc.registreerSpel(1);
+        ObservableList<String> keuzes = FXCollections.observableList(Arrays.asList(this.kleuren));
+        
+        for(ComboBox keuze:getKeuzeBoxen()){
+            keuze.setItems(keuzes);
+            keuze.setValue(keuzes.get(0));
+        }
+    }
+    
+    public void doePoging(){
+        String[] kleuren =  WelkomController.dc.geefKleuren();
+        int[] poging = new int[4];
+        int i =0;
+        
+        for(ComboBox CB: this.getKeuzeBoxen()){
+            poging[i] = Arrays.asList(this.kleuren).indexOf(CB.getValue());
+            i++;
+        }
+        
+        WelkomController.dc.doePoging(poging);
+        setSpelbord();
+    }
+    
+    private void setSpelbord(){
+        String[][] spelbord= WelkomController.dc.geefSpelBord();
+        int rijindxEva=11,rijindxSpelbord=11,kolom=0;
+        clearSpelbord();
+        
+        for(String[] rij:spelbord){
+            for(String kleur:rij){
+                ImageView Kleur = new ImageView(new Image(getClass().getResourceAsStream("/gui/images/"+kleur+".png")));
+                Kleur.setFitHeight(20.5);
+                Kleur.setFitWidth(20.5);
+                
+                if(rij.length>4){
+                    if(kolom>=4)
+                        this.evaluatie.add(Kleur, kolom%4, rijindxEva);
+                    else
+                        this.spelbord.add(Kleur, kolom, rijindxSpelbord);
+                }else{
+                  this.spelbord.add(Kleur, kolom, rijindxSpelbord);
+                }
+                
+                kolom++;
+            }
+            
+            rijindxSpelbord--;
+            if(rij.length>4)
+                rijindxEva--;
+            kolom=0;
+        }
+    }
+    
+    private void clearSpelbord(){
+        this.spelbord.getChildren().clear();
+        int indx=0;
+        
+        for(ComboBox cb: this.getKeuzeBoxen()){
+            this.spelbord.add(cb, indx,12);
+            indx++;
+        }
+        
+        this.spelbord.setGridLinesVisible(true);
+    }
+    
     
 }

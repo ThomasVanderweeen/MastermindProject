@@ -90,7 +90,7 @@ public class LogInController implements Initializable
     
     public void openMenu(){
         Parent pr = LogInController.this.ms.maakParent();
-        LogInController.this.sc.changeScene(pr);
+        WelkomController.sc.changeScene(pr);
     }
     
 }

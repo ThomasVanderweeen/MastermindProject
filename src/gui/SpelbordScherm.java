@@ -6,6 +6,8 @@
 package gui;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -28,12 +30,15 @@ public class SpelbordScherm extends AnchorPane{
     public Parent maakParent(){
         Parent pr = null;
         
-        try{
+
+        try
+        {
             pr = FXMLLoader.load(getClass().getResource("Spelbord.fxml"));
-        } catch (IOException ex){
-          
+        } catch (IOException ex)
+        {
+            Logger.getLogger(SpelbordScherm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return pr;
     }
 }

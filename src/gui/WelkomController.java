@@ -25,11 +25,11 @@ import javafx.scene.input.MouseEvent;
  */
 public class WelkomController implements Initializable
 {
-    private final ScreenController sc = new ScreenController();
+    protected final static ScreenController sc = new ScreenController();
     private final LogInScherm ls = new LogInScherm();
     private final RegistreerScherm rs = new RegistreerScherm();
     protected final static DomeinController dc = new DomeinController();
-    private ResourceBundle r;
+    protected static ResourceBundle r;
     
     @FXML
     private ImageView nederlands;

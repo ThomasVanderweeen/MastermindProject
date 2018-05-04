@@ -24,7 +24,7 @@ public class MenuSchermController {
     private final UitdagingenScherm us = new UitdagingenScherm();
     private final SpelLadenScherm ss = new SpelLadenScherm();
     private final SpelbordScherm sbs = new SpelbordScherm();
-    private final DomeinController dc = new DomeinController();
+    private DomeinController dc;
     private ResourceBundle r;
     
     @FXML
@@ -53,6 +53,10 @@ public class MenuSchermController {
 
     @FXML
     private Button bekijkScorebord;
+    
+    protected void setDomeinController(DomeinController dc){
+        this.dc = dc;
+    } 
 
     public void startGeklikt(){
         Parent pr = MenuSchermController.this.sbs.maakParent();
