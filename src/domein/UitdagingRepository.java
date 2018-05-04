@@ -55,4 +55,8 @@ public class UitdagingRepository {
     public void updateUitdaging(Uitdaging uitdaging){
         this.um.updateUitdaging(uitdaging);
     }
+    
+    public String[][] geefLijstUitdagingen(Speler speler){
+        return this.um.geefUitdagingenSpeler(speler);
+    }
 }

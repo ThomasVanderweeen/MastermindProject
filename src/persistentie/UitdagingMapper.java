@@ -6,6 +6,8 @@ import exceptions.ServerOnbereikbaarException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import static persistentie.SpelerMapper.conn;
 /**
  *
@@ -231,4 +233,57 @@ public class UitdagingMapper {
         }
 
    }
+   
+      private List<Integer> geefIDsopenstaandeUitdagingen(Speler speler) {
+        List<Integer> IDs = new ArrayList<>();
+        try {            
+            PreparedStatement query = conn.prepareStatement("select ID from"
+                    + "ID222177_g77.Speler_Uitdaging where geacepteerd = 0 and spelerNaam = ?;");
+            query.setString(1, speler.getNaam());
+
+            try (ResultSet rs = query.executeQuery()) {
+
+                while (rs.next()) {
+                    IDs.add(rs.getInt("ID"));
+                }
+            }
+            
+        }catch (SQLException e) {
+
+        }
+        return(IDs);
+    }
+
+    public String[][] geefNaamUitdagerEnId(Speler speler, List<Integer> IDs){
+            
+            String[][] res = new String[IDs.size()][2];
+            int indx=0;
+            for(int id:IDs){
+                res[indx][0] = Integer.toString(id);
+                res[indx][1] = geefNaamTegenstanderID(speler, id);
+                indx++;
+            }
+            return res;
+    }
+    
+    public String[][] geefUitdagingenSpeler(Speler speler) {
+        
+            
+            List<Integer> IDs = geefIDsopenstaandeUitdagingen(speler);
+
+            String[][] uitdagerEnId = geefNaamUitdagerEnId(speler, IDs);
+            
+            
+            String[][] uitdagerEnMoeilijkheid = new String[IDs.size()][2];
+            for(int i= 0;i < uitdagerEnId.length;i++){
+                int ID = Integer.parseInt(uitdagerEnId[i][0]);
+                uitdagerEnMoeilijkheid[i][0] = uitdagerEnId[i][0];
+                String naam = uitdagerEnId[i][1];
+                uitdagerEnMoeilijkheid[i][1] = String.valueOf(SpelMapper.geefMoeilijkheidsGraad(naam, ID));
+            }
+            List<Integer> moeilijkheid = new ArrayList<>();
+            
+            return uitdagerEnMoeilijkheid;
+
+    }
 }

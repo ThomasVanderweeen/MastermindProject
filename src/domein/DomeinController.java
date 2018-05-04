@@ -311,4 +311,7 @@ public class DomeinController {
         spelRepository.verwijderSpellenUitdaging(uitdaging, ID);
     }
     
+    public String[][] geefLijstUitdagingen(){
+        return uitdagingRepository.geefLijstUitdagingen(this.speler);
+    }
 }
