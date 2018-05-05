@@ -66,6 +66,48 @@ public class MenuSchermController implements Initializable{
     protected void setDomeinController(DomeinController dc){
         this.dc = dc;
     } 
+    private void updateResourceBundle(String taal){
+        
+        switch(taal){
+            case "frans":
+                this.r = ResourceBundle.getBundle("resources/Français_fr");
+                break;
+            case "nederlands":
+                this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
+                break;
+            case "engels":
+                this.r = ResourceBundle.getBundle("resources/English_en");
+                break;
+            default:
+                System.err.println("foute keuze");
+                break;
+        }
+        
+        updateLabels();
+    }
+    
+    private void updateLabels(){
+        startSpel.setText(this.r.getString("startSpelGUI"));
+        laadSpel.setText(this.r.getString("laadSpelGUI"));
+        daagUit.setText(this.r.getString("daagUitGUI"));
+        bekijkUitdagingen.setText(this.r.getString("bekijkUitdagingenGUI"));
+        bekijkScorebord.setText(this.r.getString("bekijkScorebordGUI"));
+        
+    }
+    
+    
+    
+    public void engelsGeklikt(){
+        updateResourceBundle("engels");
+    }
+    
+    public void fransGeklikt(){
+        updateResourceBundle("frans");
+    }
+    
+    public void nederlandsGeklikt(){
+        updateResourceBundle("nederlands");
+    }
 
     public void startGeklikt(){
         int mg = vraagMoeilijkheidsGraad();

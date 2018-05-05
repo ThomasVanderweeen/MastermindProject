@@ -5,10 +5,10 @@
  */
 package gui;
 
-import domein.DomeinController;
 import exceptions.AanmeldException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -19,6 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
 
 /**
  * FXML Controller class
@@ -62,6 +63,46 @@ public class LogInController implements Initializable
     
     protected void setControllers(ResourceBundle r){
         this.r= r;
+    }
+    
+    private void updateResourceBundle(String taal){
+        
+        switch(taal){
+            case "frans":
+                this.r = ResourceBundle.getBundle("resources/Français_fr");
+                break;
+            case "nederlands":
+                this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
+                break;
+            case "engels":
+                this.r = ResourceBundle.getBundle("resources/English_en");
+                break;
+            default:
+                System.err.println("foute keuze");
+                break;
+        }
+        
+        updateLabels();
+    }
+    
+    private void updateLabels(){
+        gebruikersnaamLabel.setText(this.r.getString("gebruikersNaam"));
+        wachtwoordLabel.setText(this.r.getString("wachtwoord"));
+        
+    }
+    
+    
+    
+    public void engelsGeklikt(){
+        updateResourceBundle("engels");
+    }
+    
+    public void fransGeklikt(){
+        updateResourceBundle("frans");
+    }
+    
+    public void nederlandsGeklikt(){
+        updateResourceBundle("nederlands");
     }
     
     public void logIn(){

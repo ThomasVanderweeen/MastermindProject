@@ -111,5 +111,47 @@ public class RegistreerController{
         Parent pr = RegistreerController.this.ls.changeScreenToLogIn();
         RegistreerController.this.sc.changeScene(pr);
     }
+    
+    private void updateResourceBundle(String taal){
+        
+        switch(taal){
+            case "frans":
+                this.r = ResourceBundle.getBundle("resources/Français_fr");
+                break;
+            case "nederlands":
+                this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
+                break;
+            case "engels":
+                this.r = ResourceBundle.getBundle("resources/English_en");
+                break;
+            default:
+                System.err.println("foute keuze");
+                break;
+        }
+        
+        updateLabels();
+    }
+    
+    private void updateLabels(){
+        gebruikersnaamLabel.setText(this.r.getString("gebruikersNaam"));
+        wachtwoordLabel.setText(this.r.getString("wachtwoord"));
+        registreerLabel.setText(this.r.getString("registreer"));
+        wachtwoordBevestigenLabel.setText(this.r.getString("wachtwoordBevestigen"));
+        registreerKnop.setText(this.r.getString("registreer"));
+    }
+    
+    
+    
+    public void engelsGeklikt(){
+        updateResourceBundle("engels");
+    }
+    
+    public void fransGeklikt(){
+        updateResourceBundle("frans");
+    }
+    
+    public void nederlandsGeklikt(){
+        updateResourceBundle("nederlands");
+    }
 
 }
