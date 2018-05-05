@@ -18,16 +18,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SpelbordController implements Initializable
 {
-    DomeinController dc;
-    ResourceBundle r;
+    private ResourceBundle r;
+    private int moeilijkheidsGraad=1;
     
     @FXML
     private Button engels;
@@ -45,6 +42,10 @@ public class SpelbordController implements Initializable
     @FXML
     private ComboBox keuze3;
     
+    private ComboBox keuze4;
+    
+    @FXML
+    private Button opslaanKnop;
     
     @FXML
     private GridPane spelbord;
@@ -58,17 +59,26 @@ public class SpelbordController implements Initializable
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        buildGui();
+       
     }    
     
     private ComboBox[] getKeuzeBoxen(){
         ComboBox[] cb = {keuze0,keuze1,keuze2,keuze3};
+        
+        if(this.moeilijkheidsGraad==3){
+            ComboBox[] cba =  {keuze0,keuze1,keuze2,keuze3,keuze4};
+            return cba;
+        }
+        
         return cb;
     }
     
     private void buildGui(){
-        WelkomController.dc.registreerSpel(1);
+        WelkomController.dc.registreerSpel(this.moeilijkheidsGraad);
         ObservableList<String> keuzes = FXCollections.observableList(Arrays.asList(this.kleuren));
+        
+        if(this.moeilijkheidsGraad==3)
+            voorzieMoeilijk();
         
         for(ComboBox keuze:getKeuzeBoxen()){
             keuze.setItems(keuzes);
@@ -79,6 +89,10 @@ public class SpelbordController implements Initializable
     public void doePoging(){
         String[] kleuren =  WelkomController.dc.geefKleuren();
         int[] poging = new int[4];
+        
+        if(this.moeilijkheidsGraad==3)
+            poging = new int[5];
+        
         int i =0;
         
         for(ComboBox CB: this.getKeuzeBoxen()){
@@ -89,13 +103,17 @@ public class SpelbordController implements Initializable
         WelkomController.dc.doePoging(poging);
         setSpelbord();
         
-        if(WelkomController.dc.isGewonnen())
-            gewonnen();
+        if(WelkomController.dc.isEindeSpel()){
+            if(WelkomController.dc.isGewonnen())
+                gewonnen();
+            else
+                verloren();
+        }
     }
     
     private void setSpelbord(){
         String[][] spelbord= WelkomController.dc.geefSpelBord();
-        int rijindxEva=11,rijindxSpelbord=11,kolom=0;
+        int rijindxEva=11,rijindxSpelbord=11,kolom=0,lengteSpelbord = this.getKeuzeBoxen().length;
         
         for(String[] rij:spelbord){
             for(String kleur:rij){
@@ -103,11 +121,11 @@ public class SpelbordController implements Initializable
                 Kleur.setFitHeight(20.5);
                 Kleur.setFitWidth(20.5);
                 
-                if(rij.length>4){
-                    if(kolom>=4)
-                        this.evaluatie.add(Kleur, kolom%4, rijindxEva);
+                if(rij.length>lengteSpelbord){
+                    if(kolom>=lengteSpelbord)
+                        this.evaluatie.add(Kleur, kolom%lengteSpelbord, rijindxEva);
                     else
-                        if(kleur!="leeg")
+                        if(!kleur.equals("leeg"))
                         this.spelbord.add(Kleur, kolom, rijindxSpelbord);
                 }
                 
@@ -115,7 +133,7 @@ public class SpelbordController implements Initializable
             }
             
             rijindxSpelbord--;
-            if(rij.length>4)
+            if(rij.length>lengteSpelbord)
                 rijindxEva--;
             kolom=0;
         }
@@ -137,9 +155,40 @@ public class SpelbordController implements Initializable
          toonMenu();
     }
     
+    private void verloren(){
+        Alert gewonnen = new Alert(AlertType.WARNING);
+        gewonnen.setTitle("Verloren...");
+        gewonnen.setContentText("Sorry je hebt de code niet kunnen raden.De code was: "
+                +String.join(" ", WelkomController.dc.geefCode()));
+        gewonnen.setHeaderText("Verloren...");
+        
+         Stage stg = (Stage) gewonnen.getDialogPane().getScene().getWindow();
+         stg.setAlwaysOnTop(true);
+         stg.toFront();
+
+         gewonnen.showAndWait();
+         toonMenu();
+    }
+    
     private void toonMenu(){
         MenuScherm ms = new MenuScherm();
         Parent pr = ms.maakParent();
         WelkomController.sc.changeScene(pr);
+    }
+    
+    private void voorzieMoeilijk(){
+        ComboBox keuze = new ComboBox();
+        this.spelbord.add(keuze, 4, 12);
+        
+        Label l = new Label(" ");
+        l.setPrefWidth(100);
+        this.evaluatie.add(l, 4, 12);
+        
+        this.keuze4 =keuze;
+    }
+    
+    protected void setMoeilijkheidsGraad(int mg){
+        this.moeilijkheidsGraad = mg;
+        buildGui();
     }
 }

@@ -68,9 +68,13 @@ public class MenuSchermController implements Initializable{
     } 
 
     public void startGeklikt(){
-        System.out.println(vraagMoeilijkheidsGraad());
-        Parent pr = MenuSchermController.this.sbs.maakParent();
-        WelkomController.sc.changeScene(pr);
+        int mg = vraagMoeilijkheidsGraad();
+        
+        if(mg!=0){
+            Parent pr = MenuSchermController.this.sbs.maakParent();
+            this.sbs.geefController().setMoeilijkheidsGraad(mg);
+            WelkomController.sc.changeScene(pr);
+        }
     }
     
     public void laadGeklikt(){
