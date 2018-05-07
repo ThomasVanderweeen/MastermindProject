@@ -268,6 +268,7 @@ public class UitdagingMapper {
     
     public String[][] geefUitdagingenSpeler(Speler speler) {
         
+            String[][] test = {{"uitdaging van andere speler."},{"uitdaging van andere speler."}};
             
             List<Integer> IDs = geefIDsopenstaandeUitdagingen(speler);
 
@@ -283,7 +284,7 @@ public class UitdagingMapper {
             }
             List<Integer> moeilijkheid = new ArrayList<>();
             
-            return uitdagerEnMoeilijkheid;
+            return test;
 
     }
 }
