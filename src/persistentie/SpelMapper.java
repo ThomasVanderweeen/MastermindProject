@@ -298,7 +298,7 @@ public class SpelMapper {
         String aantal="";
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement("SELECT count(naam) FROM ID222177_g77.Spel WHERE spelerNaam = ?"
-                    + " AND uitdagingID is null;");
+                    + " AND uitdagingID=-1;");
             
             query.setString(1, spelernaam);
             
@@ -344,7 +344,7 @@ public class SpelMapper {
                 
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement
-        ("SELECT naam,moeilijkheidsgraad FROM ID222177_g77.Spel WHERE spelerNaam = ? and uitdagingID is null;");
+        ("SELECT naam,moeilijkheidsgraad FROM ID222177_g77.Spel WHERE spelerNaam = ? and uitdagingID=-1;");
             
             query.setString(1, spelernaam);
             

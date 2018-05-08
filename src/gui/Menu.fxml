@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuSchermController">
+<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuSchermController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" nodeOrientation="INHERIT" pickOnBounds="true">
          <image>
@@ -41,15 +41,6 @@
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/france.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="nederlands" mnemonicParsing="false" onAction="#nederlandsGeklikt" style="-fx-background-color: transparent;">
-                     <graphic>
-                        <ImageView fx:id="nederlands" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/netherlands.png" />
                            </image>
                         </ImageView>
                      </graphic>
