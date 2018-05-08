@@ -2,8 +2,11 @@
 package gui;
 
 import domein.DomeinController;
+import exceptions.ServerOnbereikbaarException;
+import exceptions.SpelNaamNietUniekException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,8 +18,10 @@ import javafx.scene.image.ImageView;
 
 import javafx.collections.FXCollections;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -191,4 +196,59 @@ public class SpelbordController implements Initializable
         this.moeilijkheidsGraad = mg;
         buildGui();
     }
+    
+    public void opslaan(){
+        String naam = geefNaam();
+        if(!naam.isEmpty())
+            slaOp(naam);
+    }
+    
+    private String geefNaam(){
+        TextInputDialog geefNaam = new TextInputDialog();
+        geefNaam.setTitle("Sla spel op");
+        geefNaam.setHeaderText("geef De naam van het spel:");
+        
+        Stage stg = (Stage) geefNaam.getDialogPane().getScene().getWindow();
+        stg.setAlwaysOnTop(true);
+        stg.toFront();
+        
+        Optional<String> naam = geefNaam.showAndWait();
+        if(naam.isPresent()){
+            return naam.get();
+        }
+        
+        return null;
+    }
+    
+    private void slaOp(String naam){
+        try{
+            WelkomController.dc.slaOp(naam);
+            
+            Alert gelukt = new Alert(AlertType.CONFIRMATION);
+            gelukt.setTitle("Spel opgeslagen");
+            gelukt.setContentText("Het spel is correct opgeslagen in de database onder de naam: \""+naam+"\"");
+            
+            Stage stg = (Stage)gelukt.getDialogPane().getScene().getWindow();
+            stg.setAlwaysOnTop(true);
+            stg.toFront();
+            stg.showAndWait();
+            
+            toonMenu();
+        }catch(SpelNaamNietUniekException sn){
+            error("Deze spelnaam is al in gebruik. Probeer opnieuw.","spelnaam niet uniek");
+        }catch(ServerOnbereikbaarException soe){
+            error("De server is op dit moment onbereikbaar probeer later opnieuw.","Server 404");
+        }
+    }
+    
+    private void error(String msg,String title){
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        
+        Stage stg = (Stage) alert.getDialogPane().getScene().getWindow();
+        stg.setAlwaysOnTop(true);
+        alert.showAndWait();
+    }
 }
+
