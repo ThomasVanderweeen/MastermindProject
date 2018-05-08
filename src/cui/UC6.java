@@ -30,7 +30,6 @@ public class UC6 {
     
     private void toonUitdagingen(){
         String[][] uitdagingen = dc.geefLijstUitdagingen();
-        String uitdaging = "";
         if(uitdagingen.length == 0){
             System.out.println("Je hebt momenteel geen uitdagingen");
             toonKeuzes();
@@ -75,6 +74,12 @@ public class UC6 {
             System.out.printf("%s%n", r.getString("UitdagingKeuze"));
             Scanner scanner = new Scanner(System.in);
             keuze = scanner.nextInt();
+            
+            for(int i = 0; i < uitdagingen.length; i++){
+                if(keuze == i + 1){
+                    int ID = 0;
+                }
+            }
         }while (keuze <1|| keuze > uitdagingen.length);
         
         
