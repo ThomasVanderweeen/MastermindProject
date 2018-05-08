@@ -11,6 +11,7 @@ package gui;
  */
 import domein.DomeinController;
 import exceptions.AanmeldException;
+import exceptions.SpelerBestaatAlException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -75,41 +76,29 @@ public class RegistreerController{
                 registreerWachtwoord.getText().trim(),
                 registreerWachtwoordBevestigen.getText().trim()
                 );
+
+        Parent pr = RegistreerController.this.ls.changeScreenToLogIn();
+        RegistreerController.this.sc.changeScene(pr);
         }
         catch(IllegalArgumentException e){
             if(!registreerWachtwoord.getText().trim().equals(registreerWachtwoordBevestigen.getText().trim())){
 //                foutmelding.setText("Ga na of je wachtwoord en bevestiging overeenkomen");
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Wachtwoord en bevestiging niet gelijk");
-                alert.setHeaderText("Kan speler niet toevoegen");
-                alert.setContentText("Ga na of je wachtwoord en bevestiging overeenkomen");
-                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-                stage.setAlwaysOnTop(true);
-                stage.toFront();
-                stage.show();
-                return;
+                exception("Wachtwoord en bevestiging niet gelijk","Kan speler niet toevoegen",
+                       "Ga na of je wachtwoord en bevestiging overeenkomen");
             }
             else{
 //                foutmelding.setText("Je wachtwoord moet beginnen met een cijfer gevolgd door zes letters en eindigen op een cijfer");
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Wachtwoord formatting fout");
-                alert.setHeaderText("Kan speler niet toevoegen");
-                alert.setContentText("Je wachtwoord moet beginnen met een cijfer gevolgd door zes letters en eindigen op een cijfer");
-                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-                stage.setAlwaysOnTop(true);
-                stage.toFront();
-                stage.show();
-                return;
+                exception("Wachtwoord formatting fout","Kan speler niet toevoegen",
+                        "Je wachtwoord moet beginnen met een cijfer gevolgd door zes letters en eindigen op een cijfer");
             }
             
+        }catch(SpelerBestaatAlException sbae){
+            exception("Deze speler bestaat al","Deze speler is al reeds bekend in ons systeem",
+                    "Deze speler is al geregistreerd gelieve een andere gebruikersnaam te kiezen");
         }
-        registreerNaam.clear();
-        registreerWachtwoord.clear();
-        registreerWachtwoordBevestigen.clear();
-        LogInController lc = new LogInController();
-        lc.setControllers(r);
-        Parent pr = RegistreerController.this.ls.changeScreenToLogIn();
-        RegistreerController.this.sc.changeScene(pr);
+            
+
+
     }
     
     private void updateResourceBundle(String taal){
@@ -152,6 +141,23 @@ public class RegistreerController{
     
     public void nederlandsGeklikt(){
         updateResourceBundle("nederlands");
+    }
+    
+    private void exception(String title,String header,String context){
+        Alert alert = new Alert(AlertType.ERROR);
+        
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(context);
+                
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.setAlwaysOnTop(true);
+        stage.toFront();
+        stage.show();
+        
+        registreerNaam.clear();
+        registreerWachtwoord.clear();
+        registreerWachtwoordBevestigen.clear();
     }
 
 }

@@ -58,37 +58,20 @@ public class LogInController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        updateLabels();
     }    
     
-    protected void setControllers(ResourceBundle r){
-        this.r= r;
-    }
     
     private void updateResourceBundle(String taal){
-        
-        switch(taal){
-            case "frans":
-                this.r = ResourceBundle.getBundle("resources/Français_fr");
-                break;
-            case "nederlands":
-                this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
-                break;
-            case "engels":
-                this.r = ResourceBundle.getBundle("resources/English_en");
-                break;
-            default:
-                System.err.println("foute keuze");
-                break;
-        }
-        
+        WelkomController.setResourceBundle(taal);
         updateLabels();
     }
     
     private void updateLabels(){
-        gebruikersnaamLabel.setText(this.r.getString("gebruikersNaam"));
-        wachtwoordLabel.setText(this.r.getString("wachtwoord"));
-        
+        gebruikersnaamLabel.setText(WelkomController.r.getString("gebruikersNaam"));
+        wachtwoordLabel.setText(WelkomController.r.getString("wachtwoord"));
+        logInKnop.setText(WelkomController.r.getString("meldAan"));
+        logInLabel.setText(WelkomController.r.getString("meldAan"));
     }
     
     

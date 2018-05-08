@@ -58,22 +58,7 @@ public class WelkomController implements Initializable
     }    
     
     private void updateResourceBundle(String taal){
-        
-        switch(taal){
-            case "frans":
-                this.r = ResourceBundle.getBundle("resources/Français_fr");
-                break;
-            case "nederlands":
-                this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
-                break;
-            case "engels":
-                this.r = ResourceBundle.getBundle("resources/English_en");
-                break;
-            default:
-                System.err.println("foute keuze");
-                break;
-        }
-        
+        this.setResourceBundle(taal);
         updateLabels();
     }
     
@@ -89,6 +74,8 @@ public class WelkomController implements Initializable
         Parent pr = WelkomController.this.rs.maakParent();
         WelkomController.this.sc.changeScene(pr);
     }
+    
+    
     
     public void engelsGeklikt(){
         updateResourceBundle("engels");
@@ -106,4 +93,22 @@ public class WelkomController implements Initializable
         Parent pr = ls.changeScreenToLogIn();
         WelkomController.sc.changeScene(pr);
     }
+    
+    protected static void setResourceBundle(String taal){
+        switch(taal){
+            case "frans":
+                r = ResourceBundle.getBundle("resources/Français_fr");
+                break;
+            case "nederlands":
+                r = ResourceBundle.getBundle("resources/Nederlands_ne");
+                break;
+            case "engels":
+                r = ResourceBundle.getBundle("resources/English_en");
+                break;
+            default:
+                System.err.println("foute keuze");
+                break;
+        }
+    }
+    
 }

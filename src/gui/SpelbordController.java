@@ -21,9 +21,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SpelbordController implements Initializable
@@ -64,7 +66,7 @@ public class SpelbordController implements Initializable
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+
     }    
     
     private ComboBox[] getKeuzeBoxen(){
@@ -144,22 +146,7 @@ public class SpelbordController implements Initializable
         }
     }
     
-    
-    private void gewonnen(){
-        Alert gewonnen = new Alert(AlertType.INFORMATION);
-        gewonnen.setTitle("Gefeliciteerd!");
-        gewonnen.setContentText("Gefeliciteerd je bent gewonnen! De code was: "
-                +String.join(" ", WelkomController.dc.geefCode()));
-        gewonnen.setHeaderText("Gewonnen!");
-        
-         Stage stg = (Stage) gewonnen.getDialogPane().getScene().getWindow();
-         stg.setAlwaysOnTop(true);
-         stg.toFront();
 
-         gewonnen.showAndWait();
-         toonMenu();
-    }
-    
     private void verloren(){
         Alert gewonnen = new Alert(AlertType.WARNING);
         gewonnen.setTitle("Verloren...");
@@ -201,6 +188,47 @@ public class SpelbordController implements Initializable
         String naam = geefNaam();
         if(!naam.isEmpty())
             slaOp(naam);
+    }
+    
+    private void gewonnen(){
+        String[][] eindSituatie = WelkomController.dc.geefEindSituatie();
+        
+        Alert al = new Alert(AlertType.CONFIRMATION);
+        al.setTitle("Aantal Sterren");
+        
+        al.setHeaderText(String.format("%s%n%s%s%n%s%s%s","Gefeliciteerd je bent gewonnen!","De code was: "
+                ,String.join(" ", WelkomController.dc.geefCode()),"Je had ",
+                eindSituatie[1][0]," pogingen nodig"));
+        
+        DialogPane dp = al.getDialogPane();
+        GridPane gp = new GridPane();
+        VBox vb = new VBox();
+        
+        for(int x=0;x<5;x++){
+            ImageView iv = new ImageView();
+           
+            if(x<Integer.valueOf(eindSituatie[0][0]))
+                iv.setImage(new Image(getClass().getResourceAsStream("/gui/images/goldStar.png")));
+            else
+                iv.setImage(new Image(getClass().getResourceAsStream("/gui/images/greyStar.png")));
+            
+            iv.setFitHeight(50.0);
+            iv.setFitWidth(50.0);
+
+            gp.add(iv, x, 0);
+        }
+        
+        Label lb = new Label(String.format("%s%s%s","je moet nog ",eindSituatie[0][1],
+                " spelletjes winnen voor de volgende ster"));
+        
+        vb.getChildren().addAll(gp,lb);
+        dp.setContent(vb);
+        
+        Stage stg = (Stage)al.getDialogPane().getScene().getWindow();
+        stg.setAlwaysOnTop(true);
+        
+        al.showAndWait();
+        toonMenu();
     }
     
     private String geefNaam(){
