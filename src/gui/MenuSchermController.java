@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 public class MenuSchermController implements Initializable{
 
     private final ScorebordScherm sb = new ScorebordScherm();
-    private final UitdagingenScherm us = new UitdagingenScherm();
+    //private final UitdagingenScherm us = new UitdagingenScherm();
     private final SpelLadenScherm ss = new SpelLadenScherm();
     private final SpelbordScherm sbs = new SpelbordScherm();
     private DomeinController dc;
@@ -125,13 +125,13 @@ public class MenuSchermController implements Initializable{
     }
     
     public void daagUitGeklikt(){
-        Parent pr = MenuSchermController.this.us.maakParent();
-        WelkomController.sc.changeScene(pr);
+       // Parent pr = MenuSchermController.this.us.maakParent();
+        //WelkomController.sc.changeScene(pr);
     }
     
     public void bekijkUitdagingenGeklikt(){
-        Parent pr = MenuSchermController.this.us.maakParent();
-        WelkomController.sc.changeScene(pr);
+       // Parent pr = MenuSchermController.this.us.maakParent();
+        //WelkomController.sc.changeScene(pr);
     }
     
     public void bekijkScorebordGeklikt(){
