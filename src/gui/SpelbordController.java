@@ -2,6 +2,7 @@
 package gui;
 
 import domein.DomeinController;
+import exceptions.NietGenoegGewonnenException;
 import exceptions.ServerOnbereikbaarException;
 import exceptions.SpelNaamNietUniekException;
 import java.net.URL;
@@ -81,7 +82,13 @@ public class SpelbordController implements Initializable
     }
     
     private void buildGui(){
-        WelkomController.dc.registreerSpel(this.moeilijkheidsGraad);
+        try{
+        
+            WelkomController.dc.registreerSpel(this.moeilijkheidsGraad);
+        }catch(NietGenoegGewonnenException ngge){
+            throw ngge;
+        }
+        
         ObservableList<String> keuzes = FXCollections.observableList(Arrays.asList(this.kleuren));
         
         if(this.moeilijkheidsGraad==3)

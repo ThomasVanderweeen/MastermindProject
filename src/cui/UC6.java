@@ -6,6 +6,8 @@
 package cui;
 
 import domein.DomeinController;
+import exceptions.GeenOpenstaandeUitdagingException;
+import exceptions.HeeftLopendeUitdagingException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -18,10 +20,14 @@ public class UC6 {
     private final DomeinController dc;
     private Scanner sc;
     protected static UC_Algemeen ua;
+    private UC1 uc1;
+    private UC5 uc5;
 
     public UC6(DomeinController dc, ResourceBundle r) {
         this.r = r;
         this.dc = dc;
+        this.uc1 = new UC1(dc,r);
+        this.uc5 = new UC5(dc,r);
     }
     
     public void main(){
@@ -29,59 +35,67 @@ public class UC6 {
     }
     
     private void toonUitdagingen(){
-        String[][] uitdagingen = dc.geefLijstUitdagingen();
-        if(uitdagingen.length == 0){
-            System.out.println("Je hebt momenteel geen uitdagingen");
-            toonKeuzes();
-        }
-        else{
+        try{
+            String[][] uitdagingen = dc.geefLijstUitdagingen();    
+            String res = String.format("%5s%30s%25s%n","",r.getString("naamTegenstander"),
+                    r.getString("moeilijkheidsGraad"));
+            String[] moeilijkheidsgraden = {r.getString("makkelijk"),r.getString("gemiddeld"),r.getString("moeilijk")};
+            
             for(int i = 0; i < uitdagingen.length; i++){
-                System.out.printf("%d)", i+1);
-                for(int j = 0; j < uitdagingen[i].length; j++){
-                    System.out.printf("%s ", uitdagingen[i][j]);
-                }
-                System.out.println();
+                
+                res += String.format("%4d)%30s%25s%n", i+1,uitdagingen[i][1],
+                        moeilijkheidsgraden[Integer.valueOf(uitdagingen[i][2])-1]);
             }
-            toonOpties();
-        } 
+            
+            System.out.println(res);
+            
+            int keuze=0;
+            System.out.printf("%s", r.getString("UitdagingKeuze"));
+
+            try{
+                keuze = UC1.ua.geefKeuze(1, uitdagingen.length);
+            }catch(Exception e){
+                toonUitdagingen();
+            }
+
+            int ID = Integer.valueOf(uitdagingen[keuze-1][0]);
+            toonOpties(ID);
+
+        }catch(GeenOpenstaandeUitdagingException goue){
+            System.err.println(r.getString("geenBeschikbareUitdaging"));
+            uc1.toonMogelijkheden();
+        }catch(HeeftLopendeUitdagingException hlue){
+            uc5.heeftLopendeUitdaging();
+        }
+         
     }  
 
-    private void toonKeuzes() {
-        int keuze;
-        do{
-            System.out.printf("%s%n%s%n","1)"+r.getString("TerugNaarMenu"),"2)"+r.getString("sluitAf"));
-            System.out.print(r.getString("keuzeInvoer"));
-            Scanner scanner = new Scanner(System.in);
-            keuze = scanner.nextInt();
-            
-            switch(keuze){
-                case 1:
-                    UC1 uc1 = new UC1();
-                    uc1.Start();
-                    break;
-                case 2:
-                    System.out.println(r.getString("afsluiten"));
-                    break;
-            }
-        }while(keuze<1||keuze>2);
- 
-    }
 
-    private void toonOpties() {
-        String[][] uitdagingen = dc.geefLijstUitdagingen();
-        int keuze;
-        do{
-            System.out.printf("%s%n", r.getString("UitdagingKeuze"));
-            Scanner scanner = new Scanner(System.in);
-            keuze = scanner.nextInt();
-            
-            for(int i = 0; i < uitdagingen.length; i++){
-                if(keuze == i + 1){
-                    int ID = 0;
-                }
-            }
-        }while (keuze <1|| keuze > uitdagingen.length);
+    private void toonOpties(int ID) {
+        int keuze =0 ;
         
+        System.out.printf("%s%n1) %s%n2) %s%n3) %s%n%s",r.getString("uitdagingIntro"),
+                r.getString("startUitdaging"),r.getString("verwijderUitdaging"),
+                r.getString("TerugNaarMenu"),r.getString("keuzeInvoer"));
         
+        try{
+            keuze = UC1.ua.geefKeuze(1, 3);
+        }catch(Exception e){
+            toonOpties(ID);
+        }
+        
+        switch(keuze){
+            case 3:
+                uc1.toonMogelijkheden();
+                break;
+            case 2:
+                this.dc.verwijderUitdaging(ID);
+                System.out.println(r.getString("uitdagingVerwijderd"));
+                this.uc1.toonMogelijkheden();
+                break;
+            default:
+                System.out.println("nog niet geimp");
+                break;
+        }
     }
 }

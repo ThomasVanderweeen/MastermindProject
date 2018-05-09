@@ -91,11 +91,14 @@ public class SpelRepository {
         return this.spm.maakSpel(naam, speler);
     }
     
-    public void verwijderSpellenUitdaging(Uitdaging uitdaging, int ID){
-        String tegenstander = uitdaging.getTegenstander();
-        String spelnaam1 = this.spm.geefSpelnaam(tegenstander, ID);
-        String spelnaam2 = this.spm.geefSpelnaam(uitdaging.getSpel().getSpeler().getNaam(), ID);
-        this.spm.verwijderSpel(spelnaam2);
-        this.spm.verwijderSpel(spelnaam1);
+    public void verwijderSpellenUitdaging(int ID){
+        String[] spelnamen = this.spm.geefNamenSpelUitdaging(ID);
+        for(String naam:spelnamen){
+            this.spm.verwijderSpel(naam);
+        }
+    }
+    
+    public String[][] geefLopendeUitdagingInfo(String[][] idsenNaam){
+        return this.spm.geefLopendeUitdagingInfo(idsenNaam);
     }
 }

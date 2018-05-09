@@ -13,10 +13,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -54,7 +57,7 @@ public class WelkomController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-      
+        updateResourceBundle("nederlands");
     }    
     
     private void updateResourceBundle(String taal){
@@ -63,11 +66,11 @@ public class WelkomController implements Initializable
     }
     
     private void updateLabels(){
-        welkomLabel.setText(this.r.getString("welkom"));
-        terugkerendLabel.setText(this.r.getString("terugKerend"));
-        logInKeuze.setText(this.r.getString("meldAan"));
-        geenAccountLabel.setText(this.r.getString("registreerlbl"));
-        registreerKeuze.setText(this.r.getString("registreer"));
+        welkomLabel.setText(r.getString("welkom"));
+        terugkerendLabel.setText(r.getString("terugKerend"));
+        logInKeuze.setText(r.getString("meldAan"));
+        geenAccountLabel.setText(r.getString("registreerlbl"));
+        registreerKeuze.setText(r.getString("registreer"));
     }
     
     public void registreergeklikt(){
@@ -109,6 +112,19 @@ public class WelkomController implements Initializable
                 System.err.println("foute keuze");
                 break;
         }
+    }
+    
+    protected static void Error(String title, String header, String context){
+        Alert al = new Alert(AlertType.ERROR);
+        al.setTitle(title);
+        al.setHeaderText(header);
+        al.setContentText(context);
+        
+        Stage stg = (Stage) al.getDialogPane().getScene().getWindow();
+        stg.setAlwaysOnTop(true);
+        stg.toFront();
+        
+        al.showAndWait();
     }
     
 }

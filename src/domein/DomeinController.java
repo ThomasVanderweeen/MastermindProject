@@ -6,6 +6,7 @@
 package domein;
 
 import exceptions.AanmeldException;
+import exceptions.GeenOpenstaandeUitdagingException;
 import exceptions.SpelerBestaatAlException;
 import exceptions.NiemandBeschikbaarVoorUitdagingException;
 import java.io.UnsupportedEncodingException;
@@ -295,9 +296,18 @@ public class DomeinController {
     
     public void laadSpelLopendeUitdaging(){
         int ID = uitdagingRepository.geefLopendeUitdagingId(this.speler);
-        
-        Spel sp = spelRepository.laadSpelUitdaging(speler, ID);
         String tegenstander = geefNaamLopendeUitdagingTegenspeler();
+        laadSpelUitdaging(ID,tegenstander);
+    }
+    
+    public void laadUitdaging(int ID,String tegenstander){
+        //not yet implemented
+        /*eerste stap is het zetten van de geacepteerd naar 1 in db*/
+        /*tweede stap is het  laden van deze uitdaging*/
+    }
+    
+    private void laadSpelUitdaging(int ID,String tegenstander){
+        Spel sp = spelRepository.laadSpelUitdaging(speler, ID);
         
         this.uitdaging = new Uitdaging(tegenstander,sp);
         this.uitdaging.stelIDIn(ID);
@@ -305,13 +315,25 @@ public class DomeinController {
         this.spel = this.uitdaging.getSpel();
     }
     
-    public void verwijderUitdaging(){
+    public void verwijderLopendeUitdaging(){
         int ID = uitdagingRepository.geefLopendeUitdagingId(speler);
+        verwijderUitdaging(ID);
+    }
+    
+    public void verwijderUitdaging(int ID){
         uitdagingRepository.verwijderUitdaging(ID);
-        spelRepository.verwijderSpellenUitdaging(uitdaging, ID);
+        spelRepository.verwijderSpellenUitdaging(ID);
     }
     
     public String[][] geefLijstUitdagingen(){
-        return uitdagingRepository.geefLijstUitdagingen(this.speler);
+        uitdagingRepository.controleerGeenLopendeUitdaging(this.speler);
+        String[][] uitdagersEnID =  uitdagingRepository.geefLijstUitdagingen(this.speler);
+        
+        if(uitdagersEnID.length>0)
+            return spelRepository.geefLopendeUitdagingInfo(uitdagersEnID);
+        else
+            throw new GeenOpenstaandeUitdagingException();
     }
+    
+
 }

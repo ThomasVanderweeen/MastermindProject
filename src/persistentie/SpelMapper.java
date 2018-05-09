@@ -89,6 +89,32 @@ public class SpelMapper {
         return "";
     }
     
+    public String[] geefNamenSpelUitdaging(int ID){
+        String[] res = new String[2];
+        
+        try{
+            PreparedStatement query = SpelerMapper.conn.prepareStatement("select naam from ID222177_g77.Spel "
+                    + "where uitdagingID = "+ID+";");
+        
+            try(ResultSet rs= query.executeQuery()){
+                int indx=0;
+           
+                while(rs.next()){
+                    res[indx] = rs.getString("naam");
+                    indx++;
+                }
+                return res;
+            }
+           
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e.getMessage());
+        }
+        
+    }
+    
     private String geefVorigeNaamUitdagingSpel(Spel spel){
         //select naam from Spel where naam!="test" and spelerNaam = "test" and UitdagingID = 1;
         try{
@@ -556,11 +582,11 @@ public class SpelMapper {
         return 0;
     }
     
-        public static int geefMoeilijkheidsGraad(String naam, int id){
+        private int geefMoeilijkheidsGraad(String naam, int id){
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement(
                     "select moeilijkheidsGraad from ID222177_g77.Spel where" 
-                    +"spelerNaam = ? and uitdagingID = ?;");
+                    +" spelerNaam = ? and uitdagingID = ?;");
             query.setString(1, naam);
             query.setInt(2, id);
             try(ResultSet rs = query.executeQuery()){
@@ -578,6 +604,22 @@ public class SpelMapper {
         
         return 0;
     }
+        
+    public String[][] geefLopendeUitdagingInfo(String[][] idsenNaam){
+        String[][] info = new String[idsenNaam.length][3];
+        int indx = 0;
+        
+        for(String[] uitdaging:idsenNaam){
+            info[indx][0] = uitdaging[0];
+            info[indx][1] = uitdaging[1];
+            info[indx][2] = String.valueOf(geefMoeilijkheidsGraad(uitdaging[1],Integer.valueOf(uitdaging[0])));
+            
+            indx++;
+        }
+        
+        return info;
+    }
+        
     private String getSpelNaam(int ID, String speler){
         String spelNaam = "";
         try{

@@ -30,6 +30,11 @@ public class UC5 {
         try{
             geefBeschikbareMoeilijkheidsGraden();
         }catch(HeeftLopendeUitdagingException hlue){
+            heeftLopendeUitdaging();
+        }
+    }
+    
+    protected void heeftLopendeUitdaging(){
             int keuze=0;
             
             System.out.println(r.getString("lopendeUitdagingException")+
@@ -51,12 +56,11 @@ public class UC5 {
                     this.uc3.start();
                     break;
                 case 2:
-                    this.dc.verwijderUitdaging();
+                    this.dc.verwijderLopendeUitdaging();
+                    System.out.println(r.getString("uitdagingVerwijderd"));
                     this.uc1.toonMogelijkheden();
                     break;
             }
-            
-        }
     }
     
     private void geefBeschikbareMoeilijkheidsGraden(){

@@ -10,6 +10,7 @@ package gui;
  * @author ThomasV
  */
 import domein.DomeinController;
+import exceptions.NietGenoegGewonnenException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -114,8 +115,18 @@ public class MenuSchermController implements Initializable{
         
         if(mg!=0){
             Parent pr = MenuSchermController.this.sbs.maakParent();
-            this.sbs.geefController().setMoeilijkheidsGraad(mg);
-            WelkomController.sc.changeScene(pr);
+            
+            try{
+            
+                this.sbs.geefController().setMoeilijkheidsGraad(mg);
+                WelkomController.sc.changeScene(pr);
+            }catch(NietGenoegGewonnenException ngge){
+                WelkomController.Error("Niet genoeg gewonnen", "Je hebt nog niet genoeg spelletjes gewonnen",
+                        "Om een spel uit deze moeilijkheids graad te spelen moet je minstens twintig spelletjes spelen uit de vorige"
+                         +" moeilijkheidsgraad ");
+            }
+            
+
         }
     }
     

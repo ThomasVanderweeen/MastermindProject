@@ -162,9 +162,10 @@ public class UitdagingMapper {
    public String geefNaamTegenstanderID(Speler speler,int ID){
         try{
             PreparedStatement query = conn.prepareStatement("select spelerNaam from "
-                    + "ID222177_g77.Speler_Uitdaging where spelerNaam != ?and ID ="+ID+";");
+                    + "ID222177_g77.Speler_Uitdaging where spelerNaam != ? and ID ="+ID+";");
             
             query.setString(1, speler.getNaam());
+            
             try(ResultSet rs = query.executeQuery()){
                 rs.next();
                 return rs.getString("spelerNaam");
@@ -237,13 +238,12 @@ public class UitdagingMapper {
       private List<Integer> geefIDsopenstaandeUitdagingen(Speler speler) {
         List<Integer> IDs = new ArrayList<>();
         try {            
-            PreparedStatement query = conn.prepareStatement("select ID from"
+            PreparedStatement query = conn.prepareStatement("select ID from "
                     + "ID222177_g77.Speler_Uitdaging where geacepteerd = 0 and spelerNaam = ?;");
             query.setString(1, speler.getNaam());
-
+             
             try (ResultSet rs = query.executeQuery()) {
-
-                while (rs.next()) {
+                while(rs.next()){
                     IDs.add(rs.getInt("ID"));
                 }
             }
@@ -254,7 +254,7 @@ public class UitdagingMapper {
         return(IDs);
     }
 
-    public String[][] geefNaamUitdagerEnId(Speler speler, List<Integer> IDs){
+    private String[][] geefNaamUitdagerEnId(Speler speler, List<Integer> IDs){
             
             String[][] res = new String[IDs.size()][2];
             int indx=0;
@@ -267,24 +267,9 @@ public class UitdagingMapper {
     }
     
     public String[][] geefUitdagingenSpeler(Speler speler) {
-        
-            String[][] test = {{"uitdaging van andere speler."},{"uitdaging van andere speler."}};
-            
             List<Integer> IDs = geefIDsopenstaandeUitdagingen(speler);
-
             String[][] uitdagerEnId = geefNaamUitdagerEnId(speler, IDs);
             
-            
-            String[][] uitdagerEnMoeilijkheid = new String[IDs.size()][2];
-            for(int i= 0;i < uitdagerEnId.length;i++){
-                int ID = Integer.parseInt(uitdagerEnId[i][0]);
-                uitdagerEnMoeilijkheid[i][0] = uitdagerEnId[i][0];
-                String naam = uitdagerEnId[i][1];
-                uitdagerEnMoeilijkheid[i][1] = String.valueOf(SpelMapper.geefMoeilijkheidsGraad(naam, ID));
-            }
-            List<Integer> moeilijkheid = new ArrayList<>();
-            
-            return test;
-
+            return uitdagerEnId;
     }
 }
