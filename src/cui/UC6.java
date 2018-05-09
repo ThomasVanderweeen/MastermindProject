@@ -22,12 +22,14 @@ public class UC6 {
     protected static UC_Algemeen ua;
     private UC1 uc1;
     private UC5 uc5;
+    private UC3 uc3;
 
     public UC6(DomeinController dc, ResourceBundle r) {
         this.r = r;
         this.dc = dc;
         this.uc1 = new UC1(dc,r);
         this.uc5 = new UC5(dc,r);
+        this.uc3 = new UC3(dc,r);
     }
     
     public void main(){
@@ -59,7 +61,8 @@ public class UC6 {
             }
 
             int ID = Integer.valueOf(uitdagingen[keuze-1][0]);
-            toonOpties(ID);
+            String tegenstander = uitdagingen[keuze-1][1];
+            toonOpties(ID,tegenstander);
 
         }catch(GeenOpenstaandeUitdagingException goue){
             System.err.println(r.getString("geenBeschikbareUitdaging"));
@@ -71,7 +74,7 @@ public class UC6 {
     }  
 
 
-    private void toonOpties(int ID) {
+    private void toonOpties(int ID,String tegenstander) {
         int keuze =0 ;
         
         System.out.printf("%s%n1) %s%n2) %s%n3) %s%n%s",r.getString("uitdagingIntro"),
@@ -81,7 +84,7 @@ public class UC6 {
         try{
             keuze = UC1.ua.geefKeuze(1, 3);
         }catch(Exception e){
-            toonOpties(ID);
+            toonOpties(ID,tegenstander);
         }
         
         switch(keuze){
@@ -92,6 +95,11 @@ public class UC6 {
                 this.dc.verwijderUitdaging(ID);
                 System.out.println(r.getString("uitdagingVerwijderd"));
                 this.uc1.toonMogelijkheden();
+                break;
+            case 1:
+                this.dc.laadUitdaging(ID, tegenstander);
+                UC1.ua.geefSpelbordWeer();
+                uc3.start();
                 break;
             default:
                 System.out.println("nog niet geimp");

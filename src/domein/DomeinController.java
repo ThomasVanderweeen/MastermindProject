@@ -301,9 +301,8 @@ public class DomeinController {
     }
     
     public void laadUitdaging(int ID,String tegenstander){
-        //not yet implemented
-        /*eerste stap is het zetten van de geacepteerd naar 1 in db*/
-        /*tweede stap is het  laden van deze uitdaging*/
+        uitdagingRepository.accepteerUitdaging(ID, this.speler);
+        this.laadSpelUitdaging(ID,tegenstander);
     }
     
     private void laadSpelUitdaging(int ID,String tegenstander){

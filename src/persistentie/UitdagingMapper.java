@@ -272,4 +272,20 @@ public class UitdagingMapper {
             
             return uitdagerEnId;
     }
+    
+    public void accepteerUitdaging(int ID,Speler speler){
+        try{
+            PreparedStatement querry = conn.prepareStatement("UPDATE ID222177_g77.Speler_Uitdaging SET geacepteerd = 1 "
+                +"WHERE ID = "+ID+" AND spelerNaam = ?;");
+            
+            querry.setString(1, speler.getNaam());
+            querry.executeUpdate();
+            
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+    }
 }

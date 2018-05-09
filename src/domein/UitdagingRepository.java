@@ -59,4 +59,8 @@ public class UitdagingRepository {
     public String[][] geefLijstUitdagingen(Speler speler){
         return this.um.geefUitdagingenSpeler(speler);
     }
+    
+    public void accepteerUitdaging(int ID,Speler speler){
+        this.um.accepteerUitdaging(ID,speler);
+    }
 }
