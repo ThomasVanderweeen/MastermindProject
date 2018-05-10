@@ -81,13 +81,16 @@ public class SpelbordController implements Initializable
         return cb;
     }
     
-    private void buildGui(){
-        try{
-        
+    public void startNieuwSpel(){
+         try{
             WelkomController.dc.registreerSpel(this.moeilijkheidsGraad);
         }catch(NietGenoegGewonnenException ngge){
             throw ngge;
         }
+    }
+    
+    public void buildGui(){
+
         
         ObservableList<String> keuzes = FXCollections.observableList(Arrays.asList(this.kleuren));
         
@@ -98,6 +101,8 @@ public class SpelbordController implements Initializable
             keuze.setItems(keuzes);
             keuze.setValue(keuzes.get(0));
         }
+        
+        this.setSpelbord();
     }
     
     public void doePoging(){
@@ -188,7 +193,7 @@ public class SpelbordController implements Initializable
     
     protected void setMoeilijkheidsGraad(int mg){
         this.moeilijkheidsGraad = mg;
-        buildGui();
+        
     }
     
     public void opslaan(){

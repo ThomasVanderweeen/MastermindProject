@@ -97,7 +97,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="bekijkUitdagingen" mnemonicParsing="false" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Bekijk uitdagingen">
+            <Button fx:id="bekijkUitdagingen" mnemonicParsing="false" onAction="#bekijkUitdagingenGeklikt" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Bekijk uitdagingen">
                <VBox.margin>
                   <Insets bottom="1.0" />
                </VBox.margin>

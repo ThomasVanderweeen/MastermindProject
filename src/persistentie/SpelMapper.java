@@ -582,7 +582,7 @@ public class SpelMapper {
         return 0;
     }
     
-        private int geefMoeilijkheidsGraad(String naam, int id){
+    private int geefMoeilijkheidsGraad(String naam, int id){
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement(
                     "select moeilijkheidsGraad from ID222177_g77.Spel where" 
@@ -619,31 +619,6 @@ public class SpelMapper {
         
         return info;
     }
-        
-    private String getSpelNaam(int ID, String speler){
-        String spelNaam = "";
-        try{
-            PreparedStatement query = SpelerMapper.conn.prepareStatement("SELECT naam FROM ID222177_g77.Spel WHERE"
-                    +"uitdagingID = ? and spelerNaam = ?;");
-            query.setInt(1, ID);
-            query.setString(2, speler);
-            
-            try(ResultSet rs = query.executeQuery()){
-                if(rs.next()){
-                    spelNaam = rs.getString("naam");
-                }
-            }
-            
-        }catch(SQLException e){
-            if(e.hashCode()==933699219)
-                throw new ServerOnbereikbaarException();
-            else
-                throw new RuntimeException(e.getMessage());
-        }  
-        
-        return spelNaam;
-    }
-    
     
      /**
      * geefCountRijen haalt het aantal rijen van een bepaald spel uit de databank.

@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 public class MenuSchermController implements Initializable{
 
     private final ScorebordScherm sb = new ScorebordScherm();
-    //private final UitdagingenScherm us = new UitdagingenScherm();
+    private final UitdagingScherm us = new UitdagingScherm();
     private final SpelLadenScherm ss = new SpelLadenScherm();
     private final SpelbordScherm sbs = new SpelbordScherm();
     private DomeinController dc;
@@ -71,7 +71,7 @@ public class MenuSchermController implements Initializable{
         
         switch(taal){
             case "frans":
-                this.r = ResourceBundle.getBundle("resources/Français_fr");
+                this.r = ResourceBundle.getBundle("resources/FranÃ§ais_fr");
                 break;
             case "nederlands":
                 this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
@@ -119,6 +119,8 @@ public class MenuSchermController implements Initializable{
             try{
             
                 this.sbs.geefController().setMoeilijkheidsGraad(mg);
+                this.sbs.geefController().startNieuwSpel();
+                this.sbs.geefController().buildGui();
                 WelkomController.sc.changeScene(pr);
             }catch(NietGenoegGewonnenException ngge){
                 WelkomController.Error("Niet genoeg gewonnen", "Je hebt nog niet genoeg spelletjes gewonnen",
@@ -141,8 +143,9 @@ public class MenuSchermController implements Initializable{
     }
     
     public void bekijkUitdagingenGeklikt(){
-       // Parent pr = MenuSchermController.this.us.maakParent();
-        //WelkomController.sc.changeScene(pr);
+       Parent pr = MenuSchermController.this.us.maakParent();
+       UitdagingenController uc = this.us.geefController();
+       uc.toonUitdagingen();
     }
     
     public void bekijkScorebordGeklikt(){

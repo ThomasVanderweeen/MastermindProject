@@ -6,18 +6,34 @@
 package gui;
 
 import domein.DomeinController;
+import exceptions.GeenOpenstaandeUitdagingException;
+import exceptions.HeeftLopendeUitdagingException;
 import java.net.URL;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -27,167 +43,149 @@ import javafx.stage.Stage;
  */
 public class UitdagingenController implements Initializable
 {
-
-    private DomeinController dc;
-
+    private Dialog dg=null;
+    private int ID = 0;
+    private String naam = "";
+    private int mg =0;
+    private SpelbordScherm sb;
+    
     private ResourceBundle r;
-    @FXML
-    private Button engels;
-    @FXML
-    private Button frans;
-    @FXML
-    private Button nederlands;
-    @FXML
-    private Label uitdagingenLabel;
-    @FXML
-    private Label labelNaam;
-    @FXML
-    private Label labelMoeilijk;
-    @FXML
-    private Button naam1;
-    @FXML
-    private Button moeilijk1;
-    @FXML
-    private Button naam2;
-    @FXML
-    private Button moeilijk2;
-    @FXML
-    private Button naam3;
-    @FXML
-    private Button moeilijk3;
-    @FXML
-    private Button naam4;
-    @FXML
-    private Button moeilijk4;
-    @FXML
-    private Button naam5;
-    @FXML
-    private Button moeilijk5;
-    @FXML
-    private Button naam6;
-    @FXML
-    private Button moeilijk6;
-    @FXML
-    private Button naam7;
-    @FXML
-    private Button moeilijk7;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }
-
-    private void updateResourceBundle(String taal) {
-
-        switch (taal) {
-            case "frans":
-                this.r = ResourceBundle.getBundle("resources/Français_fr");
-                break;
-            case "nederlands":
-                this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
-                break;
-            case "engels":
-                this.r = ResourceBundle.getBundle("resources/English_en");
-                break;
-            default:
-                System.err.println("foute keuze");
-                break;
-        }
-
-        updateLabels();
-    }
-
-    private void updateLabels() {
-        uitdagingenLabel.setText(this.r.getString("uitdagingen"));
-        labelNaam.setText(this.r.getString("naamUitdager"));
-        labelMoeilijk.setText(this.r.getString("moeilijkheidsGraad"));
-
+    
+    public void closeDialog(){
+        Stage stg = (Stage)this.dg.getDialogPane().getScene().getWindow();
+        stg.close();
     }
 
     public void toonUitdagingen() {
+        try{
+            String[][] uitdagingen = WelkomController.dc.geefLijstUitdagingen();
+            String[] moeilijkheidsgraden = {WelkomController.r.getString("makkelijk"), WelkomController.r.getString("gemiddeld"),
+                WelkomController.r.getString("moeilijk")};
+            Label[] naam,moeilijkheidsgraad = new Label[uitdagingen.length];
+            
+        
+            ObservableList<UitdagingRij> lijst = FXCollections.observableArrayList();
+            for(String[] uitdaging:uitdagingen){
+                lijst.add(new UitdagingRij(Integer.valueOf(uitdaging[0]),
+                uitdaging[1],Integer.valueOf(uitdaging[2])));
+            }
+            
+            TableView<UitdagingRij> tv = new TableView<>();
+            
+            TableColumn<UitdagingRij,String> naamUitdager = new TableColumn<>("Naam");
+            naamUitdager.setMinWidth(100);
+            naamUitdager.setCellValueFactory(new PropertyValueFactory<>("naam"));
+            
+            TableColumn<UitdagingRij,String> mg = new TableColumn<>("MoesilijkheidsGraad");
+            mg.setMinWidth(150);
+            mg.setCellValueFactory(new PropertyValueFactory<>("moeilijkheidsGraad"));
+            
+            TableColumn<UitdagingRij,Button> accept = new TableColumn<>("");
+            accept.setMinWidth(150);
+            accept.setCellValueFactory(new PropertyValueFactory<>("accepteer"));
+            
+            tv.getColumns().addAll(naamUitdager,mg,accept);
+            tv.setItems(lijst);
+            
+            this.dg = new Dialog<>();
+            this.dg.getDialogPane().setContent(tv);
+            this.dg.setTitle("Accepteer Uitdaging");
 
-        List<Button> namen = new ArrayList<>();
-        namen.add(naam1);
-        namen.add(naam2);
-        namen.add(naam3);
-        namen.add(naam4);
-        namen.add(naam5);
-        namen.add(naam6);
-        namen.add(naam7);
-        List<Button> niveau = new ArrayList<>();
-        niveau.add(moeilijk1);
-        niveau.add(moeilijk2);
-        niveau.add(moeilijk3);
-        niveau.add(moeilijk4);
-        niveau.add(moeilijk5);
-        niveau.add(moeilijk6);
-        niveau.add(moeilijk7);
-
-        String[][] uitdagingen = dc.geefLijstUitdagingen();
-        String[] moeilijkheidsgraden = {r.getString("makkelijk"), r.getString("gemiddeld"), r.getString("moeilijk")};
-
-        for (int i = 0; i < namen.size(); i++) {
-            namen.get(i).setText(uitdagingen[i][1]);
-            niveau.get(i).setText(moeilijkheidsgraden[Integer.valueOf(uitdagingen[i][2]) - 1]);
+            Stage stg = (Stage)this.dg.getDialogPane().getScene().getWindow();
+            stg.setAlwaysOnTop(true);
+            stg.toFront();
+            this.dg.show();
+            
+        }catch(GeenOpenstaandeUitdagingException goue){
+            WelkomController.Error("Geen openstaande Exception", "Sorry je hebt geen openstaande uitdaging", "probeer later opnieuw");
+        }catch(HeeftLopendeUitdagingException hlue){
+            WelkomController.Error("heeft Lopende uitdaging", "Sorry je reeds een lopendeUitdaging", "Je hebt al reeds een lopende uitdaging.");
         }
+
 
     }
 
     public void kiesUitdaging() {
-        String[][] uitdagingen = dc.geefLijstUitdagingen();
-
-        List<Button> namen = new ArrayList<>();
-        namen.add(naam1);
-        namen.add(naam2);
-        namen.add(naam3);
-        namen.add(naam4);
-        namen.add(naam5);
-        namen.add(naam6);
-        namen.add(naam7);
-
-        List<Button> niveau = new ArrayList<>();
-        niveau.add(moeilijk1);
-        niveau.add(moeilijk2);
-        niveau.add(moeilijk3);
-        niveau.add(moeilijk4);
-        niveau.add(moeilijk5);
-        niveau.add(moeilijk6);
-        niveau.add(moeilijk7);
-
-        for (int i = 0; i < 7; i++) {
-                namen.get(i).setOnAction(e -> {
-                Alert mg = new Alert(Alert.AlertType.CONFIRMATION);
-
-                ButtonType verwijder = new ButtonType("Verwijder");
-                ButtonType accepteer = new ButtonType("Accepteer");
-                ButtonType cancel = new ButtonType("Anuleer");
-
-                mg.getButtonTypes().setAll(verwijder, accepteer, cancel);
-
-                Stage sg = (Stage) mg.getDialogPane().getScene().getWindow();
-                sg.setAlwaysOnTop(true);
-
-                verwijder.setOnAction(e-> {
-                    dc.verwijderUitdaging((uitdagingen[i][0].get(i)));
-                });
-            });
-        }
-        int ID = Integer.valueOf(uitdagingen[keuze - 1][0]);
-        String tegenstander = uitdagingen[keuze - 1][1];
+        BorderPane bp = new BorderPane();
+        
+        Label lb = new Label();
+        lb.setText("Wat wil je doen met deze uitdaging?");
+        bp.setCenter(lb);
+        
+        HBox hb = new HBox();
+        
+        Button verwijder = new Button();
+        verwijder.setText("Verwijder");
+        verwijder.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event)
+            {
+                UitdagingenController.this.closeDialog();
+                UitdagingenController.this.verwijderUitdaging();
+            } 
+        });
+        
+        Button accepteer = new Button();
+        accepteer.setText("Accepteer");
+        accepteer.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent event)
+            {
+                UitdagingenController.this.closeDialog();
+                UitdagingenController.this.accepteerUitdaging();
+            }
+            
+        });
+        
+        hb.getChildren().addAll(verwijder,accepteer);
+        bp.setBottom(hb);
+        
+        this.dg.getDialogPane().setContent(bp);
+        Stage stg = (Stage)this.dg.getDialogPane().getScene().getWindow();
+        stg.setAlwaysOnTop(true);
+        stg.toFront();
+        
+        this.dg.show();
+    }
+    
+    public void stelGegevensIn(int ID,String naam,int moeilijkheidsGraad){
+        this.ID = ID;
+        this.naam = naam;
+        this.mg = moeilijkheidsGraad;
+    }
+    
+    private void verwijderUitdaging(){
+        WelkomController.dc.verwijderUitdaging(this.ID);
+        
+        Alert al = new Alert(AlertType.CONFIRMATION);
+        al.setTitle("Uitdaging Verwijderd");
+        al.setContentText("De uitdaging is verwijderd");
+        al.setHeaderText("Uitdaging succesvol verwijderd");
+        
+        Stage stg = (Stage) al.getDialogPane().getScene().getWindow();
+        stg.setAlwaysOnTop(true);
+        stg.toFront();
+        
+        al.show();
+    }
+    
+    private void accepteerUitdaging(){
+        WelkomController.dc.laadUitdaging(ID, naam);
+        this.sb = new SpelbordScherm();
+        Parent pr = sb.maakParent();
+        
+        SpelbordController sc = sb.geefController();
+        sc.setMoeilijkheidsGraad(mg);
+        sc.buildGui();
+        
+        WelkomController.sc.changeScene(pr);
     }
 
-    @FXML
-    public void engelsGeklikt() {
-        updateResourceBundle("engels");
-    }
 
-    @FXML
-    public void fransGeklikt() {
-        updateResourceBundle("frans");
-    }
-
-    @FXML
-    public void nederlandsGeklikt() {
-        updateResourceBundle("nederlands");
-    }
 }

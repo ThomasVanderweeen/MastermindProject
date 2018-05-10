@@ -12,17 +12,23 @@ import javafx.scene.layout.BorderPane;
  * @author Michiel S.
  */
 public class UitdagingScherm extends BorderPane {
+        private static FXMLLoader fxml;
         public Parent maakParent(){
             Parent pr =null;
             
             try
             {
-                pr = FXMLLoader.load(getClass().getResource("Uitdaging.fxml"));
+                fxml = new FXMLLoader(getClass().getResource("Uitdagingen.fxml"));
+                pr = fxml.load();
             } catch (IOException ex)
             {
                 Logger.getLogger(UitdagingScherm.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             return pr;
+        }
+        
+        public static UitdagingenController geefController(){
+            return fxml.getController();
         }
 }
