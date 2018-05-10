@@ -134,7 +134,8 @@ public class MenuSchermController implements Initializable{
     
     public void laadGeklikt(){
         Parent pr = MenuSchermController.this.ss.maakParent();
-        WelkomController.sc.changeScene(pr);
+        SpelLadenController slc= this.ss.geefController();
+        slc.toonSpellen();
     }
     
     public void daagUitGeklikt(){

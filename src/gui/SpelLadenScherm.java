@@ -15,17 +15,22 @@ import javafx.scene.layout.AnchorPane;
  * @author ThomasV
  */
 public class SpelLadenScherm extends AnchorPane{
-    
+    private static FXMLLoader fxml;
     
     public Parent maakParent(){
         Parent pr = null;
         
         try{
-            pr = FXMLLoader.load(getClass().getResource("SpelLaden.fxml"));
+            this.fxml = new FXMLLoader(getClass().getResource("SpelLaden.fxml"));
+            pr = fxml.load();
         } catch (IOException ex){
           
         }
         
         return pr;
+    }
+    
+    public static SpelLadenController geefController(){
+        return fxml.getController();
     }
 }
