@@ -10,21 +10,26 @@ import java.net.URL;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author ThomasV
  */
-public class UitdagingenController implements Initializable {
+public class UitdagingenController implements Initializable
+{
 
     private DomeinController dc;
-    
+
     private ResourceBundle r;
     @FXML
     private Button engels;
@@ -66,14 +71,15 @@ public class UitdagingenController implements Initializable {
     private Button naam7;
     @FXML
     private Button moeilijk7;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-    private void updateResourceBundle(String taal){
-        
-        switch(taal){
+    }
+
+    private void updateResourceBundle(String taal) {
+
+        switch (taal) {
             case "frans":
                 this.r = ResourceBundle.getBundle("resources/Français_fr");
                 break;
@@ -87,20 +93,19 @@ public class UitdagingenController implements Initializable {
                 System.err.println("foute keuze");
                 break;
         }
-        
+
         updateLabels();
     }
-    
-    private void updateLabels(){
+
+    private void updateLabels() {
         uitdagingenLabel.setText(this.r.getString("uitdagingen"));
         labelNaam.setText(this.r.getString("naamUitdager"));
         labelMoeilijk.setText(this.r.getString("moeilijkheidsGraad"));
-        
-        
+
     }
-    
-    public void toonUitdagingen(){
-        
+
+    public void toonUitdagingen() {
+
         List<Button> namen = new ArrayList<>();
         namen.add(naam1);
         namen.add(naam2);
@@ -118,21 +123,19 @@ public class UitdagingenController implements Initializable {
         niveau.add(moeilijk6);
         niveau.add(moeilijk7);
 
-        
         String[][] uitdagingen = dc.geefLijstUitdagingen();
-        String[] moeilijkheidsgraden = {r.getString("makkelijk"),r.getString("gemiddeld"),r.getString("moeilijk")};
-        
-        for(int i = 0; i < namen.size(); i++){
+        String[] moeilijkheidsgraden = {r.getString("makkelijk"), r.getString("gemiddeld"), r.getString("moeilijk")};
+
+        for (int i = 0; i < namen.size(); i++) {
             namen.get(i).setText(uitdagingen[i][1]);
-            niveau.get(i).setText(moeilijkheidsgraden[Integer.valueOf(uitdagingen[i][2])-1]);
+            niveau.get(i).setText(moeilijkheidsgraden[Integer.valueOf(uitdagingen[i][2]) - 1]);
         }
-        
-        
+
     }
-    
-    public void kiesUitdaging(){
+
+    public void kiesUitdaging() {
         String[][] uitdagingen = dc.geefLijstUitdagingen();
-        
+
         List<Button> namen = new ArrayList<>();
         namen.add(naam1);
         namen.add(naam2);
@@ -141,7 +144,7 @@ public class UitdagingenController implements Initializable {
         namen.add(naam5);
         namen.add(naam6);
         namen.add(naam7);
-        
+
         List<Button> niveau = new ArrayList<>();
         niveau.add(moeilijk1);
         niveau.add(moeilijk2);
@@ -150,26 +153,41 @@ public class UitdagingenController implements Initializable {
         niveau.add(moeilijk5);
         niveau.add(moeilijk6);
         niveau.add(moeilijk7);
-        
-        naam1.setOnAction(e-> );        
-        int ID = Integer.valueOf(uitdagingen[keuze-1][0]);
-        String tegenstander = uitdagingen[keuze-1][1];
+
+        for (int i = 0; i < 7; i++) {
+                namen.get(i).setOnAction(e -> {
+                Alert mg = new Alert(Alert.AlertType.CONFIRMATION);
+
+                ButtonType verwijder = new ButtonType("Verwijder");
+                ButtonType accepteer = new ButtonType("Accepteer");
+                ButtonType cancel = new ButtonType("Anuleer");
+
+                mg.getButtonTypes().setAll(verwijder, accepteer, cancel);
+
+                Stage sg = (Stage) mg.getDialogPane().getScene().getWindow();
+                sg.setAlwaysOnTop(true);
+
+                verwijder.setOnAction(e-> {
+                    dc.verwijderUitdaging((uitdagingen[i][0].get(i)));
+                });
+            });
+        }
+        int ID = Integer.valueOf(uitdagingen[keuze - 1][0]);
+        String tegenstander = uitdagingen[keuze - 1][1];
     }
-    
-    
-    
+
     @FXML
-    public void engelsGeklikt(){
+    public void engelsGeklikt() {
         updateResourceBundle("engels");
     }
-    
+
     @FXML
-    public void fransGeklikt(){
+    public void fransGeklikt() {
         updateResourceBundle("frans");
     }
-    
+
     @FXML
-    public void nederlandsGeklikt(){
+    public void nederlandsGeklikt() {
         updateResourceBundle("nederlands");
     }
 }
