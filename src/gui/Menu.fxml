@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuSchermController">
+<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuSchermController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" nodeOrientation="INHERIT" pickOnBounds="true">
          <image>
@@ -93,7 +93,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="daagUit" mnemonicParsing="false" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Daag iemand uit">
+            <Button fx:id="daagUit" mnemonicParsing="false" onAction="#daagUitGeklikt" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Daag iemand uit">
                <VBox.margin>
                   <Insets bottom="1.0" />
                </VBox.margin>
@@ -109,7 +109,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="bekijkScorebord" mnemonicParsing="false" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Bekijk scorebord">
+            <Button fx:id="bekijkScorebord" mnemonicParsing="false" onAction="#bekijkScorebordGeklikt" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Bekijk scorebord">
                <VBox.margin>
                   <Insets bottom="-5.0" />
                </VBox.margin>

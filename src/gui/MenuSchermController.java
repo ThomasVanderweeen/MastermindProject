@@ -27,7 +27,6 @@ import javafx.stage.Stage;
 
 public class MenuSchermController implements Initializable{
 
-    private final ScorebordScherm sb = new ScorebordScherm();
     private DomeinController dc;
     private ResourceBundle r;
     
@@ -139,9 +138,9 @@ public class MenuSchermController implements Initializable{
     }
     
     public void daagUitGeklikt(){
-        //Parent pr = MenuSchermController.this.us.maakParent();
-        //UitdagenController uc = this.us.geefController();
-        //uc.toonUitdagen();
+        UitdagingStartenController usc = new UitdagingStartenController();
+        WelkomController.setController(usc);
+        usc.selecteerMoeilijkheidsgraad();
     }
     
     @FXML
@@ -152,10 +151,9 @@ public class MenuSchermController implements Initializable{
     }
     
     public void bekijkScorebordGeklikt(){
-        
-        Parent pr = sb.changeScreenToLogIn();
-        WelkomController.sc.changeScene(pr);
-    
+        ScorebordController sc = new ScorebordController();
+        WelkomController.setController(sc);
+        sc.toonMoeilijkheidsgraad(1);
     }
     
     private int vraagMoeilijkheidsGraad(){

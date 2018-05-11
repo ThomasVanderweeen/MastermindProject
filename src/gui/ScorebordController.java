@@ -45,7 +45,6 @@ public class ScorebordController implements Initializable
     private int ID = 0;
     private String naam = "";
     private int mg = 0;
-    private SpelbordScherm sb;
 
     private ResourceBundle r;
     @FXML
@@ -65,7 +64,6 @@ public class ScorebordController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        updateLabels();
         toonMoeilijkheidsgraad(1);
     }
 
@@ -73,55 +71,14 @@ public class ScorebordController implements Initializable
 
     }
 
-    public void stelGegevensIn(int ID, String naam, int moeilijkheidsGraad) {
 
-    }
 
-    private void updateResourceBundle(String taal) {
-        WelkomController.setResourceBundle(taal);
-        updateLabels();
-    }
-
-    private void updateLabels() {
-        makkelijk.setText(WelkomController.r.getString("makkelijk"));
-        gemiddeld.setText(WelkomController.r.getString("gemiddeld"));
-        moeilijk.setText(WelkomController.r.getString("moeilijk"));
-
-    }
-
-    @FXML
-    public void engelsGeklikt() {
-        updateResourceBundle("engels");
-    }
-
-    @FXML
-    public void fransGeklikt() {
-        updateResourceBundle("frans");
-    }
-
-    @FXML
-    public void nederlandsGeklikt() {
-        updateResourceBundle("nederlands");
-    }
-
-    @FXML
-    private void makkelijkGeklikt(ActionEvent event) {
-        toonMoeilijkheidsgraad(1);
-    }
-
-    @FXML
-    private void gemiddeldGeklikt(ActionEvent event) {
-        toonMoeilijkheidsgraad(2);
-    }
-
-    @FXML
-    private void moeilijkGeklikt(ActionEvent event) {
-        toonMoeilijkheidsgraad(3);
-    }
-
-    private void toonMoeilijkheidsgraad(int graad) {
+    public void toonMoeilijkheidsgraad(int graad) {
         List<String[]> spelers = new ArrayList<String[]>();
         spelers = WelkomController.dc.geefKlassement(graad);
+        dg = new Dialog();
+        dg.setTitle("MoeilijkheidsGraad");
+        
         int i = 1;
         
         scorebord.setCellFactory(TextFieldListCell.forListView());
@@ -134,6 +91,13 @@ public class ScorebordController implements Initializable
             scorebord.edit(i);
             i++;
         }
+        
+        dg.getDialogPane().setContent(scorebord);
+        Stage sg = (Stage) dg.getDialogPane().getScene().getWindow();
+        sg.setAlwaysOnTop(true);
+        sg.toFront();
+        
+        dg.show();
     }
 
 }
