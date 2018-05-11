@@ -31,6 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -101,7 +102,7 @@ public class UitdagingenController implements Initializable
             stg.setAlwaysOnTop(true);
             stg.toFront();
             stg.setOnCloseRequest(evt->stg.close());
-            
+            stg.getIcons().add(new Image("/gui/images/pika.png"));
             this.dg.show();
             
         }catch(GeenOpenstaandeUitdagingException goue){
@@ -151,6 +152,7 @@ public class UitdagingenController implements Initializable
         Stage stg = (Stage)this.dg.getDialogPane().getScene().getWindow();
         stg.setAlwaysOnTop(true);
         stg.toFront();
+        stg.getIcons().add(new Image("/gui/images/pika.png"));
         
         this.dg.show();
     }

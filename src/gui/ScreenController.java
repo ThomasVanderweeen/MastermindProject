@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  *
@@ -32,12 +33,14 @@ public class ScreenController extends Application{
       wc.setWelkomScherm(ws);
       
       Scene scene = new Scene(root);
-      
+      scene.getWindow();
       primary.setTitle("Mastermind G77");
       primary.setScene(scene);
       primary.getIcons().add(new Image("/gui/images/pika.png"));
-
       primary.setAlwaysOnTop(true);
+
+      primary.setResizable(false);
+      
       primary.show();
     }
     

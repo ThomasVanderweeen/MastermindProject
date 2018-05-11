@@ -17,6 +17,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -84,7 +85,8 @@ public class SpelLadenController implements Initializable {
             stg.setAlwaysOnTop(true);
             stg.toFront();
             stg.setOnCloseRequest(evt->stg.close());
-            
+            stg.getIcons().add(new Image("/gui/images/pika.png"));
+                    
             dg.show();
         }catch(SpelerHeeftGeenOpgeslagenSpellenException shg){
             WelkomController.Error("Geen opgeslagen spellen", "je hebt geen opgeslagen spellen", "je hebt geen opgeslagen spellen");

@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -47,6 +48,7 @@ public class UitdagingStartenController implements Initializable{
         Stage stg = (Stage) this.dg.getDialogPane().getScene().getWindow();
         stg.setAlwaysOnTop(true);
         stg.toFront();
+        stg.getIcons().add(new Image("/gui/images/pika.png"));
         stg.setOnCloseRequest(new EventHandler<WindowEvent>(){
             @Override
             public void handle(WindowEvent event)

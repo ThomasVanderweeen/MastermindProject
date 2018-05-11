@@ -285,6 +285,8 @@ public class SpelbordController implements Initializable
         Stage stg = (Stage) geefNaam.getDialogPane().getScene().getWindow();
         stg.setAlwaysOnTop(true);
         stg.toFront();
+        stg.getIcons().add(new Image("/gui/images/pika.png"));
+                    
         
         Optional<String> naam = geefNaam.showAndWait();
         if(naam.isPresent()){
@@ -306,7 +308,8 @@ public class SpelbordController implements Initializable
             stg.setAlwaysOnTop(true);
             stg.toFront();
             stg.showAndWait();
-            
+            stg.getIcons().add(new Image("/gui/images/pika.png"));
+                    
             toonMenu();
         }catch(SpelNaamNietUniekException sn){
             error("Deze spelnaam is al in gebruik. Probeer opnieuw.","spelnaam niet uniek");

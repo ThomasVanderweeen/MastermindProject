@@ -54,12 +54,12 @@
                         <Label fx:id="foutmelding" prefHeight="17.0" prefWidth="388.0" />
                      </children>
                   </HBox>
-                  <Button fx:id="logInKnop" mnemonicParsing="false" onAction="#logIn" prefWidth="150.0" text="Log In">
+                  <Button fx:id="logInKnop" mnemonicParsing="false" onAction="#logIn" prefWidth="300.0" text="Log In">
                      <font>
                         <Font size="24.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="-30.0" />
+                        <Insets left="50.0" top="-30.0" />
                      </VBox.margin>
                   </Button>
                </children>
