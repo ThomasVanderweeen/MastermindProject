@@ -156,8 +156,10 @@ public class MenuSchermController implements Initializable{
     }
     
     public void bekijkScorebordGeklikt(){
-        Parent pr = MenuSchermController.this.sb.maakParent();
+        
+        Parent pr = sb.changeScreenToLogIn();
         WelkomController.sc.changeScene(pr);
+    
     }
     
     private int vraagMoeilijkheidsGraad(){

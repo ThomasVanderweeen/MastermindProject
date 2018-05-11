@@ -45,4 +45,10 @@ public class SpelerRepository {
     public List<String[]> geefBeschikbareSpelers(int moeilijkheidsGraad,String spelerNaam){
         return mapper.geefBeschikbareSpelersUitdaging(moeilijkheidsGraad,spelerNaam);
     }
+    
+    
+
+    public List<String[]> geefKlassement(int graad) {
+        return mapper.geefKlassement(graad);
+    }
 }

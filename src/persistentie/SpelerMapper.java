@@ -197,4 +197,44 @@ public class SpelerMapper {
         
         return spelers;
     }
+    
+    public List<String[]> geefKlassement(int graad){
+        List<String[]> spelers = new ArrayList<String[]>();
+        String difficulty = "";
+        switch(graad){
+            case 1: difficulty = "gewonnenMakkelijk";
+                    break;
+            case 2: difficulty = "gewonnenGemiddeld";
+                    break;
+            case 3: difficulty = "gewonnenMoeilijk";
+                    break;
+        }
+        try{
+            PreparedStatement query;
+            
+                query = conn.prepareStatement(
+                        "SELECT naam, "+difficulty+" FROM ID222177_g77.Speler ORDER BY "+difficulty+";");
+                        
+            
+            try(ResultSet rs = query.executeQuery()){
+                  
+                while(rs.next()){
+                    String[] speler = new String[2];
+                    speler[0] = rs.getString("naam");
+                    speler[1] = rs.getString(difficulty);
+                    spelers.add(speler);
+                }
+                
+             }
+
+        
+        }catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+        
+        return spelers;
+    }
 }

@@ -333,6 +333,9 @@ public class DomeinController {
         else
             throw new GeenOpenstaandeUitdagingException();
     }
-    
+
+    public List<String[]> geefKlassement(int graad) {
+        return spelerRepository.geefKlassement(graad);
+    }
 
 }
