@@ -13,23 +13,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LogInController">
+<AnchorPane prefHeight="620.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LogInController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+      <ImageView fitHeight="620.0" fitWidth="1250.0" pickOnBounds="true">
          <image>
             <Image url="@images/bergen.jpg" />
          </image>
       </ImageView>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1250.0">
          <center>
-            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" maxHeight="240.0" maxWidth="1250.0" opacity="0.8" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="logInLabel" alignment="CENTER" opacity="0.8" prefWidth="600.0" style="-fx-background-color: white;" text="Log In">
+                  <Label fx:id="logInLabel" alignment="CENTER" prefWidth="600.0" style="-fx-background-color: white;" text="Log In">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" opacity="0.8" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: white;">
+                  <HBox alignment="CENTER" maxWidth="600.0" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: white;">
                      <children>
                         <Label fx:id="gebruikersnaamLabel" alignment="CENTER_RIGHT" prefWidth="100.0" text="Gebruikersnaam:">
                            <HBox.margin>
@@ -39,7 +39,7 @@
                         <TextField fx:id="logInNaam" maxWidth="1.7976931348623157E308" prefWidth="300.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" opacity="0.8" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;">
+                  <HBox alignment="CENTER" maxWidth="600.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;">
                      <children>
                         <Label fx:id="wachtwoordLabel" alignment="CENTER_RIGHT" prefWidth="100.0" text="Wachtwoord:">
                            <HBox.margin>
@@ -54,7 +54,7 @@
                         <Label fx:id="foutmelding" prefHeight="17.0" prefWidth="388.0" />
                      </children>
                   </HBox>
-                  <Button fx:id="logInKnop" mnemonicParsing="false" onAction="#logIn" opacity="0.8" prefWidth="150.0" text="Log In">
+                  <Button fx:id="logInKnop" mnemonicParsing="false" onAction="#logIn" prefWidth="150.0" text="Log In">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -66,9 +66,9 @@
             </VBox>
          </center>
          <top>
-            <HBox alignment="TOP_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox alignment="TOP_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="1250.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="600.0">
+                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="1261.0">
                      <left>
                         <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
                            <children>
@@ -103,7 +103,7 @@
                         </HBox>
                      </left>
                      <right>
-                        <ImageView fitHeight="150.0" fitWidth="492.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
+                        <ImageView fitHeight="150.0" fitWidth="274.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
                            <image>
                               <Image url="@images/logoroodblauwrmm.png" />
                            </image>

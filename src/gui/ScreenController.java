@@ -6,6 +6,7 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -34,6 +35,7 @@ public class ScreenController extends Application{
       
       primary.setTitle("Mastermind G77");
       primary.setScene(scene);
+      primary.getIcons().add(new Image("/gui/images/pika.png"));
 
       primary.setAlwaysOnTop(true);
       primary.show();

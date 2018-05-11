@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuSchermController">
+<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="620.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuSchermController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" nodeOrientation="INHERIT" pickOnBounds="true">
+      <ImageView fitHeight="620.0" fitWidth="1250.0" nodeOrientation="INHERIT" pickOnBounds="true">
          <image>
             <Image url="@images/bergen.jpg" />
          </image>
       </ImageView>
-      <BorderPane layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="133.0" prefWidth="600.0">
+      <BorderPane layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="162.0" prefWidth="1250.0">
          <left>
             <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
                <children>
@@ -59,17 +59,15 @@
                </image>
             </ImageView>
          </right>
-         <center>
-            <Label fx:id="naam" opacity="0.8" style="-fx-background-color: white;" textFill="#322f2f" underline="true" BorderPane.alignment="CENTER">
+      </BorderPane>
+      <VBox alignment="CENTER" layoutY="198.0" opacity="0.75" prefHeight="317.0" prefWidth="1250.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="naam" textFill="#322f2f">
                <font>
-                  <Font size="26.0" />
+                  <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-         </center>
-      </BorderPane>
-      <VBox alignment="CENTER" layoutY="120.0" prefHeight="206.0" prefWidth="600.0">
-         <children>
-            <Label fx:id="logInLabel" alignment="CENTER" opacity="0.8" prefWidth="200.0" style="-fx-background-color: white;" text="Menu">
+            <Label fx:id="logInLabel" alignment="CENTER" prefWidth="200.0" text="Menu">
                <font>
                   <Font size="48.0" />
                </font>
@@ -77,7 +75,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Button fx:id="startSpel" mnemonicParsing="false" onAction="#startGeklikt" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Start een Spel" textAlignment="CENTER">
+            <Button fx:id="startSpel" mnemonicParsing="false" onAction="#startGeklikt" prefWidth="200.0" style="-fx-background-color: white;" text="Start een Spel" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="1.0" />
                </VBox.margin>
@@ -85,7 +83,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="laadSpel" mnemonicParsing="false" onAction="#laadGeklikt" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Laad een Spel">
+            <Button fx:id="laadSpel" mnemonicParsing="false" onAction="#laadGeklikt" prefWidth="200.0" style="-fx-background-color: white;" text="Laad een Spel">
                <VBox.margin>
                   <Insets bottom="1.0" />
                </VBox.margin>
@@ -93,7 +91,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="daagUit" mnemonicParsing="false" onAction="#daagUitGeklikt" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Daag iemand uit">
+            <Button fx:id="daagUit" mnemonicParsing="false" onAction="#daagUitGeklikt" prefWidth="200.0" style="-fx-background-color: white;" text="Daag iemand uit">
                <VBox.margin>
                   <Insets bottom="1.0" />
                </VBox.margin>
@@ -101,7 +99,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="bekijkUitdagingen" mnemonicParsing="false" onAction="#bekijkUitdagingenGeklikt" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Bekijk uitdagingen">
+            <Button fx:id="bekijkUitdagingen" mnemonicParsing="false" onAction="#bekijkUitdagingenGeklikt" prefWidth="200.0" style="-fx-background-color: white;" text="Bekijk uitdagingen">
                <VBox.margin>
                   <Insets bottom="1.0" />
                </VBox.margin>
@@ -109,7 +107,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="bekijkScorebord" mnemonicParsing="false" onAction="#bekijkScorebordGeklikt" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Bekijk scorebord">
+            <Button fx:id="bekijkScorebord" mnemonicParsing="false" onAction="#bekijkScorebordGeklikt" prefWidth="200.0" style="-fx-background-color: white;" text="Bekijk scorebord">
                <VBox.margin>
                   <Insets bottom="-5.0" />
                </VBox.margin>

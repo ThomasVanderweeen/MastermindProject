@@ -232,7 +232,7 @@ public class SpelbordController implements Initializable
     @FXML
     public void opslaan(){
         String naam = geefNaam();
-        if(!naam.isEmpty())
+        if(naam!=null)
             slaOp(naam);
     }
     

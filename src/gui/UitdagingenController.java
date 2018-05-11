@@ -100,6 +100,8 @@ public class UitdagingenController implements Initializable
             Stage stg = (Stage)this.dg.getDialogPane().getScene().getWindow();
             stg.setAlwaysOnTop(true);
             stg.toFront();
+            stg.setOnCloseRequest(evt->stg.close());
+            
             this.dg.show();
             
         }catch(GeenOpenstaandeUitdagingException goue){

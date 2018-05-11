@@ -154,12 +154,12 @@ public class SpelMapper {
         
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement("INSERT INTO ID222177_g77.Spel VALUES (?,"+mg+",?,"+
-                    (spel.getUitdagingID()==0?"null":String.valueOf(spel.getUitdagingID()))+");");
+                    (spel.getUitdagingID()==-1?"null":String.valueOf(spel.getUitdagingID()))+");");
             
             String spelNaam = spel.getNaam();
             /*indien het deel is van een uitdaging moet de vorige versie verwijderd worden
             enkel indien dit geen error geeft uiteraard*/
-            if(!(spel.getUitdagingID()==0)&&spelNaam!=null){
+            if(!(spel.getUitdagingID()==-1)&&spelNaam!=null){
                     String vorigSpel = geefVorigeNaamUitdagingSpel(spel);
                     verwijderSpel(vorigSpel);
             }
@@ -324,7 +324,7 @@ public class SpelMapper {
         String aantal="";
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement("SELECT count(naam) FROM ID222177_g77.Spel WHERE spelerNaam = ?"
-                    + " AND uitdagingID=-1;");
+                    + " AND uitdagingID is null;");
             
             query.setString(1, spelernaam);
             
@@ -370,7 +370,7 @@ public class SpelMapper {
                 
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement
-        ("SELECT naam,moeilijkheidsgraad FROM ID222177_g77.Spel WHERE spelerNaam = ? and uitdagingID=-1;");
+        ("SELECT naam,moeilijkheidsgraad FROM ID222177_g77.Spel WHERE spelerNaam = ? and uitdagingID is null;");
             
             query.setString(1, spelernaam);
             

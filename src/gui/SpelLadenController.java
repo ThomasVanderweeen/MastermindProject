@@ -83,6 +83,7 @@ public class SpelLadenController implements Initializable {
             Stage stg = (Stage) dg.getDialogPane().getScene().getWindow();
             stg.setAlwaysOnTop(true);
             stg.toFront();
+            stg.setOnCloseRequest(evt->stg.close());
             
             dg.show();
         }catch(SpelerHeeftGeenOpgeslagenSpellenException shg){

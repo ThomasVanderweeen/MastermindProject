@@ -22,6 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -112,7 +113,6 @@ public class MenuSchermController implements Initializable{
     @FXML
     public void startGeklikt(){
         int mg = vraagMoeilijkheidsGraad();
-        
         if(mg!=0){
             try{
                 WelkomController.veranderScherm("Spelbord.fxml");
@@ -162,24 +162,25 @@ public class MenuSchermController implements Initializable{
         ButtonType gemakkelijk = new ButtonType("Gemakkelijk");
         ButtonType gemiddeld = new ButtonType("Gemiddeld");
         ButtonType moeilijk = new ButtonType("Moeilijk");
-        ButtonType cancel = new ButtonType("Anuleer");
-        
-        mg.getButtonTypes().setAll(gemakkelijk,gemiddeld,moeilijk,cancel);
+
+        mg.getButtonTypes().setAll(gemakkelijk,gemiddeld,moeilijk);
         
         Stage sg = (Stage)mg.getDialogPane().getScene().getWindow();
         sg.setAlwaysOnTop(true);
+        sg.setOnCloseRequest(evt->{sg.close();});
+        sg.getIcons().add(new Image("/gui/images/pika.png"));
         
         Optional<ButtonType> res = mg.showAndWait();
         
-        switch(res.get().getText()){
-            case "Gemakkelijk":
-                return 1;
-            case "Gemiddeld":
-                return 2;
-            case "Moeilijk":
-                return 3;
-            case "Anuleer":
-                return 0;
+        if(res.isPresent()){
+            switch(res.get().getText()){
+                case "Gemakkelijk":
+                    return 1;
+                case "Gemiddeld":
+                    return 2;
+                case "Moeilijk":
+                    return 3;
+            }
         }
         
         return 0;

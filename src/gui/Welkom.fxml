@@ -11,18 +11,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WelkomController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WelkomController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+      <ImageView fitHeight="620.0" fitWidth="1250.0" pickOnBounds="true">
          <image>
             <Image url="@images/bergen.jpg" />
          </image>
       </ImageView>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1250.0">
          <top>
-            <HBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" nodeOrientation="RIGHT_TO_LEFT" BorderPane.alignment="CENTER">
+            <HBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" nodeOrientation="RIGHT_TO_LEFT" prefHeight="130.0" prefWidth="694.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="130.0" prefWidth="750.0">
+                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="130.0" prefWidth="1254.0">
                      <left>
                         <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
                            <children>
@@ -54,10 +54,10 @@
                         </HBox>
                      </left>
                      <center>
-                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="146.0" prefWidth="445.0" BorderPane.alignment="CENTER" />
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="146.0" prefWidth="1250.0" BorderPane.alignment="CENTER" />
                      </center>
                      <right>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                        <ImageView fitHeight="128.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                            <image>
                               <Image url="@images/logoroodblauwrmm.png" />
                            </image>
@@ -68,9 +68,9 @@
             </HBox>
          </top>
          <center>
-            <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" maxHeight="212.0" opacity="0.8" prefHeight="24.0" prefWidth="1250.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="welkomLabel" alignment="CENTER" contentDisplay="CENTER" opacity="0.8" prefWidth="600.0" style="-fx-background-color: white;" text="Welkom bij Mastermind" textAlignment="CENTER" textFill="#000000f2">
+                  <Label fx:id="welkomLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="238.0" prefWidth="1250.0" text="Welkom bij Mastermind" textAlignment="CENTER" textFill="#000000f2">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -78,12 +78,12 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="terugkerendLabel" alignment="CENTER" opacity="0.8" prefWidth="600.0" style="-fx-background-color: white;" text="Terugkerende speler?">
+                  <Label fx:id="terugkerendLabel" alignment="CENTER" prefWidth="1250.0" text="Terugkerende speler?">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="logInKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#LoginGeklikt" onMouseClicked="#LoginGeklikt" opacity="0.8" prefWidth="600.0" style="-fx-background-color: white;" text="Log In">
+                  <Button fx:id="logInKeuze" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#LoginGeklikt" onMouseClicked="#LoginGeklikt" prefWidth="1250.0" style="-fx-background-color: white;" text="Log In">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -91,12 +91,12 @@
                         <Insets bottom="1.0" />
                      </VBox.margin>
                   </Button>
-                  <Label fx:id="geenAccountLabel" alignment="CENTER" opacity="0.8" prefWidth="600.0" style="-fx-background-color: white;" text="Nog geen account?">
+                  <Label fx:id="geenAccountLabel" alignment="CENTER" prefWidth="1250.0" text="Nog geen account?">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="registreerKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registreergeklikt" onMouseClicked="#registreergeklikt" opacity="0.8" prefWidth="600.0" style="-fx-background-color: white;" text="Registreer">
+                  <Button fx:id="registreerKeuze" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registreergeklikt" onMouseClicked="#registreergeklikt" prefWidth="1250.0" style="-fx-background-color: white;" text="Registreer">
                      <font>
                         <Font size="24.0" />
                      </font>
