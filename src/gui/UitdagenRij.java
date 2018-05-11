@@ -30,7 +30,7 @@ public class UitdagenRij {
             @Override
             public void handle(ActionEvent event)
             {
-                UitdagingenController uc = UitdagingScherm.geefController();
+                UitdagingenController uc = (UitdagingenController) WelkomController.geefController();
                 uc.closeDialog();
                 uc.stelGegevensIn(UitdagenRij.this.ID,UitdagenRij.this.naam,
                         Arrays.asList(mg).indexOf(UitdagenRij.this.moeilijkheidsGraad)+1);

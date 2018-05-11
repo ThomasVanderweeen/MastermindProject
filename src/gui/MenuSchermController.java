@@ -28,9 +28,6 @@ import javafx.stage.Stage;
 public class MenuSchermController implements Initializable{
 
     private final ScorebordScherm sb = new ScorebordScherm();
-    private final UitdagingScherm us = new UitdagingScherm();
-    private final SpelLadenScherm ss = new SpelLadenScherm();
-    private final SpelbordScherm sbs = new SpelbordScherm();
     private DomeinController dc;
     private ResourceBundle r;
     
@@ -118,14 +115,13 @@ public class MenuSchermController implements Initializable{
         int mg = vraagMoeilijkheidsGraad();
         
         if(mg!=0){
-            Parent pr = MenuSchermController.this.sbs.maakParent();
-            
             try{
-            
-                this.sbs.geefController().setMoeilijkheidsGraad(mg);
-                this.sbs.geefController().startNieuwSpel();
-                this.sbs.geefController().buildGui();
-                WelkomController.sc.changeScene(pr);
+                WelkomController.veranderScherm("Spelbord.fxml");
+                SpelbordController sc = (SpelbordController) WelkomController.geefController();
+                sc.setMoeilijkheidsGraad(mg);
+                sc.startNieuwSpel();
+                sc.buildGui();
+
             }catch(NietGenoegGewonnenException ngge){
                 WelkomController.Error("Niet genoeg gewonnen", "Je hebt nog niet genoeg spelletjes gewonnen",
                         "Om een spel uit deze moeilijkheids graad te spelen moet je minstens twintig spelletjes spelen uit de vorige"
@@ -137,8 +133,8 @@ public class MenuSchermController implements Initializable{
     }
     
     public void laadGeklikt(){
-        Parent pr = MenuSchermController.this.ss.maakParent();
-        SpelLadenController slc= this.ss.geefController();
+        SpelLadenController slc = new SpelLadenController();
+        WelkomController.setController(slc);
         slc.toonSpellen();
     }
     
@@ -150,8 +146,8 @@ public class MenuSchermController implements Initializable{
     
     @FXML
     public void bekijkUitdagingenGeklikt(){
-       Parent pr = MenuSchermController.this.us.maakParent();
-       UitdagingenController uc = this.us.geefController();
+       UitdagingenController uc = new UitdagingenController();
+       WelkomController.setController(uc);
        uc.toonUitdagingen();
     }
     

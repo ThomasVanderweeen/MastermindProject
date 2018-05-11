@@ -35,7 +35,7 @@ public class laadSpelRij {
             @Override
             public void handle(ActionEvent event)
             {
-                SpelLadenController slc = SpelLadenScherm.geefController();
+                SpelLadenController slc = (SpelLadenController) WelkomController.geefController();
                 slc.stelGegevensIn(naam, moeilijkheidsGraad);
                 slc.sluitDialog();
                 slc.laadSpel();

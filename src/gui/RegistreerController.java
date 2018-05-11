@@ -27,8 +27,6 @@ import javafx.stage.Stage;
 public class RegistreerController{
    
     private ResourceBundle r;
-    private final ScreenController sc = new ScreenController();
-    private final LogInScherm ls = new LogInScherm();
     
     @FXML
     private Label registreerLabel;
@@ -77,8 +75,7 @@ public class RegistreerController{
                 registreerWachtwoordBevestigen.getText().trim()
                 );
 
-        Parent pr = RegistreerController.this.ls.changeScreenToLogIn();
-        RegistreerController.this.sc.changeScene(pr);
+        WelkomController.veranderScherm("LogIn.fxml");
         }
         catch(IllegalArgumentException e){
             if(!registreerWachtwoord.getText().trim().equals(registreerWachtwoordBevestigen.getText().trim())){

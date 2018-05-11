@@ -210,9 +210,7 @@ public class SpelbordController implements Initializable
     }
     
     private void toonMenu(){
-        MenuScherm ms = new MenuScherm();
-        Parent pr = ms.maakParent();
-        WelkomController.sc.changeScene(pr);
+        WelkomController.veranderScherm("Menu.fxml");
     }
     
     private void voorzieMoeilijk(){

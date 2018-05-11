@@ -28,7 +28,6 @@ public class SpelLadenController implements Initializable {
     private String naam;
     private int mg;
     private Dialog dg;
-    private SpelbordScherm ss;
     
     /**
      * Initializes the controller class.
@@ -93,15 +92,12 @@ public class SpelLadenController implements Initializable {
     
     public void laadSpel(){
         WelkomController.dc.selecteerSpel(naam);
+
+        WelkomController.veranderScherm("Spelbord.fxml");
         
-        this.ss = new SpelbordScherm();
-        Parent pr = this.ss.maakParent();
-        
-        SpelbordController sc = this.ss.geefController();
+        SpelbordController sc = (SpelbordController)WelkomController.geefController();
         sc.setMoeilijkheidsGraad(mg);
         sc.buildGui();
-        
-        WelkomController.sc.changeScene(pr);
     }
     
 }
