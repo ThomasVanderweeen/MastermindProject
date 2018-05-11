@@ -85,7 +85,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="laadSpel" mnemonicParsing="false" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Laad een Spel">
+            <Button fx:id="laadSpel" mnemonicParsing="false" onAction="#laadGeklikt" opacity="0.75" prefWidth="200.0" style="-fx-background-color: white;" text="Laad een Spel">
                <VBox.margin>
                   <Insets bottom="1.0" />
                </VBox.margin>
