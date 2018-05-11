@@ -143,8 +143,9 @@ public class MenuSchermController implements Initializable{
     }
     
     public void daagUitGeklikt(){
-       // Parent pr = MenuSchermController.this.us.maakParent();
-        //WelkomController.sc.changeScene(pr);
+        Parent pr = MenuSchermController.this.us.maakParent();
+        UitdagenController uc = this.us.geefController();
+        uc.toonUitdagen();
     }
     
     @FXML
