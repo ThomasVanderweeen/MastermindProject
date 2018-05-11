@@ -90,8 +90,9 @@ public class MenuSchermController implements Initializable{
         daagUit.setText(this.r.getString("daagUit"));
         bekijkUitdagingen.setText(this.r.getString("uitgedaagd"));
         bekijkScorebord.setText(this.r.getString("bekijkScorebord"));
-        
     }
+    
+
     
     
     

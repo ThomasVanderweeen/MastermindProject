@@ -1,5 +1,6 @@
 package gui;
 
+
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -8,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -38,9 +40,8 @@ public class ScreenController extends Application{
       primary.setScene(scene);
       primary.getIcons().add(new Image("/gui/images/pika.png"));
       primary.setAlwaysOnTop(true);
-
+      startMuziek();
       primary.setResizable(false);
-      
       primary.show();
     }
     
@@ -54,4 +55,9 @@ public class ScreenController extends Application{
        primary.show();
     }
     
+    private void startMuziek(){
+        AudioClip song = new AudioClip(getClass().getResource("/gui/jazz.wav").toString());
+        song.play();
+    }
+ 
 }

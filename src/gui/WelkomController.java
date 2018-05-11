@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 /**
@@ -68,7 +69,7 @@ public class WelkomController implements Initializable
         this.setResourceBundle(taal);
         updateLabels();
     }
-    
+
     private void updateLabels(){
         welkomLabel.setText(r.getString("welkom"));
         terugkerendLabel.setText(r.getString("terugKerend"));
