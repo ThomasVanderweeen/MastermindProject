@@ -7,7 +7,10 @@ package gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -16,12 +19,48 @@ import javafx.fxml.Initializable;
  */
 public class ScorebordController implements Initializable {
 
+    @FXML
+    private Button engels;
+    @FXML
+    private Button frans;
+    @FXML
+    private Button nederlands;
+
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        updateLabels();
     }    
+    
+    
+    private void updateResourceBundle(String taal){
+        WelkomController.setResourceBundle(taal);
+        updateLabels();
+    }
+    
+    private void updateLabels(){
+        
+        
+    }
+    
+    
+    
+    @FXML
+    public void engelsGeklikt(){
+        updateResourceBundle("engels");
+    }
+    
+    @FXML
+    public void fransGeklikt(){
+        updateResourceBundle("frans");
+    }
+    
+    @FXML
+    public void nederlandsGeklikt(){
+        updateResourceBundle("nederlands");
+    } 
     
 }

@@ -36,7 +36,7 @@ public class LogInController implements Initializable
     @FXML
     private Button frans;
     @FXML
-    private ImageView nederlands;
+    private Button nederlands;
     @FXML
     private Label logInLabel;
     @FXML
@@ -76,18 +76,22 @@ public class LogInController implements Initializable
     
     
     
+    @FXML
     public void engelsGeklikt(){
         updateResourceBundle("engels");
     }
     
+    @FXML
     public void fransGeklikt(){
         updateResourceBundle("frans");
     }
     
+    @FXML
     public void nederlandsGeklikt(){
         updateResourceBundle("nederlands");
     }
     
+    @FXML
     public void logIn(){
         try{
         WelkomController.dc.meldAan(logInNaam.getText(),

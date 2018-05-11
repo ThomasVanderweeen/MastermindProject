@@ -41,7 +41,7 @@ public class MenuSchermController implements Initializable{
     private Button frans;
 
     @FXML
-    private ImageView nederlands;
+    private Button nederlands;
 
     @FXML
     private Label logInLabel;
@@ -71,7 +71,7 @@ public class MenuSchermController implements Initializable{
         
         switch(taal){
             case "frans":
-                this.r = ResourceBundle.getBundle("resources/FranÃ§ais_fr");
+                this.r = ResourceBundle.getBundle("resources/Français_fr");
                 break;
             case "nederlands":
                 this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
@@ -88,28 +88,32 @@ public class MenuSchermController implements Initializable{
     }
     
     private void updateLabels(){
-        startSpel.setText(this.r.getString("startSpelGUI"));
-        laadSpel.setText(this.r.getString("laadSpelGUI"));
-        daagUit.setText(this.r.getString("daagUitGUI"));
-        bekijkUitdagingen.setText(this.r.getString("bekijkUitdagingenGUI"));
-        bekijkScorebord.setText(this.r.getString("bekijkScorebordGUI"));
+        startSpel.setText(this.r.getString("startSpel"));
+        laadSpel.setText(this.r.getString("spelLaden"));
+        daagUit.setText(this.r.getString("daagUit"));
+        bekijkUitdagingen.setText(this.r.getString("uitgedaagd"));
+        bekijkScorebord.setText(this.r.getString("bekijkScorebord"));
         
     }
     
     
     
+    @FXML
     public void engelsGeklikt(){
         updateResourceBundle("engels");
     }
     
+    @FXML
     public void fransGeklikt(){
         updateResourceBundle("frans");
     }
     
+    @FXML
     public void nederlandsGeklikt(){
         updateResourceBundle("nederlands");
     }
 
+    @FXML
     public void startGeklikt(){
         int mg = vraagMoeilijkheidsGraad();
         
@@ -142,6 +146,7 @@ public class MenuSchermController implements Initializable{
         //WelkomController.sc.changeScene(pr);
     }
     
+    @FXML
     public void bekijkUitdagingenGeklikt(){
        Parent pr = MenuSchermController.this.us.maakParent();
        UitdagingenController uc = this.us.geefController();

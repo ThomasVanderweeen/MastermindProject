@@ -25,6 +25,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -39,7 +40,7 @@ public class SpelbordController implements Initializable
     @FXML
     private Button frans;
     @FXML
-    private ImageView nederlands;
+    private Button nederlands;
 
     @FXML
     private ComboBox keuze0;
@@ -61,14 +62,47 @@ public class SpelbordController implements Initializable
     private GridPane evaluatie;
     
     private final String[] kleuren = WelkomController.dc.geefKleuren();
+    @FXML
+    private AnchorPane window;
+    @FXML
+    private Button doePoging;
     
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        updateLabels();
     }    
+    
+    
+    private void updateResourceBundle(String taal){
+        WelkomController.setResourceBundle(taal);
+        updateLabels();
+    }
+    
+    private void updateLabels(){
+        opslaanKnop.setText(WelkomController.r.getString("slaOp"));
+        doePoging.setText(WelkomController.r.getString("wachtwoord"));
+        
+    }
+    
+    
+    
+    @FXML
+    public void engelsGeklikt(){
+        updateResourceBundle("engels");
+    }
+    
+    @FXML
+    public void fransGeklikt(){
+        updateResourceBundle("frans");
+    }
+    
+    @FXML
+    public void nederlandsGeklikt(){
+        updateResourceBundle("nederlands");
+    } 
     
     private ComboBox[] getKeuzeBoxen(){
         ComboBox[] cb = {keuze0,keuze1,keuze2,keuze3};
@@ -105,6 +139,7 @@ public class SpelbordController implements Initializable
         this.setSpelbord();
     }
     
+    @FXML
     public void doePoging(){
         String[] kleuren =  WelkomController.dc.geefKleuren();
         int[] poging = new int[4];
@@ -196,6 +231,7 @@ public class SpelbordController implements Initializable
         
     }
     
+    @FXML
     public void opslaan(){
         String naam = geefNaam();
         if(!naam.isEmpty())
