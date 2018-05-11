@@ -44,12 +44,6 @@ import javafx.stage.Stage;
 public class UitdagenController implements Initializable
 {
     private Dialog dg=null;
-    private int ID = 0;
-    private String naam = "";
-    private int mg =0;
-    private SpelbordScherm sb;
-    
-    private ResourceBundle r;
 
 
 
@@ -63,6 +57,16 @@ public class UitdagenController implements Initializable
         stg.close();
     }
 
+    public void toonMoeilijkheidsGraden(){
+        this.dg = new Dialog();
+        List<String[]> mg = WelkomController.dc.geefMoeilijkheidsGraden();
+        for(String[] m:mg){
+            for(String data:m){
+                System.out.println(data);
+            }
+        }
+    }
+    
     public void toonSpelers() {
         try{
             String[][] uitdagingen = WelkomController.dc.geefLijstUitdagingen();
@@ -103,8 +107,6 @@ public class UitdagenController implements Initializable
             stg.toFront();
             this.dg.show();
             
-        }catch(GeenOpenstaandeUitdagingException goue){
-            WelkomController.Error("Geen openstaande Exception", "Sorry je hebt geen openstaande uitdaging", "probeer later opnieuw");
         }catch(HeeftLopendeUitdagingException hlue){
             WelkomController.Error("heeft Lopende uitdaging", "Sorry je reeds een lopendeUitdaging", "Je hebt al reeds een lopende uitdaging.");
         }
@@ -112,80 +114,6 @@ public class UitdagenController implements Initializable
 
     }
 
-    public void kiesUitdaging() {
-        BorderPane bp = new BorderPane();
-        
-        Label lb = new Label();
-        lb.setText("Wat wil je doen met deze uitdaging?");
-        bp.setCenter(lb);
-        
-        HBox hb = new HBox();
-        
-        Button verwijder = new Button();
-        verwijder.setText("Verwijder");
-        verwijder.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event)
-            {
-                UitdagingenController.this.closeDialog();
-                UitdagingenController.this.verwijderUitdaging();
-            } 
-        });
-        
-        Button accepteer = new Button();
-        accepteer.setText("Accepteer");
-        accepteer.setOnAction(new EventHandler<ActionEvent>(){
-            public void handle(ActionEvent event)
-            {
-                UitdagingenController.this.closeDialog();
-                UitdagingenController.this.accepteerUitdaging();
-            }
-            
-        });
-        
-        hb.getChildren().addAll(verwijder,accepteer);
-        bp.setBottom(hb);
-        
-        this.dg.getDialogPane().setContent(bp);
-        Stage stg = (Stage)this.dg.getDialogPane().getScene().getWindow();
-        stg.setAlwaysOnTop(true);
-        stg.toFront();
-        
-        this.dg.show();
-    }
-    
-    public void stelGegevensIn(int ID,String naam,int moeilijkheidsGraad){
-        this.ID = ID;
-        this.naam = naam;
-        this.mg = moeilijkheidsGraad;
-    }
-    
-    private void verwijderUitdaging(){
-        WelkomController.dc.verwijderUitdaging(this.ID);
-        
-        Alert al = new Alert(AlertType.CONFIRMATION);
-        al.setTitle("Uitdaging Verwijderd");
-        al.setContentText("De uitdaging is verwijderd");
-        al.setHeaderText("Uitdaging succesvol verwijderd");
-        
-        Stage stg = (Stage) al.getDialogPane().getScene().getWindow();
-        stg.setAlwaysOnTop(true);
-        stg.toFront();
-        
-        al.show();
-    }
-    
-    private void accepteerUitdaging(){
-        WelkomController.dc.laadUitdaging(ID, naam);
-        this.sb = new SpelbordScherm();
-        Parent pr = sb.maakParent();
-        
-        SpelbordController sc = sb.geefController();
-        sc.setMoeilijkheidsGraad(mg);
-        sc.buildGui();
-        
-        WelkomController.sc.changeScene(pr);
-    }
 
 
 }

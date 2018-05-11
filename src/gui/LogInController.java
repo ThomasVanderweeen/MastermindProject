@@ -31,12 +31,7 @@ public class LogInController implements Initializable
 
     private ResourceBundle r;
     
-    @FXML
-    private Button engels;
-    @FXML
-    private Button frans;
-    @FXML
-    private Button nederlands;
+
     @FXML
     private Label logInLabel;
     @FXML
@@ -49,8 +44,6 @@ public class LogInController implements Initializable
     private PasswordField logInWachtwoord;
     @FXML
     private Button logInKnop;
-    @FXML
-    private Label foutmelding;
 
     /**
      * Initializes the controller class.
@@ -114,9 +107,7 @@ public class LogInController implements Initializable
     }
     
     public void openMenu(){
-        MenuScherm ms = new MenuScherm();
-        Parent pr = ms.maakParent();
-        WelkomController.sc.changeScene(pr);
+        WelkomController.veranderScherm("Menu.fxml");
     }
-    
+
 }

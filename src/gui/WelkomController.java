@@ -6,11 +6,15 @@
 package gui;
 
 import domein.DomeinController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -29,10 +33,10 @@ import javafx.stage.Stage;
 public class WelkomController implements Initializable
 {
     protected final static ScreenController sc = new ScreenController();
-    private final LogInScherm ls = new LogInScherm();
-    private final RegistreerScherm rs = new RegistreerScherm();
     protected final static DomeinController dc = new DomeinController();
     protected static ResourceBundle r;
+    private static FXMLFuncties wsc;
+
     
     @FXML
     private ImageView nederlands;
@@ -74,8 +78,7 @@ public class WelkomController implements Initializable
     }
     
     public void registreergeklikt(){
-        Parent pr = WelkomController.this.rs.maakParent();
-        WelkomController.this.sc.changeScene(pr);
+        veranderScherm("Registreer.fxml");
     }
     
     
@@ -93,8 +96,11 @@ public class WelkomController implements Initializable
     }
     
     public void LoginGeklikt(){
-        Parent pr = ls.changeScreenToLogIn();
-        WelkomController.sc.changeScene(pr);
+        veranderScherm("LogIn.fxml");
+    }
+    
+    public void setWelkomScherm(FXMLFuncties ws){
+       wsc = ws;
     }
     
     protected static void setResourceBundle(String taal){
@@ -127,4 +133,18 @@ public class WelkomController implements Initializable
         al.showAndWait();
     }
     
+    
+    protected static void veranderScherm(String resource){
+        Parent pr = wsc.maakParent(resource);
+        sc.changeScene(pr);
+    }
+    
+    protected static Object geefController(){
+        return wsc.geefController();
+    }
+        
+    protected static void setController(Object controller){
+        wsc.setController(controller);
+    }
+   
 }

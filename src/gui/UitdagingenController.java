@@ -47,8 +47,7 @@ public class UitdagingenController implements Initializable
     private int ID = 0;
     private String naam = "";
     private int mg =0;
-    private SpelbordScherm sb;
-    
+
     private ResourceBundle r;
 
 
@@ -177,14 +176,12 @@ public class UitdagingenController implements Initializable
     
     private void accepteerUitdaging(){
         WelkomController.dc.laadUitdaging(ID, naam);
-        this.sb = new SpelbordScherm();
-        Parent pr = sb.maakParent();
+        WelkomController.veranderScherm("spelbord.fxml");
         
-        SpelbordController sc = sb.geefController();
+        SpelbordController sc = (SpelbordController) WelkomController.geefController();
         sc.setMoeilijkheidsGraad(mg);
         sc.buildGui();
         
-        WelkomController.sc.changeScene(pr);
     }
 
 

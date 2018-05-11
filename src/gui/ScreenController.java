@@ -24,7 +24,12 @@ public class ScreenController extends Application{
     public void start(Stage primaryStage) throws IOException {
       setPrimary(primaryStage);  
 
-      Parent root = new WelkomScherm();
+      FXMLFuncties ws = new FXMLFuncties();
+      Parent root = ws.maakParent("Welkom.fxml");
+      
+      WelkomController wc = (WelkomController)ws.geefController();
+      wc.setWelkomScherm(ws);
+      
       Scene scene = new Scene(root);
       
       primary.setTitle("Mastermind G77");
@@ -43,4 +48,5 @@ public class ScreenController extends Application{
        primary.setScene(scene);
        primary.show();
     }
+    
 }
