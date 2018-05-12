@@ -17,6 +17,10 @@ public class Gemiddeld extends MoeilijkheidsGraad {
     
     /**
      * genereerCode geneert een code waarvan de kleuren willekeurig gekozen worden.
+     * 
+     * @see getKleuren
+     * @see getAantalPosities
+     * @author Ferre
      * @return List CodePin (Object)
      */
     @Override

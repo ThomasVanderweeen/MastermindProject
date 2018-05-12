@@ -17,8 +17,11 @@ public class CodePin extends Pin{
     private static final String[] GELDIGE_KLEUREN = new String[] {"groen","geel","paars","blauw","oranje","bruin","roze","cyaan"};
 
     /**
-     * Constructor voor een codepin object die kleur als een String meekrijgt. De constructor gebruikt bepaalGeldigeKleur om na te gaan of de kleur gebruikt kan worden.
+     * Constructor voor een codepin object die kleur als een String meekrijgt. 
+     * De constructor gebruikt bepaalGeldigeKleur om na te gaan of de kleur gebruikt kan worden.
      *
+     * @see bepaalGeldigeKleur
+     * @author Thomas
      * @param kleur de kleur van de codepin
      */
     public CodePin(String kleur) {
@@ -29,6 +32,7 @@ public class CodePin extends Pin{
     /**
      * Constuctor voor een codepin object die de kleur als een integer meekrijgt.
      * 
+     * @author Thomas
      * @param kleur kleur van de codepin
      */
     public CodePin(int kleur){
@@ -38,6 +42,8 @@ public class CodePin extends Pin{
      /**
      * getKleur geeft de kleur van een codepin object.
      * 
+     * @see getKleur
+     * @author Thomas
      * @return String 
      */
     @Override
@@ -46,7 +52,12 @@ public class CodePin extends Pin{
     }
     
     /**
-     * bepaaldGeldigeKleur gaat na of de ingegeven kleur voorkomt in de array met geldige kleuren. Zoniet, werpt hij een inputmismatch exception.
+     * bepaaldGeldigeKleur gaat na of 
+     * de ingegeven kleur voorkomt in de array met geldige kleuren.
+     * Zoniet, werpt hij een inputmismatch exception.
+     * 
+     * @author Thomas
+     * @throws InputMismatchException
      * @param kleur kleur die gecontrolleerd wordt.
      */
     @Override
@@ -58,6 +69,7 @@ public class CodePin extends Pin{
      /**
      * getGeldigeKleuren geeft een array met daarin alle geldige kleuren voor een codepin.
      * 
+     * @author Thomas
      * @return String[]
      */
     public static String[] getGeldigeKleuren(){

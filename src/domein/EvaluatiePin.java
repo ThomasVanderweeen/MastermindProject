@@ -19,6 +19,8 @@ public class EvaluatiePin extends Pin{
     /**
      * Constructor voor een evaluatiepin object. Gebruikt bepaalGeldigeKleur om na te gaan of de meegegeven kleur geldig is.
      * 
+     * @author Thomas
+     * @see bepaalGeldigeKleur
      * @param kleur kleur van de evaluatiepin
      */
     public EvaluatiePin(String kleur) {
@@ -29,6 +31,7 @@ public class EvaluatiePin extends Pin{
     /**
      * Constructor voor een evaluatiepin object. Krijgt kleur mee als een int.
      * 
+     * @author Ferre
      * @param kleur kleur van het object.
      */
     public EvaluatiePin(int kleur){
@@ -38,6 +41,8 @@ public class EvaluatiePin extends Pin{
     /**
      * getKleur geeft de kleur van een pin object. 
      * 
+     * @see getKleur
+     * @author Ferre
      * @return String
      */
     @Override
@@ -46,8 +51,12 @@ public class EvaluatiePin extends Pin{
     }
     
     /**
-     * bepaalGeldigeKleur gaat na of de meegegeven kleur voorkomt in de array met alle geldige kleuren. Zoniet werpt het een inputmismatch exception.
+     * bepaalGeldigeKleur gaat na of de meegegeven kleur 
+     * voorkomt in de array met alle geldige kleuren. 
+     * Zoniet werpt het een inputmismatch exception.
      * 
+     * @author Ferre
+     * @throws InputMismatchException
      * @param kleur kleur die gecontrolleerd wordt.
      */
     @Override

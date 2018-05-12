@@ -7,21 +7,50 @@ import java.util.List;
 public abstract class MoeilijkheidsGraad {
     private final int aantalPosities,aantalPinnen;
     
+    /**
+     * constructor voor de moeilijkheidsgraad 
+     * 
+     * @author Ferre
+     * @param aantalPosities
+     * @param aantalPinnen
+     */
     public MoeilijkheidsGraad(int aantalPosities, int aantalPinnen){
         this.aantalPinnen = aantalPinnen;
         this.aantalPosities = aantalPosities;
     }
     
+    /**
+     * abstracte methode die de code van elke pin teruggeeft
+     * 
+     * @return List
+     */
     public abstract List<CodePin> genereerCode(); 
     
+    /**
+     * getKleuren geeft de kleuren die een pin kan hebben terug 
+     * 
+     * @see getGeldigeKleuren
+     * @author Ferre
+     * @return String[]
+     */
     protected static String[] getKleuren(){
         return CodePin.getGeldigeKleuren();
     }
-    
+    /**
+     * getAantalPosities geeft het aantal posities voor de moeilijkheidsgraad in kwestie
+     * 
+     * @author Ferre
+     * @return int
+     */
     protected int getAantalPosities(){
         return this.aantalPosities;
     }
-    
+    /**
+     * getAantalPinnen geeft het aantal pinnen voor de moeilijkheidsgraad
+     * 
+     * @author Ferre
+     * @return int 
+     */
     protected int getAantalPinnen(){
         return this.aantalPinnen;
     }

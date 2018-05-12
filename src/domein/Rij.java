@@ -18,6 +18,7 @@ public class Rij {
     /**
      * Constructor voor een rij object. 
      * 
+     * @author Thomas
      * @param aantalPosities aantal positities in de rij. 
      */
     public Rij(int aantalPosities){
@@ -30,6 +31,7 @@ public class Rij {
     /**
      * doePoging zet de int[] array poging om in een CodePin[] array.
      * 
+     * @author Thomas
      * @param poging int array die wordt omgezet in een codepin array.
      */
     public void doePoging(int[] poging){
@@ -43,6 +45,7 @@ public class Rij {
     /**
      * getEvaluatie returned een evaluatie van een rij object. 
      * 
+     * @author Thomas
      * @return evaluatie. 
      */
     public List<EvaluatiePin> getEvaluatie() {
@@ -52,7 +55,8 @@ public class Rij {
     /**
      * getPoging returned een poging van een rij object.
      * 
-     * @return List<CodePin>
+     * @author Thomas
+     * @return List
      */
     public List<CodePin> getPoging(){
         return this.poging;
@@ -61,6 +65,7 @@ public class Rij {
     /**
      * heeftEvaluatie gaat na of een rij object al een evaluatie heeft.
      * 
+     * @author Thomas
      * @return boolean
      */
     public boolean heeftEvaluatie(){
@@ -70,6 +75,7 @@ public class Rij {
     /**
      * stelEvaluatieIn voegt een evaluatie toe aan een rij object. 
      * 
+     * @author Thomas
      * @param evaluatie evaluatie die aan de rij wordt toegevoegd.
      */
     public void stelEvaluatieIn(int[] evaluatie){

@@ -16,6 +16,11 @@ public class Moeilijk extends MoeilijkheidsGraad{
     
     /**
      * genereerCode geneert een code waarvan de kleuren willekeurig gekozen worden.
+     * 
+     * @see getKleuren
+     * @see getAantalPosities
+     * @see getAantalPinnen
+     * @author Thomas
      * @return List CodePin
      */
     @Override

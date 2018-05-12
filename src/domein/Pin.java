@@ -15,6 +15,7 @@ public abstract class Pin {
     /**
      * Constructor voor een pin object.
      * 
+     * @author Thomas
      * @param kleur kleur van de pin.
      */
     public Pin(String kleur) {
@@ -24,6 +25,7 @@ public abstract class Pin {
     /**
      * Geeft de kleur van een pin object als returnwaarde. 
      * 
+     * @author Thomas
      * @return String
      */
     public String getKleur() {
@@ -33,6 +35,7 @@ public abstract class Pin {
     /**
      * Abstracte methode die wordt overschreven in de subclasses.
      * 
+     * @author Thomas
      * @param kleur kleur die gecontrolleerd wordt.
      */
     protected abstract void bepaalGeldigeKleur(String kleur);

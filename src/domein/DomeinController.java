@@ -522,7 +522,7 @@ public class DomeinController {
             throw new GeenOpenstaandeUitdagingException();
     }
     /**
-     * geefKlassement geeft een lijst van stringarrays terug met daarin de ....
+     * geefKlassement geeft een lijst van stringarrays terug met daarin het de spelers in het klassement
      * 
      * @see geefKlassement
      * @author Ferre

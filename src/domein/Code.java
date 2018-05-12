@@ -9,7 +9,7 @@ public class Code {
      /**
      * setMoeilijkheidsGraad wijzigt de waarde van de moeilijkheidsgraad van een
      * code object.
-     *
+     * @author Thomas
      * @param moeilijkheidsgraad de nieuwe waarde voor moeilijkheidsgraad.
      */
     private void setMoeiljkheidsGraad(int moeilijkheidsgraad){
@@ -30,6 +30,9 @@ public class Code {
      * Constructor voor een code object. aan de hand van de meegegeven
      * moeilijkheisdgraad wordt een random code gegenereerd.
      *
+     * @see setMoeilijkheidsGraad
+     * @see genereerCode
+     * @author Thomas
      * @param moeilijkheidsGraad moeilijkheidsgraad waarvoor een code wirdt
      * gegenereerd.
      */
@@ -42,6 +45,8 @@ public class Code {
      * Constructor voor een code object waarbij de code als List CodePin wordt meegegeven.
      * Gebruikt bij het laden van een spel waarbij eerste de codepinnen worden gegenereerd
      * en vervolgens de rest van het spel.
+     * 
+     * @author Thomas
      * @param code de code
      * @param mg moeilijkheidsgraad van de code.
      */
@@ -54,6 +59,8 @@ public class Code {
      * getCode geeft een lijst van codePin's weer
      * Methode retourneerd een lijst van codepin's is later belangerijk voor
      * kleur opvraag, vergelijking,...
+     * 
+     * @author Thomas
      * @return List CodePin
      */
     public List<CodePin> getCode() {
@@ -63,6 +70,7 @@ public class Code {
      /**
      *Geeft de moeilijkheids Graad van het code object weer
      *
+     * @author Thomas
      * @return MoeilijkheidsGraad (Object)
      */
     public MoeilijkheidsGraad getMoeilijkheidsGraad() {
@@ -75,6 +83,10 @@ public class Code {
      * Geeft het aantal posities van de code
      * maakte gebruik van de moeilijkheidsGraad om het aantal posities in de code
      * weer te geven.
+     * 
+     * 
+     * @see getAantalPosities
+     * @author Thomas
      * @return het aantal posities (Int)
      */
     public int geefAantalPosities(){
