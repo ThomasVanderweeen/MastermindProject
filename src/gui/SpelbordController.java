@@ -95,7 +95,7 @@ public class SpelbordController implements Initializable
      */
     private void updateLabels(){
         opslaanKnop.setText(WelkomController.r.getString("slaOp"));
-        doePoging.setText(WelkomController.r.getString("wachtwoord"));
+        doePoging.setText(WelkomController.r.getString("doeZet"));
         
     }
     
