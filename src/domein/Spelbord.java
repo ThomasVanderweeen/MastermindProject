@@ -15,6 +15,9 @@ public class Spelbord {
     /**
      * constructor voor een Spelbord object.
      * 
+     * @see vulRijenOp
+     * @see getCode
+     * @author Ferre
      * @param code code van het spel.
      */
     public Spelbord(Code code){
@@ -27,6 +30,9 @@ public class Spelbord {
     /**
      * constructor voor een Spelbord object.
      * 
+     * @see vulRijenOp
+     * @see getCode
+     * @author Ferre
      * @param moeilijkheidsGraad moeilijkdsgraad van het spel.
      */
     public Spelbord(int moeilijkheidsGraad){
@@ -39,6 +45,8 @@ public class Spelbord {
     /**
      * getCode geeft de code van een spelbord object.
      * 
+     * @see getCode
+     * @author Ferre
      * @return List(CodePin) List(CodePin)
      */
     public List<CodePin> getCode(){
@@ -48,6 +56,7 @@ public class Spelbord {
     /**
      * vulRijenOp vult een rij op met ints.
      * 
+     * @author Ferre
      * @param lengte de lengte van de rij.
      */
     private void vulRijenOp(int lengte){
@@ -59,6 +68,7 @@ public class Spelbord {
     /**
      * getRijen geeft de rijen van een spelbord. 
      * 
+     * @author Ferre
      * @return Rij[]
      */
     public Rij[] getRijen(){
@@ -68,6 +78,7 @@ public class Spelbord {
     /**
      * getCodeGeraden geeft true weer als de code geraden is, en anders false.
      * 
+     * @author Ferre
      * @return boolean
      */
     public boolean getCodeGeraden(){
@@ -77,6 +88,10 @@ public class Spelbord {
     /**
      * voegPogingToe voegt een poging toe aan een rij.
      * 
+     * @see geldigePoging
+     * @see doePoging
+     * @see evalueerPoging
+     * @author Ferre
      * @param poging poging die wordt toegevoegd.
      * @param rij rij waaraan de poging wordt toegevoegd.
      */
@@ -89,6 +104,9 @@ public class Spelbord {
     /**
      * geldigePoging controleert of de poging geldig is door de lengte te controleren.
      * 
+     * @see geefAantalPosities
+     * @throws OngeldigePogingException
+     * @author Ferre
      * @param poging poging die gecontroleerd wordt. 
      */
     private void geldigePoging(int[] poging){
@@ -102,6 +120,12 @@ public class Spelbord {
      * Makkelijk: juiste locatie en kleur = zwart, juiste kleur = wit, niets = leeg
      * Normaal/Moeilijk: zelfde als makkelijk maar de evaluatiepinnen worden niet meer op de juiste plaats gezet.
      * 
+     * @see getPoging
+     * @see getKleur
+     * @see getCode
+     * @see getMoeilijkheidsGraad
+     * @see stelEvaluatieIn
+     * @author Ferre
      * @param rij rij die wordt geëvalueerd
      */
     public void evalueerPoging(int rij){
@@ -170,6 +194,8 @@ public class Spelbord {
     /**
      * geefMoeilijkheidsGraad geeft de moeilijkheidsgraad van een spelbord object.
      * 
+     * @see getMoeilijkheidsGraad
+     * @author Ferre
      * @return int
      */
     public int geefMoeilijkheidsGraad(){

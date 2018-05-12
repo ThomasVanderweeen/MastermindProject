@@ -217,7 +217,6 @@ public class DomeinController {
      * deze wordt geregistreerd, en als de speler met die zet wint
      * wordt het aantal wins voor betreffende moeilijkheidsgraad verhoogd met 1.
      * 
-<<<<<<< HEAD
      * @see doePoging
      * @see isGewonnen
      * @see geefMoeilijkheidsGraad
@@ -225,13 +224,9 @@ public class DomeinController {
      * @see updateScore
      * @see getUitdagingID
      * @see updateUitdaging
-     * 
-     * 
      * @author Ferre
      * @param poging 
-=======
      * @param poging Integer[]
->>>>>>> a6f145f3fa10f254c3de0342e8a253190ce589b7
      */
     public void doePoging(int[] poging){
         this.spel.doePoging(poging);
