@@ -14,7 +14,7 @@ import exceptions.SpelerBestaatAlException;
 import exceptions.SpelerHeeftGeenOpgeslagenSpellenException;
 import java.util.InputMismatchException;
 /**
- *
+ * Functionaliteit UC1 zit hier geimplementeerd
  * @author Groep 77
  */
 public class UC1 {
@@ -22,21 +22,44 @@ public class UC1 {
     private final Scanner sc = new Scanner(System.in);
     private ResourceBundle r;
     protected static UC_Algemeen ua;
-     /* Hier gaat de applicatie komen veronderstel ik*/
+    /**
+     * Constructor maakt ook DomeinController instantie aan
+     * @see domein.DomeinController#DomeinController()  domeinController
+     * @author Ferre
+     */
     public UC1(){
         this.dc = new DomeinController();
     }
     
+    /**
+     * constructor waarbij beide parameters al zijn meegegeven
+     * DomeinController en ResourceBundle worden ingesteld
+     * @param dc DomeinController
+     * @param r ResourceBundle
+     * @author Ferre
+     */
     public UC1(DomeinController dc, ResourceBundle r){
         this.dc = dc;
         this.r = r;
     }
     
+    /**
+     * hoofd verloop van de applicatie zit hierin vervat
+     * @author Michiel S.
+     * @see #taalSelectie() taalSelectie;
+     * @see #toonMenu() toonMenu
+     */
     public void Start(){
         taalSelectie();
         toonMenu();
     }
     
+    /**
+     * vraagt taal en stelt de resource bundle in vangt llegalArgumentException
+     * en InputMismatchException op.
+     * @author Ferre
+     * 
+     */
     private void taalSelectie(){
         boolean taalGeselecteerd = false;
         do {
@@ -79,6 +102,13 @@ public class UC1 {
 
     }
     
+    /**
+     * dient voor het registreren en aanmalden. Vangt ook alle mogelijke exceptions op uit deze acties.
+     * @author Michiel S.
+     * @see #meldAan() meldAan
+     * @see #toonMogelijkheden() toonMogelijkheden
+     * @see #toonMenu() toonMenus
+     */
     private void toonMenu(){
         int keuze = 0;
         
@@ -136,11 +166,22 @@ public class UC1 {
             }
     }
     
+    /**
+     * Vraagt naar de keuze
+     * @author Thomas
+     * @param boodschap String
+     * @return Integer
+     */
     private int geefKeuzeIn(String boodschap){
         System.out.print(boodschap);
         return this.sc.nextInt();
     }
     
+    /**
+     * meld de gebruiker aan doormiddel van de domeinController
+     * @see domein.DomeinController#meldAan(java.lang.String, java.lang.String) meldAan
+     * @author Ferre
+     */
     private void meldAan(){
         System.out.print(r.getString("naamInvoer"));
         String naam = this.sc.next();
@@ -151,7 +192,10 @@ public class UC1 {
         dc.meldAan(naam, wachtwoord);
    }
     
-        
+   /**
+    * registreert de gebruiker
+    * @
+    */
     private void registreer(){
         System.out.print(r.getString("registreerNaam"));
         String naam = this.sc.next();
