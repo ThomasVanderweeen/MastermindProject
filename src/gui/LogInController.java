@@ -44,6 +44,16 @@ public class LogInController implements Initializable
     private PasswordField logInWachtwoord;
     @FXML
     private Button logInKnop;
+    @FXML
+    private Button engels;
+    @FXML
+    private Button frans;
+    @FXML
+    private Button nederlands;
+    @FXML
+    private Button terugKnop;
+    @FXML
+    private Label foutmelding;
 
     /**
      * Initializes the controller class.
@@ -108,6 +118,10 @@ public class LogInController implements Initializable
     
     public void openMenu(){
         WelkomController.veranderScherm("Menu.fxml");
+    }
+
+    @FXML
+    private void terugKnopGeklikt(ActionEvent event) {
     }
 
 }

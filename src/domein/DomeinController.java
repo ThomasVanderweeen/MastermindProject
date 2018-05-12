@@ -200,16 +200,28 @@ public class DomeinController {
                 uitdagingRepository.updateUitdaging(this.uitdaging);
         }
     }
-    
+    /**
+     * isEindeSpel bepaalt of het einde van het spel is bereikt 
+     * 
+     * @return boolean 
+     */
     public boolean isEindeSpel(){
         return this.spel.bepaalEindeSpel();
     }
-    
+    /**
+     * isGewonnen bepaalt of de speler is gewonnen 
+     * 
+     * @return boolean 
+     */
     public boolean isGewonnen(){
         return this.spel.isGewonnen();
     }
     
-
+    /**
+     * slaOp slaat het spel op om later verder te spelen.
+     * 
+     * @param naam dit is de naam van het spel 
+     */
     public void slaOp(String naam){
         try{
             if(!(spelRepository.controleerNaam(naam))){
@@ -221,7 +233,14 @@ public class DomeinController {
         }
             
     }
-    
+    /**
+     * geefEindSituatie geeft de gegevens van het spel door, na het spel in een 
+     * dubbele array te zetten 
+     * wanneer het spel is gewonnen
+     * 
+     * 
+     * @return String[][]  
+     */
     public String[][] geefEindSituatie(){
         String[][] eindSituatie = new String[3][4];
         
@@ -236,16 +255,37 @@ public class DomeinController {
         }
         return eindSituatie;
     }
-    
+    /**
+     * geefOpgeslagenSpellen geeft een 2dimensionale array terug waarin alle 
+     * opgeslagen spellen van de huidige speler staan
+     * 
+     * 
+     * @return String[][]  
+     */
     public String[][] geefOpgeslagenSpellen(){
         return spelRepository.toonSpellen(this.speler.getNaam());
     }
-    
+    /**
+     * selecteerSpel stelt het huidige spel in op het via de parameter 
+     * geselecteerde opgeslagen spel, daarna wordt het geselecteerde spel
+     * uit de database verwijderd
+     * 
+     * 
+     * @param naam   
+     */
     public void selecteerSpel(String naam){
         this.spel = spelRepository.laadSpel(naam, speler);
         spelRepository.verwijderSpel(naam);
     } 
-    
+    /**
+     * geefMoeilijkheidsGraden geeft een lijst van string arrays terug die
+     * de beschikbare moeilijkheidsgraden en het aantal gewonnen spellen voor 
+     * die moeilijkheidsgraad bevatten indien de speler momenteel
+     * geen lopende uitdaging heeft
+     * 
+     * 
+     * @return List<String[]> 
+     */
     public List<String[]> geefMoeilijkheidsGraden(){
         uitdagingRepository.controleerGeenLopendeUitdaging(this.speler);
         List<String[]> res = new ArrayList<>();
@@ -266,7 +306,15 @@ public class DomeinController {
         
         return res;
     }
-    
+    /**
+     * selecteerMoeilijkheidsGraadUitdaging geeft een lijst van spelers-arrays terug
+     * die beschikbaar zijn om uit te dagen in de geselecteerde moeilijkheidsgraad
+     * 
+     * 
+     * 
+     * @return List<String[]> 
+     * @param moeilijkheidsGraad
+     */
     public List<String[]> selecteerMoeilijkheidsGraadUitdaging(int moeilijkheidsGraad){
         
         List<String[]> spelers = spelerRepository.geefBeschikbareSpelers(moeilijkheidsGraad,this.speler.getNaam());
@@ -275,7 +323,14 @@ public class DomeinController {
         else
             throw new NiemandBeschikbaarVoorUitdagingException();
     }
-    
+    /**
+     * startUitdaging creëerd een nieuwe uitdaging waarbij de tegenstander en
+     * de moeilijkheidsgraad worden meegegeven
+     *  
+     *  
+     * @param tegenstander 
+     * @param moeilijkheidsGraad
+     */
     public void startUitdaging(String tegenstander, int moeilijkheidsGraad){
         uitdagingRepository.controleerGeldigeUitdaging(this.speler,tegenstander);
         
@@ -289,22 +344,50 @@ public class DomeinController {
         spelRepository.voegSpelToe(this.spel);
         
     }
-    
+    /**
+     * geefNaamLopendeUitdagingTegenspeler geeft de naam van de tegenstander
+     * in de huidige uitdaging terug
+     *  
+     *  
+     * @return String
+     */
     public String geefNaamLopendeUitdagingTegenspeler(){
         return uitdagingRepository.geefNaamLopendeUitdagingTegenspeler(this.speler);
     }
-    
+    /**
+     * laadSpelLopendeUitdaging haalt het id en de naam van de tegenstander 
+     * van de lopende uitdaging van de 
+     * gebruiker op en geeft deze door naar laadUitdaging
+     *  
+     *  
+     * 
+     */
     public void laadSpelLopendeUitdaging(){
         int ID = uitdagingRepository.geefLopendeUitdagingId(this.speler);
         String tegenstander = geefNaamLopendeUitdagingTegenspeler();
         laadSpelUitdaging(ID,tegenstander);
     }
-    
+    /**
+     * laadUitdaging krijgt de nodige gegevens om een uitdaging te onderscheiden,
+     * zorgt dat in de database de uitdaging wordt geaccepteerd
+     * en roept dan laadSpelUitdaging op
+     * 
+     *  
+     *  
+     * @param ID
+     * @param tegenstander
+     */
     public void laadUitdaging(int ID,String tegenstander){
         uitdagingRepository.accepteerUitdaging(ID, this.speler);
         this.laadSpelUitdaging(ID,tegenstander);
     }
-    
+    /**
+     * laadSpelUitdaging creert een nieuwe uitdaging 
+     * en zorgt dat die uitdaging het huidige spel wordt
+     * 
+     * @param ID
+     * @param tegenstander
+     */
     private void laadSpelUitdaging(int ID,String tegenstander){
         Spel sp = spelRepository.laadSpelUitdaging(speler, ID);
         
@@ -313,17 +396,32 @@ public class DomeinController {
 
         this.spel = this.uitdaging.getSpel();
     }
-    
+    /**
+     * verwijderLopendeUitdaging haalt het id van de huidige uitdaging op
+     * en roept verwijderUitdaging op
+     * 
+     */
     public void verwijderLopendeUitdaging(){
         int ID = uitdagingRepository.geefLopendeUitdagingId(speler);
         verwijderUitdaging(ID);
     }
-    
+    /**
+     * verwijderUitdaging verwijderd de uitdaging uit de database, 
+     * en ook het spel dat voor die uitdaging was gemaakt
+     * 
+     * @param ID
+     */
     public void verwijderUitdaging(int ID){
         uitdagingRepository.verwijderUitdaging(ID);
         spelRepository.verwijderSpellenUitdaging(ID);
     }
-    
+    /**
+     * geefLijstUitdagingen controleerd of de gebruiker een uitdaging heeft
+     * open staan, als dit niet het geval is wordt een 
+     * 2dimensionale array met daarin de lijst van uitdagingen
+     * 
+     * @return String[][]
+     */
     public String[][] geefLijstUitdagingen(){
         uitdagingRepository.controleerGeenLopendeUitdaging(this.speler);
         String[][] uitdagersEnID =  uitdagingRepository.geefLijstUitdagingen(this.speler);
@@ -333,7 +431,12 @@ public class DomeinController {
         else
             throw new GeenOpenstaandeUitdagingException();
     }
-
+    /**
+     * geefKlassement geeft een lijst van stringarrays terug met daarin de ....
+     * 
+     * @param graad
+     * @return List<String[]>
+     */
     public List<String[]> geefKlassement(int graad) {
         return spelerRepository.geefKlassement(graad);
     }

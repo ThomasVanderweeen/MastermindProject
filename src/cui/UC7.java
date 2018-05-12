@@ -6,16 +6,10 @@
 package cui;
 
 import domein.DomeinController;
-import exceptions.GeenOpenstaandeUitdagingException;
-import exceptions.HeeftLopendeUitdagingException;
-import gui.WelkomController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.cell.TextFieldListCell;
-import javafx.stage.Stage;
 
 /**
  *
@@ -68,7 +62,7 @@ public class UC7
             i++;
         }
         System.out.println(res);
-
+        geefOpties();
     }
 
     public void geefOpties() {

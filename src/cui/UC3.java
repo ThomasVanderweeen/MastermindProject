@@ -8,7 +8,6 @@ package cui;
 import domein.DomeinController;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import java.util.InputMismatchException;
 import exceptions.OngeldigePogingException;
 import java.util.List;
 import java.util.ArrayList;
