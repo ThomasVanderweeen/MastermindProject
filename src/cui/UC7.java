@@ -60,7 +60,7 @@ public class UC7
             case 3: res+= String.format("%s%n",r.getString("moeilijkGewonnen"));
                     break;
         }
-        res+= String.format("%-10s%-40s%-20s%n",r.getString("rang"),r.getString("naam"),r.getString("gewonnen"));
+        res+= String.format("%-10s%-40s%-20s%n",r.getString("rang"),r.getString("naam"),r.getString("aantalGewonnen"));
         for (String[] speler : spelers) {
             String naam = speler[0];
             int gewonnen = Integer.parseInt(speler[1]);
