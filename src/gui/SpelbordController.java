@@ -70,7 +70,7 @@ public class SpelbordController implements Initializable
      * Initialiseerd de controller klasse  en update de labels
      * @param url URL
      * @param rb ResourceBundle
-     * @see updateLabels
+     * @see #updateLabels() updateLabels
      * @author Thomas
      */
     public void initialize(URL url, ResourceBundle rb)
@@ -82,7 +82,7 @@ public class SpelbordController implements Initializable
      * update de resourcebundle in WelkomController en de labels
      * @author Ferre
      * @param taal 
-     * @see SetResourceBundle
+     * @see welkomControllerSetResourceBundle
      */
     private void updateResourceBundle(String taal){
         WelkomController.setResourceBundle(taal);
@@ -149,8 +149,8 @@ public class SpelbordController implements Initializable
     
     /**
      * start een nieuw spel op via de domeinController.
-     * @see registreerSpel
-     * @throws NietGenoegGewonnenException
+     * @see domein.DomeinController#registreer(java.lang.String, java.lang.String, java.lang.String) registreerSpel
+     * @throws NietGenoegGewonnenException NietGenoegGewonnenException
      * @author Ferre
      */
     protected void startNieuwSpel(){
@@ -188,9 +188,9 @@ public class SpelbordController implements Initializable
      * Doet een poging via de domeinController en update het spelbord
      * gaat ook controlleren op winst en verlies.
      * @see getKeuzeBoxen
-     * @see doePoging
-     * @see isEindeSpel
-     * @see isGewonnen
+     * @see domein.DomeinController#doePoging(int[]) doePoging
+     * @see domein.DomeinController#isEindeSpel() isEindeSpel
+     * @see domein.DomeinController#isGewonnen() isGewonnen
      * @author Ferre
      */
     @FXML
@@ -222,7 +222,7 @@ public class SpelbordController implements Initializable
     /**
      * setSpelbord gaat de gridpanes opvullen met de reeds gedaane pogingen en
      * evaluatie de gegevens worden hiervoor opgevraagd via de domeinController
-     * @see geefSpelBord
+     * @see domein.DomeinController#geefSpelBord() geefSpelBord
      * @see getKeuzeBoxen
      * @author Thomas
      */
@@ -300,7 +300,7 @@ public class SpelbordController implements Initializable
     
     /**
      * stelt de moeilijkheidsgraad in
-     * @param mg 
+     * @param mg Integer
      * @author Ferre
      */
     protected void setMoeilijkheidsGraad(int mg){

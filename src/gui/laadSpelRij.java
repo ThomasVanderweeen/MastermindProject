@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 /**
- *
+ * LaadSpelRij functionaliteit voor weergave laadSpel Tableview
  * @author Groep 77
  */
 public class laadSpelRij {
@@ -16,15 +16,34 @@ public class laadSpelRij {
     WelkomController.r.getString("gemiddeld"),WelkomController.r.getString("moeilijk")};
     private Button btn;
     
+    /**
+     * constructors en roept de setters aan voor meegegeven parameters
+     * @param naam String
+     * @param moeilijkheidsGraad Integer
+     * @see setNaam
+     * @see setMoeilijkheidsGraad
+     * @author Ferre
+     */
     public laadSpelRij(String naam,int moeilijkheidsGraad){
         setNaam(naam);
         setMoeilijkheidsGraad(moeilijkheidsGraad);
     }
     
+    /**
+     * Stelt de naam in volgens de aangeleverde parameter
+     * @param naam 
+     * @author Ferre
+     */
     private void setNaam(String naam){
         this.naam = naam;
     }
     
+    /**
+     * stelt de moelijkheidsgraad in, en maakt de knop laad spel aan,
+     * stelt eveneens de actionevent handler in.
+     * @param moeilijkheidsGraad 
+     * @author Ferre
+     */
     private void setMoeilijkheidsGraad(int moeilijkheidsGraad){
         this.moeilijkheidsGraad = moeilijkheidsGraad;
         this.btn = new Button();
@@ -44,14 +63,29 @@ public class laadSpelRij {
         });
     }
     
+    /**
+     * geeft de naam terug van het opgeslagen spel
+     * @return String
+     * @author Ferre
+     */
     protected String getNaam(){
         return this.naam;
     }
     
+    /**
+     * geeft de laad knop terug 
+     * @return Button 
+     * @author Ferre
+     */
     protected Button getBtn(){
         return this.btn;
     }
     
+    /**
+     * geeft de moeilijkheidsGraad terug
+     * @return String
+     * @author Ferre
+     */
     protected String getMg(){
         return this.mg;
     }

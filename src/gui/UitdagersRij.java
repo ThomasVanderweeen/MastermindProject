@@ -15,8 +15,8 @@ public class UitdagersRij {
     
     /**
      * Constructor en roept de setters aan
-     * @param naam
-     * @param Gewonnen 
+     * @param naam String
+     * @param Gewonnen Integer
      * @see setNaam
      * @see setGewonnen
      * @author Michiel S.

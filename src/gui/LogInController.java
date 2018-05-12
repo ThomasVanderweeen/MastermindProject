@@ -52,7 +52,7 @@ public class LogInController implements Initializable
     /**
      * Update de resourcebundle in de welkomController klasse volgens de parameter
      * en updated de labels
-     * @see updateLabels
+     * @see #updateLabels() updateLabels
      * @param taal 
      * @author Ferre
      */
@@ -76,7 +76,7 @@ public class LogInController implements Initializable
     
     /**
      * roept updateresourcebundle aan met als param engels
-     * @see updateResourceBundle
+     * @see #updateResourceBundle(java.lang.String) updateResourceBundle
      * @author Ferre
      */
     @FXML
@@ -86,7 +86,7 @@ public class LogInController implements Initializable
     
     /**
      * roept updateresourcebundle aan met als param Frans
-     * @see updateResourceBundle
+     * @see #updateResourceBundle(java.lang.String) updateResourceBundle
      * @author Ferre
      */
     @FXML
@@ -96,7 +96,7 @@ public class LogInController implements Initializable
     
     /**
      * roept updateresourcebundle aan met als param Nederlands
-     * @see updateResourceBundle
+     * @see #updateResourceBundle(java.lang.String) updateResourceBundle
      * @author Ferre
      */
     @FXML
@@ -107,7 +107,7 @@ public class LogInController implements Initializable
     /**
      * Is verantwoordelijk voor het inloggen en afhandelen van de AanmeldExceptie
      * roept ook het menu aan
-     * @see openMenu
+     * @see #openMenu() openMenu
      * @author Michiel S.
      */
     @FXML
@@ -134,7 +134,7 @@ public class LogInController implements Initializable
     
     /**
      * opent het menu doormiddel van de WelkomController
-     * @see veranderScherm
+     * @see WelkomController#veranderScherm(java.lang.String) veranderScherm
      * @author Michiel S.
      */
     protected void openMenu(){

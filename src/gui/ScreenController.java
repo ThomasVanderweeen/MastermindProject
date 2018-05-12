@@ -28,10 +28,10 @@ public class ScreenController extends Application{
     /**
      * Maakt een Scene aan brengt deze naar de voorgrond en stelt de controller klasse in
      * initaliseerd de FXMLFuncties klasse stelt deze in
-     * @see maakParent
+     * @see FXMLFuncties#maakParent(java.lang.String) maakParent
      * @param primaryStage stage
      * @author Thomas
-     * @throws IOException
+     * @throws IOException ioexception
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -55,7 +55,7 @@ public class ScreenController extends Application{
     
     /**
      * zorgt dat de static variabele primary (stage) wordt ingesteld
-     * @param st 
+     * @param st Stage
      */
     private static void setPrimary(Stage st){
         primary = st;
@@ -63,7 +63,7 @@ public class ScreenController extends Application{
     
     /**
      * veranderd de scene
-     * @param pr 
+     * @param pr Parent
      */
     public void changeScene(Parent pr){
        Scene scene = new Scene(pr);

@@ -23,8 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
+ * alle functionaliteit om een uitdaging te accepteren wordt hier afgehandeld.
  * @author Groep 77
  */
 public class UitdagingenController implements Initializable
@@ -34,20 +33,33 @@ public class UitdagingenController implements Initializable
     private String naam = "";
     private int mg =0;
 
-    private ResourceBundle r;
-
-
-
+    /**
+     * initialiseerd de controller
+     * @param url URL
+     * @param rb ResourceBundle
+     * @author Thomas
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
     
+    /**
+     * sluit het geopend dialoog venster
+     * @author Michiel S.
+     */
     protected void closeDialog(){
         Stage stg = (Stage)this.dg.getDialogPane().getScene().getWindow();
         stg.close();
     }
 
+    /**
+     * toont alle uitdagingen die worden opgehaald uit de domeinController
+     * deze uitdagingen worden weergegeven in een tableview van UitdagingRij
+     * handeld ook: GeenOpenstaandeUitdagingException en HeeftLopendeUitdagingException af
+     * @see domein.DomeinController#geefLijstUitdagingen() geefLijstUitdagingen
+     * @author Michiel S.
+     */
     protected void toonUitdagingen() {
         try{
             String[][] uitdagingen = WelkomController.dc.geefLijstUitdagingen();
@@ -101,6 +113,13 @@ public class UitdagingenController implements Initializable
 
     }
 
+    /**
+     * eenmaal de uitdaging is gekozen moet er beslist worden of deze wordt verwijderd
+     * of aanvaard
+     * @see verwijderUitdaging
+     * @see accepteerUitdaging
+     * @author Michiel S.
+     */
     protected void kiesUitdaging() {
         BorderPane bp = new BorderPane();
         
@@ -144,12 +163,26 @@ public class UitdagingenController implements Initializable
         this.dg.show();
     }
     
+    /**
+     * Stelt de ID, naam en moeilijkheidsgraad in van de uitdaging volgens de
+     * meegeleverde parameters
+     * @param ID Integer
+     * @param naam String
+     * @param moeilijkheidsGraad Integer
+     * @author Michiel S.
+     */
     protected void stelGegevensIn(int ID,String naam,int moeilijkheidsGraad){
         this.ID = ID;
         this.naam = naam;
         this.mg = moeilijkheidsGraad;
     }
     
+    /**
+     * Verwijderd de uitdaging uit de database door de methode verwijderUitdaging
+     * van de DomeinController mee te geven en geeft eveneens een boodschap dat dit succevol gebeurd is
+     * @see verwijderUitdaging
+     * @author Michiel S.
+     */
     private void verwijderUitdaging(){
         WelkomController.dc.verwijderUitdaging(this.ID);
         
@@ -165,6 +198,16 @@ public class UitdagingenController implements Initializable
         al.show();
     }
     
+    /**
+     * De uitdaging wordt geacepteer volgens de methode laadUitdaging van de domeinController
+     * en het scherm wordt veranderd naar dat van het spelbord
+     * @see veranderScherm
+     * @see laadUitdaging
+     * @see setMoeilijkheidsGraad
+     * @see buildGui
+     * @see geefController
+     * @author Michiel S.
+     */
     private void accepteerUitdaging(){
         WelkomController.dc.laadUitdaging(ID, naam);
         WelkomController.veranderScherm("spelbord.fxml");

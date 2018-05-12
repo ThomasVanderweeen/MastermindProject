@@ -188,7 +188,7 @@ public class DomeinController {
     /**
      * doePoging 
      * 
-     * @param poging 
+     * @param poging Integer[]
      */
     public void doePoging(int[] poging){
         this.spel.doePoging(poging);

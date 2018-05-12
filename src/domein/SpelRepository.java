@@ -40,7 +40,7 @@ public class SpelRepository {
      * controleerNaam controleert of de naam van een spel uniek is.
      * 
      * @param naam naam die geconrtoleerd wordt.
-     * @return 
+     * @return spelnaamuniek boolean
      */
     public boolean controleerNaam(String naam){
         if(this.spm.spelBestaat(naam))

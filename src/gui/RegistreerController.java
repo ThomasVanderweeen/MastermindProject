@@ -63,6 +63,7 @@ public class RegistreerController{
      * registreerd de speler d.m.v de registreer methode in de domeinController
      * handelt ook de eventuele exceptions af die kunnen worden gethrowed in het domein
      * @author Michiel S.
+     * @see domein.DomeinController#registreer(java.lang.String, java.lang.String, java.lang.String) registreer
      */
     @FXML
     protected void registreer(){
@@ -100,7 +101,7 @@ public class RegistreerController{
      * update de resourcebundle in WelkomController en de labels
      * @author Ferre
      * @param taal 
-     * @see SetResourceBundle
+     * @see WelkomController#setResourceBundle(java.lang.String) SetResourceBundle
      */
     private void updateResourceBundle(String taal){
         WelkomController.setResourceBundle(taal);
@@ -122,7 +123,7 @@ public class RegistreerController{
     
     /**
      * roept updateresourcebundle aan met als param engels
-     * @see updateResourceBundle
+     * @see #updateResourceBundle(java.lang.String) updateResourceBundle
      * @author Ferre
      */
     @FXML
@@ -132,7 +133,7 @@ public class RegistreerController{
     
     /**
      * roept updateresourcebundle aan met als param Frans
-     * @see updateResourceBundle
+     * @see #updateResourceBundle(java.lang.String) updateResourceBundle 
      * @author Ferre
      */
     @FXML
@@ -142,7 +143,7 @@ public class RegistreerController{
     
     /**
      * roept updateresourcebundle aan met als param Nederlands
-     * @see updateResourceBundle
+     * @see #updateResourceBundle(java.lang.String) updateResourceBundle
      * @author Ferre
      */
     @FXML

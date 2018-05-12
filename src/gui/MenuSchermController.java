@@ -50,7 +50,7 @@ public class MenuSchermController implements Initializable{
      * update de resourcebundle in WelkomController en de labels
      * @author Ferre
      * @param taal 
-     * @see SetResourceBundle
+     * @see WelkomController#setResourceBundle(java.lang.String) SetResourceBundle
      */
     private void updateResourceBundle(String taal){
         WelkomController.setResourceBundle(taal);
@@ -72,7 +72,7 @@ public class MenuSchermController implements Initializable{
     
     /**
      * roept updateresourcebundle aan met als param engels
-     * @see updateResourceBundle
+     * @see #updateResourceBundle(java.lang.String) updateResourceBundle
      * @author Ferre
      */
     
@@ -83,7 +83,7 @@ public class MenuSchermController implements Initializable{
      
     /**
      * roept updateresourcebundle aan met als param Frans
-     * @see updateResourceBundle
+     * @see #updateResourceBundle(java.lang.String) updateResourceBundle
      * @author Ferre
      */
     @FXML
@@ -93,7 +93,7 @@ public class MenuSchermController implements Initializable{
     
     /**
      * roept updateresourcebundle aan met als param Nederlands
-     * @see updateResourceBundle
+     * @see #updateResourceBundle(java.lang.String) updateResourceBundle
      * @author Ferre
      */
     @FXML
@@ -105,11 +105,11 @@ public class MenuSchermController implements Initializable{
      * gaat de moeilijkheidsgraad opvragen, scherm veranderen in spelbord,
      * nieuw spel starten, gui opbouwen en moeilijkheidsgraad instellen.
      * ook verantwoordelijk voor het afhandelen van niet genoeg gewonnen exception
-     * @see vraagMoeilijkheidsGraad
-     * @see veranderScherm
-     * @see startNieuwSpel
-     * @see buildGui
-     * @see setMoeilijkheidsGraad
+     * @see #vraagMoeilijkheidsGraad() vraagMoeilijkheidsGraad
+     * @see WelkomController#veranderScherm(java.lang.String) veranderScherm
+     * @see SpelbordController#startNieuwSpel() startNieuwSpel
+     * @see SpelbordController#buildGui() buildGui
+     * @see SpelbordController#setMoeilijkheidsGraad(int) setMoeilijkheidsGraad
      * @author Michiel S.
      */
     @FXML
@@ -138,8 +138,8 @@ public class MenuSchermController implements Initializable{
      /**
      * initialiseerd SpelLadenController, stelt deze in als controller klasse
      * en roept de methode toonSpellen aan van deze controller
-     * @see setController
-     * @see toonSpellen
+     * @see WelkomController#setController(java.lang.Object) setController
+     * @see SpelLadenController#toonSpellen() toonSpellen
      * @author Michiel S
      */
     @FXML
@@ -152,8 +152,8 @@ public class MenuSchermController implements Initializable{
     /**
      * initialiseerd UitdagingStartencontroller, stelt deze in als controller klasse
      * en roept de methode selecteerMoeilijkheidsgraad aan van deze controller
-     * @see setController
-     * @see selecteerMoeilijkheidsgraad
+     * @see WelkomController#setController(java.lang.Object) setController
+     * @see UitdagingStartenController#selecteerMoeilijkheidsgraad() selecteerMoeilijkheidsgraad
      * @author Michiel S
      */
     @FXML
@@ -166,8 +166,8 @@ public class MenuSchermController implements Initializable{
     /**
      * initialiseerd Uitdagingencontroller, stelt deze in als controller klasse
      * en roept de methode toonUitdagingen aan van deze controller
-     * @see setController
-     * @see toonUitdagingen
+     * @see WelkomController#setController(java.lang.Object) setController
+     * @see UitdagingenController#toonUitdagingen() toonUitdagingen
      * @author Michiel S
      */
     @FXML
@@ -180,8 +180,8 @@ public class MenuSchermController implements Initializable{
     /**
      * initialiseerd ScorebordController, stelt deze in als controller klasse
      * en roept de methode toonMoeilijkheidsgraad aan van deze controller
-     * @see setController
-     * @see toonMoeilijkheidsgraad
+     * @see WelkomController#setController(java.lang.Object) setController
+     * @see ScorebordController#toonMoeilijkheidsgraad(int) toonMoeilijkheidsgraad
      * @author Ferre
      */
     @FXML
@@ -194,7 +194,7 @@ public class MenuSchermController implements Initializable{
     /**
      * vraagt de moeilijkheidsgraad aan de gebruiker door middel van een alert
      * maakt hiervoor gebruikt van de methode startNieuwSpel in de domeinklasse 
-     * @see startNieuwSpel
+     * @see domein.DomeinController#startNieuwSpel() startNieuwSpel
      * @return integer 
      * @author Michiel S.
      */  
@@ -246,9 +246,9 @@ public class MenuSchermController implements Initializable{
      * Initialiseerd de controller klasse en update de naam die wordt weergegeven
      * door middel van de functie geefSpelerNaam in de domeinController
      * @param location URL
-     * @see geefSpelerNaam
+     * @see domein.DomeinController#geefSpelerNaam() geefSpelerNaam
      * @param resources ResourceBundle
-     * @Author Thomas
+     * @author Thomas
      */
     @Override
     public void initialize(URL location, ResourceBundle resources){

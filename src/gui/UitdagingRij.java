@@ -21,9 +21,9 @@ public class UitdagingRij {
      * @see setID
      * @see setNaam
      * @see setMoeilijkheidsGraad
-     * @param ID
-     * @param naam
-     * @param moeilijkheidsGraad 
+     * @param ID Integer
+     * @param naam String
+     * @param moeilijkheidsGraad Integer
      * @author Ferre
      */
     public UitdagingRij(int ID, String naam, int moeilijkheidsGraad){

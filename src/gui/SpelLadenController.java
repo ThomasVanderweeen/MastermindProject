@@ -36,8 +36,8 @@ public class SpelLadenController implements Initializable {
 
     /**
      * gaat de naam en moeilijkheidsGraad instellen 
-     * @param naam
-     * @param mg 
+     * @param naam String
+     * @param mg Integer
      * @author Michiel S.
      */
     protected void stelGegevensIn(String naam, int mg){
@@ -59,7 +59,7 @@ public class SpelLadenController implements Initializable {
      * deze spellen zijn ingeladen doormiddel van de domeinController methode 
      * geefOpgeslagenSpellen. de table view wordt opgesteld doormiddel van laadSpelRij klassen.
      * Handeld ook de SpelerHeeftGeenOpgeslagenSpellenException af.
-     * @see geefOpgeslagenSpellen
+     * @see domein.DomeinController#geefOpgeslagenSpellen() geefOpgeslagenSpellen
      * @author Michiel S.
      */
     protected void toonSpellen(){
@@ -110,11 +110,11 @@ public class SpelLadenController implements Initializable {
     /**
      * laad een spel in, veranderd het scherm naar spelbord en maakt doormiddel
      * van de spelbordController het juiste spelbord aan
-     * @see selecteerSpel
-     * @see veranderScherm
-     * @see geefController
-     * @see setMoeilijkheidsGraad
-     * @see buildGui()
+     * @see domein.DomeinController#selecteerSpel(java.lang.String) selecteerSpel
+     * @see WelkomController#veranderScherm(java.lang.String) veranderScherm
+     * @see WelkomController#geefController() geefController
+     * @see SpelbordController#setMoeilijkheidsGraad(int) setMoeilijkheidsGraad
+     * @see SpelbordController#buildGui() buildGui()
      * @author Michiel S.
      */
     protected void laadSpel(){

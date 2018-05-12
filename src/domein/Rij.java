@@ -52,7 +52,7 @@ public class Rij {
     /**
      * getPoging returned een poging van een rij object.
      * 
-     * @return List<CodePin>
+     * @return List(CodePin) List(CodePin)
      */
     public List<CodePin> getPoging(){
         return this.poging;
