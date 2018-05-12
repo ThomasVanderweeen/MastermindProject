@@ -1,20 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import domein.DomeinController;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -22,13 +11,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author iamja
+ * @author Groep 77
  */
 public class WelkomController implements Initializable
 {
@@ -68,7 +56,7 @@ public class WelkomController implements Initializable
         this.setResourceBundle(taal);
         updateLabels();
     }
-    
+
     private void updateLabels(){
         welkomLabel.setText(r.getString("welkom"));
         terugkerendLabel.setText(r.getString("terugKerend"));
@@ -77,29 +65,33 @@ public class WelkomController implements Initializable
         registreerKeuze.setText(r.getString("registreer"));
     }
     
-    public void registreergeklikt(){
+    @FXML
+    protected void registreergeklikt(){
         veranderScherm("Registreer.fxml");
     }
     
     
-    
-    public void engelsGeklikt(){
+    @FXML
+    protected void engelsGeklikt(){
         updateResourceBundle("engels");
     }
     
-    public void fransGeklikt(){
+    @FXML
+    protected void fransGeklikt(){
         updateResourceBundle("frans");
     }
     
-    public void nederlandsGeklikt(){
+    @FXML
+    protected void nederlandsGeklikt(){
         updateResourceBundle("nederlands");
     }
     
-    public void LoginGeklikt(){
+    @FXML
+    protected void LoginGeklikt(){
         veranderScherm("LogIn.fxml");
     }
     
-    public void setWelkomScherm(FXMLFuncties ws){
+    protected void setWelkomScherm(FXMLFuncties ws){
        wsc = ws;
     }
     
@@ -120,10 +112,11 @@ public class WelkomController implements Initializable
         }
     }
     
-    protected static void Error(String title, String header, String context){
+    protected static void Error(String title, String context){
         Alert al = new Alert(AlertType.ERROR);
         al.setTitle(title);
-        al.setHeaderText(header);
+        al.setHeaderText("Exception");
+        
         al.setContentText(context);
         
         Stage stg = (Stage) al.getDialogPane().getScene().getWindow();
