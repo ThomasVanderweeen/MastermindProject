@@ -1,31 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
-import domein.DomeinController;
 import exceptions.GeenOpenstaandeUitdagingException;
 import exceptions.HeeftLopendeUitdagingException;
 import java.net.URL;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -34,13 +20,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author ThomasV
+ * @author Groep 77
  */
 public class UitdagingenController implements Initializable
 {
@@ -58,12 +43,12 @@ public class UitdagingenController implements Initializable
 
     }
     
-    public void closeDialog(){
+    protected void closeDialog(){
         Stage stg = (Stage)this.dg.getDialogPane().getScene().getWindow();
         stg.close();
     }
 
-    public void toonUitdagingen() {
+    protected void toonUitdagingen() {
         try{
             String[][] uitdagingen = WelkomController.dc.geefLijstUitdagingen();
             String[] moeilijkheidsgraden = {WelkomController.r.getString("makkelijk"), WelkomController.r.getString("gemiddeld"),
@@ -106,15 +91,17 @@ public class UitdagingenController implements Initializable
             this.dg.show();
             
         }catch(GeenOpenstaandeUitdagingException goue){
-            WelkomController.Error("Geen openstaande Exception", "Sorry je hebt geen openstaande uitdaging", "probeer later opnieuw");
+            WelkomController.Error("Geen openstaande Exception",
+                    "probeer later opnieuw");
         }catch(HeeftLopendeUitdagingException hlue){
-            WelkomController.Error("heeft Lopende uitdaging", "Sorry je reeds een lopendeUitdaging", "Je hebt al reeds een lopende uitdaging.");
+            WelkomController.Error("heeft Lopende uitdaging",
+                    "Je hebt al reeds een lopende uitdaging.");
         }
 
 
     }
 
-    public void kiesUitdaging() {
+    protected void kiesUitdaging() {
         BorderPane bp = new BorderPane();
         
         Label lb = new Label();
@@ -157,7 +144,7 @@ public class UitdagingenController implements Initializable
         this.dg.show();
     }
     
-    public void stelGegevensIn(int ID,String naam,int moeilijkheidsGraad){
+    protected void stelGegevensIn(int ID,String naam,int moeilijkheidsGraad){
         this.ID = ID;
         this.naam = naam;
         this.mg = moeilijkheidsGraad;
@@ -168,7 +155,7 @@ public class UitdagingenController implements Initializable
         
         Alert al = new Alert(AlertType.CONFIRMATION);
         al.setTitle("Uitdaging Verwijderd");
-        al.setContentText("De uitdaging is verwijderd");
+        al.setContentText("Exception");
         al.setHeaderText("Uitdaging succesvol verwijderd");
         
         Stage stg = (Stage) al.getDialogPane().getScene().getWindow();

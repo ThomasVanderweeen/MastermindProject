@@ -26,7 +26,7 @@ import javafx.stage.WindowEvent;
 
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class UitdagingStartenController implements Initializable{
     Dialog dg;
@@ -60,7 +60,7 @@ public class UitdagingStartenController implements Initializable{
         this.dg.show();
     }
     
-    public void selecteerMoeilijkheidsgraad(){
+    protected void selecteerMoeilijkheidsgraad(){
         this.dg = new Dialog();
         BorderPane bp = new BorderPane();
         List<Button> knoppen = new ArrayList<>();
@@ -104,7 +104,7 @@ public class UitdagingStartenController implements Initializable{
         openDialog();
     }
     
-    public void setGegevens(String naam){
+    protected void setGegevens(String naam){
         this.naamTegenstander = naam;
     }
     
@@ -144,12 +144,12 @@ public class UitdagingStartenController implements Initializable{
             
         }catch(NiemandBeschikbaarVoorUitdagingException nbvue){
             this.sluitDialog();
-            WelkomController.Error("Er is niemand beschikbaar op deze moeilijkheidsgraad", "Er is niemand beschikbaar op deze moeilijkheidsgraad", 
-                    "Er is niemand beschikbaar op deze moeilijkheidsgraad");
+            WelkomController.Error("Er is niemand beschikbaar op deze moeilijkheidsgraad", 
+                    WelkomController.r.getString("geenUitdagersException"));
         }
     }
     
-    public void startUitdaging(){
+    protected void startUitdaging(){
         try{
             sluitDialog();
             
@@ -160,9 +160,9 @@ public class UitdagingStartenController implements Initializable{
             sc.setMoeilijkheidsGraad(mg);
             sc.buildGui();
         }catch(SpelerAlUitgedaagdException saue){
-            WelkomController.Error("Je hebt deze speler al uitgedaagd.","Je hebt deze speler al uitgedaagd.", "Je hebt deze speler al uitgedaagd.");
+            WelkomController.Error("Je hebt deze speler al uitgedaagd.","Je hebt deze speler al uitgedaagd.");
         }catch(HeeftLopendeUitdagingException hlue){
-            WelkomController.Error("Je hebt nog een lopende uitdaging", "Je hebt nog een lopende uitdaging", "Je hebt nog een lopende uitdaging");
+            WelkomController.Error("Je hebt nog een lopende uitdaging","Je hebt nog een lopende uitdaging");
         }
         
         

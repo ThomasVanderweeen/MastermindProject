@@ -4,11 +4,10 @@ import java.util.Arrays;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
 
 /**
- *
- * @author Michiel S.
+ *Verantwoordelijk voor tableview rij bij uitdagingStarten table
+ * @author Groep 77
  */
 public class UitdagingRij {
     private int ID;
@@ -17,12 +16,28 @@ public class UitdagingRij {
     private Button accepteer;
     private static String[] mg = {"makkelijk","gemiddeld","moeilijk"};
     
+    /**
+     * Constructor en roept de setters aan van de overeenkomstige attributen
+     * @see setID
+     * @see setNaam
+     * @see setMoeilijkheidsGraad
+     * @param ID
+     * @param naam
+     * @param moeilijkheidsGraad 
+     * @author Ferre
+     */
     public UitdagingRij(int ID, String naam, int moeilijkheidsGraad){
         setID(ID);
         setNaam(naam);
         setMoeilijkheidsGraad(moeilijkheidsGraad);
     }
     
+    /**
+     * stelt het ID in van de UitdagingRij en maakt  ook een aanvaard knop aan met
+     * de juiste eventhandler
+     * 
+     * @param ID 
+     */
     private void setID(int ID){
         this.ID = ID;
         this.accepteer = new Button("selecteer");
@@ -39,23 +54,48 @@ public class UitdagingRij {
         });
     }
     
+    /**
+     * Stelt de naam in van de uitdagingRij
+     * @param naam 
+     * @author Ferre
+     */
     private void setNaam(String naam){
         this.naam = naam;
     }
     
+    /**
+     * stelt de moeilijkheidsGraad in van de uitdagingRij
+     * @param mog 
+     * @author Ferre
+     */
     private void setMoeilijkheidsGraad(int mog){
         this.moeilijkheidsGraad = mg[mog-1];
     }
     
-    public Button getAccepteer(){
+    /**
+     * geeft de Accepteer knop terug
+     * @return Button
+     * @author Ferre
+     */
+    protected Button getAccepteer(){
         return this.accepteer;
     }
     
-    public String getNaam(){
+    /**
+     * Geeft de naam terug van de Uitdager
+     * @return String
+     * @author Ferre
+     */
+    protected String getNaam(){
         return this.naam;
     }
     
-    public String getMoeilijkheidsGraad(){
+    /**
+     * Geeft de moeilijkheidsGraad terug van de Uitdaging
+     * @return String
+     * @author Ferre
+     */
+    protected String getMoeilijkheidsGraad(){
         return this.moeilijkheidsGraad;
     }
 }

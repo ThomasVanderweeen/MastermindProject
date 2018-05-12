@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 
 /**
  *
- * @author Michiel S.
+ * @author Groep 77
  */
 public class laadSpelRij {
     private String naam;
@@ -44,15 +44,15 @@ public class laadSpelRij {
         });
     }
     
-    public String getNaam(){
+    protected String getNaam(){
         return this.naam;
     }
     
-    public Button getBtn(){
+    protected Button getBtn(){
         return this.btn;
     }
     
-    public String getMg(){
+    protected String getMg(){
         return this.mg;
     }
 }

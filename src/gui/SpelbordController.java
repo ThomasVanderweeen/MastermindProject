@@ -1,7 +1,5 @@
-
 package gui;
 
-import domein.DomeinController;
 import exceptions.NietGenoegGewonnenException;
 import exceptions.ServerOnbereikbaarException;
 import exceptions.SpelNaamNietUniekException;
@@ -18,8 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import javafx.collections.FXCollections;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DialogPane;
@@ -29,7 +25,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+ * Verantwoordelijk voor het verloop van Spelbord en het spelen ervan
+ * @author Ferre
+ */
 public class SpelbordController implements Initializable
 {
     private ResourceBundle r;
@@ -68,19 +67,32 @@ public class SpelbordController implements Initializable
     private Button doePoging;
     
     /**
-     * Initializes the controller class.
+     * Initialiseerd de controller klasse  en update de labels
+     * @param url URL
+     * @param rb ResourceBundle
+     * @see updateLabels
+     * @author Thomas
      */
     public void initialize(URL url, ResourceBundle rb)
     {
         updateLabels();
     }    
     
-    
+    /**
+     * update de resourcebundle in WelkomController en de labels
+     * @author Ferre
+     * @param taal 
+     * @see SetResourceBundle
+     */
     private void updateResourceBundle(String taal){
         WelkomController.setResourceBundle(taal);
         updateLabels();
     }
     
+    /**
+     * Update de labels volgens de resourceBundle in de WelkomController
+     * @author Ferre
+     */
     private void updateLabels(){
         opslaanKnop.setText(WelkomController.r.getString("slaOp"));
         doePoging.setText(WelkomController.r.getString("wachtwoord"));
@@ -88,22 +100,42 @@ public class SpelbordController implements Initializable
     }
     
     
-    
+    /**
+     * roept updateresourcebundle aan met als param engels
+     * @see updateResourceBundle
+     * @author Ferre
+     */
     @FXML
-    public void engelsGeklikt(){
+    protected void engelsGeklikt(){
         updateResourceBundle("engels");
     }
     
+    /**
+     * roept updateresourcebundle aan met als param Frans
+     * @see updateResourceBundle
+     * @author Ferre
+     */
     @FXML
-    public void fransGeklikt(){
+    protected void fransGeklikt(){
         updateResourceBundle("frans");
     }
     
+    /**
+     * roept updateresourcebundle aan met als param nederlands
+     * @see updateResourceBundle
+     * @author Ferre
+     */
     @FXML
-    public void nederlandsGeklikt(){
+    protected void nederlandsGeklikt(){
         updateResourceBundle("nederlands");
     } 
     
+    /**
+     * geeft de combo boxen weer die als input zullen dienen
+     * in het geval van moeilijk 5 anders 4.
+     * @author Thomas
+     * @return ComboBox[] 
+     */
     private ComboBox[] getKeuzeBoxen(){
         ComboBox[] cb = {keuze0,keuze1,keuze2,keuze3};
         
@@ -115,7 +147,13 @@ public class SpelbordController implements Initializable
         return cb;
     }
     
-    public void startNieuwSpel(){
+    /**
+     * start een nieuw spel op via de domeinController.
+     * @see registreerSpel
+     * @throws NietGenoegGewonnenException
+     * @author Ferre
+     */
+    protected void startNieuwSpel(){
          try{
             WelkomController.dc.registreerSpel(this.moeilijkheidsGraad);
         }catch(NietGenoegGewonnenException ngge){
@@ -123,7 +161,14 @@ public class SpelbordController implements Initializable
         }
     }
     
-    public void buildGui(){
+    /**
+     * gaat het spelbord opbouwen, oftewel leeg oftewel al reeds opgevuld (via de methode
+     * setSpelbord).
+     * @see getKeuzeBoxen
+     * @see setSpelbord
+     * @author Ferre
+     */
+    protected void buildGui(){
 
         
         ObservableList<String> keuzes = FXCollections.observableList(Arrays.asList(this.kleuren));
@@ -139,8 +184,17 @@ public class SpelbordController implements Initializable
         this.setSpelbord();
     }
     
+    /**
+     * Doet een poging via de domeinController en update het spelbord
+     * gaat ook controlleren op winst en verlies.
+     * @see getKeuzeBoxen
+     * @see doePoging
+     * @see isEindeSpel
+     * @see isGewonnen
+     * @author Ferre
+     */
     @FXML
-    public void doePoging(){
+    protected void doePoging(){
         String[] kleuren =  WelkomController.dc.geefKleuren();
         int[] poging = new int[4];
         
@@ -165,6 +219,13 @@ public class SpelbordController implements Initializable
         }
     }
     
+    /**
+     * setSpelbord gaat de gridpanes opvullen met de reeds gedaane pogingen en
+     * evaluatie de gegevens worden hiervoor opgevraagd via de domeinController
+     * @see geefSpelBord
+     * @see getKeuzeBoxen
+     * @author Thomas
+     */
     private void setSpelbord(){
         String[][] spelbord= WelkomController.dc.geefSpelBord();
         int rijindxEva=11,rijindxSpelbord=11,kolom=0,lengteSpelbord = this.getKeuzeBoxen().length;
@@ -193,7 +254,11 @@ public class SpelbordController implements Initializable
         }
     }
     
-
+    /**
+     * creert een alert met daarin de code en de boodschap dat je verloren bent
+     * @see geefCode
+     * @author Ferre
+     */
     private void verloren(){
         Alert gewonnen = new Alert(AlertType.WARNING);
         gewonnen.setTitle("Verloren...");
@@ -209,10 +274,19 @@ public class SpelbordController implements Initializable
          toonMenu();
     }
     
+    /**
+     * laat het menu in via de welkomController
+     * @see veranderScherm
+     * @author Thomas
+     */
     private void toonMenu(){
         WelkomController.veranderScherm("Menu.fxml");
     }
     
+    /**
+     * Voegt een extra combobox en evaluatie label toe indien de moeilijkheidsgraad moeilijk is
+     * @author Thomas
+     */
     private void voorzieMoeilijk(){
         ComboBox keuze = new ComboBox();
         this.spelbord.add(keuze, 4, 12);
@@ -224,17 +298,37 @@ public class SpelbordController implements Initializable
         this.keuze4 =keuze;
     }
     
+    /**
+     * stelt de moeilijkheidsgraad in
+     * @param mg 
+     * @author Ferre
+     */
     protected void setMoeilijkheidsGraad(int mg){
         this.moeilijkheidsGraad = mg;
         
     }
     
+    /**
+     * Vraagt de naam op en indien deze niet leeg is roept het slaOp aan
+     * @see geefNaam
+     * @see slaOp
+     * @author Ferre
+     */
     @FXML
-    public void opslaan(){
+    protected void opslaan(){
         String naam = geefNaam();
         if(naam!=null)
             slaOp(naam);
     }
+    
+    /**
+     * creert een alert met daarin de code en de boodschap dat je gewonnen bent
+     * geef eveneens weer hoeveel sterren dat je hebt en hoeveel spelletjes nodig tot 
+     * volgende ster
+     * @see geefEindSituatie
+     * @see geefCode
+     * @author Thomas
+     */
     
     private void gewonnen(){
         String[][] eindSituatie = WelkomController.dc.geefEindSituatie();
@@ -277,6 +371,11 @@ public class SpelbordController implements Initializable
         toonMenu();
     }
     
+    /**
+     * Vraagt een naam op en geeft deze weer.
+     * @return String
+     * @author Thomas
+     */
     private String geefNaam(){
         TextInputDialog geefNaam = new TextInputDialog();
         geefNaam.setTitle("Sla spel op");
@@ -296,6 +395,14 @@ public class SpelbordController implements Initializable
         return null;
     }
     
+    /**
+     * slaat het spel op via de domeinController geeft een alert terug indien succesvol en roep toonMenu op
+     * handelt ook SpelNaamNietUniekException af
+     * @param naam 
+     * @see slaOp
+     * @see toonMenu
+     * @author Thomas
+     */
     private void slaOp(String naam){
         try{
             WelkomController.dc.slaOp(naam);
@@ -313,11 +420,15 @@ public class SpelbordController implements Initializable
             toonMenu();
         }catch(SpelNaamNietUniekException sn){
             error("Deze spelnaam is al in gebruik. Probeer opnieuw.","spelnaam niet uniek");
-        }catch(ServerOnbereikbaarException soe){
-            error("De server is op dit moment onbereikbaar probeer later opnieuw.","Server 404");
         }
     }
     
+    /**
+     * geeft een error weer met als content de msg param, en als titel de title param
+     * @param msg
+     * @param title 
+     * @author Ferre
+     */
     private void error(String msg,String title){
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(title);

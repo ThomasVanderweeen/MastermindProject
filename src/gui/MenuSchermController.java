@@ -1,44 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
-/**
- *
- * @author ThomasV
- */
-import domein.DomeinController;
+
 import exceptions.NietGenoegGewonnenException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+/**
+ * verantwoordelijk voor het reguleren van het menuScherm
+ * @author Groep 77
+ */
 public class MenuSchermController implements Initializable{
-
-    private DomeinController dc;
     private ResourceBundle r;
     
-    @FXML
-    private Button engels;
-
-    @FXML
-    private Button frans;
-
-    @FXML
-    private Button nederlands;
 
     @FXML
     private Label logInLabel;
@@ -61,61 +46,78 @@ public class MenuSchermController implements Initializable{
     @FXML
     private Label naam;
     
-    protected void setDomeinController(DomeinController dc){
-        this.dc = dc;
-    } 
+    /**
+     * update de resourcebundle in WelkomController en de labels
+     * @author Ferre
+     * @param taal 
+     * @see SetResourceBundle
+     */
     private void updateResourceBundle(String taal){
-        
-        switch(taal){
-            case "frans":
-                this.r = ResourceBundle.getBundle("resources/Français_fr");
-                break;
-            case "nederlands":
-                this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
-                break;
-            case "engels":
-                this.r = ResourceBundle.getBundle("resources/English_en");
-                break;
-            default:
-                System.err.println("foute keuze");
-                break;
-        }
-        
+        WelkomController.setResourceBundle(taal);
         updateLabels();
     }
     
+    /**
+     * update de labels volgens de resourceBundle in de welkomController
+     * @author Ferre
+     * 
+     */
     private void updateLabels(){
-        startSpel.setText(this.r.getString("startSpel"));
-        laadSpel.setText(this.r.getString("spelLaden"));
-        daagUit.setText(this.r.getString("daagUit"));
-        bekijkUitdagingen.setText(this.r.getString("uitgedaagd"));
-        bekijkScorebord.setText(this.r.getString("bekijkScorebord"));
+        startSpel.setText(WelkomController.r.getString("startSpel"));
+        laadSpel.setText(WelkomController.r.getString("spelLaden"));
+        daagUit.setText(WelkomController.r.getString("daagUit"));
+        bekijkUitdagingen.setText(WelkomController.r.getString("uitgedaagd"));
+        bekijkScorebord.setText(WelkomController.r.getString("bekijkScorebord"));
     }
     
-
-    
-    
+    /**
+     * roept updateresourcebundle aan met als param engels
+     * @see updateResourceBundle
+     * @author Ferre
+     */
     
     @FXML
-    public void engelsGeklikt(){
+    protected void engelsGeklikt(){
         updateResourceBundle("engels");
     }
-    
+     
+    /**
+     * roept updateresourcebundle aan met als param Frans
+     * @see updateResourceBundle
+     * @author Ferre
+     */
     @FXML
-    public void fransGeklikt(){
+    protected void fransGeklikt(){
         updateResourceBundle("frans");
     }
     
+    /**
+     * roept updateresourcebundle aan met als param Nederlands
+     * @see updateResourceBundle
+     * @author Ferre
+     */
     @FXML
-    public void nederlandsGeklikt(){
+    protected void nederlandsGeklikt(){
         updateResourceBundle("nederlands");
     }
 
+    /**
+     * gaat de moeilijkheidsgraad opvragen, scherm veranderen in spelbord,
+     * nieuw spel starten, gui opbouwen en moeilijkheidsgraad instellen.
+     * ook verantwoordelijk voor het afhandelen van niet genoeg gewonnen exception
+     * @see vraagMoeilijkheidsGraad
+     * @see veranderScherm
+     * @see startNieuwSpel
+     * @see buildGui
+     * @see setMoeilijkheidsGraad
+     * @author Michiel S.
+     */
     @FXML
-    public void startGeklikt(){
+    protected void startGeklikt(){
         int mg = vraagMoeilijkheidsGraad();
         if(mg!=0){
             try{
+                
                 WelkomController.veranderScherm("Spelbord.fxml");
                 SpelbordController sc = (SpelbordController) WelkomController.geefController();
                 sc.setMoeilijkheidsGraad(mg);
@@ -123,42 +125,96 @@ public class MenuSchermController implements Initializable{
                 sc.buildGui();
 
             }catch(NietGenoegGewonnenException ngge){
-                WelkomController.Error("Niet genoeg gewonnen", "Je hebt nog niet genoeg spelletjes gewonnen",
+                WelkomController.Error("Niet genoeg gewonnen", 
                         "Om een spel uit deze moeilijkheids graad te spelen moet je minstens twintig spelletjes spelen uit de vorige"
                          +" moeilijkheidsgraad ");
+                WelkomController.veranderScherm("Menu.fxml");
             }
             
 
         }
     }
     
-    public void laadGeklikt(){
+     /**
+     * initialiseerd SpelLadenController, stelt deze in als controller klasse
+     * en roept de methode toonSpellen aan van deze controller
+     * @see setController
+     * @see toonSpellen
+     * @author Michiel S
+     */
+    @FXML
+    protected void laadGeklikt(){
         SpelLadenController slc = new SpelLadenController();
         WelkomController.setController(slc);
         slc.toonSpellen();
     }
     
-    public void daagUitGeklikt(){
+    /**
+     * initialiseerd UitdagingStartencontroller, stelt deze in als controller klasse
+     * en roept de methode selecteerMoeilijkheidsgraad aan van deze controller
+     * @see setController
+     * @see selecteerMoeilijkheidsgraad
+     * @author Michiel S
+     */
+    @FXML
+    protected void daagUitGeklikt(){
         UitdagingStartenController usc = new UitdagingStartenController();
         WelkomController.setController(usc);
         usc.selecteerMoeilijkheidsgraad();
     }
-    
+        
+    /**
+     * initialiseerd Uitdagingencontroller, stelt deze in als controller klasse
+     * en roept de methode toonUitdagingen aan van deze controller
+     * @see setController
+     * @see toonUitdagingen
+     * @author Michiel S
+     */
     @FXML
-    public void bekijkUitdagingenGeklikt(){
+    protected void bekijkUitdagingenGeklikt(){
        UitdagingenController uc = new UitdagingenController();
        WelkomController.setController(uc);
        uc.toonUitdagingen();
     }
-    
-    public void bekijkScorebordGeklikt(){
+        
+    /**
+     * initialiseerd ScorebordController, stelt deze in als controller klasse
+     * en roept de methode toonMoeilijkheidsgraad aan van deze controller
+     * @see setController
+     * @see toonMoeilijkheidsgraad
+     * @author Ferre
+     */
+    @FXML
+    protected void bekijkScorebordGeklikt(){
         ScorebordController sc = new ScorebordController();
         WelkomController.setController(sc);
         sc.toonMoeilijkheidsgraad(1);
     }
     
+    /**
+     * vraagt de moeilijkheidsgraad aan de gebruiker door middel van een alert
+     * maakt hiervoor gebruikt van de methode startNieuwSpel in de domeinklasse 
+     * @see startNieuwSpel
+     * @return integer 
+     * @author Michiel S.
+     */  
     private int vraagMoeilijkheidsGraad(){
         Alert mg = new Alert(AlertType.CONFIRMATION);
+        List<Integer> gewin = WelkomController.dc.startNieuwSpel();
+        
+        GridPane gp = new GridPane();
+        
+        Label gewonnen = new Label("Het aantal potjes gewonnen:");
+        Label makkelijk = new Label("Makkelijk: "+gewin.get(0));
+        Label lblgemiddeld = new Label("Gemiddeld: "+gewin.get(1));
+        Label lblmoeilijk = new Label("Moeilijk: "+gewin.get(2));
+        
+        gp.addRow(0, gewonnen);
+        gp.addRow(1, makkelijk );
+        gp.addRow(2,lblgemiddeld );
+        gp.addRow(3, lblmoeilijk);
+
+        mg.getDialogPane().setHeader(gp);
         
         ButtonType gemakkelijk = new ButtonType("Gemakkelijk");
         ButtonType gemiddeld = new ButtonType("Gemiddeld");
@@ -186,7 +242,14 @@ public class MenuSchermController implements Initializable{
         
         return 0;
     }
-
+    /**
+     * Initialiseerd de controller klasse en update de naam die wordt weergegeven
+     * door middel van de functie geefSpelerNaam in de domeinController
+     * @param location URL
+     * @see geefSpelerNaam
+     * @param resources ResourceBundle
+     * @Author Thomas
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
         naam.setText("Welkom terug "+WelkomController.dc.geefSpelerNaam());

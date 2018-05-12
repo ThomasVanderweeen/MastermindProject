@@ -1,20 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
-/**
- *
- * @author ThomasV
- */
-import domein.DomeinController;
-import exceptions.AanmeldException;
 import exceptions.SpelerBestaatAlException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -24,6 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
+/**
+ * verantwoordelijk voor het reguleren van alles binnen het registreer scherm
+ * @author Groep 77
+ */
 public class RegistreerController{
    
     private ResourceBundle r;
@@ -67,7 +59,13 @@ public class RegistreerController{
     @FXML
     private Label foutmelding;
 
-    public void registreer(){
+    /**
+     * registreerd de speler d.m.v de registreer methode in de domeinController
+     * handelt ook de eventuele exceptions af die kunnen worden gethrowed in het domein
+     * @author Michiel S.
+     */
+    @FXML
+    protected void registreer(){
         try{
         WelkomController.dc.registreer(
                 registreerNaam.getText().trim(),
@@ -98,48 +96,67 @@ public class RegistreerController{
 
     }
     
+    /**
+     * update de resourcebundle in WelkomController en de labels
+     * @author Ferre
+     * @param taal 
+     * @see SetResourceBundle
+     */
     private void updateResourceBundle(String taal){
-        
-        switch(taal){
-            case "frans":
-                this.r = ResourceBundle.getBundle("resources/Français_fr");
-                break;
-            case "nederlands":
-                this.r = ResourceBundle.getBundle("resources/Nederlands_ne");
-                break;
-            case "engels":
-                this.r = ResourceBundle.getBundle("resources/English_en");
-                break;
-            default:
-                System.err.println("foute keuze");
-                break;
-        }
-        
+        WelkomController.setResourceBundle(taal);
         updateLabels();
     }
-    
+     
+    /**
+     * update de labels volgens de resourceBundle in de welkomController
+     * @author Ferre
+     * 
+     */
     private void updateLabels(){
-        gebruikersnaamLabel.setText(this.r.getString("gebruikersNaam"));
-        wachtwoordLabel.setText(this.r.getString("wachtwoord"));
-        registreerLabel.setText(this.r.getString("registreer"));
-        wachtwoordBevestigenLabel.setText(this.r.getString("wachtwoordBevestigen"));
-        registreerKnop.setText(this.r.getString("registreer"));
+        gebruikersnaamLabel.setText(WelkomController.r.getString("gebruikersNaam"));
+        wachtwoordLabel.setText(WelkomController.r.getString("wachtwoord"));
+        registreerLabel.setText(WelkomController.r.getString("registreer"));
+        wachtwoordBevestigenLabel.setText(WelkomController.r.getString("wachtwoordBevestigen"));
+        registreerKnop.setText(WelkomController.r.getString("registreer"));
     }
     
-    
-    
-    public void engelsGeklikt(){
+    /**
+     * roept updateresourcebundle aan met als param engels
+     * @see updateResourceBundle
+     * @author Ferre
+     */
+    @FXML
+    protected void engelsGeklikt(){
         updateResourceBundle("engels");
     }
     
-    public void fransGeklikt(){
+    /**
+     * roept updateresourcebundle aan met als param Frans
+     * @see updateResourceBundle
+     * @author Ferre
+     */
+    @FXML
+    protected void fransGeklikt(){
         updateResourceBundle("frans");
     }
     
-    public void nederlandsGeklikt(){
+    /**
+     * roept updateresourcebundle aan met als param Nederlands
+     * @see updateResourceBundle
+     * @author Ferre
+     */
+    @FXML
+    protected void nederlandsGeklikt(){
         updateResourceBundle("nederlands");
     }
     
+    /**
+     * Gooit een exception met de bijgevoegde parameters als titel, header en context
+     * @param title
+     * @param header
+     * @param context 
+     * @author Michiel S.
+     */
     private void exception(String title,String header,String context){
         Alert alert = new Alert(AlertType.ERROR);
         

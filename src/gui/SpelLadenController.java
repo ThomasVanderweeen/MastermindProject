@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import exceptions.SpelerHeeftGeenOpgeslagenSpellenException;
@@ -11,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
@@ -21,9 +15,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
- * @author ThomasV
+ * Voorziet de functionaliteit om een spel in te laden
+ * @author Groep 77
  */
 public class SpelLadenController implements Initializable {
     private String naam;
@@ -31,24 +24,45 @@ public class SpelLadenController implements Initializable {
     private Dialog dg;
     
     /**
-     * Initializes the controller class.
+     * Initialiseerd de controller klasse
+     * @param url URL
+     * @param rb ResourceBundle
+     * @author thormas
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
-    public void stelGegevensIn(String naam, int mg){
+    /**
+     * gaat de naam en moeilijkheidsGraad instellen 
+     * @param naam
+     * @param mg 
+     * @author Michiel S.
+     */
+    protected void stelGegevensIn(String naam, int mg){
         this.naam = naam;
         this.mg = mg;
     }
     
-    public void sluitDialog(){
+    /**
+     * Sluit de geopende Dialog
+     * @author Michiel S.
+     */
+    protected void sluitDialog(){
         Stage stg = (Stage) this.dg.getDialogPane().getScene().getWindow();
         stg.close();
     }
     
-    public void toonSpellen(){
+    /**
+     * Opent een dialog met daarin een TableView van de spellen.
+     * deze spellen zijn ingeladen doormiddel van de domeinController methode 
+     * geefOpgeslagenSpellen. de table view wordt opgesteld doormiddel van laadSpelRij klassen.
+     * Handeld ook de SpelerHeeftGeenOpgeslagenSpellenException af.
+     * @see geefOpgeslagenSpellen
+     * @author Michiel S.
+     */
+    protected void toonSpellen(){
         try{
             String[][] spellen = WelkomController.dc.geefOpgeslagenSpellen();
             ObservableList<laadSpelRij> lijst = FXCollections.observableArrayList();
@@ -89,11 +103,21 @@ public class SpelLadenController implements Initializable {
                     
             dg.show();
         }catch(SpelerHeeftGeenOpgeslagenSpellenException shg){
-            WelkomController.Error("Geen opgeslagen spellen", "je hebt geen opgeslagen spellen", "je hebt geen opgeslagen spellen");
+            WelkomController.Error("Geen opgeslagen spellen", "je hebt geen opgeslagen spellen");
         }
     }
     
-    public void laadSpel(){
+    /**
+     * laad een spel in, veranderd het scherm naar spelbord en maakt doormiddel
+     * van de spelbordController het juiste spelbord aan
+     * @see selecteerSpel
+     * @see veranderScherm
+     * @see geefController
+     * @see setMoeilijkheidsGraad
+     * @see buildGui()
+     * @author Michiel S.
+     */
+    protected void laadSpel(){
         WelkomController.dc.selecteerSpel(naam);
 
         WelkomController.veranderScherm("Spelbord.fxml");
