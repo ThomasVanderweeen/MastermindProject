@@ -5,11 +5,8 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 /**
-<<<<<<< HEAD
  *
-=======
  * LaadSpelRij functionaliteit voor weergave laadSpel Tableview
->>>>>>> a6f145f3fa10f254c3de0342e8a253190ce589b7
  * @author Groep 77
  */
 public class laadSpelRij {

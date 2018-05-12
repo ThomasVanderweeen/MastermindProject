@@ -19,7 +19,7 @@ public class Rij {
      * Constructor voor een rij object. 
      * 
      * @author Thomas
-     * @param aantalPosities aantal positities in de rij. 
+     * @param aantalPosities Integer
      */
     public Rij(int aantalPosities){
         poging = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Rij {
      * doePoging zet de int[] array poging om in een CodePin[] array.
      * 
      * @author Thomas
-     * @param poging int array die wordt omgezet in een codepin array.
+     * @param poging Integer[]
      */
     public void doePoging(int[] poging){
         this.poging.clear(); 
@@ -45,8 +45,8 @@ public class Rij {
     /**
      * getEvaluatie returned een evaluatie van een rij object. 
      * 
-     * @author Thomas
-     * @return evaluatie. 
+     * @author Michiel
+     * @return evaluatie List(EvaluatiePinnen) 
      */
     public List<EvaluatiePin> getEvaluatie() {
         return evaluatie;
@@ -54,13 +54,8 @@ public class Rij {
     
     /**
      * getPoging returned een poging van een rij object.
-     * 
-<<<<<<< HEAD
-     * @author Thomas
-     * @return List
-=======
+     * @author Michil
      * @return List(CodePin) List(CodePin)
->>>>>>> a6f145f3fa10f254c3de0342e8a253190ce589b7
      */
     public List<CodePin> getPoging(){
         return this.poging;
@@ -69,7 +64,7 @@ public class Rij {
     /**
      * heeftEvaluatie gaat na of een rij object al een evaluatie heeft.
      * 
-     * @author Thomas
+     * @author Michiel S.
      * @return boolean
      */
     public boolean heeftEvaluatie(){
@@ -79,8 +74,8 @@ public class Rij {
     /**
      * stelEvaluatieIn voegt een evaluatie toe aan een rij object. 
      * 
-     * @author Thomas
-     * @param evaluatie evaluatie die aan de rij wordt toegevoegd.
+     * @author Michiel S.
+     * @param evaluatie Integer[]
      */
     public void stelEvaluatieIn(int[] evaluatie){
         this.evaluatie = new ArrayList<>();

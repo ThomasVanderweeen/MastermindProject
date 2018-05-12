@@ -16,7 +16,7 @@ public abstract class Pin {
      * Constructor voor een pin object.
      * 
      * @author Thomas
-     * @param kleur kleur van de pin.
+     * @param kleur String
      */
     public Pin(String kleur) {
         this.kleur = kleur;
@@ -36,7 +36,7 @@ public abstract class Pin {
      * Abstracte methode die wordt overschreven in de subclasses.
      * 
      * @author Thomas
-     * @param kleur kleur die gecontrolleerd wordt.
+     * @param kleur String
      */
     protected abstract void bepaalGeldigeKleur(String kleur);
 }

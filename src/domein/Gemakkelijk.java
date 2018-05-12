@@ -21,8 +21,8 @@ public class Gemakkelijk extends MoeilijkheidsGraad {
      * genereerCode geneert een code waarvan de kleuren willekeurig gekozen worden.
      * 
      * @author Ferre
-     * @see getKleuren
-     * @see getAantalPinnen
+     * @see MoeilijkheidsGraad#getKleuren() getKleuren
+     * @see MoeilijkheidsGraad#getAantalPinnen() getAantalPinnen
      * @return List CodePin
      */
     @Override

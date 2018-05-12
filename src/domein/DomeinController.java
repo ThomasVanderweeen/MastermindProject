@@ -34,29 +34,25 @@ public class DomeinController {
         uitdagingRepository = new UitdagingRepository();
     }
     
-    /*
-    Er kan nog een exceptie optreden deze functie aanroepen voor speler bestaat.
-    */
+
      /**
      * geefSpelerNaam geeft de naam van een speler terug.
-     * @see getNaam
+     * @see Speler#getNaam() getNaam
      * @return String
      * @author Ferre
      */
     public String geefSpelerNaam(){
         return this.speler.getNaam();
     }
-    
-    /*
-        opgebast geef leeg object door indien speler niet bestaat geen exception moet nog gefix worden
-    */
+
      /**
      * meldAan meldt een bestaande speler aan bij de mastermind applicatie. 
-     * @see bestaatSpeler
-     * @see geefSpeler
-     * @throws AanmeldException
-     * @param naam naam van de speler die wordt aangemeld.
-     * @param wachtwoord wachtwoord van de speler die wordt aangemeld.
+     * @see SpelerRepository#bestaatSpeler(java.lang.String) bestaatSpeler
+     * @see SpelerRepository#geefSpeler(java.lang.String, java.lang.String) geefSpeler
+     * @throws AanmeldException AanmeldException
+     * @param naam String
+     * @param wachtwoord String
+     * @author Michiel S.
      */
     public void meldAan(String naam, String wachtwoord){
         
@@ -70,19 +66,17 @@ public class DomeinController {
         
     }
     
-    /*
-    Ook nog geen exception geworpen indien speler wel al bestaat nog implementeren HOE?!
-    */
+
     /**
      * registreer Registreert een nieuwe speler en slaat deze op in de databank, indien de spelernaam nog niet in gebruik is. 
      * 
-     * @see bestaatSpeler
-     * @see voegSpelerToe
-     * @throws SpelerBestaatAlException
+     * @see SpelerRepository#bestaatSpeler(java.lang.String) bestaatSpeler
+     * @see SpelerRepository#voegSpelerToe(domein.Speler) voegSpelerToe
+     * @throws SpelerBestaatAlException SpelerBestaatAlException
      * @author Ferre
-     * @param naam naam van de speler.
-     * @param wachtwoord wachtwoord van de speler. 
-     * @param wachtwoordBevestiging bevestiging van het wachtwoord, moet hetzelfde zijn als het wachtwoord.
+     * @param naam String
+     * @param wachtwoord String
+     * @param wachtwoordBevestiging String
      */
     public void registreer(String naam, String wachtwoord, String wachtwoordBevestiging){
         boolean bestaat = spelerRepository.bestaatSpeler(naam);
@@ -99,7 +93,7 @@ public class DomeinController {
      /**
      * registreerSpel maakt een spel Object aan met een bepaalde moeilijkheidsgraad en een speler object.
      * @author Ferre
-     * @param moeilijkheidsGraad de moeilijkheidsgraad van het spel dat wordt aangemaakt.
+     * @param moeilijkheidsGraad Integer
      */
     public void registreerSpel(int moeilijkheidsGraad){
         this.spel = new Spel(moeilijkheidsGraad,this.speler);
@@ -109,10 +103,9 @@ public class DomeinController {
     /**
      * startNieuwSpel haalt het aantal gewonnen spellen per moeilijkheidsgraad op van een bepaalde speler.
      * 
-     * @see getAantalGewonnenMakkelijk
-     * @see getAantalGewonnenGemiddeld
-     * @see getAantalGewonnenMoeilijk
-     * @see add
+     * @see Speler#getAantalGewonnenMakkelijk() getAantalGewonnenMakkelijk
+     * @see Speler#getAantalGewonnenGemiddeld() getAantalGewonnenGemiddeld
+     * @see Speler#getAantalGewonnenMoeilijk() getAantalGewonnenMoeilijk
      * @author Ferre
      * @return List Integer
      */
@@ -129,14 +122,14 @@ public class DomeinController {
     /**
      * geefSpelbord geeft het spelbord weer.
      * 
-     * @see getSpelBord
-     * @see getRijen
-     * @see getPoging
-     * @see heeftEvaluatie
-     * @see getKleur
-     * @see getEvaluatie
+     * @see Spel#getSpelBord() getSpelBord
+     * @see Spelbord#getRijen() getRijen
+     * @see Rij#getPoging() getPoging
+     * @see Rij#heeftEvaluatie() heeftEvaluatie
+     * @see CodePin#getKleur() getKleur
+     * @see Rij#getEvaluatie() getEvaluatie
      * 
-     * @author Ferre
+     * @author Michiel S.
      * @return String[][]
      */
     public String [][] geefSpelBord(){
@@ -178,10 +171,10 @@ public class DomeinController {
      * geefCode zet de code om naar een String voor output naar de ui.
      * 
      * 
-     * @see getSpelBord
-     * @see getCode
-     * @see getKleur
-     * @author Ferre
+     * @see Spel#getSpelBord() getSpelBord
+     * @see Spelbord#getCode() getCode
+     * @see CodePin#getKleur() getKleur
+     * @author Michiel S.
      * @return String[]
      */
     public String[] geefCode(){
@@ -204,7 +197,7 @@ public class DomeinController {
     /**
      * geefKleuren haalt een array met alle geldige kleuren voor de codepins op.
      * 
-     * @see getGeldigeKleuren
+     * @see CodePin#getGeldigeKleuren() getGeldigeKleuren
      * @author Ferre
      * @return String[]
      */
@@ -217,21 +210,18 @@ public class DomeinController {
      * deze wordt geregistreerd, en als de speler met die zet wint
      * wordt het aantal wins voor betreffende moeilijkheidsgraad verhoogd met 1.
      * 
-<<<<<<< HEAD
-     * @see doePoging
-     * @see isGewonnen
-     * @see geefMoeilijkheidsGraad
-     * @see verhoogJuisteMoeilijkheidsGraad
-     * @see updateScore
-     * @see getUitdagingID
-     * @see updateUitdaging
+
+     * @see Spel#doePoging(int[]) doePoging
+     * @see Spel#isGewonnen() isGewonnen
+     * @see Spel#geefMoeilijkheidsGraad() geefMoeilijkheidsGraad
+     * @see Speler#verhoogJuisteMoeilijkheidsGraad(int) verhoogJuisteMoeilijkheidsGraad
+     * @see SpelerRepository#updateScore(domein.Speler, int) updateScore
+     * @see Spel#getUitdagingID() getUitdagingID
+     * @see UitdagingRepository#updateUitdaging(domein.Uitdaging) updateUitdaging
      * 
      * 
      * @author Ferre
-     * @param poging 
-=======
      * @param poging Integer[]
->>>>>>> a6f145f3fa10f254c3de0342e8a253190ce589b7
      */
     public void doePoging(int[] poging){
         this.spel.doePoging(poging);
@@ -246,7 +236,7 @@ public class DomeinController {
     /**
      * isEindeSpel bepaalt of het einde van het spel is bereikt 
      * 
-     * @see bepaalEindeSpel
+     * @see Spel#bepaalEindeSpel() bepaalEindeSpel
      * @author Ferre
      * @return boolean 
      */
@@ -256,8 +246,8 @@ public class DomeinController {
     /**
      * isGewonnen bepaalt of de speler is gewonnen 
      * 
-     * @see isGewonnen
-     * @author Ferre
+     * @see Spel#isGewonnen() isGewonnen
+     * @author Michiel S.
      * @return boolean 
      */
     public boolean isGewonnen(){
@@ -267,11 +257,11 @@ public class DomeinController {
     /**
      * slaOp slaat het spel op om later verder te spelen.
      * 
-     * @see controleerNaam
-     * @see stelNaamIn
-     * @see voegSpelToe
+     * @see SpelRepository#controleerNaam(java.lang.String) controleerNaam
+     * @see Spel#stelNaamIn(java.lang.String) stelNaamIn
+     * @see SpelRepository#voegSpelToe(domein.Spel) voegSpelToe
      * 
-     * @author Ferre
+     * @author Michiel S.
      * @param naam dit is de naam van het spel 
      */
     public void slaOp(String naam){
@@ -290,11 +280,10 @@ public class DomeinController {
      * dubbele array te zetten 
      * wanneer het spel is gewonnen
      * 
-     * @see isGewonnen
-     * @see geefAantalSterrenEnAantalTotVolgende
-     * @see toString
-     * @see getAantalPogingen
-     * @see geefCode
+     * @see Spel#isGewonnen() isGewonnen
+     * @see Spel#geefAantalSterrenEnAantalTotVolgende() geefAantalSterrenEnAantalTotVolgende
+     * @see Spel#getAantalPogingen() getAantalPogingen
+     * @see #geefCode() geefCode
      * @author Ferre
      * @return String[][]  
      */
@@ -316,8 +305,8 @@ public class DomeinController {
      * geefOpgeslagenSpellen geeft een 2dimensionale array terug waarin alle 
      * opgeslagen spellen van de huidige speler staan
      * 
-     * @see toonSpellen
-     * @see getNaam
+     * @see SpelRepository#toonSpellen(java.lang.String) toonSpellen
+     * @see Speler#getNaam() getNaam
      * @author Ferre
      * @return String[][]  
      */
@@ -329,10 +318,10 @@ public class DomeinController {
      * geselecteerde opgeslagen spel, daarna wordt het geselecteerde spel
      * uit de database verwijderd
      * 
-     * @see laadSpel
-     * @see verwijderSpel
+     * @see SpelRepository#laadSpel(java.lang.String, domein.Speler) laadSpel
+     * @see SpelRepository#verwijderSpel(java.lang.String) verwijderSpel
      * @author Ferre
-     * @param naam   
+     * @param naam  String  
      */
     public void selecteerSpel(String naam){
         this.spel = spelRepository.laadSpel(naam, speler);
@@ -344,14 +333,12 @@ public class DomeinController {
      * die moeilijkheidsgraad bevatten indien de speler momenteel
      * geen lopende uitdaging heeft
      * 
-     * @see controleerGeenLopendeUitdaging
-     * 
-     * @see getAantalGewonnenMakkelijk
-     * 
-     * @see getAantalGewonnenGemiddeld
-     * @see getAantalGewonnenMoeilijk
-     * @author Ferre
-     * @return List<String[]> 
+     * @see UitdagingRepository#controleerGeenLopendeUitdaging(domein.Speler) controleerGeenLopendeUitdaging 
+     * @see Speler#getAantalGewonnenMakkelijk() getAantalGewonnenMakkelijk
+     * @see Speler#getAantalGewonnenGemiddeld() getAantalGewonnenGemiddeld
+     * @see Speler#getAantalGewonnenMakkelijk() getAantalGewonnenMoeilijk
+     * @author Michiel S.
+     * @return List String[] 
      */
     public List<String[]> geefMoeilijkheidsGraden(){
         uitdagingRepository.controleerGeenLopendeUitdaging(this.speler);
@@ -377,13 +364,13 @@ public class DomeinController {
      * selecteerMoeilijkheidsGraadUitdaging geeft een lijst van spelers-arrays terug
      * die beschikbaar zijn om uit te dagen in de geselecteerde moeilijkheidsgraad
      * 
-     * @see geefBeschikbareSpelers
-     * @see getNaam
+     * @see SpelerRepository#geefBeschikbareSpelers(int, java.lang.String) geefBeschikbareSpelers
+     * @see Speler#getNaam() getNaam
      * 
-     * @throws NiemandBeschikbaarVoorUitdagingException
+     * @throws NiemandBeschikbaarVoorUitdagingException NiemandBeschikbaarVoorUitdagingException
      * @author Ferre
-     * @return List<String[]> 
-     * @param moeilijkheidsGraad
+     * @return List String[]
+     * @param moeilijkheidsGraad Integer
      */
     public List<String[]> selecteerMoeilijkheidsGraadUitdaging(int moeilijkheidsGraad){
         
@@ -397,14 +384,14 @@ public class DomeinController {
      * startUitdaging creëerd een nieuwe uitdaging waarbij de tegenstander en
      * de moeilijkheidsgraad worden meegegeven
      *  
-     * @see controleerGeldigeUitdaging
-     * @see voegUitdagingToe
-     * @see getSpel
-     * @see voegSpelTegenstanderToe
-     * @see voegSpelToe
-     * @author Ferre
-     * @param tegenstander 
-     * @param moeilijkheidsGraad
+     * @see UitdagingRepository#controleerGeldigeUitdaging(domein.Speler, java.lang.String) controleerGeldigeUitdaging
+     * @see UitdagingRepository#voegUitdagingToe(domein.Uitdaging) voegUitdagingToe
+     * @see Uitdaging#getSpel() getSpel
+     * @see SpelRepository#voegSpelTegenstanderToe(domein.Spel, java.lang.String) voegSpelTegenstanderToe
+     * @see SpelRepository#voegSpelToe(domein.Spel) voegSpelToe
+     * @author Michiel S.
+     * @param tegenstander String
+     * @param moeilijkheidsGraad Integer
      */
     public void startUitdaging(String tegenstander, int moeilijkheidsGraad){
         uitdagingRepository.controleerGeldigeUitdaging(this.speler,tegenstander);
@@ -423,7 +410,7 @@ public class DomeinController {
      * geefNaamLopendeUitdagingTegenspeler geeft de naam van de tegenstander
      * in de huidige uitdaging terug
      *  
-     * @see geefNaamLopendeUitdagingTegenspeler
+     * @see UitdagingRepository#geefNaamLopendeUitdagingTegenspeler(domein.Speler) geefNaamLopendeUitdagingTegenspeler
      * @author Ferre
      * @return String
      */
@@ -435,9 +422,9 @@ public class DomeinController {
      * van de lopende uitdaging van de 
      * gebruiker op en geeft deze door naar laadUitdaging
      *  
-     * @see geefLopendeUitdagingId
-     * @see geefNaamLopendeUitdagingTegenspeler
-     * @see laadSpelUitdaging
+     * @see UitdagingRepository#geefLopendeUitdagingId(domein.Speler) geefLopendeUitdagingId
+     * @see #geefNaamLopendeUitdagingTegenspeler() geefNaamLopendeUitdagingTegenspeler
+     * @see #laadSpelLopendeUitdaging() laadSpelUitdaging
      * @author Ferre
      */
     public void laadSpelLopendeUitdaging(){
@@ -450,11 +437,11 @@ public class DomeinController {
      * zorgt dat in de database de uitdaging wordt geaccepteerd
      * en roept dan laadSpelUitdaging op
      * 
-     * @see accepteerUitdaging
-     * @see laadSpelUitdaging
+     * @see UitdagingRepository#accepteerUitdaging(int, domein.Speler) accepteerUitdaging
+     * @see #laadSpelLopendeUitdaging() laadSpelUitdaging
      * @author Ferre
-     * @param ID
-     * @param tegenstander
+     * @param ID Integer
+     * @param tegenstander String
      */
     public void laadUitdaging(int ID,String tegenstander){
         uitdagingRepository.accepteerUitdaging(ID, this.speler);
@@ -464,12 +451,12 @@ public class DomeinController {
      * laadSpelUitdaging creert een nieuwe uitdaging 
      * en zorgt dat die uitdaging het huidige spel wordt
      * 
-     * @see laadSpelUitdaging
-     * @see stelIDIn
-     * @see getSpel
+     * @see SpelRepository#laadSpelUitdaging(domein.Speler, int) laadSpelUitdaging
+     * @see Uitdaging#stelIDIn(int) stelIDIn
+     * @see Uitdaging#getSpel() getSpel
      * @author Ferre
-     * @param ID
-     * @param tegenstander
+     * @param ID Integer
+     * @param tegenstander String
      */
     private void laadSpelUitdaging(int ID,String tegenstander){
         Spel sp = spelRepository.laadSpelUitdaging(speler, ID);
@@ -483,8 +470,8 @@ public class DomeinController {
      * verwijderLopendeUitdaging haalt het id van de huidige uitdaging op
      * en roept verwijderUitdaging op
      * 
-     * @see geefLopendeUitdagingId
-     * @see verwijderUitdaging
+     * @see UitdagingRepository#geefLopendeUitdagingId(domein.Speler) geefLopendeUitdagingId
+     * @see #verwijderUitdaging(int) verwijderUitdaging
      * @author Ferre
      */
     public void verwijderLopendeUitdaging(){
@@ -495,10 +482,10 @@ public class DomeinController {
      * verwijderUitdaging verwijderd de uitdaging uit de database, 
      * en ook het spel dat voor die uitdaging was gemaakt
      * 
-     * @see verwijderUitdaging
-     * @see verwijderSpellenUitdaging
+     * @see UitdagingRepository#verwijderUitdaging(int) verwijderUitdaging
+     * @see SpelRepository#verwijderSpellenUitdaging(int) verwijderSpellenUitdaging
      * @author Ferre
-     * @param ID
+     * @param ID Integer
      */
     public void verwijderUitdaging(int ID){
         uitdagingRepository.verwijderUitdaging(ID);
@@ -509,11 +496,11 @@ public class DomeinController {
      * open staan, als dit niet het geval is wordt een 
      * 2dimensionale array met daarin de lijst van uitdagingen
      * 
-     * @see controleerGeenLopendeUitdaging
-     * @see geefLijstUitdagingen
-     * @see geefLopendeUitdagingInfo
-     * @throws GeenOpenstaandeUitdagingException
-     * @author Ferre
+     * @see UitdagingRepository#controleerGeenLopendeUitdaging(domein.Speler) controleerGeenLopendeUitdaging
+     * @see UitdagingRepository#geefLijstUitdagingen(domein.Speler) geefLijstUitdagingen
+     * @see SpelRepository#geefLopendeUitdagingInfo(java.lang.String[][]) geefLopendeUitdagingInfo
+     * @throws GeenOpenstaandeUitdagingException GeenOpenstaandeUitdagingException
+     * @author Michiel S.
      * @return String[][]
      */
     public String[][] geefLijstUitdagingen(){
@@ -528,10 +515,10 @@ public class DomeinController {
     /**
      * geefKlassement geeft een lijst van stringarrays terug met daarin het de spelers in het klassement
      * 
-     * @see geefKlassement
-     * @author Ferre
-     * @param graad
-     * @return List<String[]>
+     * @see SpelerRepository#geefKlassement(int) geefKlassement
+     * @author Michiel S.
+     * @param graad Integer
+     * @return List(String[])
      */
     public List<String[]> geefKlassement(int graad) {
         return spelerRepository.geefKlassement(graad);

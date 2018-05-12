@@ -20,8 +20,8 @@ public class EvaluatiePin extends Pin{
      * Constructor voor een evaluatiepin object. Gebruikt bepaalGeldigeKleur om na te gaan of de meegegeven kleur geldig is.
      * 
      * @author Thomas
-     * @see bepaalGeldigeKleur
-     * @param kleur kleur van de evaluatiepin
+     * @see #bepaalGeldigeKleur(java.lang.String) bepaalGeldigeKleur
+     * @param kleur String
      */
     public EvaluatiePin(String kleur) {
         super(kleur);
@@ -32,7 +32,7 @@ public class EvaluatiePin extends Pin{
      * Constructor voor een evaluatiepin object. Krijgt kleur mee als een int.
      * 
      * @author Ferre
-     * @param kleur kleur van het object.
+     * @param kleur String
      */
     public EvaluatiePin(int kleur){
         super(GELDIGE_KLEUREN[kleur]);
@@ -41,7 +41,7 @@ public class EvaluatiePin extends Pin{
     /**
      * getKleur geeft de kleur van een pin object. 
      * 
-     * @see getKleur
+     * @see Pin#getKleur() getKleur
      * @author Ferre
      * @return String
      */
@@ -56,8 +56,8 @@ public class EvaluatiePin extends Pin{
      * Zoniet werpt het een inputmismatch exception.
      * 
      * @author Ferre
-     * @throws InputMismatchException
-     * @param kleur kleur die gecontrolleerd wordt.
+     * @throws InputMismatchException InputMismatchException
+     * @param kleur String
      */
     @Override
     protected void bepaalGeldigeKleur(String kleur) {

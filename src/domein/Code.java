@@ -9,8 +9,8 @@ public class Code {
      /**
      * setMoeilijkheidsGraad wijzigt de waarde van de moeilijkheidsgraad van een
      * code object.
-     * @author Thomas
-     * @param moeilijkheidsgraad de nieuwe waarde voor moeilijkheidsgraad.
+     * @author Michiel
+     * @param moeilijkheidsgraad Integer
      */
     private void setMoeiljkheidsGraad(int moeilijkheidsgraad){
         switch(moeilijkheidsgraad){
@@ -30,10 +30,10 @@ public class Code {
      * Constructor voor een code object. aan de hand van de meegegeven
      * moeilijkheisdgraad wordt een random code gegenereerd.
      *
-     * @see setMoeilijkheidsGraad
-     * @see genereerCode
-     * @author Thomas
-     * @param moeilijkheidsGraad moeilijkheidsgraad waarvoor een code wirdt
+     * @see #setMoeiljkheidsGraad(int) setMoeilijkheidsGraad
+     * @see MoeilijkheidsGraad#genereerCode() genereerCode
+     * @author Michiel
+     * @param moeilijkheidsGraad Integer
      * gegenereerd.
      */
     public Code(int moeilijkheidsGraad){
@@ -47,8 +47,8 @@ public class Code {
      * en vervolgens de rest van het spel.
      * 
      * @author Thomas
-     * @param code de code
-     * @param mg moeilijkheidsgraad van de code.
+     * @param code List CodePin
+     * @param mg Object
      */
     public Code(List<CodePin> code,MoeilijkheidsGraad mg){
         this.code = code;
@@ -60,7 +60,7 @@ public class Code {
      * Methode retourneerd een lijst van codepin's is later belangerijk voor
      * kleur opvraag, vergelijking,...
      * 
-     * @author Thomas
+     * @author Michiel S.
      * @return List CodePin
      */
     public List<CodePin> getCode() {
@@ -70,8 +70,8 @@ public class Code {
      /**
      *Geeft de moeilijkheids Graad van het code object weer
      *
-     * @author Thomas
-     * @return MoeilijkheidsGraad (Object)
+     * @author Michiel S.
+     * @return MoeilijkheidsGraad Object
      */
     public MoeilijkheidsGraad getMoeilijkheidsGraad() {
         return moeilijkheidsGraad;
@@ -85,9 +85,9 @@ public class Code {
      * weer te geven.
      * 
      * 
-     * @see getAantalPosities
-     * @author Thomas
-     * @return het aantal posities (Int)
+     * @see MoeilijkheidsGraad#getAantalPosities() getAantalPosities
+     * @author Michiel S.
+     * @return Integer
      */
     public int geefAantalPosities(){
         return this.moeilijkheidsGraad.getAantalPosities();

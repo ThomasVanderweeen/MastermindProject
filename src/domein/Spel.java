@@ -16,8 +16,8 @@ public class Spel {
      * 
      * @see controleerMoeilijkheidsGraad
      * @author Ferre
-     * @param moeilijkheidsGraad moeilijkheidsgraad van een spel
-     * @param speler speler van een spel
+     * @param moeilijkheidsGraad Integer
+     * @param speler Speler
      */
     public Spel(int moeilijkheidsGraad,Speler speler){
         this.speler = speler;
@@ -28,9 +28,9 @@ public class Spel {
     /**
      * Constructor voor een spel object.
      * 
-     * @author Thomas
-     * @param spelbord spelbord van een spel
-     * @param speler speler van een spel
+     * @author Michiel S.
+     * @param spelbord Spelbord
+     * @param speler Speler
      */
     public Spel(Spelbord spelbord,Speler speler){
         this.speler = speler;
@@ -40,7 +40,7 @@ public class Spel {
     /**
      * getAantalPogingen geeft het aantalPogingen van een spel object.
      * 
-     * @author Thomas
+     * @author Michiel S.
      * @return int
      */
     public int getAantalPogingen(){
@@ -50,8 +50,8 @@ public class Spel {
     /**
      * stelUitdagingIDIn stelt het id van de uitdaging in
      * 
-     * @author Thomas
-     * @param id
+     * @author Michiel S.
+     * @param id Integer
      */
     public void stelUitdagingIDIn(int id){
         this.uitdagingID = id;
@@ -63,11 +63,11 @@ public class Spel {
      * in de vorige moeilijkheidsgraad heeft gewonnen
      * om de volgende te mogen gebruiken
      * 
-     * @see getAantalGewonnenMakkelijk
-     * @see getAantalGewonnenGemiddeld
+     * @see Speler#getAantalGewonnenMakkelijk() getAantalGewonnenMakkelijk
+     * @see Speler#getAantalGewonnenGemiddeld() getAantalGewonnenGemiddeld
      * @throws NietGenoegGewonnenException
      * @author Ferre
-     * @param moeilijkheidsGraad de moeilijkheidsgraad die gecontroleerd wordt. 
+     * @param moeilijkheidsGraad Integer
      */
     private void controleerMoeilijkheidsGraad(int moeilijkheidsGraad){
        if(moeilijkheidsGraad==2){
@@ -94,8 +94,8 @@ public class Spel {
     /**
      * isGewonnen bepaalt of de speler gewonnen is.
      * 
-     * @author Thomas
-     * @see getCodeGeraden
+     * @author Michiel S.
+     * @see Spelbord#getCodeGeraden() getCodeGeraden
      * @return boolean
      */
     public boolean isGewonnen(){
@@ -105,9 +105,9 @@ public class Spel {
     /**
      * bepaalEindeSpel bepaalt of het spel ten einde is.
      * 
-     * @see getAantalPogingen
+     * @see #getAantalPogingen() getAantalPogingen
      * @author Ferre
-     * @return boolean
+     * @return boolean 
      */
     public boolean bepaalEindeSpel(){
         if((getAantalPogingen() >= 12)||isGewonnen())
@@ -119,9 +119,9 @@ public class Spel {
     /**
      * doePoging voegt een poging toe aan het spelbord.
      * 
-     * @author Ferre
-     * @see getAantalPogingen
-     * @see voegPogingToe
+     * @author Michiel S.
+     * @see #getAantalPogingen() getAantalPogingen
+     * @see Spelbord#voegPogingToe(int[], int) voegPogingToe
      * @param poging poging die wordt toegevoegd
      */
     public void doePoging(int[] poging){
@@ -134,7 +134,7 @@ public class Spel {
      * geefMoeilijkheidsGraad geeft de moeilijkheidsgraad van een spel object.
      * 
      * @author Ferre
-     * @see geefMoeilijkheidsGraad
+     * @see Spelbord#geefMoeilijkheidsGraad() geefMoeilijkheidsGraad
      * @return int 
      */
     public int geefMoeilijkheidsGraad(){
@@ -156,8 +156,8 @@ public class Spel {
      * dat een speler reeds heeft behaald en hoeveel sterren deze speler
      * nog nodig heeft om de volgende moeilijkheidsgraad te ontgrendelen.
      * 
-     * @see geefMoeilijkheidsGraad
-     * @see geefAantalSterrenEnAantalTotVolgende
+     * @see Spelbord#geefMoeilijkheidsGraad() geefMoeilijkheidsGraad
+     * @see Speler#geefAantalSterrenEnAantalTotVolgende(int) geefAantalSterrenEnAantalTotVolgende
      * @author Ferre
      * @return int[]
      */
@@ -181,8 +181,8 @@ public class Spel {
     /**
      * stelNaamIn verandert de naam van een spel object.
      * 
-     * @author Thomas
-     * @param naam de naam van het spel
+     * @author Michiel S.
+     * @param naam String
      */
     public void stelNaamIn(String naam){
         this.naam = naam;
@@ -192,8 +192,8 @@ public class Spel {
     /**
      * getUitdagingID geeft de ID van de huidige uitdaging terug
      * 
-     * @author Ferre
-     * @return int 
+     * @author Michiel S.
+     * @return Integer
      */
     public int getUitdagingID(){
         return this.uitdagingID;
