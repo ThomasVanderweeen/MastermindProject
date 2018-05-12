@@ -50,7 +50,11 @@ public class SpelRepository
      * @throws SpelNaamNietUniekException
      * @author Ferre
      * @param naam naam die geconrtoleerd wordt.
+<<<<<<< HEAD
      * @return boolean
+=======
+     * @return spelnaamuniek boolean
+>>>>>>> a6f145f3fa10f254c3de0342e8a253190ce589b7
      */
     public boolean controleerNaam(String naam) {
         if (this.spm.spelBestaat(naam)) {

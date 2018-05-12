@@ -55,8 +55,12 @@ public class Rij {
     /**
      * getPoging returned een poging van een rij object.
      * 
+<<<<<<< HEAD
      * @author Thomas
      * @return List
+=======
+     * @return List(CodePin) List(CodePin)
+>>>>>>> a6f145f3fa10f254c3de0342e8a253190ce589b7
      */
     public List<CodePin> getPoging(){
         return this.poging;

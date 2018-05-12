@@ -14,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
  *
  * @author Groep 77
  */

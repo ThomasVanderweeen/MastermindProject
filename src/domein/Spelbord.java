@@ -39,7 +39,7 @@ public class Spelbord {
     /**
      * getCode geeft de code van een spelbord object.
      * 
-     * @return List<CodePin>
+     * @return List(CodePin) List(CodePin)
      */
     public List<CodePin> getCode(){
        return this.code.getCode();
