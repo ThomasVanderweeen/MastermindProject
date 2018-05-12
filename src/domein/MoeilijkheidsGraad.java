@@ -11,8 +11,8 @@ public abstract class MoeilijkheidsGraad {
      * constructor voor de moeilijkheidsgraad 
      * 
      * @author Ferre
-     * @param aantalPosities
-     * @param aantalPinnen
+     * @param aantalPosities Integer
+     * @param aantalPinnen Integer
      */
     public MoeilijkheidsGraad(int aantalPosities, int aantalPinnen){
         this.aantalPinnen = aantalPinnen;
@@ -29,7 +29,7 @@ public abstract class MoeilijkheidsGraad {
     /**
      * getKleuren geeft de kleuren die een pin kan hebben terug 
      * 
-     * @see getGeldigeKleuren
+     * @see CodePin#getGeldigeKleuren() getGeldigeKleuren
      * @author Ferre
      * @return String[]
      */
@@ -40,7 +40,7 @@ public abstract class MoeilijkheidsGraad {
      * getAantalPosities geeft het aantal posities voor de moeilijkheidsgraad in kwestie
      * 
      * @author Ferre
-     * @return int
+     * @return Integer
      */
     protected int getAantalPosities(){
         return this.aantalPosities;
@@ -49,7 +49,7 @@ public abstract class MoeilijkheidsGraad {
      * getAantalPinnen geeft het aantal pinnen voor de moeilijkheidsgraad
      * 
      * @author Ferre
-     * @return int 
+     * @return Integer
      */
     protected int getAantalPinnen(){
         return this.aantalPinnen;

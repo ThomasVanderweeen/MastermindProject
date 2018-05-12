@@ -17,10 +17,10 @@ public class Moeilijk extends MoeilijkheidsGraad{
     /**
      * genereerCode geneert een code waarvan de kleuren willekeurig gekozen worden.
      * 
-     * @see getKleuren
-     * @see getAantalPosities
-     * @see getAantalPinnen
-     * @author Thomas
+     * @see MoeilijkheidsGraad#getKleuren() getKleuren
+     * @see MoeilijkheidsGraad#getAantalPosities() getAantalPosities
+     * @see MoeilijkheidsGraad#getAantalPinnen() getAantalPinnen
+     * @author Michiel S.
      * @return List CodePin
      */
     @Override

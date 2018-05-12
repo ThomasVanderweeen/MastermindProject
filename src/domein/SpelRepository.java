@@ -29,10 +29,9 @@ public class SpelRepository
     /**
      * voegSpelToe voegt een spel toe aan de databank via de spelmapper.
      *
-     * @see voegSpelToe
-     * @throws Exception(e)
+     * @see persistentie.SpelMapper#voegSpelToe(domein.Spel) voegSpelToe
      * @author Ferre
-     * @param spel spel dat aan de databank wordt toegevoegd.
+     * @param spel Spel
      */
     public void voegSpelToe(Spel spel) {
         spelletjes.add(spel);
@@ -46,11 +45,11 @@ public class SpelRepository
     /**
      * controleerNaam controleert of de naam van een spel uniek is.
      *
-     * @see spelBestaat
-     * @throws SpelNaamNietUniekException
-     * @author Ferre
-     * @param naam naam die geconrtoleerd wordt.
-     * @return boolean
+     * @see persistentie.SpelMapper#spelBestaat(java.lang.String) spelBestaat
+     * @throws SpelNaamNietUniekException SpelNaamNietUniekException
+     * @author Michiel S.
+     * @param naam String
+     * @return spelnaamuniek boolean
      */
     public boolean controleerNaam(String naam) {
         if (this.spm.spelBestaat(naam)) {
@@ -64,12 +63,11 @@ public class SpelRepository
      * toonSpellen haalt een lijst van spellen uit de databank van een bepaalde
      * speler.
      *
-     * @see heeftOpgeslagenSpellen
-     * @see toonSpellen
-     * @throws SpelerHeeftGeenOpgeslagenSpellenException
-     * @author Ferre
-     * @param spelernaam speler waarvan de spellen uit de databank wordt
-     * gehaald.
+     * @see persistentie.SpelMapper#heeftOpgeslagenSpellen(java.lang.String) heeftOpgeslagenSpellen
+     * @see persistentie.SpelMapper#toonSpellen(java.lang.String) toonSpellen
+     * @throws SpelerHeeftGeenOpgeslagenSpellenException SpelerHeeftGeenOpgeslagenSpellenException
+     * @author Michiel S.
+     * @param spelernaam String
      * @return String[][]
      */
     public String[][] toonSpellen(String spelernaam) {
@@ -83,10 +81,10 @@ public class SpelRepository
     /**
      * laadSpel laadt een spel uit de databank.
      *
-     * @see maakSpel
+     * @see persistentie.SpelMapper#maakSpel(java.lang.String, domein.Speler) maakSpel
      * @author Ferre
-     * @param spelnaam naam van het spel dat wordt geladen.
-     * @param speler naam van de speler van wie het spel is.
+     * @param spelnaam String
+     * @param speler Speler
      * @return Spel
      */
     public Spel laadSpel(String spelnaam, Speler speler) {
@@ -96,8 +94,8 @@ public class SpelRepository
     /**
      * verwijderSpel verwijdert een spel uit de databank
      *
-     * @see verwijderSpel
-     * @author Ferre
+     * @see persistentie.SpelMapper#verwijderSpel(java.lang.String) verwijderSpel
+     * @author Michiel S.
      * @param spelnaam naam van het spel dat uit de databank verwijdert wordt.
      */
     public void verwijderSpel(String spelnaam) {
@@ -108,10 +106,10 @@ public class SpelRepository
      * voegSpelTegenstanderToe creert een niew spel
      * en voegt daar de tegenstander aan toe
      *
-     * @see voegSpelTegenstanderToe
-     * @author Ferre
-     * @param spel
-     * @param tegenstander
+     * @see persistentie.SpelMapper#voegSpelTegenstanderToe(domein.Spel, java.lang.String)  voegSpelTegenstanderToe
+     * @author Michiel
+     * @param spel Spel
+     * @param tegenstander String
      */
     public void voegSpelTegenstanderToe(Spel spel, String tegenstander) {
         spelletjes.add(spel);
@@ -121,12 +119,12 @@ public class SpelRepository
     /**
      * laadSpelUitdaging geeft een spel van een uitdaging terug
      *
-     * @see geefSpelnaam
-     * @see getNaam
-     * @see maakSpel
+     * @see persistentie.SpelMapper#geefSpelnaam(java.lang.String, int) geefSpelnaam
+     * @see Speler#getNaam() getNaam
+     * @see persistentie.SpelMapper#maakSpel(java.lang.String, domein.Speler) maakSpel
      * @author Ferre
-     * @param speler
-     * @param ID
+     * @param speler Speler
+     * @param ID Integer
      * @return Spel
      */
     public Spel laadSpelUitdaging(Speler speler, int ID) {
@@ -139,10 +137,10 @@ public class SpelRepository
      * van een uitdaging het spel
      * 
      *
-     * @see geefNamenSpelUitdaging
-     * @see verwijderSpel
+     * @see persistentie.SpelMapper#geefNamenSpelUitdaging(int) geefNamenSpelUitdaging
+     * @see persistentie.SpelMapper#verwijderSpel(java.lang.String) verwijderSpel
      * @author Ferre
-     * @param ID
+     * @param ID Integer
      */
     public void verwijderSpellenUitdaging(int ID) {
         String[] spelnamen = this.spm.geefNamenSpelUitdaging(ID);
@@ -154,9 +152,9 @@ public class SpelRepository
     /**
      * geefLopendeUitdagingInfo
      *
-     * @see geefLopendeUitdagingInfo
-     * @author Ferre
-     * @param idsenNaam
+     * @see persistentie.SpelMapper#geefLopendeUitdagingInfo(java.lang.String[][]) geefLopendeUitdagingInfo
+     * @author Michiel
+     * @param idsenNaam String[][]
      * @return String[][]
      */
     public String[][] geefLopendeUitdagingInfo(String[][] idsenNaam) {
