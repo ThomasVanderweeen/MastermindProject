@@ -24,7 +24,9 @@ import java.util.logging.Logger;
  */
 public class SpelerMapper {
     private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.Speler(naam, wachtwoord)" + "VALUES(?, ?)";
-    private static final String INSERT_CODE = "INSERT INTO ID222177_G77.speler(code)" + "VALUES(?)";
+    private static final String INSERT_SCOREMAKKELIJK = "INSERT INTO ID222177_G77.speler(UitdagingScoreMakkelijk)" + "VALUES(?)";
+    private static final String INSERT_SCOREGEMIDDELD = "INSERT INTO ID222177_G77.speler(UitdagingScoreGemiddeld)" + "VALUES(?)";
+    private static final String INSERT_SCOREMOEILIJK = "INSERT INTO ID222177_G77.speler(UitdagingScoreMoeilijk)" + "VALUES(?)";
     protected static Connection conn;
     
     public SpelerMapper(){
@@ -268,12 +270,33 @@ public class SpelerMapper {
         return speler;
     }
 
-    public void SlaScoreOp(int score) {
+    public void SlaScoreMakkelijkOp(int score) {
         try{
-            PreparedStatement query = conn.prepareStatement(INSERT_CODE);
+            PreparedStatement query = conn.prepareStatement(INSERT_SCOREMAKKELIJK);
             query.setInt(1, score);
             query.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException(e);
-        }    }
+        }    
+    }
+    
+    public void SlaScoreGemiddeldOp(int score) {
+        try{
+            PreparedStatement query = conn.prepareStatement(INSERT_SCOREGEMIDDELD);
+            query.setInt(1, score);
+            query.executeUpdate();
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }    
+    }
+    
+    public void SlaScoreMoeilijkOp(int score) {
+        try{
+            PreparedStatement query = conn.prepareStatement(INSERT_SCOREMOEILIJK);
+            query.setInt(1, score);
+            query.executeUpdate();
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }    
+    }
 }

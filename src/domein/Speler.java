@@ -15,7 +15,9 @@ public class Speler
     private int aantalGewonnenGemiddeld = 0;
     private int aantalGewonnenMoeilijk = 0;
     private static final int[] aantal = {10, 20, 50, 100, 250, Integer.MAX_VALUE};
-    int score = 0;
+    int scoreMakkelijk = 0;
+    int scoreGemiddeld = 0;
+    int scoreMoeilijk = 0;
 
     /**
      * de constructor creert een speler
@@ -221,11 +223,28 @@ public class Speler
         return sterren;
     }
 
-    public int getScore() {
-        return score;
+    public int getScoreMakkelijk() {
+        return scoreMakkelijk;
+    }
+
+    public int getScoreGemiddeld() {
+        return scoreGemiddeld;
+    }
+
+    public int getScoreMoeilijk() {
+        return scoreMoeilijk;
+    }
+
+    
+    public void voegScoreMakkelijkToe(int aantal){
+        this.scoreMakkelijk += aantal;
     }
     
-    public void voegScoreToe(int aantal){
-        this.score += aantal;
+    public void voegScoreGemiddeldToe(int aantal){
+        this.scoreGemiddeld += aantal;
+    }
+    
+    public void voegScoreMoeilijkToe(int aantal){
+        this.scoreMoeilijk += aantal;
     }
 }

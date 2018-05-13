@@ -542,17 +542,54 @@ public class DomeinController {
         Speler speler1 = uitdaging.getUitdager();
         Speler speler2 = spelerRepository.geefSpelerNaam(uitdaging.getTegenstander());
         
+        int moeilijkheidsgraad = spelSpeler1.geefMoeilijkheidsGraad();
+        
         if(spelSpeler1.getAantalPogingen() > spelSpeler2.getAantalPogingen()){
-            speler1.voegScoreToe(-1);
-            speler2.voegScoreToe(3);
+            if(moeilijkheidsgraad == 1){
+                speler1.voegScoreMakkelijkToe(-1);
+                speler2.voegScoreMakkelijkToe(3);
+            
+                spelerRepository.slaScoreMakkelijkOp(speler1.getScoreMakkelijk());
+                spelerRepository.slaScoreMakkelijkOp(speler2.getScoreMakkelijk());
+            }
+            else if(moeilijkheidsgraad == 2){
+                speler1.voegScoreGemiddeldToe(-1);
+                speler2.voegScoreGemiddeldToe(3);
+            
+                spelerRepository.slaScoreGemiddeldOp(speler1.getScoreMakkelijk());
+                spelerRepository.slaScoreGemiddeldOp(speler2.getScoreMakkelijk());
+            }
+            else if(moeilijkheidsgraad == 3){
+                speler1.voegScoreMoeilijkToe(-1);
+                speler2.voegScoreMoeilijkToe(3);
+            
+                spelerRepository.slaScoreMoeilijkOp(speler1.getScoreMakkelijk());
+                spelerRepository.slaScoreMoeilijkOp(speler2.getScoreMakkelijk());
+            }
         }
         else{
-            speler1.voegScoreToe(3);
-            speler2.voegScoreToe(-1);
+            if(moeilijkheidsgraad == 1){
+                speler1.voegScoreMakkelijkToe(3);
+                speler2.voegScoreMakkelijkToe(-1);
+            
+                spelerRepository.slaScoreMakkelijkOp(speler1.getScoreMakkelijk());
+                spelerRepository.slaScoreMakkelijkOp(speler2.getScoreMakkelijk());
+            }
+            else if(moeilijkheidsgraad == 2){
+                speler1.voegScoreGemiddeldToe(3);
+                speler2.voegScoreGemiddeldToe(-1);
+            
+                spelerRepository.slaScoreGemiddeldOp(speler1.getScoreMakkelijk());
+                spelerRepository.slaScoreGemiddeldOp(speler2.getScoreMakkelijk());
+            }
+            else if(moeilijkheidsgraad == 3){
+                speler1.voegScoreMoeilijkToe(3);
+                speler2.voegScoreMoeilijkToe(-1);
+            
+                spelerRepository.slaScoreMoeilijkOp(speler1.getScoreMakkelijk());
+                spelerRepository.slaScoreMoeilijkOp(speler2.getScoreMakkelijk());
+            }
         }
-        
-        spelerRepository.slaScoreOp(speler1.getScore());
-        spelerRepository.slaScoreOp(speler2.getScore());
     }
 
 }
