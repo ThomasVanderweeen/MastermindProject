@@ -15,6 +15,7 @@ public class Speler
     private int aantalGewonnenGemiddeld = 0;
     private int aantalGewonnenMoeilijk = 0;
     private static final int[] aantal = {10, 20, 50, 100, 250, Integer.MAX_VALUE};
+    int score = 0;
 
     /**
      * de constructor creert een speler
@@ -218,5 +219,13 @@ public class Speler
         sterren[0] = indx;
 
         return sterren;
+    }
+
+    public int getScore() {
+        return score;
+    }
+    
+    public void voegScoreToe(int aantal){
+        this.score += aantal;
     }
 }

@@ -108,4 +108,12 @@ public class SpelerRepository {
     public List<String[]> geefKlassement(int graad) {
         return mapper.geefKlassement(graad);
     }
+    
+    public Speler geefSpelerNaam(String gebruikersnaam){
+        return mapper.geefSpelerNaam(gebruikersnaam);
+    }
+    
+    public void slaScoreOp(int score){
+        mapper.SlaScoreOp(score);
+    }
 }

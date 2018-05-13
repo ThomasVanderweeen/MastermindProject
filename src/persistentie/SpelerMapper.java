@@ -24,6 +24,7 @@ import java.util.logging.Logger;
  */
 public class SpelerMapper {
     private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.Speler(naam, wachtwoord)" + "VALUES(?, ?)";
+    private static final String INSERT_CODE = "INSERT INTO ID222177_G77.speler(code)" + "VALUES(?)";
     protected static Connection conn;
     
     public SpelerMapper(){
@@ -213,7 +214,7 @@ public class SpelerMapper {
             PreparedStatement query;
             
                 query = conn.prepareStatement(
-                        "SELECT naam, "+difficulty+" FROM ID222177_g77.Speler ORDER BY "+difficulty+";");
+                        "SELECT naam, "+difficulty+" FROM ID222177_g77.Speler ORDER BY "+difficulty+" desc;");
                         
             
             try(ResultSet rs = query.executeQuery()){
@@ -237,4 +238,42 @@ public class SpelerMapper {
         
         return spelers;
     }
+    
+    public Speler geefSpelerNaam(String gebruikersnaam){
+        Speler speler = null;
+        String wachtwoord = "";
+        
+        try{
+            PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g77.Speler WHERE naam = ?");
+            query.setString(1,gebruikersnaam);
+            try(ResultSet rs = query.executeQuery()){
+                if(rs.next()){
+                    speler = new Speler(gebruikersnaam, wachtwoord,
+                            rs.getInt("gewonnenMakkelijk"),
+                            rs.getInt("gewonnenGemiddeld"),
+                            rs.getInt("gewonnenMoeilijk"));
+                }
+                else{
+                    speler = null;
+                }
+            }
+        }
+        catch(SQLException e){
+            if(e.hashCode()==933699219)
+                throw new ServerOnbereikbaarException();
+            else
+                throw new RuntimeException(e);
+        }
+        
+        return speler;
+    }
+
+    public void SlaScoreOp(int score) {
+        try{
+            PreparedStatement query = conn.prepareStatement(INSERT_CODE);
+            query.setInt(1, score);
+            query.executeUpdate();
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }    }
 }

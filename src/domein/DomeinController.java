@@ -520,5 +520,39 @@ public class DomeinController {
     public List<String[]> geefKlassement(int graad) {
         return spelerRepository.geefKlassement(graad);
     }
+    
+    public void berekenScoreKlassement(){
+        int id = spel.getUitdagingID();
+        StringBuilder spel1 = new StringBuilder();
+        spel1.append("uitdaging");
+        spel1.append(id);
+        spel1.append(uitdaging.getUitdager());
+        String spel1Naam = spel1.toString();
+        
+        StringBuilder spel2 = new StringBuilder();
+        spel2.append("uitdaging");
+        spel2.append(id);
+        spel2.append(uitdaging.getTegenstander());
+        String spel2Naam = spel2.toString();
+        
+        Spel spelSpeler1 = spelRepository.laadSpel(spel1Naam, uitdaging.getUitdager());
+        Spel spelSpeler2 = spelRepository.laadSpel(spel2Naam, spelerRepository.geefSpelerNaam(uitdaging.getTegenstander()));
+        
+        
+        Speler speler1 = uitdaging.getUitdager();
+        Speler speler2 = spelerRepository.geefSpelerNaam(uitdaging.getTegenstander());
+        
+        if(spelSpeler1.getAantalPogingen() > spelSpeler2.getAantalPogingen()){
+            speler1.voegScoreToe(-1);
+            speler2.voegScoreToe(3);
+        }
+        else{
+            speler1.voegScoreToe(3);
+            speler2.voegScoreToe(-1);
+        }
+        
+        spelerRepository.slaScoreOp(speler1.getScore());
+        spelerRepository.slaScoreOp(speler2.getScore());
+    }
 
 }

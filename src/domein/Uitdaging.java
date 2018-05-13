@@ -7,6 +7,7 @@ package domein;
 public class Uitdaging {
     private final String tegenstander;
     private Spel spel;
+    private Speler uitdager;
     
     /**
      * de constructor maakt een object van de uitdaging aan met meegegeven parameters
@@ -20,6 +21,7 @@ public class Uitdaging {
     public Uitdaging(Speler uitdager, String spelernaam,int moeilijkheidsGraad){
         this.tegenstander = spelernaam;
         this.spel = new Spel(moeilijkheidsGraad,uitdager);
+        this.uitdager = uitdager;
     }
     /**
      * de constructor maakt een object van de uitdaging aan met meegegeven parameters
@@ -59,5 +61,9 @@ public class Uitdaging {
      */
     public void stelIDIn(int ID){
         this.spel.stelUitdagingIDIn(ID);
+    }
+
+    public Speler getUitdager() {
+        return uitdager;
     }
 }

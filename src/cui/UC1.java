@@ -218,8 +218,8 @@ public class UC1 {
                r.getString("wieDaagtJouUit"),r.getString("toonKlassement"),
                "0)"+r.getString("sluitAf"));
             System.out.print(r.getString("keuzeInvoer"));
-            keuze = ua.geefKeuze(0, 4);
-       }while(keuze<0 || keuze>5);
+            keuze = ua.geefKeuze(0, 5);
+       }while(keuze<0 || keuze>6);
        
        switch(keuze){
            case 0:
@@ -246,6 +246,10 @@ public class UC1 {
            case 4:
                UC6 uc6 = new UC6(dc,r);
                uc6.main();
+               break;
+           case 5:
+               UC7 uc7 = new UC7(dc,r);
+               uc7.main();
                break;
             default:
                System.err.println(r.getString("nogNietGeimplementeerd"));

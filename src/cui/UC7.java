@@ -43,6 +43,9 @@ public class UC7
 
         List<String[]> spelers = new ArrayList<String[]>();
         spelers = dc.geefKlassement(graad);
+        for(String[] speler : spelers) {
+            System.out.println(speler[0] +" "+  speler[1]);
+        }
         
         int i = 1;
         String res = "";
@@ -57,9 +60,18 @@ public class UC7
         res+= String.format("%-10s%-40s%-20s%n",r.getString("rang"),r.getString("naam"),r.getString("aantalGewonnen"));
         for (String[] speler : spelers) {
             String naam = speler[0];
-            int gewonnen = Integer.parseInt(speler[1]);
+            int gewonnen;
+            if(speler[1] == null){
+                gewonnen = 0;
+            }
+            else{
+                gewonnen = Integer.parseInt(speler[1]);
+            }
             res+= String.format("%-10s%-40s%-20s%n",i, naam, gewonnen);
             i++;
+
+            
+            
         }
         System.out.println(res);
         geefOpties();
