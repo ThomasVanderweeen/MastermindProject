@@ -38,6 +38,7 @@ public class UC3 {
         }
         if(this.dc.isGewonnen()){
             gewonnen();
+            dc.berekenScoreKlassement();
         }
     }
     
