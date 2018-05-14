@@ -3,6 +3,7 @@ package gui;
 import exceptions.AanmeldException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -149,6 +150,10 @@ public class LogInController implements Initializable
      */
     protected void openMenu(){
         WelkomController.veranderScherm("Menu.fxml");
+    }
+
+    @FXML
+    private void terugKnopGeklikt(ActionEvent event) {
     }
 
 

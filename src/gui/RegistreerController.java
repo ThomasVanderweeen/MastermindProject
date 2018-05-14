@@ -2,6 +2,7 @@ package gui;
 
 import exceptions.SpelerBestaatAlException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -58,6 +59,10 @@ public class RegistreerController{
     
     @FXML
     private Label foutmelding;
+    @FXML
+    private Button nederlands;
+    @FXML
+    private Button terugKnop;
 
     /**
      * registreerd de speler d.m.v de registreer methode in de domeinController
@@ -173,6 +178,10 @@ public class RegistreerController{
         registreerNaam.clear();
         registreerWachtwoord.clear();
         registreerWachtwoordBevestigen.clear();
+    }
+
+    @FXML
+    private void terugKnopGeklikt(ActionEvent event) {
     }
 
 }

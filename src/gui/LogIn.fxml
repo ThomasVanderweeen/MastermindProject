@@ -99,7 +99,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="terugKnop" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                              <Button fx:id="terugKnop" mnemonicParsing="false" onAction="#terugKnopGeklikt" style="-fx-background-color: transparent;">
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
