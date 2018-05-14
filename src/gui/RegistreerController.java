@@ -181,7 +181,8 @@ public class RegistreerController{
     }
 
     @FXML
-    private void terugKnopGeklikt(ActionEvent event) {
+    private void terugKnopGeklikt() {
+        WelkomController.veranderScherm("Welkom.fxml");
     }
 
 }

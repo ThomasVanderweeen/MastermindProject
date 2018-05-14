@@ -153,7 +153,8 @@ public class LogInController implements Initializable
     }
 
     @FXML
-    private void terugKnopGeklikt(ActionEvent event) {
+    private void terugKnopGeklikt() {
+        WelkomController.veranderScherm("LogIn.fxml");
     }
 
 
