@@ -420,7 +420,7 @@ public class SpelbordController implements Initializable
                     
             toonMenu();
         }catch(SpelNaamNietUniekException sn){
-            error("Deze spelnaam is al in gebruik. Probeer opnieuw.","spelnaam niet uniek");
+            error(WelkomController.r.getString("errorSpelNaam1"),WelkomController.r.getString("errorSpelNaam2"));
         }
     }
     
