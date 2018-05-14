@@ -100,6 +100,7 @@ public class UC6 {
                 this.dc.laadUitdaging(ID, tegenstander);
                 UC1.ua.geefSpelbordWeer();
                 uc3.start();
+                dc.berekenScoreKlassement();
                 break;
             default:
                 System.out.println("nog niet geimp");

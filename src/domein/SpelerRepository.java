@@ -113,15 +113,15 @@ public class SpelerRepository {
         return mapper.geefSpelerNaam(gebruikersnaam);
     }
     
-    public void slaScoreMakkelijkOp(int score){
-        mapper.SlaScoreMakkelijkOp(score);
+    public void slaScoreMakkelijkOp(int score, Speler speler){
+        mapper.SlaScoreMakkelijkOp(score, speler);
     }
     
-    public void slaScoreGemiddeldOp(int score){
-        mapper.SlaScoreMakkelijkOp(score);
+    public void slaScoreGemiddeldOp(int score, Speler speler){
+        mapper.SlaScoreMakkelijkOp(score, speler);
     }
     
-    public void slaScoreMoeilijkOp(int score){
-        mapper.SlaScoreMakkelijkOp(score);
+    public void slaScoreMoeilijkOp(int score, Speler speler){
+        mapper.SlaScoreMakkelijkOp(score, speler);
     }
 }

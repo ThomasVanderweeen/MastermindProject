@@ -24,9 +24,9 @@ import java.util.logging.Logger;
  */
 public class SpelerMapper {
     private static final String INSERT_SPELER = "INSERT INTO ID222177_g77.Speler(naam, wachtwoord)" + "VALUES(?, ?)";
-    private static final String INSERT_SCOREMAKKELIJK = "INSERT INTO ID222177_G77.speler(UitdagingScoreMakkelijk)" + "VALUES(?)";
-    private static final String INSERT_SCOREGEMIDDELD = "INSERT INTO ID222177_G77.speler(UitdagingScoreGemiddeld)" + "VALUES(?)";
-    private static final String INSERT_SCOREMOEILIJK = "INSERT INTO ID222177_G77.speler(UitdagingScoreMoeilijk)" + "VALUES(?)";
+    private static final String INSERT_SCOREMAKKELIJK = "INSERT INTO ID222177_G77.speler(UitdagingScoreMakkelijk)" + "VALUES(?) WHERE naam = ?";
+    private static final String INSERT_SCOREGEMIDDELD = "INSERT INTO ID222177_G77.speler(UitdagingScoreGemiddeld)" + "VALUES(?) WHERE naam = ?";
+    private static final String INSERT_SCOREMOEILIJK = "INSERT INTO ID222177_G77.speler(UitdagingScoreMoeilijk)" + "VALUES(?) WHERE naam = ?";
     protected static Connection conn;
     
     public SpelerMapper(){
@@ -205,11 +205,11 @@ public class SpelerMapper {
         List<String[]> spelers = new ArrayList<String[]>();
         String difficulty = "";
         switch(graad){
-            case 1: difficulty = "gewonnenMakkelijk";
+            case 1: difficulty = "UitdagingScoreMakkelijk";
                     break;
-            case 2: difficulty = "gewonnenGemiddeld";
+            case 2: difficulty = "UitdagingScoreGemiddeld";
                     break;
-            case 3: difficulty = "gewonnenMoeilijk";
+            case 3: difficulty = "UitdagingScoreMoeilijk";
                     break;
         }
         try{
@@ -243,14 +243,13 @@ public class SpelerMapper {
     
     public Speler geefSpelerNaam(String gebruikersnaam){
         Speler speler = null;
-        String wachtwoord = "";
         
         try{
             PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g77.Speler WHERE naam = ?");
             query.setString(1,gebruikersnaam);
             try(ResultSet rs = query.executeQuery()){
                 if(rs.next()){
-                    speler = new Speler(gebruikersnaam, wachtwoord,
+                    speler = new Speler(gebruikersnaam, rs.getString("wachtwoord"),
                             rs.getInt("gewonnenMakkelijk"),
                             rs.getInt("gewonnenGemiddeld"),
                             rs.getInt("gewonnenMoeilijk"));
@@ -270,30 +269,33 @@ public class SpelerMapper {
         return speler;
     }
 
-    public void SlaScoreMakkelijkOp(int score) {
+    public void SlaScoreMakkelijkOp(int score, Speler speler) {
         try{
             PreparedStatement query = conn.prepareStatement(INSERT_SCOREMAKKELIJK);
             query.setInt(1, score);
+            query.setString(2, speler.getNaam());
             query.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }    
     }
     
-    public void SlaScoreGemiddeldOp(int score) {
+    public void SlaScoreGemiddeldOp(int score, Speler speler) {
         try{
             PreparedStatement query = conn.prepareStatement(INSERT_SCOREGEMIDDELD);
             query.setInt(1, score);
+            query.setString(2, speler.getNaam());
             query.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }    
     }
     
-    public void SlaScoreMoeilijkOp(int score) {
+    public void SlaScoreMoeilijkOp(int score, Speler speler) {
         try{
             PreparedStatement query = conn.prepareStatement(INSERT_SCOREMOEILIJK);
             query.setInt(1, score);
+            query.setString(2, speler.getNaam());
             query.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException(e);

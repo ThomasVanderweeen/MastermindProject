@@ -43,10 +43,7 @@ public class UC7
 
         List<String[]> spelers = new ArrayList<String[]>();
         spelers = dc.geefKlassement(graad);
-        for(String[] speler : spelers) {
-            System.out.println(speler[0] +" "+  speler[1]);
-        }
-        
+
         int i = 1;
         String res = "";
         switch(graad){

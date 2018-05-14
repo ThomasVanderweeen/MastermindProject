@@ -545,49 +545,51 @@ public class DomeinController {
         int moeilijkheidsgraad = spelSpeler1.geefMoeilijkheidsGraad();
         
         if(spelSpeler1.getAantalPogingen() > spelSpeler2.getAantalPogingen()){
-            if(moeilijkheidsgraad == 1){
-                speler1.voegScoreMakkelijkToe(-1);
-                speler2.voegScoreMakkelijkToe(3);
-            
-                spelerRepository.slaScoreMakkelijkOp(speler1.getScoreMakkelijk());
-                spelerRepository.slaScoreMakkelijkOp(speler2.getScoreMakkelijk());
-            }
-            else if(moeilijkheidsgraad == 2){
-                speler1.voegScoreGemiddeldToe(-1);
-                speler2.voegScoreGemiddeldToe(3);
-            
-                spelerRepository.slaScoreGemiddeldOp(speler1.getScoreMakkelijk());
-                spelerRepository.slaScoreGemiddeldOp(speler2.getScoreMakkelijk());
-            }
-            else if(moeilijkheidsgraad == 3){
-                speler1.voegScoreMoeilijkToe(-1);
-                speler2.voegScoreMoeilijkToe(3);
-            
-                spelerRepository.slaScoreMoeilijkOp(speler1.getScoreMakkelijk());
-                spelerRepository.slaScoreMoeilijkOp(speler2.getScoreMakkelijk());
+            switch (moeilijkheidsgraad) {
+                case 1:
+                    speler1.voegScoreMakkelijkToe(-1);
+                    speler2.voegScoreMakkelijkToe(3);
+                    spelerRepository.slaScoreMakkelijkOp(speler1.getScoreMakkelijk(), speler1);
+                    spelerRepository.slaScoreMakkelijkOp(speler2.getScoreMakkelijk(), speler2);
+                    break;
+                case 2:
+                    speler1.voegScoreGemiddeldToe(-1);
+                    speler2.voegScoreGemiddeldToe(3);
+                    spelerRepository.slaScoreGemiddeldOp(speler1.getScoreMakkelijk(), speler1);
+                    spelerRepository.slaScoreGemiddeldOp(speler2.getScoreMakkelijk(), speler2);
+                    break;
+                case 3:
+                    speler1.voegScoreMoeilijkToe(-1);
+                    speler2.voegScoreMoeilijkToe(3);
+                    spelerRepository.slaScoreMoeilijkOp(speler1.getScoreMakkelijk(), speler1);
+                    spelerRepository.slaScoreMoeilijkOp(speler2.getScoreMakkelijk(), speler2);
+                    break;
+                default:
+                    break;
             }
         }
         else{
-            if(moeilijkheidsgraad == 1){
-                speler1.voegScoreMakkelijkToe(3);
-                speler2.voegScoreMakkelijkToe(-1);
-            
-                spelerRepository.slaScoreMakkelijkOp(speler1.getScoreMakkelijk());
-                spelerRepository.slaScoreMakkelijkOp(speler2.getScoreMakkelijk());
-            }
-            else if(moeilijkheidsgraad == 2){
-                speler1.voegScoreGemiddeldToe(3);
-                speler2.voegScoreGemiddeldToe(-1);
-            
-                spelerRepository.slaScoreGemiddeldOp(speler1.getScoreMakkelijk());
-                spelerRepository.slaScoreGemiddeldOp(speler2.getScoreMakkelijk());
-            }
-            else if(moeilijkheidsgraad == 3){
-                speler1.voegScoreMoeilijkToe(3);
-                speler2.voegScoreMoeilijkToe(-1);
-            
-                spelerRepository.slaScoreMoeilijkOp(speler1.getScoreMakkelijk());
-                spelerRepository.slaScoreMoeilijkOp(speler2.getScoreMakkelijk());
+            switch (moeilijkheidsgraad) {
+                case 1:
+                    speler1.voegScoreMakkelijkToe(3);
+                    speler2.voegScoreMakkelijkToe(-1);
+                    spelerRepository.slaScoreMakkelijkOp(speler1.getScoreMakkelijk(), speler1);
+                    spelerRepository.slaScoreMakkelijkOp(speler2.getScoreMakkelijk(), speler2);
+                    break;
+                case 2:
+                    speler1.voegScoreGemiddeldToe(3);
+                    speler2.voegScoreGemiddeldToe(-1);
+                    spelerRepository.slaScoreGemiddeldOp(speler1.getScoreMakkelijk(), speler1);
+                    spelerRepository.slaScoreGemiddeldOp(speler2.getScoreMakkelijk(), speler2);
+                    break;
+                case 3:
+                    speler1.voegScoreMoeilijkToe(3);
+                    speler2.voegScoreMoeilijkToe(-1);
+                    spelerRepository.slaScoreMoeilijkOp(speler1.getScoreMakkelijk(), speler1);
+                    spelerRepository.slaScoreMoeilijkOp(speler2.getScoreMakkelijk(), speler2);
+                    break;
+                default:
+                    break;
             }
         }
     }
