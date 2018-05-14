@@ -187,7 +187,7 @@ public class MenuSchermController implements Initializable{
      * initialiseerd ScorebordController, stelt deze in als controller klasse
      * en roept de methode toonMoeilijkheidsgraad aan van deze controller
      * @see WelkomController#setController(java.lang.Object) setController
-     * @see ScorebordController#toonMoeilijkheidsgraad(int) toonMoeilijkheidsgraad
+     * @see ScorebordController#geefKeuze()  geefKeuze
      * @author Ferre
      */
     @FXML

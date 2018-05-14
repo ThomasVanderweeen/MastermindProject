@@ -13,10 +13,10 @@ public class Uitdaging {
      * de constructor maakt een object van de uitdaging aan met meegegeven parameters
      *
      * @see Spel
-     * @author Ferre
-     * @param uitdager
-     * @param spelernaam
-     * @param moeilijkheidsGraad
+     * @author Michiel S.
+     * @param uitdager Speler
+     * @param spelernaam String
+     * @param moeilijkheidsGraad Integer
      */
     public Uitdaging(Speler uitdager, String spelernaam,int moeilijkheidsGraad){
         this.tegenstander = spelernaam;
@@ -26,9 +26,9 @@ public class Uitdaging {
     /**
      * de constructor maakt een object van de uitdaging aan met meegegeven parameters
      *
-     * @author Ferre
-     * @param sp
-     * @param spelernaam
+     * @author Michiel S.
+     * @param sp String
+     * @param spelernaam Spel
      */
     public Uitdaging(String spelernaam,Spel sp){
         this.tegenstander = spelernaam;
@@ -46,7 +46,7 @@ public class Uitdaging {
     /**
      * getSpel geeft het spel van de uitdaging terug
      *
-     * @author Ferre
+     * @author Michiel S.
      * @return Spel
      */
     public Spel getSpel(){
@@ -55,9 +55,9 @@ public class Uitdaging {
     /**
      * stelIDIn stelt het id van het spel van de uitdaging in
      *
-     * @see stelUitdagingIDIn
+     * @see Spel#stelUitdagingIDIn(int) stelUitdagingIDIn
      * @author Ferre
-     * @param ID
+     * @param ID Integer
      */
     public void stelIDIn(int ID){
         this.spel.stelUitdagingIDIn(ID);
