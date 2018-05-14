@@ -103,11 +103,11 @@ public class UitdagingenController implements Initializable
             this.dg.show();
             
         }catch(GeenOpenstaandeUitdagingException goue){
-            WelkomController.Error("Geen openstaande Exception",
-                    "probeer later opnieuw");
+            WelkomController.Error(WelkomController.r.getString("geenOpenstaandeUitdagingException1"),
+                    WelkomController.r.getString("geenOpenstaandeUitdagingException2"));
         }catch(HeeftLopendeUitdagingException hlue){
-            WelkomController.Error("heeft Lopende uitdaging",
-                    "Je hebt al reeds een lopende uitdaging.");
+            WelkomController.Error(WelkomController.r.getString("geenLopendeUitdagingException1"),
+                    WelkomController.r.getString("geenLopendeUitdagingException2"));
         }
 
 
@@ -124,13 +124,13 @@ public class UitdagingenController implements Initializable
         BorderPane bp = new BorderPane();
         
         Label lb = new Label();
-        lb.setText("Wat wil je doen met deze uitdaging?");
+        lb.setText(WelkomController.r.getString("watDoenUitdaging"));
         bp.setCenter(lb);
         
         HBox hb = new HBox();
         
         Button verwijder = new Button();
-        verwijder.setText("Verwijder");
+        verwijder.setText(WelkomController.r.getString("verwijder"));
         verwijder.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event)
@@ -141,7 +141,7 @@ public class UitdagingenController implements Initializable
         });
         
         Button accepteer = new Button();
-        accepteer.setText("Accepteer");
+        accepteer.setText(WelkomController.r.getString("accepteer"));
         accepteer.setOnAction(new EventHandler<ActionEvent>(){
             public void handle(ActionEvent event)
             {
@@ -187,9 +187,9 @@ public class UitdagingenController implements Initializable
         WelkomController.dc.verwijderUitdaging(this.ID);
         
         Alert al = new Alert(AlertType.CONFIRMATION);
-        al.setTitle("Uitdaging Verwijderd");
-        al.setContentText("Exception");
-        al.setHeaderText("Uitdaging succesvol verwijderd");
+        al.setTitle(WelkomController.r.getString("verwijderd1"));
+        al.setContentText(WelkomController.r.getString("verwijderd2"));
+        al.setHeaderText(WelkomController.r.getString("verwijderd3"));
         
         Stage stg = (Stage) al.getDialogPane().getScene().getWindow();
         stg.setAlwaysOnTop(true);
