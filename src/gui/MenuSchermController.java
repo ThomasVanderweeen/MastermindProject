@@ -71,6 +71,7 @@ public class MenuSchermController implements Initializable{
         daagUit.setText(WelkomController.r.getString("daagUit"));
         bekijkUitdagingen.setText(WelkomController.r.getString("uitgedaagd"));
         bekijkScorebord.setText(WelkomController.r.getString("bekijkScorebord"));
+        naam.setText(WelkomController.r.getString("meldAanWelkom")+" "+WelkomController.dc.geefSpelerNaam());
     }
     
     /**
@@ -260,7 +261,7 @@ public class MenuSchermController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        naam.setText("Welkom terug "+WelkomController.dc.geefSpelerNaam());
+        naam.setText(WelkomController.r.getString("meldAanWelkom")+" "+WelkomController.dc.geefSpelerNaam());
     }
 
 

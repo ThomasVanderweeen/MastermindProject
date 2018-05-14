@@ -129,9 +129,9 @@ public class LogInController implements Initializable
         }
         catch(AanmeldException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Combinatie wachtwoord en speler");
-            alert.setHeaderText("Kan speler niet inloggen");
-            alert.setContentText("combinatie speler en wachtwoord niet gekend in het systeem");
+            alert.setTitle(WelkomController.r.getString("aanmeldExceptionTitel"));
+            alert.setHeaderText(WelkomController.r.getString("aanmeldExceptionHeader"));
+            alert.setContentText(WelkomController.r.getString("aanmeldExceptionContent"));
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
             stage.setAlwaysOnTop(true);
             stage.toFront();

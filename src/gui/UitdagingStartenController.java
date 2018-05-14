@@ -83,23 +83,23 @@ public class UitdagingStartenController implements Initializable{
         BorderPane bp = new BorderPane();
         List<Button> knoppen = new ArrayList<>();
         
-        Label lb = new Label("Kies de moeilijkheidsgraad waarin je iemand wilt uitdagen");
+        Label lb = new Label(WelkomController.r.getString("keuzeMoeilijkheidAlert"));
         bp.setCenter(lb);
         
         HBox hb = new HBox();
         
         Button makkelijk = new Button();
-        makkelijk.setText("Makkelijk");
+        makkelijk.setText(WelkomController.r.getString("Makkelijk"));
         makkelijk.setId("1");
         knoppen.add(makkelijk);
         
         Button gemiddeld = new Button();
-        gemiddeld.setText("Gemiddeld");
+        gemiddeld.setText(WelkomController.r.getString("Gemiddeld"));
         gemiddeld.setId("2");
         knoppen.add(gemiddeld);
         
         Button moeilijk= new Button();
-        moeilijk.setText("Moeilijk");
+        moeilijk.setText(WelkomController.r.getString("Moeilijk"));
         moeilijk.setId("3");
         knoppen.add(moeilijk);
         
@@ -174,7 +174,7 @@ public class UitdagingStartenController implements Initializable{
             
         }catch(NiemandBeschikbaarVoorUitdagingException nbvue){
             this.sluitDialog();
-            WelkomController.Error("Er is niemand beschikbaar op deze moeilijkheidsgraad", 
+            WelkomController.Error(WelkomController.r.getString("geenUitdagersExceptionTitel"), 
                     WelkomController.r.getString("geenUitdagersException"));
         }
     }

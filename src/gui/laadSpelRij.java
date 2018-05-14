@@ -48,7 +48,7 @@ public class laadSpelRij {
     private void setMoeilijkheidsGraad(int moeilijkheidsGraad){
         this.moeilijkheidsGraad = moeilijkheidsGraad;
         this.btn = new Button();
-        this.btn.setText("laad");
+        this.btn.setText(WelkomController.r.getString("laadKnop"));
         this.mg = moeilijkheidsGraden[this.moeilijkheidsGraad-1];
         
         this.btn.setOnAction(new EventHandler<ActionEvent>(){

@@ -261,10 +261,10 @@ public class SpelbordController implements Initializable
      */
     private void verloren(){
         Alert gewonnen = new Alert(AlertType.WARNING);
-        gewonnen.setTitle("Verloren...");
-        gewonnen.setContentText("Sorry je hebt de code niet kunnen raden.De code was: "
-                +String.join(" ", WelkomController.dc.geefCode()));
-        gewonnen.setHeaderText("Verloren...");
+        gewonnen.setTitle(WelkomController.r.getString("verloren"));
+        gewonnen.setContentText(" "
+                +String.join(WelkomController.r.getString("verlorenText")+" "+ WelkomController.dc.geefCode()));
+        gewonnen.setHeaderText(WelkomController.r.getString("verloren"));
         
          Stage stg = (Stage) gewonnen.getDialogPane().getScene().getWindow();
          stg.setAlwaysOnTop(true);
@@ -334,11 +334,12 @@ public class SpelbordController implements Initializable
         String[][] eindSituatie = WelkomController.dc.geefEindSituatie();
         
         Alert al = new Alert(AlertType.CONFIRMATION);
-        al.setTitle("Aantal Sterren");
+        al.setTitle(WelkomController.r.getString("aantalSterren"));
         
-        al.setHeaderText(String.format("%s%n%s%s%n%s%s%s","Gefeliciteerd je bent gewonnen!","De code was: "
-                ,String.join(" ", WelkomController.dc.geefCode()),"Je had ",
-                eindSituatie[1][0]," pogingen nodig"));
+        al.setHeaderText(String.format("%s%n%s%s%s%n%s%s%s",WelkomController.r.getString("gewonnen1"),
+                WelkomController.r.getString("gewonnen2")," ",
+                String.join(" ", WelkomController.dc.geefCode()),WelkomController.r.getString("gewonnen3"),
+                " ",eindSituatie[1][0],WelkomController.r.getString("gewonnen4")));
         
         DialogPane dp = al.getDialogPane();
         GridPane gp = new GridPane();
@@ -358,8 +359,8 @@ public class SpelbordController implements Initializable
             gp.add(iv, x, 0);
         }
         
-        Label lb = new Label(String.format("%s%s%s","je moet nog ",eindSituatie[0][1],
-                " spelletjes winnen voor de volgende ster"));
+        Label lb = new Label(String.format("%s%s%s%s",WelkomController.r.getString("labelNogTeWinnenTotSter1")," ",eindSituatie[0][1],
+                WelkomController.r.getString("labelNogTeWinnenTotSter2")));
         
         vb.getChildren().addAll(gp,lb);
         dp.setContent(vb);
@@ -378,8 +379,8 @@ public class SpelbordController implements Initializable
      */
     private String geefNaam(){
         TextInputDialog geefNaam = new TextInputDialog();
-        geefNaam.setTitle("Sla spel op");
-        geefNaam.setHeaderText("geef De naam van het spel:");
+        geefNaam.setTitle(WelkomController.r.getString("geefNaamSpelTitel"));
+        geefNaam.setHeaderText(WelkomController.r.getString("geefNaamSpelText"));
         
         Stage stg = (Stage) geefNaam.getDialogPane().getScene().getWindow();
         stg.setAlwaysOnTop(true);
@@ -408,8 +409,8 @@ public class SpelbordController implements Initializable
             WelkomController.dc.slaOp(naam);
             
             Alert gelukt = new Alert(AlertType.CONFIRMATION);
-            gelukt.setTitle("Spel opgeslagen");
-            gelukt.setContentText("Het spel is correct opgeslagen in de database onder de naam: \""+naam+"\"");
+            gelukt.setTitle(WelkomController.r.getString("spelOpgeslagenTitel"));
+            gelukt.setContentText(WelkomController.r.getString("spelOpgeslagenText")+" \""+naam+"\"");
             
             Stage stg = (Stage)gelukt.getDialogPane().getScene().getWindow();
             stg.setAlwaysOnTop(true);

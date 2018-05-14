@@ -166,9 +166,9 @@ public class RegistreerController{
     private void exception(String title,String header,String context){
         Alert alert = new Alert(AlertType.ERROR);
         
-        alert.setTitle(r.getString(title));
-        alert.setHeaderText(r.getString(header));
-        alert.setContentText(r.getString(context));
+        alert.setTitle(WelkomController.r.getString(title));
+        alert.setHeaderText(WelkomController.r.getString(header));
+        alert.setContentText(WelkomController.r.getString(context));
                 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.setAlwaysOnTop(true);

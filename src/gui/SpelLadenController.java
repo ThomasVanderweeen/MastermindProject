@@ -74,12 +74,12 @@ public class SpelLadenController implements Initializable {
             TableView<laadSpelRij> tv = new TableView<>();
             
             TableColumn<laadSpelRij,String> naam = new TableColumn<>();
-            naam.setText("Naam");
+            naam.setText(WelkomController.r.getString("naam"));
             naam.setMinWidth(150);
             naam.setCellValueFactory(new PropertyValueFactory<>("naam"));
             
             TableColumn<laadSpelRij,String> moeilijkheidsGraad= new TableColumn<>();
-            moeilijkheidsGraad.setText("MoeilijkheidsGraad");
+            moeilijkheidsGraad.setText(WelkomController.r.getString("moeilijkheidsGraad"));
             moeilijkheidsGraad.setMinWidth(200);
             moeilijkheidsGraad.setCellValueFactory(new PropertyValueFactory<>("mg"));
             
@@ -92,7 +92,7 @@ public class SpelLadenController implements Initializable {
             tv.setItems(lijst);
             
             dg = new Dialog();
-            dg.setTitle("Laad een spel menu");
+            dg.setTitle(WelkomController.r.getString("laadSpelMenu"));
             dg.getDialogPane().setContent(tv);
             
             Stage stg = (Stage) dg.getDialogPane().getScene().getWindow();
@@ -103,7 +103,7 @@ public class SpelLadenController implements Initializable {
                     
             dg.show();
         }catch(SpelerHeeftGeenOpgeslagenSpellenException shg){
-            WelkomController.Error("Geen opgeslagen spellen", "je hebt geen opgeslagen spellen");
+            WelkomController.Error(WelkomController.r.getString("geenOpgeslagenSpellenExceptionTitel"), WelkomController.r.getString("geenOpgeslagenSpellenExceptionContent"));
         }
     }
     

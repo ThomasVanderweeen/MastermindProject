@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="window" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SpelbordController">
+<AnchorPane fx:id="window" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SpelbordController">
    <children>
       <ImageView fitHeight="620.0" fitWidth="1250.0" layoutY="-16.0" nodeOrientation="INHERIT" pickOnBounds="true">
          <image>
@@ -36,6 +36,15 @@
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/france.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="nederlands" mnemonicParsing="false" onAction="#nederlandsGeklikt" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/netherlands.png" />
                            </image>
                         </ImageView>
                      </graphic>
