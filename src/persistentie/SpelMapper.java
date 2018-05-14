@@ -615,7 +615,7 @@ public class SpelMapper {
     /**
      * Geeft info over een lopende uitdaging van een speler
      * 
-     * @param idsenNaam
+     * @param idsenNaam String[][]
      * @return String[][]
      */
     public String[][] geefLopendeUitdagingInfo(String[][] idsenNaam){

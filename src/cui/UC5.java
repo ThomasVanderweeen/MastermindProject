@@ -46,13 +46,13 @@ public class UC5 {
     /**
      * Gaat na in de databank of een speler nog een lopende uitdaging heeft. Geeft de speler de keuze om een uitdaging te laden of te verwijderen.
      * 
-     * @see #dc.geefNaamLopendeUitdagingTegenspeler()
-     * @see #uc1.ua.geefKeuze(int, int)
-     * @see #dc.kaadSpelLopendeUitdaging()
-     * @see #UC1.ua.geefSpelbordWeer()
-     * @see #uc3.start()
-     * @see #dc.verwijderLopendeUitdaging()
-     * @see #uc1.toonMogelijkheden()
+     * @see  DomeinController#geefNaamLopendeUitdagingTegenspeler() dc.geefNaamLopendeUitdagingTegenspeler()
+     * @see UC_Algemeen#geefKeuze(int, int) uc1.ua.geefKeuze(int, int)
+     * @see DomeinController#laadSpelLopendeUitdaging() dc.kaadSpelLopendeUitdaging()
+     * @see UC_Algemeen#geefSpelbordWeer() UC1.ua.geefSpelbordWeer()
+     * @see UC3#start() uc3.start()
+     * @see DomeinController#verwijderLopendeUitdaging() dc.verwijderLopendeUitdaging()
+     * @see UC1#toonMogelijkheden() uc1.toonMogelijkheden()
      */
     protected void heeftLopendeUitdaging(){
             int keuze=0;

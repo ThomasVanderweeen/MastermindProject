@@ -68,8 +68,8 @@ public class UC_Algemeen {
     /**
      * hulpmethode voor het bepalen van errors bij een selectiemenu.
      * 
-     * @param min
-     * @param max
+     * @param min int
+     * @param max int
      * @return int
      */
     protected int geefKeuze(int min,int max){

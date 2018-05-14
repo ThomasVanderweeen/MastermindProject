@@ -98,10 +98,10 @@ public class UC4
 
     /**
      * Laad een spel uit de lijst die door laadSpellen() wordt gegeven.
-     * @see #dc.selecteerSpel(naam)
-     * @see #UC1.ua.geefSpelbordWeer()
-     * @see #UC3.start()
-     * @param keuze 
+     * @see DomeinController#selecteerSpel(java.lang.String) dc.selecteerSpel(naam)
+     * @see UC_Algemeen#geefSpelbordWeer() UC1.ua.geefSpelbordWeer()
+     * @see UC3#start() UC3.start()
+     * @param keuze Integer
      */
     public void laadSpelIn(int keuze){
         String naam = spellen[keuze-1][0];

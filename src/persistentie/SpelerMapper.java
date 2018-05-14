@@ -166,7 +166,7 @@ public class SpelerMapper {
      * 
      * @param moeilijkheidsGraad moeilijkheidsgraad van de uitdaging
      * @param naam naam van de speler
-     * @return list<String[]>
+     * @return list(String[])
      */
     public  List<String[]> geefBeschikbareSpelersUitdaging(int moeilijkheidsGraad,String naam){
         String tableNaam = "gewonnenMakkelijk";
@@ -211,7 +211,7 @@ public class SpelerMapper {
      * Geeft het klassement van de uitdagingen.
      * 
      * @param graad moeilijkheidsgraad van het te geven klassement
-     * @return List<String[]>
+     * @return List(String[])
      */
     public List<String[]> geefKlassement(int graad){
         List<String[]> spelers = new ArrayList<String[]>();

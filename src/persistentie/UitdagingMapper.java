@@ -204,7 +204,7 @@ public class UitdagingMapper {
     * Geeft de naam van een tegenstander op basis van ID
     * @param speler speler van de uitdaging
     * @param ID id van de uitdaging
-    * @return 
+    * @return String
     */
    public String geefNaamTegenstanderID(Speler speler,int ID){
         try{

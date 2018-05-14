@@ -32,7 +32,7 @@ public class UC2 {
      * start methode, bevat het verloop van UC2. 
      * @see #toonAantalGewonnen() 
      * @see #kiesMoeilijkheidsGraad() 
-     * @see #uc3.start()
+     * @see UC3#start() uc3.start()
      */
     public void start(){
         toonAantalGewonnen();

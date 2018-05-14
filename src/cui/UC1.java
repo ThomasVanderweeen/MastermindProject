@@ -211,11 +211,11 @@ public class UC1 {
     
     /**
      * toon het menu en verwijst door naar andere use cases afhankelijk van de gemaakte keuze. 
-     * @see #uc2.start()
-     * @see #uc4.start()
-     * @see #uc5.main()
-     * @see #uc6.main()
-     * @see #uc7.main()
+     * @see UC2#start() uc2.start()
+     * @see UC4#start() uc4.start()
+     * @see UC5#main() uc5.main()
+     * @see UC6#main() uc6.main()
+     * @see UC7#main() uc7.main()
      */
    public void toonMogelijkheden(){
        int keuze=0;

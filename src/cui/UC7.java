@@ -51,8 +51,8 @@ public class UC7
     /**
      * Toont het scorebord voor een bepaalde moeilijkheidsgraad.
      * 
-     * @see #dc.toonKlassement(graad)
-     * @param graad 
+     * @see DomeinController#geefKlassement(int) dc.toonKlassement(graad)
+     * @param graad integer
      */
     public void toonScorebord(int graad) {
 
