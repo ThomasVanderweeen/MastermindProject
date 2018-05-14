@@ -513,7 +513,7 @@ public class DomeinController {
      * geefKlassement geeft een lijst van stringarrays terug met daarin het de spelers in het klassement
      * 
      * @see SpelerRepository#geefKlassement(int) geefKlassement
-     * @author Michiel S.
+     * @author Thomas
      * @param graad Integer
      * @return List(String[])
      */
@@ -521,6 +521,14 @@ public class DomeinController {
         return spelerRepository.geefKlassement(graad);
     }
     
+    /**
+     * geefKlassement geeft een lijst van stringarrays terug met daarin het de spelers in het klassement
+     * 
+     * @see SpelerRepository#geefKlassement(int) geefKlassement
+     * @author Thomas
+     * @param
+     * @return void
+     */
     public void berekenScoreKlassement(){
         int id = spel.getUitdagingID();
         StringBuilder spel1 = new StringBuilder();

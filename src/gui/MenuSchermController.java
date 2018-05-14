@@ -193,11 +193,9 @@ public class MenuSchermController implements Initializable{
      */
     @FXML
     protected void bekijkScorebordGeklikt(){
-
-        
         ScorebordController sc = new ScorebordController();
         WelkomController.setController(sc);
-        sc.toonMoeilijkheidsgraad(1);
+        sc.geefKeuze();
     }
     
     /**
