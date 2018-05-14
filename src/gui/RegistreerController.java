@@ -84,18 +84,18 @@ public class RegistreerController{
         catch(IllegalArgumentException e){
             if(!registreerWachtwoord.getText().trim().equals(registreerWachtwoordBevestigen.getText().trim())){
 //                foutmelding.setText("Ga na of je wachtwoord en bevestiging overeenkomen");
-                exception("Wachtwoord en bevestiging niet gelijk","Kan speler niet toevoegen",
-                       "Ga na of je wachtwoord en bevestiging overeenkomen");
+                exception("exceptionWWnietGelijkTitel","exceptionWWnietGelijkHeader",
+                       "exceptionWWnietGelijkContext");
             }
             else{
 //                foutmelding.setText("Je wachtwoord moet beginnen met een cijfer gevolgd door zes letters en eindigen op een cijfer");
-                exception("Wachtwoord formatting fout","Kan speler niet toevoegen",
-                        "Je wachtwoord moet beginnen met een cijfer gevolgd door zes letters en eindigen op een cijfer");
+                exception("exceptionWWFoutFormatTitel","exceptionWWFoutFormatHeader",
+                        "exceptionWWFoutFormatContext");
             }
             
         }catch(SpelerBestaatAlException sbae){
-            exception("Deze speler bestaat al","Deze speler is al reeds bekend in ons systeem",
-                    "Deze speler is al geregistreerd gelieve een andere gebruikersnaam te kiezen");
+            exception("exceptionSpelerBestaatTitel","exceptionSpelerBestaatHeader",
+                    "exceptionSpelerBestaatContext");
         }
             
 
@@ -166,9 +166,9 @@ public class RegistreerController{
     private void exception(String title,String header,String context){
         Alert alert = new Alert(AlertType.ERROR);
         
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(context);
+        alert.setTitle(r.getString(title));
+        alert.setHeaderText(r.getString(header));
+        alert.setContentText(r.getString(context));
                 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.setAlwaysOnTop(true);
