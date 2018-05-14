@@ -31,9 +31,9 @@ public class SpelerRepository {
     /**
      * bestaatSpeler controleerd of de speler met die naam al bestaat
      * 
-     * @see spelerBestaat
-     * @author Ferre
-     * @param naam
+     * @see SpelerMapper#spelerBestaat(java.lang.String) spelerBestaat
+     * @author Michiel S.
+     * @param naam String
      * @return boolean
      */
     public boolean bestaatSpeler(String naam){
@@ -44,10 +44,10 @@ public class SpelerRepository {
      * dat werd meegegeven
      *
      * @see geefSpeler
-     * @throws AanmeldException
-     * @author Ferre
-     * @param wachtwoord
-     * @param naam
+     * @throws AanmeldException AanmeldException
+     * @author Michiel S.
+     * @param wachtwoord String
+     * @param naam String
      * @return Speler
      */
     public Speler geefSpeler(String naam, String wachtwoord){
@@ -60,9 +60,9 @@ public class SpelerRepository {
     /**
      * voegSpelerToe voegt het speler object toe aan de database
      *
-     * @see voegToe
-     * @author Ferre
-     * @param sp
+     * @see SpelerMapper#voegToe(domein.Speler) voegToe
+     * @author  Michiel S.
+     * @param sp Speler
      */
     public void voegSpelerToe(Speler sp){
         mapper.voegToe(sp);
@@ -72,10 +72,10 @@ public class SpelerRepository {
      * in de meegegeven moeilijkheidsgraad
      *
      * @see updateScore
-     * @throws IllegalArgumentException
-     * @author Ferre
-     * @param sp
-     * @param moeilijkheidsGraad
+     * @throws IllegalArgumentException IllegalArgumentException
+     * @author  Michiel S.
+     * @param sp Speler
+     * @param moeilijkheidsGraad Integer
      */
     public void updateScore(Speler sp, int moeilijkheidsGraad){
         mapper.updateScore(sp, moeilijkheidsGraad);
@@ -84,10 +84,10 @@ public class SpelerRepository {
      * geefBeschikbareSpelers geeft een lijst van spelers terug 
      * waarvoor de geselecteerde moeilijkheidsgraad beschikbaar is
      *
-     * @see geefBeschikbareSpelersUitdaging
-     * @author Ferre
-     * @param moeilijkheidsGraad
-     * @param spelerNaam
+     * @see SpelerMapper#geefBeschikbareSpelersUitdaging(int, java.lang.String) geefBeschikbareSpelersUitdaging
+     * @author Michiel S.
+     * @param moeilijkheidsGraad Integer
+     * @param spelerNaam String
      * @return List
      */
     public List<String[]> geefBeschikbareSpelers(int moeilijkheidsGraad,String spelerNaam){
@@ -100,9 +100,9 @@ public class SpelerRepository {
      * terug volgens de moeilijkheidsgraad
      *
      * @see geefKlassement
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException IllegalArgumentException
      * @author Ferre
-     * @param graad
+     * @param graad Integer
      * @return List
      */
     public List<String[]> geefKlassement(int graad) {

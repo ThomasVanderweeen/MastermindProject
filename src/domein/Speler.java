@@ -24,8 +24,8 @@ public class Speler
      *
      *
      * @author Ferre
-     * @param gebruikersnaam
-     * @param wachtwoord
+     * @param gebruikersnaam String
+     * @param wachtwoord String
      */
     public Speler(String gebruikersnaam, String wachtwoord) {
         this(gebruikersnaam, wachtwoord, 0, 0, 0);
@@ -37,11 +37,11 @@ public class Speler
      *
      * @see setWachtwoord
      * @author Ferre
-     * @param gebruikersnaam
-     * @param wachtwoord
-     * @param aantalGewonnenMakkelijk
-     * @param aantalGewonnenGemiddeld
-     * @param aantalGewonnenMoeilijk
+     * @param gebruikersnaam String
+     * @param wachtwoord String
+     * @param aantalGewonnenMakkelijk Integer
+     * @param aantalGewonnenGemiddeld Integer
+     * @param aantalGewonnenMoeilijk Integer
      */
     public Speler(String gebruikersnaam, String wachtwoord, int aantalGewonnenMakkelijk, int aantalGewonnenGemiddeld, int aantalGewonnenMoeilijk) {
         this.naam = gebruikersnaam;
@@ -56,9 +56,9 @@ public class Speler
      *
      *
      * @author Ferre
-     * @param gebruikersnaam
-     * @param wachtwoord
-     * @param wachtwoordBevestiging
+     * @param gebruikersnaam String
+     * @param wachtwoord String
+     * @param wachtwoordBevestiging String
      */
     public Speler(String gebruikersnaam, String wachtwoord, String wachtwoordBevestiging) {
         this(gebruikersnaam, wachtwoord, 0, 0, 0);
@@ -73,7 +73,7 @@ public class Speler
      *
      *
      * @author Ferre
-     * @param naam
+     * @param naam String
      */
     public void setNaam(String naam) {
         this.naam = naam;
@@ -168,7 +168,7 @@ public class Speler
      *
      * 
      * @author Ferre
-     * @param moeilijkheidsGraad
+     * @param moeilijkheidsGraad Integer
      */
     public void verhoogJuisteMoeilijkheidsGraad(int moeilijkheidsGraad) {
         if (moeilijkheidsGraad == 1) {
@@ -191,7 +191,7 @@ public class Speler
      * @see getAantalGewonnenMoeilijk
      * 
      * @author Ferre
-     * @param moeilijkheidsGraad
+     * @param moeilijkheidsGraad int
      * @return int[]
      */
     public int[] geefAantalSterrenEnAantalTotVolgende(int moeilijkheidsGraad) {

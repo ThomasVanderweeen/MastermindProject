@@ -526,8 +526,6 @@ public class DomeinController {
      * 
      * @see SpelerRepository#geefKlassement(int) geefKlassement
      * @author Thomas
-     * @param
-     * @return void
      */
     public void berekenScoreKlassement(){
         int id = spel.getUitdagingID();

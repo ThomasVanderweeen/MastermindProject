@@ -89,7 +89,7 @@ public class Spelbord {
      * voegPogingToe voegt een poging toe aan een rij.
      * 
      * @see geldigePoging
-     * @see doePoging
+     * @see Rij#doePoging(int[]) doePoging
      * @see evalueerPoging
      * @author Ferre
      * @param poging poging die wordt toegevoegd.
@@ -120,11 +120,11 @@ public class Spelbord {
      * Makkelijk: juiste locatie en kleur = zwart, juiste kleur = wit, niets = leeg
      * Normaal/Moeilijk: zelfde als makkelijk maar de evaluatiepinnen worden niet meer op de juiste plaats gezet.
      * 
-     * @see getPoging
-     * @see getKleur
-     * @see getCode
-     * @see getMoeilijkheidsGraad
-     * @see stelEvaluatieIn
+     * @see Rij#getPoging() getPoging
+     * @see Pin#getKleur() getKleur
+     * @see Spelbord#getCode() getCode
+     * @see Code#getMoeilijkheidsGraad() getMoeilijkheidsGraad
+     * @see  Rij#stelEvaluatieIn(int[]) stelEvaluatieIn
      * @author Ferre
      * @param rij rij die wordt geëvalueerd
      */
@@ -194,7 +194,7 @@ public class Spelbord {
     /**
      * geefMoeilijkheidsGraad geeft de moeilijkheidsgraad van een spelbord object.
      * 
-     * @see getMoeilijkheidsGraad
+     * @see Code#getMoeilijkheidsGraad() getMoeilijkheidsGraad
      * @author Ferre
      * @return int
      */
