@@ -66,7 +66,7 @@ public class SpelLadenController implements Initializable {
         try{
             String[][] spellen = WelkomController.dc.geefOpgeslagenSpellen();
             ObservableList<laadSpelRij> lijst = FXCollections.observableArrayList();
-            
+
             for(String[] spel: spellen){
                 lijst.add(new laadSpelRij(spel[0],Integer.valueOf(spel[1])));
             }

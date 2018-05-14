@@ -77,7 +77,7 @@ public class UitdagingRij {
      * @return Button
      * @author Ferre
      */
-    protected Button getAccepteer(){
+    public Button getAccepteer(){
         return this.accepteer;
     }
     
@@ -86,7 +86,7 @@ public class UitdagingRij {
      * @return String
      * @author Ferre
      */
-    protected String getNaam(){
+    public String getNaam(){
         return this.naam;
     }
     
@@ -95,7 +95,7 @@ public class UitdagingRij {
      * @return String
      * @author Ferre
      */
-    protected String getMoeilijkheidsGraad(){
+    public String getMoeilijkheidsGraad(){
         return this.moeilijkheidsGraad;
     }
 }

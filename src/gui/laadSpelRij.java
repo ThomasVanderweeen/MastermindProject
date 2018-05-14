@@ -69,7 +69,7 @@ public class laadSpelRij {
      * @return String
      * @author Ferre
      */
-    protected String getNaam(){
+    public String getNaam(){
         return this.naam;
     }
     
@@ -79,7 +79,7 @@ public class laadSpelRij {
      * @return Button 
      * @author Ferre
      */
-    protected Button getBtn(){
+    public Button getBtn(){
         return this.btn;
     }
     
@@ -89,7 +89,7 @@ public class laadSpelRij {
      * @return String
      * @author Ferre
      */
-    protected String getMg(){
+    public String getMg(){
         return this.mg;
     }
 }

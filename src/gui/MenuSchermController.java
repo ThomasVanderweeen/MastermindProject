@@ -47,8 +47,7 @@ public class MenuSchermController implements Initializable{
     
     @FXML
     private Label naam;
-    @FXML
-    private Button terugKnop;
+
     
     /**
      * update de resourcebundle in WelkomController en de labels
@@ -147,7 +146,7 @@ public class MenuSchermController implements Initializable{
      * @see SpelLadenController#toonSpellen() toonSpellen
      * @author Michiel S
      */
-
+    @FXML
     protected void laadGeklikt(){
 
         SpelLadenController slc = new SpelLadenController();
@@ -264,9 +263,7 @@ public class MenuSchermController implements Initializable{
         naam.setText("Welkom terug "+WelkomController.dc.geefSpelerNaam());
     }
 
-    @FXML
-    private void terugKnopGeklikt(ActionEvent event) {
-    }
+
 
     
 }

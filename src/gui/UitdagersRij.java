@@ -64,7 +64,7 @@ public class UitdagersRij {
      * @return String
      * @author Michiel S.
      */
-    protected String getNaam(){
+    public String getNaam(){
         return this.naam;
     }
     
@@ -73,7 +73,7 @@ public class UitdagersRij {
      * @return Button
      * @author Michiel S.
      */
-    protected Button getBtn(){
+    public Button getBtn(){
         return this.btn;
     }
     
@@ -82,7 +82,7 @@ public class UitdagersRij {
      * @return Integer
      * @author Michiel S.
      */
-    protected int getGewonnen(){
+    public int getGewonnen(){
         return this.gewonnen;
     }
     

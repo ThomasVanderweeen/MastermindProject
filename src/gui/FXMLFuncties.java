@@ -2,6 +2,8 @@ package gui;
 
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -26,12 +28,12 @@ public class FXMLFuncties
             Parent pr = null;
             
             try{
-                fxml = new FXMLLoader(getClass().getResource(Resource));
-                pr = fxml.load();
-                
+                    fxml = new FXMLLoader(getClass().getResource(Resource));
+                    pr = fxml.load();
             } catch (IOException ex){
-                
+                Logger.getLogger(FXMLFuncties.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         
             return pr;
         }

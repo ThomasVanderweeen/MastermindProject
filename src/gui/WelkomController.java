@@ -87,7 +87,7 @@ public class WelkomController implements Initializable
     
     @FXML
     protected void LoginGeklikt(){
-        veranderScherm("LogIn.fxml");
+        WelkomController.veranderScherm("LogIn.fxml");
     }
     
     protected void setWelkomScherm(FXMLFuncties ws){
