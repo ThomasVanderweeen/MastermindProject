@@ -209,6 +209,14 @@ public class UC1 {
         dc.registreer(naam, wachtwoord,wachtwoordBevestiging);
    }
     
+    /**
+     * toon het menu en verwijst door naar andere use cases afhankelijk van de gemaakte keuze. 
+     * @see #uc2.start()
+     * @see #uc4.start()
+     * @see #uc5.main()
+     * @see #uc6.main()
+     * @see #uc7.main()
+     */
    public void toonMogelijkheden(){
        int keuze=0;
        

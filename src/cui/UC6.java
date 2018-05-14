@@ -24,6 +24,12 @@ public class UC6 {
     private UC5 uc5;
     private UC3 uc3;
 
+    /**
+     * constructor waarbij 2 parameters al zijn meegegeven
+     * DomeinController en ResourceBundle worden ingesteld, er wordt ook een scanner-, een UC1-, een UC3 en een UC5 object aangemaakt
+     * @param dc DomeinController
+     * @param r ResourceBundle
+     */
     public UC6(DomeinController dc, ResourceBundle r) {
         this.r = r;
         this.dc = dc;
@@ -32,10 +38,19 @@ public class UC6 {
         this.uc3 = new UC3(dc,r);
     }
     
+    /**
+     * omvat het verloop van UC6
+     */
     public void main(){
         toonUitdagingen();
     }
     
+    /**
+     * Geeft voor een pebaalde speler de lijst met uitdagingen.
+     * 
+     * @see #dc.geefLijstUitdagingen()
+     * @see #toonOpties()
+     */
     private void toonUitdagingen(){
         try{
             String[][] uitdagingen = dc.geefLijstUitdagingen();    
@@ -73,7 +88,12 @@ public class UC6 {
          
     }  
 
-
+    /**
+     * toon de opties die een speler heeft nadat hij een uitdaging heeft geselecteerd.
+     * 
+     * @param ID
+     * @param tegenstander 
+     */
     private void toonOpties(int ID,String tegenstander) {
         int keuze =0 ;
         

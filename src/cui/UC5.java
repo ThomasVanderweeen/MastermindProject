@@ -18,6 +18,12 @@ public class UC5 {
     private final UC3 uc3;
     private final Scanner sc;
     
+    /**
+     * constructor waarbij 2 parameters al zijn meegegeven
+     * DomeinController en ResourceBundle worden ingesteld, er wordt ook een scanner-, een UC1 en een UC3 object aangemaakt
+     * @param dc DomeinController
+     * @param r ResourceBundle
+     */
     public UC5(DomeinController dc, ResourceBundle r){
         this.r = r;
         this.dc = dc;
@@ -26,6 +32,9 @@ public class UC5 {
         this.sc = new Scanner(System.in);
     }
     
+    /**
+     * Bevat het verloop van UC5. 
+     */
     public void main(){
         try{
             geefBeschikbareMoeilijkheidsGraden();
@@ -34,6 +43,17 @@ public class UC5 {
         }
     }
     
+    /**
+     * Gaat na in de databank of een speler nog een lopende uitdaging heeft. Geeft de speler de keuze om een uitdaging te laden of te verwijderen.
+     * 
+     * @see #dc.geefNaamLopendeUitdagingTegenspeler()
+     * @see #uc1.ua.geefKeuze(int, int)
+     * @see #dc.kaadSpelLopendeUitdaging()
+     * @see #UC1.ua.geefSpelbordWeer()
+     * @see #uc3.start()
+     * @see #dc.verwijderLopendeUitdaging()
+     * @see #uc1.toonMogelijkheden()
+     */
     protected void heeftLopendeUitdaging(){
             int keuze=0;
             
@@ -63,6 +83,11 @@ public class UC5 {
             }
     }
     
+    /**
+     * Geeft de mogelijke moeilijkheidsgraden voor een speler. 
+     * @see #dc.geefMoeilijkheidsGraden()
+     * @see #kiesSpelerOmUitTeDagen(keuze)
+     */
     private void geefBeschikbareMoeilijkheidsGraden(){
         List<String[]> mogelijkheden = this.dc.geefMoeilijkheidsGraden();
         int i = 0;
@@ -89,6 +114,12 @@ public class UC5 {
 
     }
     
+    /**
+     * geeft een lijst met alle spelers die kunnen uitgedaagd worden en vraagt om daaruit een speler te kiezen.
+     * @see #dc.selecteerMoeilijkheidsGraadUitdagingen(moeilijkheidsGraad)
+     * @see #dc.startUitdaging(speler, moeilijkheidsGraad)
+     * @param moeilijkheidsGraad 
+     */
     private void kiesSpelerOmUitTeDagen(int moeilijkheidsGraad){
         int spelernummer = 1;
                 

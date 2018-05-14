@@ -24,6 +24,12 @@ public class UC3 {
     private final Scanner sc;
     private final UC1 uc1;
     
+    /**
+     * constructor waarbij 2 parameters al zijn meegegeven
+     * DomeinController en ResourceBundle worden ingesteld, er wordt ook een scanner- en een UC1 object aangemaakt
+     * @param dc DomeinController
+     * @param r ResourceBundle
+     */
     public UC3(DomeinController dc, ResourceBundle r){
         this.r = r;
         this.dc = dc;
@@ -31,6 +37,12 @@ public class UC3 {
         this.uc1 = new UC1(dc,r);
     }
     
+    /**
+     * bevat het verloop van UC3. Zolang het einde van het spel niet berijkt is kan de speler een beurt spelen.
+     * @see #geefKleurenWeer()
+     * @see #speelBeurt() 
+     * @see #gewonnen()
+     */
     public void start(){
         while(!(this.dc.isEindeSpel())){
             geefKleurenWeer();
@@ -41,6 +53,10 @@ public class UC3 {
         }
     }
     
+    /**
+     * Geeft aan dat de speler gewonnen is. Toont alle relevante informatie i.v.m. sterren e.d.
+     * @see #uc1.toonMogelijkheden();
+     */
     private void gewonnen(){
         String res = String.format("%s%n%s",r.getString("gewonnen"),
                 r.getString("code"));
@@ -61,7 +77,12 @@ public class UC3 {
         
         this.uc1.toonMogelijkheden();
     }
-
+    
+    /**
+     * Geeft de gebruiker 2 keuzes elke beurt kunnen herhalen, opslaan of een poging doen.
+     * @see #slaSpelOp() 
+     * @see #doePoging() 
+     */
     private void speelBeurt(){
        int keuze = 0;
         
@@ -87,6 +108,9 @@ public class UC3 {
     }
 
     
+    /**
+     * Vraagt de speler om een poging te doen. Een poging bestaat uit een aantal kleurenpinnen.
+     */
     private void doePoging(){
         int i=0;
         
@@ -121,6 +145,9 @@ public class UC3 {
         }
     }   
     
+    /**
+     * Slaat een spel op in de databank. 
+     */
     private void slaSpelOp(){
         System.out.print(r.getString("naamOpslaan"));
         String naam = this.sc.next();
@@ -139,6 +166,11 @@ public class UC3 {
         }
     }
     
+    /**
+     * controleert of een pin een geldige kleur heeft.
+     * @param i
+     * @return ret
+     */
     private int controleerPin(String i){
         try{
             if(i.length()>1)
@@ -154,6 +186,10 @@ public class UC3 {
         }
     }
     
+    /**
+     * Geeft de mogelijke kleuren weer.
+     * @see #dc.geefKleuren()
+     */
     private void geefKleurenWeer(){
         String[] kleuren = this.dc.geefKleuren();
         String res = r.getString("mogelijkheden")+"\n";

@@ -16,12 +16,24 @@ public class UC2 {
     private final DomeinController dc;
     private final Scanner sc;
     
+    /**
+     * constructor waarbij beide parameters al zijn meegegeven
+     * DomeinController en ResourceBundle worden ingesteld
+     * @param dc DomeinController
+     * @param r ResourceBundle
+     */
     public UC2(ResourceBundle r,DomeinController dc){
         this.r = r;
         this.dc = dc;
         this.sc = new Scanner(System.in);
     }
     
+    /**
+     * start methode, bevat het verloop van UC2. 
+     * @see #toonAantalGewonnen() 
+     * @see #kiesMoeilijkheidsGraad() 
+     * @see #uc3.start()
+     */
     public void start(){
         toonAantalGewonnen();
         kiesMoeilijkheidsGraad();
@@ -29,6 +41,10 @@ public class UC2 {
         uc3.start();
     }
     
+    /**
+     * toont hoeveel spellen van een bepaalde moeilijkheidsgraad een speler heeft gewonnen.
+     * @see #dc.startNieuwSpel()
+     */
     private void toonAantalGewonnen(){
         List<Integer> lijst = dc.startNieuwSpel();
         System.out.printf("%s%n%s%d%n%s%d%n%s%d%n",r.getString("gewonnenIntro"),
@@ -43,6 +59,12 @@ public class UC2 {
         return this.sc.nextInt();
     }
     
+    /**
+     * Vraagt om een moeilijkheidsgraad te kiezen, maakt vervolgens een nieuw spel aan met de gekozen moeilijkheidsgraad en toont het spelbord.
+     * @see #dc.registraarSpel(keuze)
+     * @see #uc1.ua.geefSpelbordWeer()
+     * @see #kiesMoeilijkheidsGraad() 
+     */
     private void kiesMoeilijkheidsGraad(){
         int keuze = 0;
         

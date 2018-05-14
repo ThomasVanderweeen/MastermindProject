@@ -12,12 +12,20 @@ public class UC_Algemeen {
     private final ResourceBundle r;
     private final Scanner sc;
     
+    /**
+     * constructor waarbij 2 parameters al zijn meegegeven
+     * DomeinController en ResourceBundle worden ingesteld, er wordt ook een scanner object aangemaakt
+     * @param dc DomeinController
+     * @param r ResourceBundle
+     */
     public UC_Algemeen(DomeinController dc, ResourceBundle r){
         this.dc =dc;
         this.r = r;
         this.sc = new Scanner(System.in);
     }
-        
+    /**
+     * Geeft het spelbord weer.
+     */
     protected void geefSpelbordWeer(){
         String[][] spelbord = this.dc.geefSpelBord();
         String[] code = this.dc.geefCode();
@@ -57,7 +65,13 @@ public class UC_Algemeen {
         System.out.println(res);
     }
     
-        
+    /**
+     * hulpmethode voor het bepalen van errors bij een selectiemenu.
+     * 
+     * @param min
+     * @param max
+     * @return int
+     */
     protected int geefKeuze(int min,int max){
         int i = 0;
         

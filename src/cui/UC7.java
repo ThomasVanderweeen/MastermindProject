@@ -27,6 +27,12 @@ public class UC7
     private UC6 uc6;
     private UC3 uc3;
 
+    /**
+     * constructor waarbij 2 parameters al zijn meegegeven
+     * DomeinController en ResourceBundle worden ingesteld, er wordt ook een scanner-, een UC1-, een UC3-, en een UC5 object aangemaakt
+     * @param dc DomeinController
+     * @param r ResourceBundle
+     */
     public UC7(DomeinController dc, ResourceBundle r) {
         this.r = r;
         this.dc = dc;
@@ -35,10 +41,19 @@ public class UC7
         this.uc3 = new UC3(dc, r);
     }
 
+    /**
+     * bevat het verloop van UC7
+     */
     public void main() {
         geefOpties();
     }
 
+    /**
+     * Toont het scorebord voor een bepaalde moeilijkheidsgraad.
+     * 
+     * @see #dc.toonKlassement(graad)
+     * @param graad 
+     */
     public void toonScorebord(int graad) {
 
         List<String[]> spelers = new ArrayList<String[]>();
@@ -74,6 +89,9 @@ public class UC7
         geefOpties();
     }
 
+    /**
+     * Laat de speler kiezen voor welke moeilijkheidsgraad ze een het scorebord willen zien
+     */
     public void geefOpties() {
         int keuze = 0;
         Scanner sc = new Scanner(System.in);

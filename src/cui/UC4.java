@@ -20,6 +20,12 @@ public class UC4
     private final UC3 uc3;
     private String[][] spellen;
 
+    /**
+     * constructor waarbij 2 parameters al zijn meegegeven
+     * DomeinController en ResourceBundle worden ingesteld, er wordt ook een scanner- en een UC4 object aangemaakt
+     * @param dc DomeinController
+     * @param r ResourceBundle
+     */
     public UC4(DomeinController dc, ResourceBundle r) {
         this.r = r;
         this.dc = dc;
@@ -27,6 +33,10 @@ public class UC4
         this.uc3 = new UC3(dc, r);
     }
 
+    /**
+     * vraagt de naam van een te laden spel.
+     * @return int 
+     */
     private int geefNaamIn() {
         Scanner scan = new Scanner(System.in);
         int keuze=0;
@@ -59,6 +69,10 @@ public class UC4
             start();
         }
     }
+    
+    /**
+     * Print een lijst van alle opgeslagen spellen naar de output.
+     */
     private void laadSpellen() {
         this.spellen = this.dc.geefOpgeslagenSpellen();
         int index = 0;
@@ -82,6 +96,13 @@ public class UC4
         System.out.printf(res);
     }
 
+    /**
+     * Laad een spel uit de lijst die door laadSpellen() wordt gegeven.
+     * @see #dc.selecteerSpel(naam)
+     * @see #UC1.ua.geefSpelbordWeer()
+     * @see #UC3.start()
+     * @param keuze 
+     */
     public void laadSpelIn(int keuze){
         String naam = spellen[keuze-1][0];
         this.dc.selecteerSpel(naam);
