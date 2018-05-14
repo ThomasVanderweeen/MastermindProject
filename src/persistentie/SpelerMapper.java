@@ -161,6 +161,13 @@ public class SpelerMapper {
         
        }
     
+    /**
+     * Geeft een lijst met spelers die uitgedaagd kunnen worden
+     * 
+     * @param moeilijkheidsGraad moeilijkheidsgraad van de uitdaging
+     * @param naam naam van de speler
+     * @return list<String[]>
+     */
     public  List<String[]> geefBeschikbareSpelersUitdaging(int moeilijkheidsGraad,String naam){
         String tableNaam = "gewonnenMakkelijk";
         List<String[]> spelers  = new ArrayList<>();
@@ -200,7 +207,12 @@ public class SpelerMapper {
         
         return spelers;
     }
-    
+    /**
+     * Geeft het klassement van de uitdagingen.
+     * 
+     * @param graad moeilijkheidsgraad van het te geven klassement
+     * @return List<String[]>
+     */
     public List<String[]> geefKlassement(int graad){
         List<String[]> spelers = new ArrayList<String[]>();
         String difficulty = "";
@@ -241,6 +253,12 @@ public class SpelerMapper {
         return spelers;
     }
     
+    /**
+     * Geeft info over een speler op basis van de gebruikersnaam
+     * 
+     * @param gebruikersnaam naam van de gewenste speler
+     * @return Speler
+     */
     public Speler geefSpelerNaam(String gebruikersnaam){
         Speler speler = null;
         
@@ -268,7 +286,12 @@ public class SpelerMapper {
         
         return speler;
     }
-
+    
+    /**
+     * slaat de score van een speler op voor een makkelijke uitdaging
+     * @param score gewenste score
+     * @param speler gewenste speler
+     */
     public void SlaScoreMakkelijkOp(int score, Speler speler) {
         try{
             PreparedStatement query = conn.prepareStatement(INSERT_SCOREMAKKELIJK);
@@ -280,6 +303,11 @@ public class SpelerMapper {
         }    
     }
     
+    /**
+     * slaat de score van een speler op voor een gemiddelde uitdaging
+     * @param score gewenste score
+     * @param speler gewenste speler
+     */
     public void SlaScoreGemiddeldOp(int score, Speler speler) {
         try{
             PreparedStatement query = conn.prepareStatement(INSERT_SCOREGEMIDDELD);
@@ -291,6 +319,11 @@ public class SpelerMapper {
         }    
     }
     
+    /**
+     * slaat de score van een speler op voor een moeilijke uitdaging
+     * @param score gewenste score
+     * @param speler gewenste speler
+     */
     public void SlaScoreMoeilijkOp(int score, Speler speler) {
         try{
             PreparedStatement query = conn.prepareStatement(INSERT_SCOREMOEILIJK);

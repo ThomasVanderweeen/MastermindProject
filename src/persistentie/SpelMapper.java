@@ -582,6 +582,13 @@ public class SpelMapper {
         return 0;
     }
     
+    /**
+     * geeft de moeilijkheidsgraad van een spel op basis van naam en uitdagingID
+     * 
+     * @param naam naam van de speler
+     * @param id id van het spel
+     * @return int
+     */
     private int geefMoeilijkheidsGraad(String naam, int id){
         try{
             PreparedStatement query = SpelerMapper.conn.prepareStatement(
@@ -604,7 +611,13 @@ public class SpelMapper {
         
         return 0;
     }
-        
+    
+    /**
+     * Geeft info over een lopende uitdaging van een speler
+     * 
+     * @param idsenNaam
+     * @return String[][]
+     */
     public String[][] geefLopendeUitdagingInfo(String[][] idsenNaam){
         String[][] info = new String[idsenNaam.length][3];
         int indx = 0;

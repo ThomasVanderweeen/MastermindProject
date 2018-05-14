@@ -15,6 +15,10 @@ import static persistentie.SpelerMapper.conn;
  */
 public class UitdagingMapper {
     
+    /**
+     * Slaat een uitdaging op in de databank
+     * @param uitdaging uitdaging die wordt opgeslaan
+     */
     public void voegUitdagingToe(Uitdaging uitdaging){
         int uitdagingNr = geefUitdagingNummer();
         String tegenstander = uitdaging.getTegenstander();
@@ -25,6 +29,10 @@ public class UitdagingMapper {
         associeerSpelersMetUitdaging(uitdager,tegenstander,uitdagingNr);
     }
     
+    /**
+     * geeft het nummer van een uitdaging terug.
+     * @return int
+     */
     private int geefUitdagingNummer(){
         try{
             PreparedStatement query = conn.prepareStatement("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'ID222177_g77' AND   TABLE_NAME   = 'Uitdaging';");
@@ -45,6 +53,9 @@ public class UitdagingMapper {
         return 1;
     }
     
+    /**
+     * voegt een uitdaging toe met als waarde NULL voor elke kolom
+     */
     private void voegUitdagingToe(){
         try{
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g77.Uitdaging VALUES (NULL);");
@@ -59,6 +70,13 @@ public class UitdagingMapper {
         
     }
     
+    /**
+     * legt een associatie tussen een speler en een uitdaging
+     * 
+     * @param speler speler van de uitdaging
+     * @param uitdager uitdager van de uitdaging
+     * @param ID ID van de uitdaging
+     */
     private void associeerSpelersMetUitdaging(Speler speler,String uitdager,int ID){
       try{
             PreparedStatement query = conn.prepareStatement("INSERT INTO ID222177_g77.Speler_Uitdaging VALUES "
@@ -74,6 +92,12 @@ public class UitdagingMapper {
         }
     }
     
+    /**
+     * gaat na of een speler lopende uitdagingen heeft.
+     * 
+     * @param speler speler die gecheckt moet worden
+     * @return boolean
+     */
     public boolean heeftLopendeUitdaging(Speler speler){
         try{
             PreparedStatement query = conn.prepareStatement("SELECT count(ID) FROM "
@@ -99,7 +123,13 @@ public class UitdagingMapper {
         
         return false;
     }
-    
+   
+    /**
+     * gaat na of een speler al uitgedaagd is door een tegenstander
+     * @param speler speler van de uitdaging
+     * @param tegenstander tegenstander van de speler
+     * @return boolean
+     */
    public boolean spelerIsAlUitgedaag(Speler speler, String tegenstander){
         try{
             PreparedStatement query = conn.prepareStatement("select count(ID) from ID222177_g77.Speler_Uitdaging where spelerNaam = ? or spelerNaam = ? "+""
@@ -122,6 +152,12 @@ public class UitdagingMapper {
         }
     }
    
+   /**
+    * geeft het ID van een uitdaging.
+    * @param speler speler van de uitdaging
+    * @param tegenstander tegenstander van de speler
+    * @return int
+    */
    public int geefUitdagingID(Speler speler, String tegenstander){
        try{
             PreparedStatement query = conn.prepareStatement("Select ID from ID222177_g77.Speler_Uitdaging where spelerNaam = ? or spelerNaam = ?"+
@@ -141,6 +177,11 @@ public class UitdagingMapper {
        return -1;
    }
    
+   /**
+    * Geeft het ID van een uitdaging die de speler op dit moment geaccepteerd heeft.
+    * @param speler van de uitdaging
+    * @return int
+    */
    public int geefHuidigeUitdagingID(Speler speler){
         try{
             PreparedStatement query = conn.prepareStatement("select ID from ID222177_g77.Speler_Uitdaging where "
@@ -159,6 +200,12 @@ public class UitdagingMapper {
         }
    }
    
+   /**
+    * Geeft de naam van een tegenstander op basis van ID
+    * @param speler speler van de uitdaging
+    * @param ID id van de uitdaging
+    * @return 
+    */
    public String geefNaamTegenstanderID(Speler speler,int ID){
         try{
             PreparedStatement query = conn.prepareStatement("select spelerNaam from "
@@ -178,12 +225,19 @@ public class UitdagingMapper {
         }
    }
    
+   /**
+    * verwijdert een uitdaging
+    * @param ID id van de te verwijderen uitdaging
+    */
    public void verwijderUitdaging(int ID){
        verwijderSpelerUitdagingAssociatie(ID);
        verwijderUitdagingID(ID);
    }
    
-   
+   /**
+    * verwijdert een associatie tussen speler en uitdager
+    * @param ID id van de uitdaging
+    */
    private void verwijderSpelerUitdagingAssociatie(int ID){
          try{
             PreparedStatement query = conn.prepareStatement("delete from "
@@ -200,6 +254,10 @@ public class UitdagingMapper {
          
    }
    
+   /**
+    * verwijdert een uitdaging
+    * @param ID id van de te verwijderen uitdaging
+    */
    private void verwijderUitdagingID(int ID){
          try{
             PreparedStatement query = conn.prepareStatement("delete from "
@@ -215,6 +273,10 @@ public class UitdagingMapper {
         }
       }
    
+   /**
+    * update een uitdaging
+    * @param uitdaging up te daten uitdaging
+    */
    public void updateUitdaging(Uitdaging uitdaging){
        try{
             PreparedStatement query = conn.prepareStatement("UPDATE ID222177_g77.Speler_Uitdaging SET aantalPogingen = ? "
@@ -235,6 +297,12 @@ public class UitdagingMapper {
 
    }
    
+   /**
+    * Geeft het ID van elke openstaande uitdaging van een speler
+    * 
+    * @param speler waarvan de uitdaging IDs worden opgehaald
+    * @return List<Integer>
+    */
       private List<Integer> geefIDsopenstaandeUitdagingen(Speler speler) {
         List<Integer> IDs = new ArrayList<>();
         try {            
@@ -273,6 +341,11 @@ public class UitdagingMapper {
             return uitdagerEnId;
     }
     
+    /**
+     * update de databank zodat geaccepteerd 1 wordt wanneer een speler een uitdaging accepteerd.
+     * @param ID id van de geaccepteerde uitdaging
+     * @param speler speler die de uitdaging accepteerd
+     */
     public void accepteerUitdaging(int ID,Speler speler){
         try{
             PreparedStatement querry = conn.prepareStatement("UPDATE ID222177_g77.Speler_Uitdaging SET geacepteerd = 1 "
